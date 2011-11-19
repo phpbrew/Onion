@@ -36,7 +36,7 @@ To generate a package.xml 2.0 spec file for PEAR, just run:
 
 Then you should be able to run pear command to build the package:
 
-    $ pear build
+    $ pear package
 
 COMPOSER SUPPORT
 ================
@@ -56,10 +56,14 @@ A MORE DETAILED EXAMPLE
     verbose   = 0.0.1
     authors[] = Yo-An Lin <cornelius.howl@gmail.com>
 
+    data = path/to/pkg_data
+    src  = path/to/src
+    test = path/to/test
+    web  = path/to/web
+
     [require]
     php = >=5.3
     symfony/process = >=1.1
-
 
 REFERENCE
 =========
