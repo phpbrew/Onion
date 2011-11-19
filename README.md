@@ -7,16 +7,16 @@ Example spec file:
     [package]
     name = GenPEAR
     desc = package description
-    homepage = http://your.web.com
-    license = MIT
+    version = 0.0.1
+
+    [require]
+    php = >=5.3
+    symfony/process = >=1.1
 
     [author]
     name = Yo-An Lin
     email = cornelius.howl@gmail.com
 
-    [require]
-    php = >=5.3
-    symfony/process = >=1.1
 
 If you're new to `genpear`, you have to edit your ~/.pear.ini file:
 
@@ -32,11 +32,34 @@ Then you got package.ini file.
 
 To generate a package.xml 2.0 spec file for PEAR, just run:
 
-    $ genpear pear init
+    $ genpear to-pear
 
 Then you should be able to run pear command to build the package:
 
     $ pear build
+
+COMPOSER SUPPORT
+================
+To support composer/composer , just run:
+
+    $ genpear to-composer
+
+A MORE DETAILED EXAMPLE
+========================
+
+    [package]
+    name      = GenPEAR
+    desc      = package description
+    summary   = ....                  # optional, default to Description
+    homepage  = http://your.web.com  # optional
+    license   = MIT                   # optional, default to PHP
+    verbose   = 0.0.1
+    authors[] = Yo-An Lin <cornelius.howl@gmail.com>
+
+    [require]
+    php = >=5.3
+    symfony/process = >=1.1
+
 
 REFERENCE
 =========
