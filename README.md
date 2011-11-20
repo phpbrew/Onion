@@ -52,6 +52,12 @@ Then you should be able to run pear command to build the package:
     $ pear package
     # Your PEAR package is out!
 
+
+Requirement
+-----------
+
+* PHP 5.3
+
 Available Config Tags
 ---------------------
 
@@ -115,8 +121,8 @@ A more detailed example
     uri  = ....
 
 
-REFERENCE
-=========
+Reference
+---------
 Package structure
 http://pear.php.net/manual/en/pyrus.commands.make.php
 
