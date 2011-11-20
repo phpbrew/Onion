@@ -19,22 +19,6 @@ class BuildCommand extends Command
 {
     function execute($context) 
     {
-        $config = new \Onion\GlobalConfig;
-        if( ! $config->exists() ) {
-            // create an skeleton for user and exit.
-            $default = $config->defaultContent();
-            file_put_contents( $config_path , $default );
-            echo "Please edit your config file first.\n";
-            echo "   \$ vim $config_path\n";
-            return true;
-        }
-        $config->read();
-
-        $author = $config->author;
-        if( empty($author) ) {
-            echo "[author] section is not defined.";
-            return false;
-        }
 
         echo "Configuring package.ini...\n";
         $package_config = new PackageConfigFile('package.ini');

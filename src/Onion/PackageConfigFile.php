@@ -52,6 +52,12 @@ class PackageConfigFile extends ConfigFile
         // apply api_version from 'version', if not specified.
         if( ! isset($config['package']['api_version'] ) )
             $config['package']['api_version'] = $config['package']['version'];
+
+        if( ! isset($config['requires']) ) 
+            $config['requires'] = array( 
+                'php' => '5.3',
+                'pearinstaller' => '1.4',
+            );
     }
 
     function validate()
