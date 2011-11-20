@@ -118,9 +118,9 @@ A more detailed example
     php = '>=5.3'
     pearinstaller = '1.4.1'
     symfony/process = '>=1.1'
-    exts[] = 'reflection'
-    exts[] = 'ctype'
-    exts[] = 'pcre'
+    extensions[] = 'reflection'
+    extensions[] = 'ctype'
+    extensions[] = 'pcre'
 
     [recommends]
 
