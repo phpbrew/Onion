@@ -143,3 +143,6 @@ http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexm
 Pyrus
 http://pear.php.net/manual/en/pyrus.about.php
 
+
+Deployment PEAR
+http://www.eschrade.com/page/deployment-pear-4c228790/
