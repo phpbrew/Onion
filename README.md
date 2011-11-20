@@ -2,20 +2,16 @@ Onion
 =======
 Use simple package.ini file to generate hard PEAR package.xml!
 
-Example spec file:
+The minimal spec file:
 
     [package]
     name = Onion
     desc = package description
     version = 0.0.1
+    author = Yo-An Lin <cornelius.howl@gmail.com>
 
     [require]
     php = >=5.3
-    symfony/process = >=1.1
-
-    [author]
-    name = Yo-An Lin
-    email = cornelius.howl@gmail.com
 
 If you're new to `onion`, you have to edit your ~/.pear.ini file:
 
