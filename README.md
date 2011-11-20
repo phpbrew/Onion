@@ -58,15 +58,18 @@ A MORE DETAILED EXAMPLE
 ========================
 
     [package]
-    name      = GenPEAR
-    desc      = package description
-    summary   = ....                  # optional, default to Description
-    homepage  = http://your.web.com   # optional
-    license   = MIT                   # optional, default to PHP
+    name        = your package name
+    desc        = package description
+    summary     = ....                  # optional, default to Description
+    homepage    = http://your.web.com   # optional
+    license     = MIT                   # optional, default to PHP
     version     = 0.0.3
-    api_version = 0.0.1               # optional
-    authors[] = Yo-An Lin <cornelius.howl@gmail.com>
-    channel   = pear.php.net
+    api_version = 0.0.1                 # optional, defualt to "version"
+    authors[]      = Yo-An Lin <cornelius.howl@gmail.com>
+    contributors[] = ...                # optional
+    maintainers[]  = ...                # optional
+    channel     = pear.php.net
+    repository  = github.com/c9s....
 
     [structure]
     data = path/to/pkg_data
@@ -87,9 +90,18 @@ A MORE DETAILED EXAMPLE
 
     [recommends]
 
+    ; details for LICENSE (optional)
+    [license]
+    file = ....
+    uri  = ....
+
+
 REFERENCE
 =========
+http://pear.php.net/manual/en/guide.users.concepts.php
+http://pear.php.net/manual/en/pyrus.extending.packagefile.php
 http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php
 
 Pyrus
 http://pear.php.net/manual/en/pyrus.about.php
+
