@@ -45,7 +45,8 @@ class BuildCommand extends Command
 
         $config->read();
         $config->validate();
-        echo $config->generatePackageXml();
+        $xml = $config->generatePackageXml();
+        file_put_contents('package.xml',$xml);
         return true;
     }
 }

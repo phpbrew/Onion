@@ -261,16 +261,9 @@ XML;
         } 
         catch (Exception $e) 
         {
-            echo "bad xml"; 
+            die( $e->getMessage() );
         } 
-
-
     }
 
-
-
-
 }
-
-
 
