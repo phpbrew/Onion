@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  *
  */
-
 use CLIFramework\CommandDispatcher;
 try {
     $dispatcher = new CommandDispatcher( '\\Onion\\Command' );

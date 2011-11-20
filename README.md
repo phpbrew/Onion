@@ -23,8 +23,13 @@ The minimal spec file
     [require]
     php = >=5.3
 
+
+
 Quick Tutorial
 --------------
+Get onion.phar file:
+
+    $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
 
 If you're new to `Onion`, you might need to edit your author information in ~/.onion.ini file,
 this helps you generate a new package.ini file, your ~/.onion.ini file might be like:
@@ -46,13 +51,12 @@ Fill your package.ini file:
 
 To generate a package.xml 2.0 spec file for PEAR, just run:
 
-    $ bin/onion build
+    $ php ~/bin/onion.phar build
 
 Then you should be able to run pear command to build the package:
 
     $ pear package
     # Your PEAR package is out!
-
 
 Requirement
 -----------
