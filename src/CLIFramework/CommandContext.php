@@ -30,7 +30,7 @@ class CommandContext
 
     function getNextArgument()
     {
-        return $this->context_list[0];
+        return @$this->context_list[0];
     }
 
     function hasSubcommand()

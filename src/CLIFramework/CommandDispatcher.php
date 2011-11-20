@@ -68,6 +68,12 @@ class CommandDispatcher
         throw new Exception( "Command '$command' not found." );
     }
 
+    function runDispatch()
+    {
+        $command = $this->context->getNextArgument();
+        return $this->dispatch($command);
+    }
+
     function dispatch( $command = null )
     {
         if( $command ) 
