@@ -15,6 +15,6 @@ class SubCommand extends Command
 {
     function execute($context)
     {
-
+        return true;
     }
 }

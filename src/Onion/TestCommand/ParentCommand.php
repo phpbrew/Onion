@@ -12,7 +12,8 @@ namespace Onion\TestCommand;
 
 class ParentCommand extends \CLIFramework\Command
 {
-    function execute($context) { 
-   
+    function execute($context) 
+    { 
+        return true;
     }
 }

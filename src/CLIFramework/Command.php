@@ -36,16 +36,18 @@ class Command
             // if not, and sub-commands is defined. list it.
         }
         $this->finish();
+        return $ret;
     }
 
     function execute($context)
     {
-        return true;
+        return false;
     }
 
     function prepare() { }
     function finish() { }
 
+    /* TODO: read brief from markdown format doc file. */
     function brief() { return 'undefined.'; }
 
     function toCommandName()

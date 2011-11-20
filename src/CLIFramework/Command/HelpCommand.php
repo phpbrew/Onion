@@ -36,6 +36,7 @@ class HelpCommand extends Command
         $file =  __FILE__ . '.md';
         if( file_exists( $file ) )
             echo file_get_contents( $file );
+        return true;
     }
 
 }

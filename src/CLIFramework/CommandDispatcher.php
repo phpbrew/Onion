@@ -80,13 +80,12 @@ class CommandDispatcher
         {
             $class = $this->getCommandClass($command);
             $cmd = new $class($this);
-            $cmd->topExecute($this->context);
+            return $cmd->topExecute($this->context);
         } 
         else 
         {
-            $this->dispatch('help');  # help command class.
+            return $this->dispatch('help');  # help command class.
         }
-        return true;
     }
 
     public function shiftDispatch($parent)
@@ -106,8 +105,7 @@ class CommandDispatcher
             throw new Exception( "Sub command '$subcommand' not found." );
 
         $cmd = new $class($this);
-        $cmd->topExecute($this->context);
-        return true;
+        return $cmd->topExecute($this->context);
     }
 }
 
