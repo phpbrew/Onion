@@ -7,7 +7,6 @@ file, you can release your PEAR package very quickly!
 
 Let's keep hard long PEAR package.xml away! :-)
 
-
 (we are still in development, patches, feature requests are welcome!)
 
 
@@ -22,7 +21,6 @@ The minimal spec file
 
     [require]
     php = >=5.3
-
 
 
 Quick Tutorial

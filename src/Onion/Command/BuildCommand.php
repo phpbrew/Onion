@@ -17,8 +17,6 @@ use Onion\PackageConfigFile;
 class BuildCommand extends Command 
     implements CommandInterface
 {
-
-
     function execute($context) 
     {
         $config = new \Onion\GlobalConfig;
@@ -26,7 +24,7 @@ class BuildCommand extends Command
             // create an skeleton for user and exit.
             $default = $config->defaultContent();
             file_put_contents( $config_path , $default );
-            echo "please edit your config file first.\n";
+            echo "Please edit your config file first.\n";
             echo "   \$ vim $config_path\n";
             return true;
         }
@@ -39,13 +37,13 @@ class BuildCommand extends Command
         }
 
         echo "Configuring package.ini...\n";
-        $config = new PackageConfigFile('package.ini');
-        if( ! $config->exists() )
+        $package_config = new PackageConfigFile('package.ini');
+        if( ! $package_config->exists() )
             throw new Exception("package.ini not found.");
 
-        $config->read();
-        $config->validate();
-        $xml = $config->generatePackageXml();
+        $package_config->read();
+        $package_config->validate();
+        $xml = $package_config->generatePackageXml();
 
         if( file_exists('package.xml') )
             rename('package.xml','package.xml.old');
