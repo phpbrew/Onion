@@ -57,6 +57,7 @@ Requirement
 -----------
 
 * PHP 5.3
+* simplexml extension
 
 Available Config Tags
 ---------------------
