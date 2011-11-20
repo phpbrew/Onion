@@ -10,6 +10,7 @@ Let's keep hard long PEAR package.xml away! :-)
 
 (we are still in development, patches, feature requests are welcome!)
 
+
 The minimal spec file
 ---------------------
 
@@ -129,6 +130,9 @@ http://pear.php.net/manual/en/pyrus.commands.make.php
 
 package.xml 2.0 tags
 http://pear.php.net/manual/en/guide.developers.package2.tags.php
+
+PEAR2 Coding Standard
+http://pear.php.net/manual/en/pear2cs.php
 
 ini format spec
 http://www.cloanto.com/specs/ini/
