@@ -11,30 +11,35 @@
 namespace Onion\Command;
 use CLIFramework\Command;
 use CLIFramework\CommandInterface;
+use Onion\GlobalConfig;
+use Onion\PackageConfigFile;
 
 class BuildCommand extends Command 
     implements CommandInterface
 {
     function execute($context) 
     {
-        $home = getenv('HOME');
-        $config_path = $home . DIRECTORY_SEPARATOR . '.onion.ini';  # ~/.onion.ini
-        if( ! file_exists( $config_path ) ) {
+        $config = new \Onion\GlobalConfig;
+        if( ! $config->exists() ) {
             // create an skeleton for user and exit.
-            $default = <<<CONFIG
-[author]
-name = Your Name
-email = your@email
-CONFIG;
+            $default = $config->defaultContent();
             file_put_contents( $config_path , $default );
             echo "please edit your config file first.\n";
             echo "   \$ vim $config_path\n";
             return true;
         }
+        $config->read();
 
+        $author = $config->author;
+        if( empty($author) ) {
+            echo "[author] section is not defined.";
+            return false;
+        }
 
-        $author_config = parse_ini_file( $config_path );
-        var_dump( $author_config ); 
+        echo "Configuring package.ini...\n";
+        $config = new PackageConfigFile('package.ini');
+        $config->validate();
+        $config->buildPearConfig();
         return true;
     }
 }
