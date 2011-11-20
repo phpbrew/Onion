@@ -6,7 +6,8 @@ class Autoloader
 	function loadclass($class)
 	{
 		$path = $this->basedir . DIRECTORY_SEPARATOR .  str_replace('\\',DIRECTORY_SEPARATOR,$class). '.php';
-		require $path;
+        if( file_exists($path) )
+            require $path;
 	}
 
 	function load()

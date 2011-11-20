@@ -21,10 +21,14 @@ class CommandDispatcher
      *   like   App\Command\......Command */
     public $app_command_namespace;
 
-    public function __construct($app_command_namespace)
+    public function __construct($app_command_namespace,$argv = null)
     {
-        global $argv;
-        $this->context = new CommandContext($argv);
+        if( ! $argv )  {
+            global $argv;
+            $this->context = new CommandContext($argv);
+        } else {
+            $this->context = new CommandContext($argv);
+        }
         $this->app_command_namespace = $app_command_namespace;
     }
 
@@ -49,19 +53,20 @@ class CommandDispatcher
 
         // has application command class ?
         $class = $this->app_command_namespace . '\\' . $subclass;
-        spl_autoload_call( $class );
+        if( ! class_exists($class) )
+            spl_autoload_call( $class );
         if( class_exists($class) )
             return $class;
 
         // built-in command.
         $class = '\\CLIFramework\\Command\\' . $subclass;
-        spl_autoload_call( $class );
+        if( ! class_exists($class) )
+            spl_autoload_call( $class );
         if( class_exists($class) )
             return $class;
 
-        throw new Exception( "Command not found." );
+        throw new Exception( "Command '$command' not found." );
     }
-
 
     function dispatch( $command = null )
     {
@@ -75,8 +80,8 @@ class CommandDispatcher
         {
             $this->dispatch('help');  # help command class.
         }
+        return true;
     }
-
 
 }
 

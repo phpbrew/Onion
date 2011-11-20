@@ -10,7 +10,9 @@
  */
 namespace CLIFramework;
 
-class Command 
+use CLIFramework\CommandInterface;
+
+class Command implements CommandInterface
 {
     public $dispatcher;
 

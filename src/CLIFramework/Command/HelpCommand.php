@@ -15,6 +15,7 @@ use CLIFramework\CommandInterface;
 class HelpCommand extends Command
     implements CommandInterface
 {
+
     function execute($context)
     {
         // get command list
@@ -26,4 +27,5 @@ class HelpCommand extends Command
         if( file_exists( $file ) )
             echo file_get_contents( $file );
     }
+
 }
