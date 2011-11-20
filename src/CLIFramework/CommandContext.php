@@ -33,5 +33,11 @@ class CommandContext
         return $this->context_list[0];
     }
 
+    function hasSubcommand()
+    {
+        $next = $this->getNextArgument();
+        return (strpos($next,'-') !== 0);
+    }
+
 }
 

@@ -11,16 +11,21 @@
 class CommandContextTest extends PHPUnit_Framework_TestCase
 {
 
-
-
     function testShift()
     {
-        $context = new \CLIFramework\CommandContext(array('script','help','subcommand','--option','value'));
+        $context = new \CLIFramework\CommandContext(array('script','help','subcommand','--option','value','-a','-b'));
         $this->assertNotEmpty( $context );
+
+        $this->assertTrue( $context->hasSubcommand() );
+
         $cmd = $context->shiftArgument();
         $this->assertEquals( 'help' , $cmd );
 
         $cmd = $context->shiftArgument();
         $this->assertEquals( 'subcommand' , $cmd );
+
+        $this->assertNotEmpty( $context->script );
     }
+
+
 }
