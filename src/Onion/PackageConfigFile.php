@@ -85,7 +85,6 @@ class PackageConfigFile extends ConfigFile
             $author['name'] = $name;
             $author['user'] = $user;
             $author['email'] = $email;
-
         }
 
         // parse author info:  {Name} <{email}>
