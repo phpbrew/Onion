@@ -32,6 +32,17 @@ this helps you to generate a new package.ini file, your ~/.onion.ini file might 
     name = Your name
     email = email@host.com
 
+Fill your package.ini file:
+
+    [package]
+    name = Onion
+    desc = package description
+    version = 0.0.1
+    author = Yo-An Lin <cornelius.howl@gmail.com>
+
+    [require]
+    php = >=5.3
+
 To generate a package.xml 2.0 spec file for PEAR, just run:
 
     $ bin/onion build
