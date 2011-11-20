@@ -5,7 +5,6 @@ $pharFile = 'onion.phar';
 $phar = new \Phar($pharFile, 0, 'onion.phar');
 $phar->setSignatureAlgorithm(\Phar::SHA1);
 $phar->startBuffering();
-
 $src_dir = 'src';
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($src_dir),
                         RecursiveIteratorIterator::CHILD_FIRST);
@@ -15,7 +14,7 @@ foreach( $iterator as $path ) {
             $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
             $content = php_strip_whitespace( $path->getRealPath() );
             # echo $path->getPathname() . "\n";
-            echo $rel_path . "\n";
+            echo "\tcompile " . $rel_path . "\n";
             $phar->addFromString($rel_path, $content);
         }
     }
