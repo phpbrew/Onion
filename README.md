@@ -1,6 +1,6 @@
 Onion
 =======
-Onion, The fast approch to make/install packages for PHP.
+Onion, The fast approach to make/install packages for PHP.
 
 Onion is able to generate a pear-compatible package.xml file from a very simple config
 file, So you can release your pear package very quickly!
@@ -63,7 +63,7 @@ Available Config Tags
 `channel`
 
 
-A MORE DETAILED EXAMPLE
+A more detailed example
 ========================
 
     [package]
@@ -116,8 +116,11 @@ ini format spec
 http://www.cloanto.com/specs/ini/
 
 http://pear.php.net/manual/en/guide.users.concepts.php
+
 http://pear.php.net/manual/en/pyrus.extending.packagefile.php
+
 http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php
+
 
 Pyrus
 http://pear.php.net/manual/en/pyrus.about.php
