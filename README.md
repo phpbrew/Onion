@@ -31,7 +31,7 @@ Then you got package.ini file.
 
 To generate a package.xml 2.0 spec file for PEAR, just run:
 
-    $ onion to-pear
+    $ onion build
 
 Then you should be able to run pear command to build the package:
 
@@ -41,7 +41,18 @@ COMPOSER SUPPORT
 ================
 To support composer/composer , just run:
 
-    $ onion to-composer
+    $ onion build --composer
+
+IGNORE FILES
+============
+
+To ignore some files to be packed, you can also set the ignore_file attribute
+in your package.ini file:
+
+    ignore_file = ignore_list.txt
+
+Onion also supports .gitignore, if you don't specify ignore_file attribute,
+Onion will use .gitignore file to ignore files.
 
 A MORE DETAILED EXAMPLE
 ========================
