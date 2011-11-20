@@ -23,10 +23,6 @@ The minimal spec file
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
 
-    [require]
-    php = >=5.3
-
-
 Quick Tutorial
 --------------
 Get onion.phar file:
