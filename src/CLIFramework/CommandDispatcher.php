@@ -104,11 +104,10 @@ class CommandDispatcher
         $class = $this->loadCommandClass( $subclass );
         if( !$class)
             throw new Exception( "Sub command '$subcommand' not found." );
-        var_dump( $class ); 
-        ob_flush();
 
         $cmd = new $class($this);
         $cmd->topExecute($this->context);
+        return true;
     }
 }
 

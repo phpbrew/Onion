@@ -42,11 +42,13 @@ class CommandDispatcherTest extends \PHPUnit_Framework_TestCase
         $argv = array( 'script' , 'parent' , 'sub' );
         $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , $context );
 
+        // test parent command
         $cmd = new \Onion\TestCommand\ParentCommand( $dispatcher );
         $this->assertEquals( 'parent', $cmd->toCommandName() );
         $cmd->execute( $dispatcher->context );
 
-        ob_flush();
+        $cmd = new \Onion\TestCommand\ParentCommand\SubCommand( $dispatcher );
+        $ret = $dispatcher->runDispatch();
     }
 
 }
