@@ -46,7 +46,11 @@ class BuildCommand extends Command
         $config->read();
         $config->validate();
         $xml = $config->generatePackageXml();
+
+        if( file_exists('package.xml') )
+            rename('package.xml','package.xml.old');
         file_put_contents('package.xml',$xml);
+        system('pear package');
         return true;
     }
 }

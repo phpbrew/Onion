@@ -49,14 +49,14 @@ Fill your package.ini file:
     [require]
     php = >=5.3
 
-To generate a package.xml 2.0 spec file for PEAR, just run:
+To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just run:
 
     $ php ~/bin/onion.phar build
 
-Then you should be able to run pear command to build the package:
+Then Your PEAR package is out!
 
-    $ pear package
-    # Your PEAR package is out!
+
+
 
 Requirement
 -----------
@@ -69,22 +69,29 @@ Available Config Tags
 
 [package] section:
 
-`name`
+* `name`
 
-`desc`
+* `desc`
 
-`summary` (optional)
+* `summary` (optional)
 
-`version`
+* `version`
 
-`api_version` (optional)
+* `api_version` (optional)
 
-`author`
+* `author`
 
-`authors`
+* `authors`
 
-`channel`
+* `channel`
 
+[requires] section:
+
+* `php`
+
+* `pearinstaller`
+
+* `extensions[]`
 
 A more detailed example
 ========================
