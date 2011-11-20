@@ -15,29 +15,32 @@ class CommandDispatcherTest extends \PHPUnit_Framework_TestCase
 
     function test_runDispatch()
     {
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command', array( 'script' , 'help' ) );
+        $context = new \CLIFramework\CommandContext( array( 'script' , 'help' ));
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command', $context );
         $ret = $dispatcher->runDispatch();
         $this->assertTrue( $ret );
     }
 
     function test_dispatch()
     {
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command', array( 'script' , 'help' ) );
-        $ret = $dispatcher->dispatch('help');
+        $context = new \CLIFramework\CommandContext( array( 'script' , 'help' ));
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command', $context );
+        $ret = $dispatcher->runDispatch();
         $this->assertTrue( $ret );
     }
 
     function test_subcommand()
     {
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , array( 'script' , 'help' , 'subcommand' ) );
-        $ret = $dispatcher->dispatch('help');
+        $context = new \CLIFramework\CommandContext( array( 'script' , 'help' ));
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , $context );
+        $ret = $dispatcher->runDispatch();
         $this->assertTrue( $ret );
     }
 
     function test_command()
     {
         $argv = array( 'script' , 'parent' , 'sub' );
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , $argv );
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , $context );
 
         $cmd = new \Onion\TestCommand\ParentCommand( $dispatcher );
         $this->assertEquals( 'parent', $cmd->toCommandName() );

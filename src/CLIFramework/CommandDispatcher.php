@@ -23,10 +23,10 @@ class CommandDispatcher
 
     public function __construct($app_command_namespaces = array() ,$argv = null)
     {
-        if( ! $argv )  {
-            global $argv;
-            $this->context = new CommandContext($argv);
+        if( $argv )  {
+            $this->context = is_a($argv,'CLIFramework\CommandContext') ? $argv : new CommandContext($argv);
         } else {
+            global $argv;
             $this->context = new CommandContext($argv);
         }
 
@@ -45,11 +45,9 @@ class CommandDispatcher
         return $subclass;
     }
 
-    public function getCommandClass($command)
-    {
-        // translate command name to class name
-        $subclass = $this->translateCommandClassName( $command );
 
+    public function loadCommandClass($subclass)
+    {
         // has application command class ?
         foreach( $this->app_command_namespaces as $ns ) {
             $class = $ns . '\\' . $subclass;
@@ -58,24 +56,31 @@ class CommandDispatcher
             if( class_exists($class) )
                 return $class;
         }
-
-
-        throw new Exception( "Command '$command' not found." );
     }
 
-    function runDispatch()
+    public function getCommandClass($command)
     {
-        $command = $this->context->getNextArgument();
+        // translate command name to class name
+        $subclass = $this->translateCommandClassName( $command );
+        $class =  $this->loadCommandClass( $subclass );
+        if( !$class)
+            throw new Exception( "Command '$command' not found." );
+        return $class;
+    }
+
+    public function runDispatch()
+    {
+        $command = $this->context->shiftArgument();
         return $this->dispatch($command);
     }
 
-    function dispatch( $command = null )
+    public function dispatch( $command = null )
     {
         if( $command ) 
         {
             $class = $this->getCommandClass($command);
             $cmd = new $class($this);
-            $cmd->topExecute($context);
+            $cmd->topExecute($this->context);
         } 
         else 
         {
@@ -84,5 +89,26 @@ class CommandDispatcher
         return true;
     }
 
+    public function shiftDispatch($parent)
+    {
+        $subcommand = $this->context->shiftArgument();
+
+        // get parent command namespace
+        $parent_ns = get_class($parent);
+        $parts = explode('\\',$parent_ns);
+        $parent_class = end($parts);
+
+        // get subcommand classname
+        $subclass = $this->translateCommandClassName($subcommand);
+        $subclass = $parent_class . '\\' .  $subclass;
+        $class = $this->loadCommandClass( $subclass );
+        if( !$class)
+            throw new Exception( "Sub command '$subcommand' not found." );
+        var_dump( $class ); 
+        ob_flush();
+
+        $cmd = new $class($this);
+        $cmd->topExecute($this->context);
+    }
 }
 

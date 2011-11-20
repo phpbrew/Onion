@@ -18,7 +18,7 @@ class CommandContext
 
     function __construct($argv = array() )
     {
-        $this->argv         = array_merge(array(), $argv);
+        $this->argv         = array_merge( array(), $argv);
         $this->script       = $argv[0];
         $this->context_list = array_slice($argv,1); # copy and shift one
     }
@@ -36,7 +36,7 @@ class CommandContext
     function hasSubcommand()
     {
         $next = $this->getNextArgument();
-        return (strpos($next,'-') !== 0);
+        return $next && (strpos($next,'-') !== 0);
     }
 
     function hasCommand()

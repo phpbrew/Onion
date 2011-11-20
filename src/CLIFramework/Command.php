@@ -23,7 +23,13 @@ class Command
     function topExecute($context)
     {
         $this->prepare();
-        $ret = $this->execute($context);
+        $ret = null;
+        if( $context->hasSubcommand() ) {
+            $ret = $this->dispatcher->shiftDispatch($this);
+        } else {
+            $ret = $this->execute($context);
+        }
+
         if( $ret ) {
             // if we have sub-commands, run it
 
