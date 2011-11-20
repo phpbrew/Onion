@@ -26,7 +26,7 @@ Quick Tutorial
 --------------
 
 If you're new to `Onion`, you might need to edit your author information in ~/.onion.ini file,
-this helps you to generate a new package.ini file, your ~/.onion.ini file might be like:
+this helps you generate a new package.ini file, your ~/.onion.ini file might be like:
 
     [author]
     name = Your name
