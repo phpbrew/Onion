@@ -80,7 +80,9 @@ class CommandDispatcher
         {
             $class = $this->getCommandClass($command);
             $cmd = new $class($this);
+            $cmd->prepare();
             $cmd->execute($context);
+            $cmd->finish();
         } 
         else 
         {
