@@ -1,13 +1,17 @@
 Onion
 =======
-Onion, The fast approch to make packages for PHP.
+Onion, The fast approch to make/install packages for PHP.
 
 Onion is able to generate a pear-compatible package.xml file from a very simple config
-file.
+file, So you can release your pear package very quickly!
 
 Let's keep hard long PEAR package.xml away! :-)
 
-The minimal spec file:
+
+(we are still in development, patches, feature requests are welcome!)
+
+The minimal spec file
+---------------------
 
     [package]
     name = Onion
@@ -17,6 +21,9 @@ The minimal spec file:
 
     [require]
     php = >=5.3
+
+Quick Tutorial
+--------------
 
 If you're new to `Onion`, you might need to edit your author information in ~/.onion.ini file,
 this helps you to generate a new package.ini file, your ~/.onion.ini file might be like:
