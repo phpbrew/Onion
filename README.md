@@ -98,6 +98,15 @@ A MORE DETAILED EXAMPLE
 
 REFERENCE
 =========
+Package structure
+http://pear.php.net/manual/en/pyrus.commands.make.php
+
+package.xml 2.0 tags
+http://pear.php.net/manual/en/guide.developers.package2.tags.php
+
+ini format spec
+http://www.cloanto.com/specs/ini/
+
 http://pear.php.net/manual/en/guide.users.concepts.php
 http://pear.php.net/manual/en/pyrus.extending.packagefile.php
 http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php

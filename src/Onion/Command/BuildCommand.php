@@ -17,6 +17,8 @@ use Onion\PackageConfigFile;
 class BuildCommand extends Command 
     implements CommandInterface
 {
+
+
     function execute($context) 
     {
         $config = new \Onion\GlobalConfig;
@@ -38,14 +40,12 @@ class BuildCommand extends Command
 
         echo "Configuring package.ini...\n";
         $config = new PackageConfigFile('package.ini');
-
         if( ! $config->exists() )
             throw new Exception("package.ini not found.");
 
         $config->read();
         $config->validate();
-        $config->buildPearConfig();
-        var_dump( $config->config );
+        echo $config->generatePackageXml();
         return true;
     }
 }

@@ -33,6 +33,11 @@ class CommandContext
         return @$this->context_list[0];
     }
 
+    function getRestArguments()
+    {
+        return $this->context_list;
+    }
+
     function hasSubcommand()
     {
         $next = $this->getNextArgument();
