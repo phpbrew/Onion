@@ -1,6 +1,11 @@
 Onion
 =======
-Use simple package.ini file to generate hard PEAR package.xml!
+Onion, The fast approch to make packages for PHP.
+
+Onion is able to generate a pear-compatible package.xml file from a very simple config
+file.
+
+Let's keep hard long PEAR package.xml away! :-)
 
 The minimal spec file:
 
@@ -20,7 +25,6 @@ this helps you to generate a new package.ini file, your ~/.onion.ini file might 
     name = Your name
     email = email@host.com
 
-
 To generate a package.xml 2.0 spec file for PEAR, just run:
 
     $ bin/onion build
@@ -28,23 +32,29 @@ To generate a package.xml 2.0 spec file for PEAR, just run:
 Then you should be able to run pear command to build the package:
 
     $ pear package
+    # Your PEAR package is out!
 
-COMPOSER SUPPORT
-================
-To support composer/composer , just run:
+Available Config Tags
+---------------------
 
-    $ onion build --composer
+[package] section:
 
-IGNORE FILES
-============
+`name`
 
-To ignore some files to be packed, you can also set the ignore_file attribute
-in your package.ini file:
+`desc`
 
-    ignore_file = ignore_list.txt
+`summary` (optional)
 
-Onion also supports .gitignore, if you don't specify ignore_file attribute,
-Onion will use .gitignore file to ignore files.
+`version`
+
+`api_version` (optional)
+
+`author`
+
+`authors`
+
+`channel`
+
 
 A MORE DETAILED EXAMPLE
 ========================
@@ -61,7 +71,6 @@ A MORE DETAILED EXAMPLE
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
     channel     = pear.php.net
-    repository  = github.com/c9s....
 
     [structure]
     data = path/to/pkg_data
