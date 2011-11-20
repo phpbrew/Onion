@@ -11,6 +11,8 @@
 namespace Onion;
 use Onion\ConfigFile;
 use SimpleXMLElement;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 
 class PackageConfigFile extends ConfigFile
 {
@@ -222,9 +224,38 @@ XML;
             # <file md5sum="f6426a3477833bdc3729e1ae9ee9c049" name="LICENSE" role="doc" />
             # <file md5sum="d07098d9bc4ffc2817419b2436a8ca6e" name="README.markdown" role="doc" />
             # </contents>
-            $contents = $xml->addChild('contents');
 
-            # ...
+            // build contents section, TODO: support [structure] section.
+            $contents = $xml->addChild('contents');
+            $dir = $contents->addChild('dir');
+            $dir->addAttribute('name','/');
+            $srcDir = 'src';
+            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
+                                    RecursiveIteratorIterator::CHILD_FIRST);
+            foreach( $iterator as $path ) {
+                if( $path->isFile() ) {
+                    # substr( $path->__tostring()  );
+                    $filepath = $path->getPathname();
+                    $md5sum   = md5_file($filepath);
+                    $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
+                    echo substr($md5sum,0,6) . '   ' . $target_filepath . ' ' . "\n";
+
+                    $role = 'data';
+                    if( preg_match('/\.php$/',$filepath) ) {
+                        $role = 'php';
+                    }
+
+                    # <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" name="lib/Twig/Autoloader.php" role="php" />
+                    $newfile = $dir->addChild('file');
+                    $newfile->addAttribute( 'install-as' , $target_filepath );
+                    $newfile->addAttribute( 'name'       , $filepath );
+                    $newfile->addAttribute( 'role'       , $role );
+                    $newfile->addAttribute( 'md5sum'     , $md5sum );
+                }
+            }
+
+
+            # TODO: support phprelease tag.
             # <phprelease />
             return $xml->asXML();
         } 
