@@ -125,6 +125,9 @@ A more detailed example
 
 Reference
 ---------
+INI format spec
+http://www.cloanto.com/specs/ini/
+
 Package structure
 http://pear.php.net/manual/en/pyrus.commands.make.php
 
@@ -134,8 +137,9 @@ http://pear.php.net/manual/en/guide.developers.package2.tags.php
 PEAR2 Coding Standard
 http://pear.php.net/manual/en/pear2cs.php
 
-ini format spec
-http://www.cloanto.com/specs/ini/
+Pyrus
+http://pear.php.net/manual/en/pyrus.php
+
 
 http://pear.php.net/manual/en/guide.users.concepts.php
 
@@ -144,9 +148,12 @@ http://pear.php.net/manual/en/pyrus.extending.packagefile.php
 http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php
 
 
-Pyrus
-http://pear.php.net/manual/en/pyrus.about.php
-
 
 Deployment PEAR
 http://www.eschrade.com/page/deployment-pear-4c228790/
+
+Packagist
+http://packagist.org/about
+
+PSR-0 
+https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md

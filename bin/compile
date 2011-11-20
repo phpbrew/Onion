@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+$bin      = 'bin/onion';
+$pharFile = 'onion.phar';
+$phar = new \Phar($pharFile, 0, 'onion.phar');
+$phar->setSignatureAlgorithm(\Phar::SHA1);
+$phar->startBuffering();
+
+$src_dir = 'src';
+$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($src_dir),
+                        RecursiveIteratorIterator::CHILD_FIRST);
+foreach( $iterator as $path ) {
+    if( $path->isFile() ) {
+        if( preg_match('/\.php$/',$path->getFilename() ) ) {
+            $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
+            $content = php_strip_whitespace( $path->getRealPath() );
+            # echo $path->getPathname() . "\n";
+            echo $rel_path . "\n";
+            $phar->addFromString($rel_path, $content);
+        }
+    }
+}
+
+$content = php_strip_whitespace($bin);
+$content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
+$phar->addFromString($bin, $content);
+$stub =<<<"EOF"
+#!/usr/bin/env php
+<?php
+Phar::mapPhar('$pharFile');
+require 'phar://$pharFile/Onion/SplClassLoader.php';
+\$classLoader = new \Onion\SplClassLoader(null,'phar://$pharFile');
+\$classLoader->register();
+require 'phar://$pharFile/$bin';
+__HALT_COMPILER();
+EOF;
+$phar->setStub($stub);
+$phar->stopBuffering();
+$phar->compressFiles(\Phar::GZ);
