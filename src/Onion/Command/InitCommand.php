@@ -39,7 +39,7 @@ class InitCommand extends Command
         $content[] = 'name = ';
         $content[] = 'version = ';
         $content[] = 'desc = ';
-        $content[] = 'author = ' . $author['name'] . '<' . $author['email'] . '>';
+        $content[] = 'author = ' . $author['name'] . ' ' . '<' . $author['email'] . '>';
 
         if( file_exists('package.ini') )
             throw new Exception('package.ini exists. aborting.');
