@@ -18,9 +18,19 @@ class HelpCommand extends Command
 
     function execute($context)
     {
-        // get command list
+        // get command list, command classes should be preloaded.
+        $classes = get_declared_classes();
+        $command_classes = array();
+        foreach( $classes as $class ) {
+            if( is_a($class,'CLIFramework\Command') ) 
+                $command_classes[] = $class;
+        }
 
         // print command brief list
+        foreach( $command_classes as $class ) {
+            $cmd = new $class($this->dispatcher);
+            $brief = $cmd->brief();
+        }
 
         // if empty command list
         $file =  __FILE__ . '.md';

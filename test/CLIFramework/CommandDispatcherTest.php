@@ -34,4 +34,16 @@ class CommandDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue( $ret );
     }
 
+    function test_command()
+    {
+        $argv = array( 'script' , 'parent' , 'sub' );
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , $argv );
+
+        $cmd = new \Onion\TestCommand\ParentCommand( $dispatcher );
+        $this->assertEquals( 'parent', $cmd->toCommandName() );
+        $cmd->execute( $dispatcher->context );
+
+        ob_flush();
+    }
+
 }

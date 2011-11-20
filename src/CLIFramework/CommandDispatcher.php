@@ -36,11 +36,6 @@ class CommandDispatcher
         $this->app_command_namespaces = $app_command_namespaces;
     }
 
-    public function shiftDispatch()
-    {
-
-    }
-
     public function translateCommandClassName($command)
     {
         $args = explode('-',$command);
@@ -80,9 +75,7 @@ class CommandDispatcher
         {
             $class = $this->getCommandClass($command);
             $cmd = new $class($this);
-            $cmd->prepare();
-            $cmd->execute($context);
-            $cmd->finish();
+            $cmd->topExecute($context);
         } 
         else 
         {
