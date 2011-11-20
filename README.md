@@ -7,11 +7,8 @@ file, you can release your PEAR package very quickly!
 
 Let's keep hard long PEAR package.xml away! :-)
 
-
-**
-We are still in development, patches, feature requests are welcome!
-This utility is in alpha development, config spec might change.
-**
+* We are still in development, patches, feature requests are welcome! This
+  utility is in alpha development, config spec might change.
 
 
 The minimal spec file
@@ -29,15 +26,15 @@ Get onion.phar file:
 
     $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
 
-If you're new to `Onion`, you might need to edit your author information in ~/.onion.ini file,
-this helps you generate a new package.ini file, your ~/.onion.ini file might be like:
+If you're new to **Onion**, you might need to edit your author information in `~/.onion.ini` file,
+this helps you generate a new package.ini file, your `~/.onion.ini` file might be like:
 
     [author]
     name  = Your name
     email = email@host.com
     user  = pearId
 
-Fill your package.ini file:
+Fill your `package.ini` file:
 
     [package]
     name = Onion
