@@ -2,8 +2,8 @@ Onion
 =======
 Onion, The fast approach to make/install packages for PHP.
 
-Onion is able to generate a pear-compatible package.xml file from a very simple config
-file, So you can release your pear package very quickly!
+Onion is able to generate a PEAR2-compatible package.xml file from a very simple config
+file, you can release your PEAR package very quickly!
 
 Let's keep hard long PEAR package.xml away! :-)
 
