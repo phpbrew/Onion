@@ -37,8 +37,9 @@ If you're new to `Onion`, you might need to edit your author information in ~/.o
 this helps you generate a new package.ini file, your ~/.onion.ini file might be like:
 
     [author]
-    name = Your name
+    name  = Your name
     email = email@host.com
+    user  = pearId
 
 Fill your package.ini file:
 
@@ -47,9 +48,6 @@ Fill your package.ini file:
     desc = package description
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
-
-    [require]
-    php = >=5.3
 
 To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just run:
 
@@ -103,13 +101,16 @@ A more detailed example
     desc        = package description
     summary     = ....                  # optional, default to Description
     homepage    = http://your.web.com   # optional
-    license     = MIT                   # optional, default to PHP
-    version     = 0.0.3
+    license     = PHP                   # optional, default to PHP
+    version     = 0.0.1
     api_version = 0.0.1                 # optional, defualt to "version"
+    author         = Yo-An Lin (c9s) <cornelius.howl@gmail.com>
+    authors[]      = Yo-An Lin (c9s) <cornelius.howl@gmail.com>
     authors[]      = Yo-An Lin <cornelius.howl@gmail.com>
+    authors[]      = Yo-An Lin
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
-    channel     = pear.php.net
+    channel     = pear.php.net          # default
 
     [structure]
     data = path/to/pkg_data
