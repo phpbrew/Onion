@@ -44,7 +44,7 @@ class PackageConfigFile extends ConfigFile
             $config['package']['date'] = date('Y-m-d');
 
         if( ! isset($config['package']['time'] ) )
-            $config['package']['date'] = strftime('%X');
+            $config['package']['time'] = strftime('%X');
 
         if( ! isset($config['package']['notes'] ) )
             $config['package']['notes'] = '-';
@@ -125,11 +125,26 @@ XML;
 
             $xml              = new SimpleXMLElement($xmlstr); 
             $xml->name        = $config['package']['name'];
-            $xml->description = $config['package']['desc'];
+            $xml->channel     = $config['package']['channel'];
             $xml->summary     = $config['package']['summary'];
+            $xml->description = $config['package']['desc'];
+
+
+
+            $author_active = true;
+            foreach( $config['package']['authors'] as $author ) {
+                $lead = $xml->addChild('lead');
+                $data =  $this->parseAuthorString( $author );
+                foreach( $data as $k => $v )
+                    $lead->$k = $v;
+                if( $author_active ) {
+                    $lead->active = 1;
+                    $author_active = false;
+                }
+            }
+
             $xml->date        = $config['package']['date'];
-            $xml->license     = $config['package']['license'];
-            $xml->notes       = $config['package']['notes'];
+            $xml->time        = $config['package']['time'];
 
             $version          = $xml->addChild('version');
             $version->release = $config['package']['version'];
@@ -139,18 +154,55 @@ XML;
             $stability->release = 'alpha';  # XXX: detect from version number.
             $stability->api     = 'alpha';
 
+            $xml->license     = $config['package']['license'];
+            $xml->notes       = $config['package']['notes'];
 
-            $author_active = true;
-            foreach( $config['package']['authors'] as $author ) {
-                $lead = $xml->addChild('lead');
-                if( $author_active ) {
-                    $lead->active = 1;
-                    $author_active = false;
+
+
+            # <contents>
+            #   <dir name="/">
+            #     <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" 
+            #			name="lib/Twig/Autoloader.php" role="php" />
+            #	</div>
+            #
+            #
+            # <file md5sum="20075d1017c3c5f597e16a017e37e499" name="AUTHORS" role="doc" />
+            # <file md5sum="f6426a3477833bdc3729e1ae9ee9c049" name="LICENSE" role="doc" />
+            # <file md5sum="d07098d9bc4ffc2817419b2436a8ca6e" name="README.markdown" role="doc" />
+            # </contents>
+
+            // build contents section, TODO: support [structure] section.
+            $contents = $xml->addChild('contents');
+            $dir = $contents->addChild('dir');
+            $dir->addAttribute('name','/');
+            $srcDir = 'src';
+            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
+                                    RecursiveIteratorIterator::CHILD_FIRST);
+            foreach( $iterator as $path ) {
+                if( $path->isFile() ) {
+                    # substr( $path->__tostring()  );
+                    $filepath = $path->getPathname();
+                    $md5sum   = md5_file($filepath);
+                    $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
+                    echo substr($md5sum,0,6) . '   ' . $target_filepath . ' ' . "\n";
+
+                    $role = 'data';
+                    if( preg_match('/\.php$/',$filepath) ) {
+                        $role = 'php';
+                    }
+
+                    # <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" name="lib/Twig/Autoloader.php" role="php" />
+                    $newfile = $dir->addChild('file');
+                    $newfile->addAttribute( 'install-as' , $target_filepath );
+                    $newfile->addAttribute( 'name'       , $filepath );
+                    $newfile->addAttribute( 'role'       , $role );
+                    $newfile->addAttribute( 'md5sum'     , $md5sum );
                 }
-                $data =  $this->parseAuthorString( $author );
-                foreach( $data as $k => $v )
-                    $lead->$k = $v;
             }
+
+
+
+
 
 
             /*
@@ -213,47 +265,9 @@ XML;
                 }
             }
 
-            # <contents>
-            #   <dir name="/">
-            #     <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" 
-            #			name="lib/Twig/Autoloader.php" role="php" />
-            #	</div>
-            #
-            #
-            # <file md5sum="20075d1017c3c5f597e16a017e37e499" name="AUTHORS" role="doc" />
-            # <file md5sum="f6426a3477833bdc3729e1ae9ee9c049" name="LICENSE" role="doc" />
-            # <file md5sum="d07098d9bc4ffc2817419b2436a8ca6e" name="README.markdown" role="doc" />
-            # </contents>
 
-            // build contents section, TODO: support [structure] section.
-            $contents = $xml->addChild('contents');
-            $dir = $contents->addChild('dir');
-            $dir->addAttribute('name','/');
-            $srcDir = 'src';
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
-                                    RecursiveIteratorIterator::CHILD_FIRST);
-            foreach( $iterator as $path ) {
-                if( $path->isFile() ) {
-                    # substr( $path->__tostring()  );
-                    $filepath = $path->getPathname();
-                    $md5sum   = md5_file($filepath);
-                    $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
-                    echo substr($md5sum,0,6) . '   ' . $target_filepath . ' ' . "\n";
 
-                    $role = 'data';
-                    if( preg_match('/\.php$/',$filepath) ) {
-                        $role = 'php';
-                    }
-
-                    # <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" name="lib/Twig/Autoloader.php" role="php" />
-                    $newfile = $dir->addChild('file');
-                    $newfile->addAttribute( 'install-as' , $target_filepath );
-                    $newfile->addAttribute( 'name'       , $filepath );
-                    $newfile->addAttribute( 'role'       , $role );
-                    $newfile->addAttribute( 'md5sum'     , $md5sum );
-                }
-            }
-
+            $xml->addChild('phprelease');
 
             # TODO: support phprelease tag.
             # <phprelease />
