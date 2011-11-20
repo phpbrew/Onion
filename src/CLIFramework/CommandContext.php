@@ -16,7 +16,7 @@ class CommandContext
     public $script;
     public $context_list;
 
-    function __construct($argv)
+    function __construct($argv = array() )
     {
         $this->argv         = array_merge(array(), $argv);
         $this->script       = $argv[0];
@@ -39,5 +39,12 @@ class CommandContext
         return (strpos($next,'-') !== 0);
     }
 
+    function hasCommand()
+    {
+        return count($this->context_list) == 0;
+    }
+
 }
+
+
 
