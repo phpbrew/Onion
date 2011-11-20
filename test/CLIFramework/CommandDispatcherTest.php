@@ -29,7 +29,7 @@ class CommandDispatcherTest extends \PHPUnit_Framework_TestCase
 
     function test_subcommand()
     {
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' , array( 'script' , 'help' , 'subcommand' ) );
+        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\TestCommand' , array( 'script' , 'help' , 'subcommand' ) );
         $ret = $dispatcher->dispatch('help');
         $this->assertTrue( $ret );
     }

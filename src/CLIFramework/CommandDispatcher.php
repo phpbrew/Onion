@@ -19,9 +19,9 @@ class CommandDispatcher
 
     /* application command namespace, somewhere you put command classes together
      *   like   App\Command\......Command */
-    public $app_command_namespace;
+    public $app_command_namespaces;
 
-    public function __construct($app_command_namespace,$argv = null)
+    public function __construct($app_command_namespaces = array() ,$argv = null)
     {
         if( ! $argv )  {
             global $argv;
@@ -29,7 +29,11 @@ class CommandDispatcher
         } else {
             $this->context = new CommandContext($argv);
         }
-        $this->app_command_namespace = $app_command_namespace;
+
+        // push default command namespace into the list.
+        $app_command_namespaces = (array) $app_command_namespaces;
+        $app_command_namespaces[] = '\\CLIFramework\\Command';
+        $this->app_command_namespaces = $app_command_namespaces;
     }
 
     public function shiftDispatch()
@@ -52,18 +56,14 @@ class CommandDispatcher
         $subclass = $this->translateCommandClassName( $command );
 
         // has application command class ?
-        $class = $this->app_command_namespace . '\\' . $subclass;
-        if( ! class_exists($class) )
-            spl_autoload_call( $class );
-        if( class_exists($class) )
-            return $class;
+        foreach( $this->app_command_namespaces as $ns ) {
+            $class = $ns . '\\' . $subclass;
+            if( ! class_exists($class) )
+                spl_autoload_call( $class );
+            if( class_exists($class) )
+                return $class;
+        }
 
-        // built-in command.
-        $class = '\\CLIFramework\\Command\\' . $subclass;
-        if( ! class_exists($class) )
-            spl_autoload_call( $class );
-        if( class_exists($class) )
-            return $class;
 
         throw new Exception( "Command '$command' not found." );
     }
