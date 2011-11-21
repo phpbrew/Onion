@@ -2,10 +2,10 @@
 <?php
 $bin      = 'bin/onion';
 $pharFile = 'onion.phar';
-$phar = new \Phar($pharFile, 0, 'onion.phar');
+$src_dir  = 'src';
+$phar = new \Phar($pharFile, 0, $pharFile);
 $phar->setSignatureAlgorithm(\Phar::SHA1);
 $phar->startBuffering();
-$src_dir = 'src';
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($src_dir),
                         RecursiveIteratorIterator::CHILD_FIRST);
 foreach( $iterator as $path ) {

@@ -11,6 +11,7 @@ Let's keep hard long PEAR package.xml away! :-)
   utility is in alpha development, config spec might change.
 
 
+
 The minimal spec file
 ---------------------
 
@@ -129,6 +130,10 @@ A more detailed example
     file = ....
     uri  = ....
 
+
+Community
+---------
+If you have questions about Onion or want to help out, come and join us in the #onion-dev channel on `irc.freenode.net`.
 
 Reference
 ---------
