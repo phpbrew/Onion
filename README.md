@@ -5,11 +5,12 @@ Onion, The fast approach to make/install packages for PHP.
 Onion is able to generate a PEAR2-compatible package.xml file from a very simple config
 file, you can release your PEAR package very quickly!
 
+Onion is not target to replace other package manager, its target is to make current PEAR ecosystem easier.
+
 Let's keep hard long PEAR package.xml away! :-)
 
-* We are still in development, patches, feature requests are welcome! This
-  utility is in alpha development, config spec might change.
-
+( We are still in development, patches, feature requests are welcome! This
+  utility is in alpha development, config spec might change. )
 
 
 The minimal spec file
