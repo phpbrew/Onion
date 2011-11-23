@@ -13,6 +13,7 @@ namespace CLIFramework;
 class Command
 {
     public $dispatcher;
+    public $cascade;
 
     function __construct($dispatcher)
     {
@@ -24,16 +25,21 @@ class Command
     {
         $this->prepare();
         $ret = null;
-        if( $context->hasSubcommand() ) {
-            $ret = $this->dispatcher->shiftDispatch($this);
+
+        if( $this->cascade ) {
+            if( $context->hasSubcommand() ) {
+                // if we have sub-commands, run it
+                $ret = $this->dispatcher->shiftDispatch($this);
+            } else {
+                // if not, and sub-commands is defined. list it.
+                throw new Exception;
+            }
         } else {
             $ret = $this->execute($context);
         }
 
         if( $ret ) {
-            // if we have sub-commands, run it
 
-            // if not, and sub-commands is defined. list it.
         }
         $this->finish();
         return $ret;
