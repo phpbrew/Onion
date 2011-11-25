@@ -40,6 +40,7 @@ class CommandContext
 
     function hasSubcommand()
     {
+        // make sure we have command class for this subcommand.
         $next = $this->getNextArgument();
         return $next && (strpos($next,'-') !== 0);
     }

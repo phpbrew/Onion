@@ -27,8 +27,9 @@ class Command
         $ret = null;
 
         if( $this->cascade ) {
+
+            // if we have sub-command (not start with dashes), run it
             if( $context->hasSubcommand() ) {
-                // if we have sub-commands, run it
                 $ret = $this->dispatcher->shiftDispatch($this);
             } else {
                 // if not, and sub-commands is defined. list it.

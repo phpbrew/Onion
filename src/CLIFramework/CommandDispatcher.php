@@ -10,6 +10,7 @@
  */
 namespace CLIFramework;
 use CLIFramework\CommandContext;
+use CLIFramework\CommandLoader;
 use Exception;
 
 class CommandDispatcher 
@@ -17,9 +18,9 @@ class CommandDispatcher
     /* argv context class */
     public $context;
 
-    /* application command namespace, somewhere you put command classes together
-     *   like   App\Command\......Command */
-    public $app_command_namespaces;
+    /* command laoder */
+    public $loader;
+
 
     public function __construct($app_command_namespaces = array() ,$argv = null)
     {
@@ -30,10 +31,12 @@ class CommandDispatcher
             $this->context = new CommandContext($argv);
         }
 
+        $loader = $this->loader = new CommandLoader;
+        $loader->addNamespace( (array) $app_command_namespaces );
+
         // push default command namespace into the list.
-        $app_command_namespaces = (array) $app_command_namespaces;
-        $app_command_namespaces[] = '\\CLIFramework\\Command';
-        $this->app_command_namespaces = $app_command_namespaces;
+        $loader->addNamespace( '\\CLIFramework\\Command' );
+
     }
 
     public function translateCommandClassName($command)
@@ -45,24 +48,11 @@ class CommandDispatcher
         return $subclass;
     }
 
-
-    public function loadCommandClass($subclass)
-    {
-        // has application command class ?
-        foreach( $this->app_command_namespaces as $ns ) {
-            $class = $ns . '\\' . $subclass;
-            if( ! class_exists($class) )
-                spl_autoload_call( $class );
-            if( class_exists($class) )
-                return $class;
-        }
-    }
-
     public function getCommandClass($command)
     {
         // translate command name to class name
         $subclass = $this->translateCommandClassName( $command );
-        $class =  $this->loadCommandClass( $subclass );
+        $class =  $this->loader->load( $subclass );
         if( !$class)
             throw new Exception( "Command '$command' not found." );
         return $class;
@@ -74,6 +64,8 @@ class CommandDispatcher
         return $this->dispatch($command);
     }
 
+
+    /* dispatch comamnd , the entry point */
     public function dispatch( $command = null )
     {
         if( $command ) 
@@ -90,7 +82,7 @@ class CommandDispatcher
 
     public function shiftDispatch($parent)
     {
-        $subcommand = $this->context->shiftArgument();
+        $subcommand = $this->context->getNextArgument();
 
         // get parent command namespace
         $parent_ns = get_class($parent);
@@ -100,10 +92,15 @@ class CommandDispatcher
         // get subcommand classname
         $subclass = $this->translateCommandClassName($subcommand);
         $subclass = $parent_class . '\\' .  $subclass;
-        $class = $this->loadCommandClass( $subclass );
+
+        // if there is no such command class, then it should be an argument.
+        $class = $this->loader->load( $subclass );  
         if( !$class)
             throw new Exception( "Sub command '$subcommand' not found." );
 
+        $this->context->shiftArgument();
+
+        // re-dispatch context to subcommand class.
         $cmd = new $class($this);
         return $cmd->topExecute($this->context);
     }
