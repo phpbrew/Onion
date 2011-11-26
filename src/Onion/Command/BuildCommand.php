@@ -32,7 +32,14 @@ class BuildCommand extends Command
         if( file_exists('package.xml') )
             rename('package.xml','package.xml.old');
         file_put_contents('package.xml',$xml);
+
+        echo "validating...\n"
+        system('pear package-validate');
+
+        echo "building...\n";
         system('pear package');
+
+        echo "done\n";
         return true;
     }
 }
