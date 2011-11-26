@@ -50,9 +50,7 @@ class CommandDispatcher
 
     public function getCommandClass($command)
     {
-        // translate command name to class name
-        $subclass = $this->translateCommandClassName( $command );
-        $class =  $this->loader->load( $subclass );
+        $class =  $this->loader->load( $command );
         if( !$class)
             throw new Exception( "Command '$command' not found." );
         return $class;
@@ -83,18 +81,7 @@ class CommandDispatcher
     public function shiftDispatch($parent)
     {
         $subcommand = $this->context->getNextArgument();
-
-        // get parent command namespace
-        $parent_ns = get_class($parent);
-        $parts = explode('\\',$parent_ns);
-        $parent_class = end($parts);
-
-        // get subcommand classname
-        $subclass = $this->translateCommandClassName($subcommand);
-        $subclass = $parent_class . '\\' .  $subclass;
-
-        // if there is no such command class, then it should be an argument.
-        $class = $this->loader->load( $subclass );  
+        $class = $this->loader->loadSubcommand( $subcommand );
         if( !$class)
             throw new Exception( "Sub command '$subcommand' not found." );
 

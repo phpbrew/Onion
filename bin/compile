@@ -36,3 +36,4 @@ EOF;
 $phar->setStub($stub);
 $phar->stopBuffering();
 $phar->compressFiles(\Phar::GZ);
+echo "\tcreated: $pharFile";
