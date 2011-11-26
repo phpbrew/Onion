@@ -33,7 +33,7 @@ class BuildCommand extends Command
             rename('package.xml','package.xml.old');
         file_put_contents('package.xml',$xml);
 
-        echo "validating...\n"
+        echo "validating...\n";
         system('pear package-validate');
 
         echo "building...\n";
