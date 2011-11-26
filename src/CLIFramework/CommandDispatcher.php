@@ -83,7 +83,7 @@ class CommandDispatcher
         $subcommand = $this->context->getNextArgument();
         $class = $this->loader->loadSubcommand( $subcommand );
         if( !$class)
-            throw new Exception( "Sub command '$subcommand' not found." );
+            throw new Exception( "Subcommand '$subcommand' not found." );
 
         $this->context->shiftArgument();
 
@@ -91,5 +91,7 @@ class CommandDispatcher
         $cmd = new $class($this);
         return $cmd->topExecute($this->context);
     }
+
+
 }
 
