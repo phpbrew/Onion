@@ -29,12 +29,14 @@ class BuildCommand extends Command
         $package_config->validate();
         $xml = $package_config->generatePackageXml();
 
+        /*
         if( file_exists('package.xml') )
             rename('package.xml','package.xml.old');
+        */
         file_put_contents('package.xml',$xml);
 
-        $this->logger->info('Validating package...');
-        system('pear -q package-validate');
+        # $this->logger->info('Validating package...');
+        # system('pear -q package-validate');
 
         $this->logger->info('Building PEAR package...');
         system('pear -q package');
