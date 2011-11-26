@@ -10,7 +10,6 @@
  *
  */
 use CLIFramework\CommandDispatcher;
-
 try {
     $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
     $ret = $dispatcher->runDispatch();

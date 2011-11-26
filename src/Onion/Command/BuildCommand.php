@@ -19,7 +19,7 @@ class BuildCommand extends Command
 {
     function execute($context) 
     {
-        $this->logger->log( 'Configuring package.ini' );
+        $this->logger->info( 'Configuring package.ini' );
 
         $package_config = new PackageConfigFile('package.ini');
         if( ! $package_config->exists() )
@@ -33,13 +33,13 @@ class BuildCommand extends Command
             rename('package.xml','package.xml.old');
         file_put_contents('package.xml',$xml);
 
-        echo "validating...\n";
+        $this->logger->info('Validating package...');
         system('pear -q package-validate');
 
-        echo "building...\n";
+        $this->logger->info('Building PEAR package...');
         system('pear -q package');
 
-        echo "done\n";
+        $this->logger->info('Done.');
         return true;
     }
 }
