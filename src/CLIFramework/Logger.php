@@ -19,6 +19,11 @@ class Logger
 	{
 		$this->formatter = new Formatter;
 	}
+
+    public function info( $msg )
+    {
+        echo $this->formatter( $msg , 'info' ) . "\n";
+    }
 }
 
 
