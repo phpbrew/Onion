@@ -19,8 +19,8 @@ class BuildCommand extends Command
 {
     function execute($context) 
     {
+        $this->logger->log( 'Configuring package.ini' );
 
-        echo "Configuring package.ini...\n";
         $package_config = new PackageConfigFile('package.ini');
         if( ! $package_config->exists() )
             throw new Exception("package.ini not found.");

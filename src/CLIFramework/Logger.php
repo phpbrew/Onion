@@ -20,7 +20,7 @@ class Logger
 		$this->formatter = new Formatter;
 	}
 
-    public function info( $msg )
+    public function info( $msg , $bold = 0 )
     {
         echo $this->formatter->format( $msg , 'info' ) . "\n";
     }

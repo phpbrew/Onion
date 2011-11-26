@@ -14,9 +14,9 @@ class Formatter
 {
 
     protected $styles = array(
-        'error'   => array('fg' => 'red'),
-        'info'    => array('fg' => 'white'),
-        'success' => array('fg' => 'green'),
+        'error'    => array('fg' => 'red'),
+        'debug'    => array('fg' => 'white'),
+        'info'     => array('fg' => 'green'),
     );
 
     protected $options = array(

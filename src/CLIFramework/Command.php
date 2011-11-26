@@ -9,15 +9,18 @@
  *
  */
 namespace CLIFramework;
+use CLIFramework\Logger;
 
 class Command
 {
     public $dispatcher;
     public $cascade;
+    public $logger;
 
     function __construct($dispatcher)
     {
         $this->dispatcher = $dispatcher;
+        $this->logger     = new Logger;
     }
 
     /* this is for parent command and subcommands */
@@ -55,7 +58,10 @@ class Command
     function finish() { }
 
     /* TODO: read brief from markdown format doc file. */
-    function brief() { return 'undefined.'; }
+    function brief() 
+    {
+        return 'undefined.';
+    }
 
     function toCommandName()
     {
