@@ -22,7 +22,7 @@ class Logger
 
     public function info( $msg )
     {
-        echo $this->formatter( $msg , 'info' ) . "\n";
+        echo $this->formatter->format( $msg , 'info' ) . "\n";
     }
 
     public function debug($msg)
@@ -31,7 +31,7 @@ class Logger
         if( is_object($msg) || is_array($msg) )  {
             var_dump( $msg );
         } else {
-            echo $this->formatter( $msg , 'debug' ) , "\n";
+            echo $this->formatter->format( $msg , 'debug' ) , "\n";
         }
     }
 
