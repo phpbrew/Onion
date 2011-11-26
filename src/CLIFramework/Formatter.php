@@ -96,5 +96,6 @@ class Formatter
 
         return "\033[".implode(';', $codes).'m'.$text."\033[0m";
     }
+
 }
 
