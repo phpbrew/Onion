@@ -34,10 +34,10 @@ class BuildCommand extends Command
         file_put_contents('package.xml',$xml);
 
         echo "validating...\n";
-        system('pear package-validate');
+        system('pear -q package-validate');
 
         echo "building...\n";
-        system('pear package');
+        system('pear -q package');
 
         echo "done\n";
         return true;
