@@ -24,6 +24,17 @@ class Logger
     {
         echo $this->formatter( $msg , 'info' ) . "\n";
     }
+
+    public function debug($msg)
+    {
+        /* detect object */
+        if( is_object($msg) || is_array($msg) )  {
+            var_dump( $msg );
+        } else {
+            echo $this->formatter( $msg , 'debug' ) , "\n";
+        }
+    }
+
 }
 
 
