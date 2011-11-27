@@ -144,8 +144,12 @@ http://www.cloanto.com/specs/ini/
 Package structure
 http://pear.php.net/manual/en/pyrus.commands.make.php
 
+
 package.xml 2.0 tags
 http://pear.php.net/manual/en/guide.developers.package2.tags.php
+
+package.xml dependency
+http://pear.php.net/manual/en/guide.developers.package2.dependencies.php
 
 PEAR2 Coding Standard
 http://pear.php.net/manual/en/pear2cs.php
@@ -170,3 +174,4 @@ http://packagist.org/about
 
 PSR-0 
 https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+
