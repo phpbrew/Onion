@@ -51,7 +51,6 @@ validate fields are:
 
     The API version.
 
-
 * `channel`
 
     (optional) defaults to pear.php.net
@@ -138,3 +137,18 @@ You can define your optional dependency group as below:
     hint = Add support for Remote Shell Operations
     pear.php.net/SSH_RemoteShell = 
     extensions[] = ssh2
+
+# Version Expression
+
+To specify minimal required version:
+
+    pkg = 0.001
+
+To specify max required version:
+
+    pkg = < 0.1.0
+
+Specify minimal and max required version:
+
+    pkg = 0.001 <=> 0.1.0
+
