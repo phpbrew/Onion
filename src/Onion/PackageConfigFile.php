@@ -13,6 +13,7 @@ use Onion\ConfigFile;
 use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use DOMDocument;
 
 class PackageConfigFile extends ConfigFile
 {
