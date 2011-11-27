@@ -107,29 +107,46 @@ A more detailed example
     maintainers[]  = ...                # optional
     channel     = pear.php.net          # default
 
-    [structure]
-    data = path/to/pkg_data
-    src  = path/to/src
-    test = path/to/test
-    web  = path/to/web
-    bin  = path/to/bin
-    conf = path/to/conf
-    resources = path/to/resources
 
     [requires]
     php = '>=5.3'
     pearinstaller = '1.4.1'
-    symfony/process = '>=1.1'
+
+    ; pear package based on channel
+    channel/package_name = '>=1.1'
+
+    ; pear package based on URI
+    package_name = http://www.example.com/Foo-1.3.0
+
     extensions[] = 'reflection'
     extensions[] = 'ctype'
     extensions[] = 'pcre'
 
+    [conflicts]
+    channel/pkg = 1.1
+
     [recommends]
+    channel/pkg = 1.2
 
     ; details for LICENSE (optional)
     [license]
     file = ....
     uri  = ....
+
+    [optional remoteshell]
+    hint = Add support for Remote Shell Operations
+    channel/test = 0.1
+    channel/foo = 0.2
+    extensions[] = ssh2
+
+    [structure]
+    data = path/to/pkg_data
+    src  = path/to/src
+    test = path/to/tests
+    web  = path/to/web
+    bin  = path/to/bin
+    conf = path/to/conf
+    resources = path/to/resources
 
 
 Community
