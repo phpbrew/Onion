@@ -133,7 +133,7 @@ XML;
             $xml->channel     = $config['package']['channel'];
             $xml->summary     = $config['package']['summary'];
             $xml->description = $config['package']['desc'];
-
+            $xml->formatOutput = true;
 
 
             $author_active = true;
@@ -276,7 +276,15 @@ XML;
 
             # TODO: support phprelease tag.
             # <phprelease />
-            return $xml->asXML();
+
+
+            // use DOMDocument to reformat package.xml
+            $dom = new DOMDocument('1.0');
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($xml->asXML());
+            return $dom->saveXML();
+
         } 
         catch (Exception $e) 
         {
