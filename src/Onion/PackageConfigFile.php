@@ -134,7 +134,6 @@ XML;
             $xml->channel     = $config['package']['channel'];
             $xml->summary     = $config['package']['summary'];
             $xml->description = $config['package']['desc'];
-            $xml->formatOutput = true;
 
 
             $author_active = true;
