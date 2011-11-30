@@ -28,7 +28,7 @@ validate fields are:
 
 * `summary`
 
-    (optional) defaults to the first line of description.
+    (optional) default to the first line of description.
     
     summary about this package, if this field is skipped, the
     summary will be extracted from description.

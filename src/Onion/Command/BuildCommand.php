@@ -28,7 +28,7 @@ class BuildCommand extends Command
         // options result.
         $options = $this->getOptions($cx);
 
-        $cx->logger->info( 'Configuring package.ini' );
+        $cx->logger->info2( 'Configuring package.ini' );
 
         $config = new PackageConfigReader($cx);
         $config->readAsPackageXml();
@@ -43,10 +43,10 @@ class BuildCommand extends Command
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
 
-        $cx->logger->info('Building PEAR package...');
+        $cx->logger->info2('Building PEAR package...');
         system('pear -q package');
 
-        $cx->logger->info('Done.');
+        $cx->logger->info2('Done.');
         return true;
     }
 }

@@ -52,15 +52,20 @@ class PackageConfigReader
 
         /* check required attributes */
         if( ! $config->has('package.name') ) {
-            $cx->logger->error('package name is not defined.');
+            $cx->logger->error('package.name is not defined.');
             # echo "\n\n";
             # echo "\t[package]\n";
             # echo "\tname = {your package name}\n\n";
             exit(1);
         }
 
+        if( ! $config->has('package.desc') ) {
+            $cx->logger->error('package.desc is not defined.');
+            exit(1);
+        }
+
         if( ! $config->has('package.version') ) {
-            $cx->logger->error('package version is not defined.');
+            $cx->logger->error('package.version is not defined.');
             exit(1);
         }
 
@@ -75,14 +80,16 @@ class PackageConfigReader
         }
 
 
+
         /* check optional attributes */
 
         if( ! $config->has('package.summary') ) {
-            $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.
+            $descs = explode("\n",$config->get('package.desc'));
+            $config->set('package.summary',$descs[0]);  # use first line desc as summary by default.
         }
 
         if( ! $config->has('package.license') ) {
-            $cx->logger->info("license is not defined., use PHP license by default.");
+            $cx->logger->info("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP LICENSE');
         }
 
@@ -96,19 +103,19 @@ class PackageConfigReader
             */
 
         if( ! $config->has('package.channel' ) ) {
-            $cx->logger->info("package channel is not defined. use pear.php.net by default.");
+            $cx->logger->info("* package channel is not defined. use pear.php.net by default.",1);
             $config->set('package.channel','pear.php.net');
         }
 
         if( ! $config->has('package.date') ) {
             $date = date('Y-m-d');
-            $cx->logger->info("package date is not defined. use current date $date by default.");
+            $cx->logger->info("* package date is not defined. use current date $date by default.",1);
             $config->set('package.date',$date);
         }
 
         if( ! $config->has('package.time') ) {
             $time = strftime('%X');
-            $cx->logger->info("package time is not defined. use current time $time by default.");
+            $cx->logger->info("* package time is not defined. use current time $time by default.",1);
             $config->set('package.time',strftime('%X'));
         }
 
@@ -130,7 +137,7 @@ class PackageConfigReader
         if( ! $config->has('stability') &&
             ! $config->has('stability-release') &&
             ! $config->has('stability-api') ) {
-            $cx->logger->info("stability is not set, use alpha by default");
+            $cx->logger->info("* package.stability is not set, use alpha by default",1);
             $config->set('stability-release', 'alpha' );
             $config->set('stability-api', 'alpha' );
         }
@@ -139,8 +146,9 @@ class PackageConfigReader
 
 
         /* checking dependencies */
-        $cx->logger->info("Checking dependencies...");
+        $cx->logger->info2("Checking dependencies...");
         if( ! $config->has('requires') )  {
+            $cx->logger->info("* requires section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $config->requires = array( 
                 'php' => '5.3',
                 'pearinstaller' => '1.4',
