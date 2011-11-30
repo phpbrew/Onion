@@ -39,39 +39,39 @@ class Logger
         $this->level = $level;
     }
 
-    public function criticalError($msg, $indent = 0)
+    public function criticalError($msg)
     {
         $this->_print($msg,'error');
     }
 
-    public function error($msg,$indent = 0)
+    public function error($msg)
     {
         $this->_print($msg,'error2');
     }
 
     public function warn($msg,$indent = 0)
     {
-        $this->_print($msg,'warn');
+        $this->_print($msg,'warn',$indent);
     }
 
     public function info($msg,$indent = 0)
     {
-        $this->_print($msg,'info');
+        $this->_print($msg,'info',$indent);
     }
 
     public function info2($msg,$indent = 0) 
     {
-        $this->_print($msg,'info2');
+        $this->_print($msg,'info2',$indent);
     }
 
     public function debug($msg,$indent = 0)
     {
-        $this->_print($msg,'debug');
+        $this->_print($msg,'debug',$indent);
     }
 
     public function debug2($msg,$indent = 0)
     {
-        $this->_print($msg,'debug2');
+        $this->_print($msg,'debug2',$indent);
     }
 
     private function _print($msg,$style,$indent = 0) 
