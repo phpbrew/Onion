@@ -9,12 +9,17 @@
  * file that was distributed with this source code.
  *
  */
-require 'SplClassLoader.php';
 
-if( getenv("DEV") ) {
-    $classLoader = new SplClassLoader(null,'src');
-    $classLoader->register();
-}
+
+require 'UniversalClassLoader/SplClassLoader.php';
+$classLoader = new \UniversalClassLoader\SplClassLoader(array( 
+    'Onion' => 'src',
+    'CLIFramework' => 'src',
+    'GetOptionKit' => '../GetOptionKit/src',
+));
+$classLoader->useIncludePath(true);
+$classLoader->register();
+
 
 use CLIFramework\CommandDispatcher;
 try {

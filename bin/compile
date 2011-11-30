@@ -35,6 +35,8 @@ $phar->addFromString($bin, $content);
 $path = stream_resolve_include_path('UniversalClassLoader/SplClassLoader.php');
 if( ! file_exists( $path ) )
     die('splclassloader not found.');
+
+echo "\tinclude classloader $path\n";
 $content = php_strip_whitespace($path);
 $phar->addFromString('UniversalClassLoader/SplClassLoader.php',$content);
 
@@ -44,8 +46,11 @@ $stub =<<<"EOF"
 <?php
 Phar::mapPhar('$pharFile');
 require 'phar://$pharFile/UniversalClassLoader/SplClassLoader.php';
-\$classLoader = new \\UniversalClassLoader\\SplClassLoader(array( '' => 'phar://$pharFile'));
-\$classLoader->useIncludePath(true);
+\$classLoader = new \\UniversalClassLoader\\SplClassLoader(array( 
+        'CLIFramework' => 'phar://$pharFile',
+        'GetOptionKit' => 'phar://$pharFile',
+        'Onion' => 'phar://$pharFile',
+));
 \$classLoader->register();
 require 'phar://$pharFile/$bin';
 __HALT_COMPILER();

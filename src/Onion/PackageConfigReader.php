@@ -21,7 +21,7 @@ class PackageConfigReader
     public $config;
     public $context;
 
-    function __construct( \Onion\CommandContext $cx, $file = 'package.ini')
+    function __construct( \CLIFramework\CommandContext $cx, $file = 'package.ini')
     {
         $this->context = $cx;
         $this->file = $file;
@@ -39,7 +39,6 @@ class PackageConfigReader
             exit(1);
         }
     }
-
 
     function read()
     {
@@ -62,13 +61,13 @@ class PackageConfigReader
             exit(1);
         }
 
-        if( ! $config->has('package.author') ) {
-            $cx->logger->error('package author is not defined.');
+        if( ! $config->has('package.author') && ! $config->has('package.authors') ) {
+            $cx->logger->error('package author or authors is not defined.');
 
-            echo "Attribute 'author' is not defined.\n";
+            echo "Attribute 'author' or 'authors' is not defined.\n";
             echo "Please define 'author' in your package.ini file: \n\n";
             echo "[package]\n";
-            echo "author = Name <email@domain.com>.\n\n";
+            echo "author = Name \"username\" <email@domain.com>\n\n";
             exit(1);
         }
 
@@ -79,7 +78,7 @@ class PackageConfigReader
             $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.
         }
 
-        if( ! isset($config['package']['license']) ) {
+        if( ! $config->has('package.license') ) {
             $cx->logger->info("license is not defined., use PHP license by default.");
             $config->set('package.license','PHP LICENSE');
         }
@@ -93,38 +92,41 @@ class PackageConfigReader
             * <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
             */
 
-        if( ! isset($config['package']['channel'] ) ) {
+        if( ! $config->has('package.channel' ) ) {
             $cx->logger->info("package channel is not defined. use pear.php.net by default.");
             $config->set('package.channel','pear.php.net');
         }
 
-        if( ! isset($config['package']['date'] ) ) {
+        if( ! $config->has('package.date') ) {
             $date = date('Y-m-d');
             $cx->logger->info("package date is not defined. use current date $date by default.");
             $config->set('package.date',$date);
         }
 
-        if( ! isset($config['package']['time'] ) ) {
+        if( ! $config->has('package.time') ) {
             $time = strftime('%X');
             $cx->logger->info("package time is not defined. use current time $time by default.");
-            $config['package']['time'] = strftime('%X');
+            $config->set('package.time',strftime('%X'));
         }
 
-        if( ! isset($config['package']['notes'] ) ) {
-            $config['package']['notes'] = '-';
+        if( ! $config->has('package.notes') ) {
+            $config->set('package.notes','-');
         }
 
         // apply api_version from 'version', if not specified.
-        if( ! isset($config['package']['version-api'] ) )
-            $config['package']['version-api'] = $config['package']['version-api'];
+        if( ! $config->has('package.version-api') ) {
+            $config->set('package.version-api',$config->get('package.version'));
+        }
+
 
         /* checking dependencies */
         $cx->logger->info("Checking dependencies...");
-        if( ! isset($config['requires']) ) 
-            $config['requires'] = array( 
+        if( ! $config->has('requires') )  {
+            $config->requires = array( 
                 'php' => '5.3',
                 'pearinstaller' => '1.4',
             );
+        }
     }
 
     function validate()
@@ -149,27 +151,22 @@ class PackageConfigReader
         if( preg_match( '/^\s*
                     (.+?)
                     \s*
-                    \((\S+)\)
-                    \s*
+                    (?:"(\S+)"
+                    \s*)?
                     <(\S+)>
                     \s*$/x' , $string , $regs ) ) 
         {
-            list($orig,$name,$user,$email) = $regs;
-            $author['name'] = $name;
-            $author['user'] = $user;
-            $author['email'] = $email;
-        }
-
-        // parse author info:  {Name} <{email}>
-        elseif( preg_match( '/^\s*
-                    (.+?)
-                    \s*
-                    <(\S+)>
-                    \s*$/x' , $string , $regs ) )
-        {
-            list($orig,$name,$email) = $regs;
-            $author['name'] = $name;
-            $author['email'] = $email;
+            if( count($regs) == 4 ) {
+                list($orig,$name,$user,$email) = $regs;
+                $author['name'] = $name;
+                $author['user'] = $user;
+                $author['email'] = $email;
+            }
+            elseif( count($regs) == 3 ) {
+                list($orig,$name,$email) = $regs;
+                $author['name'] = $name;
+                $author['email'] = $email;
+            }
         }
         else {
             $author['name'] = $string;
@@ -196,27 +193,30 @@ class PackageConfigReader
 XML;
 
             $xml              = new SimpleXMLElement($xmlstr); 
-            $xml->name        = $config['package']['name'];
-            $xml->channel     = $config['package']['channel'];
-            $xml->summary     = $config['package']['summary'];
-            $xml->description = $config['package']['desc'];
+            $xml->name        = $config->{ 'package.name' };
+            $xml->channel     = $config->{ 'package.channel' };
+            $xml->summary     = $config->{ 'package.summary' };
+            $xml->description = $config->{ 'package.desc' };
 
 
+            $author_data = $this->parseAuthorString( $config->get('package.author') );
+            $lead = $xml->addChild('lead');
+            foreach( $author_data as $k => $v )
+                $lead->$k = $v;
+            $lead->active = true;
 
-            $author_active = true;
-            foreach( $config['package']['authors'] as $author ) {
-                $lead = $xml->addChild('lead');
-                $data =  $this->parseAuthorString( $author );
-                foreach( $data as $k => $v )
-                    $lead->$k = $v;
-                if( $author_active ) {
+            if( $config->has('package.authors') ) {
+                foreach( $config->get('package.authors') as $author ) {
+                    $lead = $xml->addChild('lead');
+                    $data =  $this->parseAuthorString( $author );
+                    foreach( $data as $k => $v )
+                        $lead->$k = $v;
                     $lead->active = 1;
-                    $author_active = false;
                 }
             }
 
-            $xml->date        = $config['package']['date'];
-            $xml->time        = $config['package']['time'];
+            $xml->date        = $config->get('package.date');
+            $xml->time        = $config->get('package.time');
 
             $version          = $xml->addChild('version');
             $version->release = $config['package']['version'];

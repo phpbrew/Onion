@@ -152,24 +152,25 @@ A more detailed example
     resources = path/to/resources
 
 
-Community
----------
+## Community
+
 If you have questions about Onion or want to help out, come and join us in the #onion-dev channel on `irc.freenode.net`.
 
-Reference
----------
-INI format spec
-http://www.cloanto.com/specs/ini/
+## Reference
+
+INI format spec: <http://www.cloanto.com/specs/ini/>
 
 Package structure
-http://pear.php.net/manual/en/pyrus.commands.make.php
+<http://pear.php.net/manual/en/pyrus.commands.make.php>
 
 
 package.xml 2.0 tags
-http://pear.php.net/manual/en/guide.developers.package2.tags.php
+<http://pear.php.net/manual/en/guide.developers.package2.tags.php>
+
 
 package.xml dependency
-http://pear.php.net/manual/en/guide.developers.package2.dependencies.php
+<http://pear.php.net/manual/en/guide.developers.package2.dependencies.php>
+
 
 PEAR2 Coding Standard
 http://pear.php.net/manual/en/pear2cs.php

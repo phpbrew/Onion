@@ -9,6 +9,7 @@
  *
  */
 namespace Onion;
+use Exception;
 
 class ConfigContainer 
 {
@@ -27,6 +28,11 @@ class ConfigContainer
     function __set($k,$v)
     {
         $this->set( $k , $v );
+    }
+
+    function __isset($k)
+    {
+        return $this->has($k);
     }
 
     function has( $refstr ) 

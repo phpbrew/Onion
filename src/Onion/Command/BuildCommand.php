@@ -12,7 +12,7 @@ namespace Onion\Command;
 use CLIFramework\Command;
 use CLIFramework\CommandInterface;
 use Onion\GlobalConfig;
-use Onion\PackageConfigFile;
+use Onion\PackageConfigReader;
 
 class BuildCommand extends Command 
     implements CommandInterface
@@ -30,8 +30,7 @@ class BuildCommand extends Command
 
         $cx->logger->info( 'Configuring package.ini' );
 
-        $config = new PackageConfigFile($cx);
-
+        $config = new PackageConfigReader($cx);
         $config->read();
         $config->validate();
 
