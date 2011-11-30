@@ -32,7 +32,6 @@ class BuildCommand extends Command
 
         $config = new PackageConfigReader($cx);
         $config->readAsPackageXml();
-
         $xml = $config->generatePackageXml();
 
         /*

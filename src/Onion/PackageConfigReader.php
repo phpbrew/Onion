@@ -12,9 +12,9 @@ namespace Onion;
 use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
-use Onion\ConfigContainer;
 use Exception;
-
+use Onion\ConfigContainer;
+use Onion\SpecUtils;
 
 class PackageConfigReader
 {
@@ -149,17 +149,7 @@ class PackageConfigReader
 
     }
 
-    function parseVersionString($string)
-    {
-        if( preg_match('/^([0-9.]+)$/',$string,$regs) ) {
-            return array( 'min' => $regs[1] );
-        }
-        if( preg_match('/^\s*([>=]+)\s*([0-9.]+)$/',$string,$regs) ) {
-            return array( 'min' => $regs[2] );
-        }
-    }
-
-    function parseAuthorString($string)
+    protected function parseAuthorString($string)
     {
         $author = array();
         // parse author info:   {Name} ({Id}) <{email}>
@@ -325,7 +315,7 @@ XML;
                 }
                 // php or pear-intsaller
                 elseif( in_array($package_name, array('pearinstaller','php') ) ) {
-                    $required = $this->parseVersionString( $arg );
+                    $required = SpecUtils::parseVersion( $arg );
                     $pkg_el = $required_el->addChild( $package_name );
                     $pkg_el->addChild( 'min' , $required['min'] );
                 }
@@ -335,7 +325,7 @@ XML;
                     if( strpos( $package_name , '/' ) !== false )
                         list($channel,$package_name) = explode('/',$package_name);
 
-                    $required = $this->parseVersionString( $arg );
+                    $required = SpecUtils::parseVersion( $arg );
                     if( ! $required ) {
                         if( preg_match('/http:\/\//',$arg) ) {
                             $pkg = $required_el->addChild('package');
