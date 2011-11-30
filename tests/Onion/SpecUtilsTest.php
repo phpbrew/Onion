@@ -12,7 +12,7 @@ namespace tests\Onion;
 use Onion\SpecUtils;
 class SpecUtilsTest extends \PHPUnit_Framework_TestCase 
 {
-	function test() 
+	function testVersion() 
 	{
 		$v = SpecUtils::parseVersion('0.0.1');
 		ok( $v );
@@ -24,5 +24,10 @@ class SpecUtilsTest extends \PHPUnit_Framework_TestCase
 		ok( $v );
 		is( '0.0.3', $v['min'] );
 		is( '0.0.6', $v['max'] );
+	}
+
+	function testAuthor()
+	{
+		ok( SpecUtils::parseAuthor('Yo-An Lin "c9s" <cornelius.howl@gmail.com>') );
 	}
 }

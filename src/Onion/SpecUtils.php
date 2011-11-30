@@ -62,5 +62,35 @@ class SpecUtils
         }
     }
 
+    static function parseAuthor($string)
+    {
+        $author = array();
+        // parse author info:   {Name} ({Id}) <{email}>
+        if( preg_match( '/^\s*
+                    (.+?)
+                    \s*
+                    (?:"(\S+)"
+                    \s*)?
+                    <(\S+)>
+                    \s*$/x' , $string , $regs ) ) 
+        {
+            if( count($regs) == 4 ) {
+                list($orig,$name,$user,$email) = $regs;
+                $author['name'] = $name;
+                $author['user'] = $user;
+                $author['email'] = $email;
+            }
+            elseif( count($regs) == 3 ) {
+                list($orig,$name,$email) = $regs;
+                $author['name'] = $name;
+                $author['email'] = $email;
+            }
+        }
+        else {
+            $author['name'] = $string;
+        }
+        return $author;
+    }
+
 }
 

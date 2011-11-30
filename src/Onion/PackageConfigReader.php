@@ -149,35 +149,6 @@ class PackageConfigReader
 
     }
 
-    protected function parseAuthorString($string)
-    {
-        $author = array();
-        // parse author info:   {Name} ({Id}) <{email}>
-        if( preg_match( '/^\s*
-                    (.+?)
-                    \s*
-                    (?:"(\S+)"
-                    \s*)?
-                    <(\S+)>
-                    \s*$/x' , $string , $regs ) ) 
-        {
-            if( count($regs) == 4 ) {
-                list($orig,$name,$user,$email) = $regs;
-                $author['name'] = $name;
-                $author['user'] = $user;
-                $author['email'] = $email;
-            }
-            elseif( count($regs) == 3 ) {
-                list($orig,$name,$email) = $regs;
-                $author['name'] = $name;
-                $author['email'] = $email;
-            }
-        }
-        else {
-            $author['name'] = $string;
-        }
-        return $author;
-    }
 
     function generatePackageXml()
     {
@@ -204,7 +175,7 @@ XML;
             $xml->description = $config->{ 'package.desc' };
 
 
-            $author_data = $this->parseAuthorString( $config->get('package.author') );
+            $author_data = SpecUtils::parseAuthor( $config->get('package.author') );
             $lead = $xml->addChild('lead');
             foreach( $author_data as $k => $v )
                 $lead->$k = $v;
@@ -213,7 +184,7 @@ XML;
             if( $config->has('package.authors') ) {
                 foreach( $config->get('package.authors') as $author ) {
                     $lead = $xml->addChild('lead');
-                    $data =  $this->parseAuthorString( $author );
+                    $data =  SpecUtils::parseAuthor( $author );
                     foreach( $data as $k => $v )
                         $lead->$k = $v;
                     $lead->active = 1;
