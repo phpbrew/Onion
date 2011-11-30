@@ -9,21 +9,17 @@
  *
  */
 namespace CLIFramework;
-use CLIFramework\Logger;
 use GetOptionKit\GetOptionKit;
 
 class Command
 {
     public $dispatcher;
     public $cascade;
-    public $logger;
 
     function __construct($dispatcher)
     {
         $this->dispatcher = $dispatcher;
-        $this->logger     = new Logger;
     }
-
 
 
     /* sub command override this method to define its option spec here */

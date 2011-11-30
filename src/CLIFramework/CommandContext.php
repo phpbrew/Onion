@@ -9,12 +9,14 @@
  *
  */
 namespace CLIFramework;
+use CLIFramework\Logger;
 
 class CommandContext 
 {
     public $argv;
     public $script;
     public $arguments;
+    public $logger;
 
 
     /* for saving parsed option result */
@@ -25,6 +27,7 @@ class CommandContext
         $this->argv         = array_merge( array(), $argv);
         $this->script       = $argv[0];
         $this->arguments    = array_slice($argv,1); // argument queue, not for option parsing
+        $this->logger       = new Logger;
     }
 
     function shiftArgument()

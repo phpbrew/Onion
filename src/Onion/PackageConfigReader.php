@@ -9,18 +9,25 @@
  *
  */
 namespace Onion;
-use Onion\ConfigFile;
 use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use Onion\ConfigContainer;
 
 class PackageConfigReader
 {
+    public $file;
+    public $config;
+
+    function __construct($file = 'package.ini')
+    {
+        $this->file = $file;
+        $this->config = new ConfigContainer( parse_ini_file( $this->file , true ) );
+    }
+
 
     function read()
     {
-        parent::read();
-
         // post-processing
         $config = & $this->config;
         // default values for package config

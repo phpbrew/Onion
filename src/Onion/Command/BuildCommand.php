@@ -23,12 +23,13 @@ class BuildCommand extends Command
         $getopt->add('d|debug','debug message');
     }
 
-    function execute($context) 
+    function execute($cx) 
     {
         // options result.
-        $options = $this->getOptions($context);
+        $options = $this->getOptions($cx);
 
-        $this->logger->info( 'Configuring package.ini' );
+        $cx->logger->info( 'Configuring package.ini' );
+
 
         $config = new PackageConfigFile('package.ini');
         if( ! $config->exists() )
@@ -36,7 +37,6 @@ class BuildCommand extends Command
 
         $config->read();
         $config->validate();
-
 
         $xml = $config->generatePackageXml();
 
@@ -49,10 +49,10 @@ class BuildCommand extends Command
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
 
-        $this->logger->info('Building PEAR package...');
+        $cx->logger->info('Building PEAR package...');
         system('pear -q package');
 
-        $this->logger->info('Done.');
+        $cx->logger->info('Done.');
         return true;
     }
 }

@@ -71,6 +71,7 @@ validate fields are:
 
 * `contributors[]`
 
+	(optional)
 	To define contributors:
 
 		contributors[] = Author Name <email@email.com>

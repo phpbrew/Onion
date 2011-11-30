@@ -15,15 +15,17 @@ use Exception;
 
 class CommandDispatcher 
 {
-    /* argv context class */
+    /* argv context class, 
+     * contains arguments, options, and argument queue. */
     public $context;
+
 
     /* command laoder */
     public $loader;
 
-
     public function __construct($app_command_namespaces = array() ,$argv = null)
     {
+
         if( $argv )  {
             $this->context = is_a($argv,'CLIFramework\CommandContext') ? $argv : new CommandContext($argv);
         } else {
@@ -31,12 +33,12 @@ class CommandDispatcher
             $this->context = new CommandContext($argv);
         }
 
+
         $loader = $this->loader = new CommandLoader;
         $loader->addNamespace( (array) $app_command_namespaces );
 
         // push default command namespace into the list.
         $loader->addNamespace( '\\CLIFramework\\Command' );
-
     }
 
     public function translateCommandClassName($command)
