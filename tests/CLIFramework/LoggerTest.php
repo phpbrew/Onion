@@ -16,8 +16,10 @@ class LoggerTest extends PHPUnit_Framework_TestCase
         $logger = new \CLIFramework\Logger;
         $this->assertNotEmpty( $logger );
 
+        ob_start();
         $logger->info('test');
         $logger->debug('test');
+        ob_clean();
     }
 
 
