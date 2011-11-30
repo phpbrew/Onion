@@ -28,8 +28,10 @@ class PackageConfigReader
 
     function read()
     {
-        // post-processing
+        // prepare config data
         $config = & $this->config;
+
+
         // default values for package config
         if( ! isset($config['package']['summary']) )
             $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.

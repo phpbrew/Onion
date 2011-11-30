@@ -26,7 +26,24 @@ class ConfigContainer
 
     function __set($k,$v)
     {
-        $this->array[ $k ] = $v;
+        $this->set( $k , $v );
+    }
+
+    function set( $refstr , $v ) 
+    {
+        $paths = explode('.',$refstr);
+        $ref = & $this->array;
+        foreach( $paths as $p ) {
+            if( ! isset( $ref[ $p ] ) ) {
+                $ref[ $p ] = array();
+                $ref = & $ref[$p];
+            }
+            else {
+                $ref = & $ref[$p];
+            }
+        }
+        $ref = $v;
+
     }
 
     function get( $refstr )
