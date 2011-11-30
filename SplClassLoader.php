@@ -1,15 +1,4 @@
 <?php
-/*
- * This file is part of the Onion package.
- *
- * (c) Yo-An Lin <cornelius.howl@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- */
-
-namespace Onion;
 /**
  * SplClassLoader implementation that implements the technical interoperability
  * standards for PHP 5.3 namespaces and class names.
@@ -140,10 +129,11 @@ class SplClassLoader
                 $fileName = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
             }
             $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
-
-            $target = ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '') . $fileName;
-            if( file_exists($target) )
-                require $target;
+            $target = ($this->_includePath !== null 
+                        ?  $this->_includePath . DIRECTORY_SEPARATOR 
+                        : '') 
+                        . $fileName;
+            require $target;
         }
     }
 }

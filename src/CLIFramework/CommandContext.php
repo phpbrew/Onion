@@ -9,33 +9,42 @@
  *
  */
 namespace CLIFramework;
+use GetOptionKit\GetOptionKit;
 
 class CommandContext 
 {
     public $argv;
     public $script;
-    public $context_list;
+    public $arguments;
+    public $getopt;
+    public $getoptResult;
 
     function __construct($argv = array() )
     {
         $this->argv         = array_merge( array(), $argv);
         $this->script       = $argv[0];
-        $this->context_list = array_slice($argv,1); # copy and shift one
+
+        $getopt = new GetOptionKit;
+        $result = $getopt->parse( $argv );
+        // $this->arguments = array_slice($argv,1); # copy and shift one
+        $this->getopt = $getopt;
+        $this->getoptResult = $result;
+        $this->arguments    = array_merge(array(),$result->arguments);
     }
 
     function shiftArgument()
     {
-        return array_shift($this->context_list);
+        return array_shift($this->arguments);
     }
 
     function getNextArgument()
     {
-        return @$this->context_list[0];
+        return @$this->arguments[0];
     }
 
     function getRestArguments()
     {
-        return $this->context_list;
+        return $this->arguments;
     }
 
     function hasSubcommand()
@@ -47,7 +56,12 @@ class CommandContext
 
     function hasCommand()
     {
-        return count($this->context_list) == 0;
+        return count($this->arguments) == 0;
+    }
+
+    function parseOptions()
+    {
+
     }
 
 }

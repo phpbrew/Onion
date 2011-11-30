@@ -27,8 +27,8 @@ $stub =<<<"EOF"
 #!/usr/bin/env php
 <?php
 Phar::mapPhar('$pharFile');
-require 'phar://$pharFile/Onion/SplClassLoader.php';
-\$classLoader = new \Onion\SplClassLoader(null,'phar://$pharFile');
+require 'phar://$pharFile/SplClassLoader.php';
+\$classLoader = new SplClassLoader(null,'phar://$pharFile');
 \$classLoader->register();
 require 'phar://$pharFile/$bin';
 __HALT_COMPILER();
