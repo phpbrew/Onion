@@ -80,9 +80,23 @@ validate fields are:
 		contributors[] = Author Name <email@email.com>
 		contributors[] = Author 2 <email@email.com>
 
+* `stability`
+
+	(optional) default to 'alpha', when stability is set, `stability-release` and `stability-api` can be ignored.
+
+* `stability-release`
+
+	(optional) Release stability.
+
+* `stability-api`
+
+	(optional) API stability.
+
 # Dependency section
 
-The dependency is defined in `[requires]` section. 
+The dependency is defined in `[requires]` section.
+
+`[requires]` is optional.
 
 ## The format of php dependency
 
@@ -92,6 +106,8 @@ For example:
 
     php = 5.3
 
+Default: 5.3
+
 ## The format of pearinstaller dependency
 
     pearinstaller = {version expression}
@@ -99,6 +115,8 @@ For example:
 For example:
 
     pearinstaller = 1.4.1
+
+Default: 1.4
 
 ## The format of package dependency
 

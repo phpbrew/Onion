@@ -15,6 +15,7 @@ use RecursiveDirectoryIterator;
 use Onion\ConfigContainer;
 use Exception;
 
+
 class PackageConfigReader
 {
     public $file;
@@ -40,7 +41,9 @@ class PackageConfigReader
         }
     }
 
-    function read()
+    /* read package.ini as package.xml, to make the config package.xml 2.0 
+     * compatible */
+    function readAsPackageXml()
     {
         // prepare config data
         $config = & $this->config;
@@ -118,6 +121,22 @@ class PackageConfigReader
             $config->set('package.version-api',$config->get('package.version'));
         }
 
+        if( $config->has('stability') ) {
+            $s = $config->get('stability');
+            $config->set('stability-release', $s );
+            $config->set('stability-api', $s );
+        }
+
+        if( ! $config->has('stability') &&
+            ! $config->has('stability-release') &&
+            ! $config->has('stability-api') ) {
+            $cx->logger->info("stability is not set, use alpha by default");
+            $config->set('stability-release', 'alpha' );
+            $config->set('stability-api', 'alpha' );
+        }
+
+        /* XXX: check stability valid keywords */
+
 
         /* checking dependencies */
         $cx->logger->info("Checking dependencies...");
@@ -127,10 +146,6 @@ class PackageConfigReader
                 'pearinstaller' => '1.4',
             );
         }
-    }
-
-    function validate()
-    {
 
     }
 
@@ -219,15 +234,15 @@ XML;
             $xml->time        = $config->get('package.time');
 
             $version          = $xml->addChild('version');
-            $version->release = $config['package']['version'];
-            $version->api     = $config['package']['api_version'];
+            $version->release = $config->get('package.version');
+            $version->api     = $config->get('package.version-api');
 
             $stability        = $xml->addChild('stability');
-            $stability->release = 'alpha';  # XXX: detect from version number.
-            $stability->api     = 'alpha';
+            $stability->release = $config->get('stability-release');  # XXX: detect from version number.
+            $stability->api     = $config->get('stability-api');
 
-            $xml->license     = $config['package']['license'];
-            $xml->notes       = $config['package']['notes'];
+            $xml->license     = $config->get('package.license');
+            $xml->notes       = $config->get('package.notes');
 
 
 
@@ -300,8 +315,7 @@ XML;
             $deps = $xml->addChild('dependencies');
             $required_el = $deps->addChild('required');
 
-            if( isset($config['requires']) )
-            foreach( $config['requires'] as $package_name => $arg ) 
+            foreach( $config->get('requires') as $package_name => $arg ) 
             {
                 if( $package_name == 'extensions' ) {
                     foreach( $arg as $extension ) {
@@ -336,7 +350,6 @@ XML;
                     }
                 }
             }
-
 
 
             $xml->addChild('phprelease');

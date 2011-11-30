@@ -31,8 +31,7 @@ class BuildCommand extends Command
         $cx->logger->info( 'Configuring package.ini' );
 
         $config = new PackageConfigReader($cx);
-        $config->read();
-        $config->validate();
+        $config->readAsPackageXml();
 
         $xml = $config->generatePackageXml();
 
