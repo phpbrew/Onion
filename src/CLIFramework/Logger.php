@@ -13,6 +13,20 @@ use CLIFramework\Formatter;
 
 class Logger 
 {
+
+    /*
+     * log level
+     *
+     * critical error = 1
+     * error          = 2
+     * warn           = 3
+     * info           = 4
+     * info2          = 5
+     * debug          = 6
+     * debug2         = 7
+     *
+     * */
+    public $level = 7;
 	public $formatter;
 
 	public function __construct()
@@ -20,21 +34,50 @@ class Logger
 		$this->formatter = new Formatter;
 	}
 
-    public function info( $msg , $bold = 0 )
+    public function setLevel($level)
     {
-        echo $this->formatter->format( $msg , 'info' ) . "\n";
+        $this->level = $level;
     }
 
-    public function debug($msg)
+    public function criticalError($msg)
+    {
+        echo $this->formatter->format( $msg , 'error' ) . "\n";
+    }
+
+    public function error($msg)
+    {
+        echo $this->formatter->format( $msg , 'error2' ) . "\n";
+    }
+
+    public function warn($msg)
+    {
+        echo $this->formatter->format( $msg , 'warn' ) . "\n";
+    }
+
+    public function info($msg,$style = 'info' )
+    {
+        echo $this->formatter->format( $msg , $style ) . "\n";
+    }
+
+    public function info2($msg) 
+    {
+        $this->info($msg,'info2');
+    }
+
+    public function debug($msg, $style = 'debug' )
     {
         /* detect object */
         if( is_object($msg) || is_array($msg) )  {
-            var_dump( $msg );
+            echo $this->formatter->format( print_r( $msg , 1 ) ) . "\n";
         } else {
-            echo $this->formatter->format( $msg , 'debug' ) , "\n";
+            echo $this->formatter->format( $msg , $style ) , "\n";
         }
     }
 
+    public function debug2($msg)
+    {
+        $this->debug($msg,'debug2');
+    }
 }
 
 
