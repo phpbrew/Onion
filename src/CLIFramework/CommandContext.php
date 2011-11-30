@@ -23,11 +23,11 @@ class CommandContext
     {
         $this->argv         = array_merge( array(), $argv);
         $this->script       = $argv[0];
-
-        $getopt = new GetOptionKit;
-        $result = $getopt->parse( $argv );
+        $getopt             = new GetOptionKit;
+        $result             = $getopt->parse( $argv );
+        
         // $this->arguments = array_slice($argv,1); # copy and shift one
-        $this->getopt = $getopt;
+        $this->getopt       = $getopt;
         $this->getoptResult = $result;
         $this->arguments    = array_merge(array(),$result->arguments);
     }
