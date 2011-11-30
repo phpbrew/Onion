@@ -26,6 +26,9 @@ class BuildCommand extends Command
 
     function execute($context) 
     {
+        $options = $this->getOptions($context);
+
+
         $this->logger->info( 'Configuring package.ini' );
 
         $package_config = new PackageConfigFile('package.ini');

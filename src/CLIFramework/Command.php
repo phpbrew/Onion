@@ -24,11 +24,16 @@ class Command
         $this->logger     = new Logger;
     }
 
+
+
+    /* sub command override this method to define its option spec here */
     function options($getopt)
     {
 
     }
 
+
+    /* get options from current context */
     function getOptions($context)
     {
         $getopt = new GetOptionKit;
@@ -40,8 +45,7 @@ class Command
         $options = $getopt->parse( $context->arguments );
 
         // save option result in command context object.
-        $context->options = $options;
-        return $options;
+        return $context->options = $options;
     }
 
     /* this is for parent command and subcommands */
