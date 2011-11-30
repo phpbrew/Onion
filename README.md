@@ -1,5 +1,5 @@
-Onion
-=======
+# Onion
+
 Onion, The fast approach to make/install packages for PHP.
 
 Onion is able to generate a PEAR2-compatible package.xml file from a very simple config
@@ -13,8 +13,7 @@ Let's keep hard long PEAR package.xml away! :-)
   utility is in alpha development, config spec might change. )
 
 
-The minimal spec file
----------------------
+## The minimal spec file
 
     [package]
     name = Onion
@@ -22,8 +21,8 @@ The minimal spec file
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
 
-Quick Tutorial
---------------
+## Quick Tutorial
+
 Get onion.phar file:
 
     $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
@@ -53,14 +52,12 @@ Then Your PEAR package is out!
 
 
 
-Requirement
------------
+## Requirement
 
 * PHP 5.3
 * simplexml extension
 
-Available Config Tags
----------------------
+## Available Config Tags
 
 [package] section:
 
@@ -72,7 +69,7 @@ Available Config Tags
 
 * `version`
 
-* `api_version` (optional)
+* `version.api` (optional)
 
 * `author`
 
@@ -99,10 +96,16 @@ A more detailed example
     license     = PHP                   # optional, default to PHP
     version     = 0.0.1
     api_version = 0.0.1                 # optional, defualt to "version"
-    author         = Yo-An Lin (c9s) <cornelius.howl@gmail.com>
-    authors[]      = Yo-An Lin (c9s) <cornelius.howl@gmail.com>
+
+	 ; lead developer
+    author         = Yo-An Lin <cornelius.howl@gmail.com>
+	 author.user    = c9s
+
+	 ; other authors
     authors[]      = Yo-An Lin <cornelius.howl@gmail.com>
     authors[]      = Yo-An Lin
+
+	 ; contributors ...
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
     channel     = pear.php.net          # default

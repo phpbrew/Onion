@@ -1,8 +1,8 @@
 <?php
-require 'SplClassLoader.php';
-$classLoader = new SplClassLoader('Onion','src');
-$classLoader->register();
-$classLoader = new SplClassLoader('CLIFramework','src');
-$classLoader->register();
-$classLoader = new SplClassLoader();
+require 'UniversalClassLoader/SplClassLoader.php';
+$classLoader = new \UniversalClassLoader\SplClassLoader(array( 
+    'Onion' => 'src',
+    'CLIFramework' => 'src',
+));
+$classLoader->useIncludePath(true);
 $classLoader->register();

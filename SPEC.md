@@ -59,14 +59,22 @@ validate fields are:
 
 * `author`
 
-    Package author, the format as below:
+    Package main author, the format as below:
 
         author = Yo-An Lin <cornelius.howl@gmail.com>
+		  author.user = c9s
 
     To define multiple authors:
 
         authors[] = Another Author <foo@foo.com>
         authors[] = Another Author II <bar@foo.com>
+
+* `contributors[]`
+
+	To define contributors:
+
+		contributors[] = Author Name <email@email.com>
+		contributors[] = Author 2 <email@email.com>
 
 # Dependency section
 
