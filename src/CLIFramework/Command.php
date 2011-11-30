@@ -28,7 +28,6 @@ class Command
 
     }
 
-
     /* get options from current context */
     function getOptions($context)
     {
@@ -43,6 +42,8 @@ class Command
         // save option result in command context object.
         return $context->options = $options;
     }
+
+
 
     /* this is for parent command and subcommands */
     function topExecute($context)

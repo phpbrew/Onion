@@ -13,16 +13,31 @@ use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Onion\ConfigContainer;
+use Exception;
 
 class PackageConfigReader
 {
     public $file;
     public $config;
+    public $context;
 
-    function __construct($file = 'package.ini')
+    function __construct( \Onion\CommandContext $cx, $file = 'package.ini')
     {
+        $this->context = $cx;
         $this->file = $file;
-        $this->config = new ConfigContainer( parse_ini_file( $this->file , true ) );
+        if( ! file_exists($file) ) {
+            $cx->logger->error( "$file not found." );
+            exit(1);
+        }
+
+        try {
+            $this->config = new ConfigContainer( parse_ini_file( $this->file , true ) );
+        } 
+        catch ( Exception $e ) {
+            $cx->logger->error( "$file syntax error." );
+            $cx->logger->error( $e->getMessage() );
+            exit(1);
+        }
     }
 
 
@@ -30,52 +45,81 @@ class PackageConfigReader
     {
         // prepare config data
         $config = & $this->config;
+        $cx = $this->context;
 
 
+        /* check required attributes */
+        if( ! $config->has('package.name') ) {
+            $cx->logger->error('package name is not defined.');
+            # echo "\n\n";
+            # echo "\t[package]\n";
+            # echo "\tname = {your package name}\n\n";
+            exit(1);
+        }
 
-        // default values for package config
-        if( ! isset($config['package']['summary']) )
-            $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.
+        if( ! $config->has('package.version') ) {
+            $cx->logger->error('package version is not defined.');
+            exit(1);
+        }
 
+        if( ! $config->has('package.author') ) {
+            $cx->logger->error('package author is not defined.');
 
-        // check author config. (REQUIRED)
-        if( ! isset($config['package']['author']) ) {
             echo "Attribute 'author' is not defined.\n";
             echo "Please define 'author' in your package.ini file: \n\n";
             echo "[package]\n";
-            echo "author = Name <email@domain.com>.\n";
+            echo "author = Name <email@domain.com>.\n\n";
             exit(1);
+        }
+
+
+        /* check optional attributes */
+
+        if( ! $config->has('package.summary') ) {
+            $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.
+        }
+
+        if( ! isset($config['package']['license']) ) {
+            $cx->logger->info("license is not defined., use PHP license by default.");
+            $config->set('package.license','PHP LICENSE');
         }
 
 
         // XXX: check authors[] config
 
 
-
         /* XXX: support license section
             *
             * <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
             */
-        if( ! isset($config['package']['license']) ) {
-            $config['package']['license'] = 'PHP LICENSE';
+
+        if( ! isset($config['package']['channel'] ) ) {
+            $cx->logger->info("package channel is not defined. use pear.php.net by default.");
+            $config->set('package.channel','pear.php.net');
         }
 
-        if( ! isset($config['package']['channel'] ) )
-            $config['package']['channel'] = 'pear.php.net';
+        if( ! isset($config['package']['date'] ) ) {
+            $date = date('Y-m-d');
+            $cx->logger->info("package date is not defined. use current date $date by default.");
+            $config->set('package.date',$date);
+        }
 
-        if( ! isset($config['package']['date'] ) )
-            $config['package']['date'] = date('Y-m-d');
-
-        if( ! isset($config['package']['time'] ) )
+        if( ! isset($config['package']['time'] ) ) {
+            $time = strftime('%X');
+            $cx->logger->info("package time is not defined. use current time $time by default.");
             $config['package']['time'] = strftime('%X');
+        }
 
-        if( ! isset($config['package']['notes'] ) )
+        if( ! isset($config['package']['notes'] ) ) {
             $config['package']['notes'] = '-';
+        }
 
         // apply api_version from 'version', if not specified.
-        if( ! isset($config['package']['api_version'] ) )
-            $config['package']['api_version'] = $config['package']['version'];
+        if( ! isset($config['package']['version-api'] ) )
+            $config['package']['version-api'] = $config['package']['version-api'];
 
+        /* checking dependencies */
+        $cx->logger->info("Checking dependencies...");
         if( ! isset($config['requires']) ) 
             $config['requires'] = array( 
                 'php' => '5.3',

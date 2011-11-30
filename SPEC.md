@@ -45,9 +45,9 @@ validate fields are:
 
     Package version.
 
-* `version.api`
+* `version-api`
 
-    (optional)
+    (optional) inherited from `version`.
 
     The API version.
 
@@ -61,13 +61,16 @@ validate fields are:
 
     Package main author, the format as below:
 
-        author = Yo-An Lin <cornelius.howl@gmail.com>
-		  author.user = c9s
+		  ; Author Name <email> "username"
+        author = Yo-An Lin <cornelius.howl@gmail.com> "c9s"
 
     To define multiple authors:
 
         authors[] = Another Author <foo@foo.com>
         authors[] = Another Author II <bar@foo.com>
+
+	 For multiple authors, username is optional.
+
 
 * `contributors[]`
 

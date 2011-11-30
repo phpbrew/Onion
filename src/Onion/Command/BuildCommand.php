@@ -30,10 +30,7 @@ class BuildCommand extends Command
 
         $cx->logger->info( 'Configuring package.ini' );
 
-
-        $config = new PackageConfigFile('package.ini');
-        if( ! $config->exists() )
-            throw new Exception("package.ini not found.");
+        $config = new PackageConfigFile($cx);
 
         $config->read();
         $config->validate();
