@@ -17,6 +17,13 @@ use Onion\PackageConfigFile;
 class BuildCommand extends Command 
     implements CommandInterface
 {
+
+    function options($getopt)
+    {
+        $getopt->add('v|verbose','verbose message');
+        $getopt->add('d|debug','debug message');
+    }
+
     function execute($context) 
     {
         $this->logger->info( 'Configuring package.ini' );

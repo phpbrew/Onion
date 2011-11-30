@@ -9,27 +9,22 @@
  *
  */
 namespace CLIFramework;
-use GetOptionKit\GetOptionKit;
 
 class CommandContext 
 {
     public $argv;
     public $script;
     public $arguments;
-    public $getopt;
-    public $getoptResult;
+
+
+    /* for saving parsed option result */
+    public $options;
 
     function __construct($argv = array() )
     {
         $this->argv         = array_merge( array(), $argv);
         $this->script       = $argv[0];
-        $getopt             = new GetOptionKit;
-        $result             = $getopt->parse( $argv );
-        
-        // $this->arguments = array_slice($argv,1); # copy and shift one
-        $this->getopt       = $getopt;
-        $this->getoptResult = $result;
-        $this->arguments    = array_merge(array(),$result->arguments);
+        $this->arguments    = array_slice($argv,1); // argument queue, not for option parsing
     }
 
     function shiftArgument()

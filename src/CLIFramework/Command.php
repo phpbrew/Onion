@@ -10,6 +10,7 @@
  */
 namespace CLIFramework;
 use CLIFramework\Logger;
+use GetOptionKit\GetOptionKit;
 
 class Command
 {
@@ -21,6 +22,26 @@ class Command
     {
         $this->dispatcher = $dispatcher;
         $this->logger     = new Logger;
+    }
+
+    function options($getopt)
+    {
+
+    }
+
+    function getOptions($context)
+    {
+        $getopt = new GetOptionKit;
+
+        // init defined options.
+        $this->options($getopt);
+
+        // parse arguments from the argument queue.
+        $options = $getopt->parse( $context->arguments );
+
+        // save option result in command context object.
+        $context->options = $options;
+        return $options;
     }
 
     /* this is for parent command and subcommands */
