@@ -34,50 +34,58 @@ class Logger
 		$this->formatter = new Formatter;
 	}
 
-    public function setLevel($level)
+    public function setLevel($level, $indent = 0)
     {
         $this->level = $level;
     }
 
-    public function criticalError($msg)
+    public function criticalError($msg, $indent = 0)
     {
-        echo $this->formatter->format( $msg , 'error' ) . "\n";
+        $this->_print($msg,'error');
     }
 
-    public function error($msg)
+    public function error($msg,$indent = 0)
     {
-        echo $this->formatter->format( $msg , 'error2' ) . "\n";
+        $this->_print($msg,'error2');
     }
 
-    public function warn($msg)
+    public function warn($msg,$indent = 0)
     {
-        echo $this->formatter->format( $msg , 'warn' ) . "\n";
+        $this->_print($msg,'warn');
     }
 
-    public function info($msg,$style = 'info' )
+    public function info($msg,$indent = 0)
     {
-        echo $this->formatter->format( $msg , $style ) . "\n";
+        $this->_print($msg,'info');
     }
 
-    public function info2($msg) 
+    public function info2($msg,$indent = 0) 
     {
-        $this->info($msg,'info2');
+        $this->_print($msg,'info2');
     }
 
-    public function debug($msg, $style = 'debug' )
+    public function debug($msg,$indent = 0)
     {
+        $this->_print($msg,'debug');
+    }
+
+    public function debug2($msg,$indent = 0)
+    {
+        $this->_print($msg,'debug2');
+    }
+
+    private function _print($msg,$style,$indent = 0) 
+    {
+        echo str_repeat("\t", $indent);
+
         /* detect object */
         if( is_object($msg) || is_array($msg) )  {
-            echo $this->formatter->format( print_r( $msg , 1 ) ) . "\n";
+            echo $this->formatter->format( print_r( $msg , 1 ) , $style ) . "\n";
         } else {
             echo $this->formatter->format( $msg , $style ) , "\n";
         }
     }
 
-    public function debug2($msg)
-    {
-        $this->debug($msg,'debug2');
-    }
 }
 
 
