@@ -29,6 +29,18 @@ class ConfigContainer
         $this->set( $k , $v );
     }
 
+    function has( $refstr ) 
+    {
+        $paths = explode('.',$refstr);
+        $ref = & $this->array;
+        foreach( $paths as $p ) {
+            if( ! isset( $ref[ $p ] ) )
+                return false;
+            $ref = & $ref[$p];
+        }
+        return true;
+    }
+
     function set( $refstr , $v ) 
     {
         $paths = explode('.',$refstr);
@@ -43,7 +55,6 @@ class ConfigContainer
             }
         }
         $ref = $v;
-
     }
 
     function get( $refstr )

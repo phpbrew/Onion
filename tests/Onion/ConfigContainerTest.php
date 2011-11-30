@@ -20,5 +20,11 @@ class ConfigContainerTest extends PHPUnit_Framework_TestCase
 
         $config->set('key.subkey.hash3',5);
         is( 5, $config->get('key.subkey.hash3') );
+
+        ok( ! $config->has('non') );
+        ok( $config->has('key') );
+        ok( $config->has('key.subkey') );
+        ok( $config->has('key.subkey2') );
+        ok( $config->has('key.subkey.hash3') );
     }
 }
