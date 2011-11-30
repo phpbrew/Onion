@@ -17,7 +17,6 @@ use Onion\PackageConfigFile;
 class BuildCommand extends Command 
     implements CommandInterface
 {
-
     function options($getopt)
     {
         $getopt->add('v|verbose','verbose message');
@@ -26,18 +25,20 @@ class BuildCommand extends Command
 
     function execute($context) 
     {
+        // options result.
         $options = $this->getOptions($context);
-
 
         $this->logger->info( 'Configuring package.ini' );
 
-        $package_config = new PackageConfigFile('package.ini');
-        if( ! $package_config->exists() )
+        $config = new PackageConfigFile('package.ini');
+        if( ! $config->exists() )
             throw new Exception("package.ini not found.");
 
-        $package_config->read();
-        $package_config->validate();
-        $xml = $package_config->generatePackageXml();
+        $config->read();
+        $config->validate();
+
+
+        $xml = $config->generatePackageXml();
 
         /*
         if( file_exists('package.xml') )

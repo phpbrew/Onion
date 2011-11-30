@@ -27,8 +27,18 @@ class PackageConfigFile extends ConfigFile
         if( ! isset($config['package']['summary']) )
             $config['package']['summary'] = $config['package']['desc'];  # use desc as summary as default.
 
-        if( isset($config['package']['author']) )
-            $config['package']['authors'][] = $config['package']['author'];
+
+        if( ! isset($config['package']['author']) ) {
+            echo "Attribute 'author' is not defined.\n";
+            echo "Please define 'author' in your package.ini file: \n\n";
+            echo "[package]\n";
+            echo "author = Name <email@domain.com>.\n";
+            exit(1);
+        }
+
+
+        // $config['package']['authors'][] = $config['package']['author'];
+
 
         /* XXX: support license section
             *
