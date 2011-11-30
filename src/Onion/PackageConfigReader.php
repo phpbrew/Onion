@@ -313,11 +313,19 @@ XML;
             }
 
 
+            # TODO: support phprelease tag.
             $xml->addChild('phprelease');
 
 
-            # TODO: support phprelease tag.
-            # <phprelease />
+
+            // use DOMDocument to reformat package.xml
+            if( class_exists('DOMDocument') ) {
+                $dom = new \DOMDocument('1.0');
+                $dom->preserveWhiteSpace = false;
+                $dom->formatOutput = true;
+                $dom->loadXML($xml->asXML());
+                return $dom->saveXML();
+            }
             return $xml->asXML();
         } 
         catch (Exception $e) 

@@ -13,6 +13,7 @@ use Onion\ConfigFile;
 use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use DOMDocument;
 
 class PackageConfigReader
 {
@@ -146,7 +147,6 @@ XML;
             $xml->channel     = $config['package']['channel'];
             $xml->summary     = $config['package']['summary'];
             $xml->description = $config['package']['desc'];
-
 
 
             $author_active = true;
@@ -289,7 +289,15 @@ XML;
 
             # TODO: support phprelease tag.
             # <phprelease />
-            return $xml->asXML();
+
+
+            // use DOMDocument to reformat package.xml
+            $dom = new DOMDocument('1.0');
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($xml->asXML());
+            return $dom->saveXML();
+
         } 
         catch (Exception $e) 
         {
