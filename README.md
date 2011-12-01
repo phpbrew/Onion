@@ -27,14 +27,6 @@ Get onion.phar file:
 
     $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
 
-If you're new to **Onion**, you might need to edit your author information in `~/.onion.ini` file,
-this helps you generate a new package.ini file, your `~/.onion.ini` file might be like:
-
-    [author]
-    name  = Your name
-    email = email@host.com
-    user  = pearId
-
 Fill your `package.ini` file:
 
     [package]
@@ -48,7 +40,6 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
     $ php ~/bin/onion.phar build
 
 Then Your PEAR package is out!
-
 
 
 
@@ -95,46 +86,34 @@ A more detailed example
     homepage    = http://your.web.com   # optional
     license     = PHP                   # optional, default to PHP
     version     = 0.0.1
-    api_version = 0.0.1                 # optional, defualt to "version"
+    version-api = 0.0.1                 # optional, defualt to "version"
+    channel     = pear.php.net          # default
 
-	 ; lead developer
+    ; lead developer
     author         = Yo-An Lin <cornelius.howl@gmail.com>
-	 author.user    = c9s
 
-	 ; other authors
+    ; other authors
     authors[]      = Yo-An Lin <cornelius.howl@gmail.com>
     authors[]      = Yo-An Lin
 
 	 ; contributors ...
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
-    channel     = pear.php.net          # default
 
-
-    [requires]
-    php = '>=5.3'
+    [required]
+    php = > 5.3
     pearinstaller = '1.4.1'
 
     ; pear package based on channel
-    channel/package_name = '>=1.1'
+    pear.channel.net/package = 1.1
 
     ; pear package based on URI
-    package_name = http://www.example.com/Foo-1.3.0
+    package = http://www.example.com/Foo-1.3.0
+    package = conflicts
 
-    extensions[] = 'reflection'
-    extensions[] = 'ctype'
-    extensions[] = 'pcre'
-
-    [conflicts]
-    channel/pkg = 1.1
-
-    [recommends]
-    channel/pkg = 1.2
-
-    ; details for LICENSE (optional)
-    [license]
-    file = ....
-    uri  = ....
+    extension/reflection = 
+    extension/ctype = 
+    extension/pcre = 
 
     [optional remoteshell]
     hint = Add support for Remote Shell Operations
@@ -142,14 +121,8 @@ A more detailed example
     channel/foo = 0.2
     extensions[] = ssh2
 
-    [structure]
-    data = path/to/pkg_data
-    src  = path/to/src
-    test = path/to/tests
-    web  = path/to/web
-    bin  = path/to/bin
-    conf = path/to/conf
-    resources = path/to/resources
+    [roles]
+    your_script = bin
 
 
 ## Community
