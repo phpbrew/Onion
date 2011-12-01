@@ -162,6 +162,7 @@ class PackageConfigReader
             'data'  => 'data',
             'examples' => 'doc',
             'README.*' => 'doc',
+            'scripts'  => 'script',
         );
         if( ! $config->has('roles') ) {
             $config->roles = $default_roles;
