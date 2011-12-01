@@ -5,32 +5,3 @@ CLI Plan
     $ foo schema                    # call Command\SchemaCommand->execute
     $ foo schema init               # call Command\SchemaCommand\InitCommand->execute
     $ foo schema check {ModelName}
-
-when running init command:
-
-    calls ->
-    Commands\SchemaCommand.php ->     # check sub-commands (check other files with prefix)
-    Commands\SchemaCommand\InitCommand.php   -> get rest arguments here.
-
-Inspect arguments of run method (dispatch rest arguments to the right context)
-
-    expectArgCount(3,'toMethod');
-    expectArgCount(2,'toMethod');
-    expectArgCount(1,'toMethod');
-
-save help text with the same command filename. eg,
-
-    Commands/InitCommand.php
-    Commands/InitCommand.txt   # help text file, first line is the brief
-
-so that when running a command which has sub-commands, can list commands with brief:
-
-    $ foo schema
-
-        init    - init schema ...
-        check   - check schema ...
-        rebuild - rebuild schema ...
-
-
-Option Parser
--------------
