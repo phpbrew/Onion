@@ -275,6 +275,8 @@ class PackageConfigReader
         $config = $this->config;
 
         try {
+
+
             $xmlstr =<<<XML
             <package packagerversion="1.4.10" version="2.0"
             xmlns="http://pear.php.net/dtd/package-2.0"
@@ -378,7 +380,6 @@ XML;
             }
 
 
-
             /*
             <dependencies>
                 <required>
@@ -413,9 +414,9 @@ XML;
             $xml->addChild('phprelease');
 
 
-
             // use DOMDocument to reformat package.xml
             if( class_exists('DOMDocument') ) {
+                $cx->logger->info('Re-formating XML...');
                 $dom = new \DOMDocument('1.0');
                 $dom->preserveWhiteSpace = false;
                 $dom->formatOutput = true;
