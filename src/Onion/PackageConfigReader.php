@@ -129,18 +129,18 @@ class PackageConfigReader
             $config->set('package.version-api',$config->get('package.version'));
         }
 
-        if( $config->has('stability') ) {
-            $s = $config->get('stability');
-            $config->set('stability-release', $s );
-            $config->set('stability-api', $s );
+        if( $config->has('package.stability') ) {
+            $s = $config->get('package.stability');
+            $config->set('package.stability-release', $s );
+            $config->set('package.stability-api', $s );
         }
 
-        if( ! $config->has('stability') &&
-            ! $config->has('stability-release') &&
-            ! $config->has('stability-api') ) {
+        if( ! $config->has('package.stability') &&
+            ! $config->has('package.stability-release') &&
+            ! $config->has('package.stability-api') ) {
             $cx->logger->info("* package.stability is not set, use alpha by default",1);
-            $config->set('stability-release', 'alpha' );
-            $config->set('stability-api', 'alpha' );
+            $config->set('package.stability-release', 'alpha' );
+            $config->set('package.stability-api', 'alpha' );
         }
 
         /* XXX: check stability valid keywords */
@@ -323,9 +323,9 @@ XML;
             $version->release = $config->get('package.version');
             $version->api     = $config->get('package.version-api');
 
-            $stability        = $xml->addChild('stability');
-            $stability->release = $config->get('stability-release');  # XXX: detect from version number.
-            $stability->api     = $config->get('stability-api');
+            $stability        = $xml->addChild('package.stability');
+            $stability->release = $config->get('package.stability-release');  # XXX: detect from version number.
+            $stability->api     = $config->get('package.stability-api');
 
             $xml->license     = $config->get('package.license');
             $xml->notes       = $config->get('package.notes');
