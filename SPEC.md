@@ -61,6 +61,10 @@ validate fields are:
 
 	Superseding a package
 
+* `vender`
+
+    (optional). vendor name
+
 * `author`
 
     Package main author, the format as below:
@@ -95,6 +99,7 @@ validate fields are:
 * `stability-api`
 
 	(optional) API stability.
+
 
 # Dependency section
 
