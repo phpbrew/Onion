@@ -60,7 +60,7 @@ Then Your PEAR package is out!
 
 * `version`
 
-* `version.api` (optional)
+* `version-api` (optional)
 
 * `author`
 
@@ -68,13 +68,15 @@ Then Your PEAR package is out!
 
 * `channel`
 
-[requires] section:
+[required] section:
 
 * `php`
 
 * `pearinstaller`
 
-* `extensions[]`
+* `extension`
+
+[[SPEC]]
 
 A more detailed example
 ========================
