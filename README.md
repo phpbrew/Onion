@@ -76,7 +76,8 @@ Then Your PEAR package is out!
 
 * `extension`
 
-[[SPEC]]
+
+please checkout [SPEC](SPEC.md)
 
 A more detailed example
 ========================
