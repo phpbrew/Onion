@@ -61,8 +61,8 @@ validate fields are:
 
     Package main author, the format as below:
 
-		  ; Author Name <email> "username"
-        author = Yo-An Lin <cornelius.howl@gmail.com> "c9s"
+		  ; Author Name <email> 
+        author = Yo-An Lin <cornelius.howl@gmail.com>
 
     To define multiple authors:
 

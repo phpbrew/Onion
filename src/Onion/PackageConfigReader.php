@@ -146,7 +146,7 @@ class PackageConfigReader
 
 
         /* checking dependencies */
-        $cx->logger->info2("Checking dependencies...");
+        $cx->logger->info2("Configuring dependencies...");
         if( ! $config->has('requires') )  {
             $cx->logger->info("* requires section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $config->requires = array( 
@@ -154,6 +154,10 @@ class PackageConfigReader
                 'pearinstaller' => '1.4',
             );
         }
+
+        $requires = $config->get('requires');
+
+
 
     }
 
@@ -179,6 +183,10 @@ XML;
             $xml              = new SimpleXMLElement($xmlstr); 
             $xml->name        = $config->{ 'package.name' };
             $xml->channel     = $config->{ 'package.channel' };
+
+            if( $config->has('package.extends') )
+                $xml->extends = $config->get('package.extends');
+
             $xml->summary     = $config->{ 'package.summary' };
             $xml->description = $config->{ 'package.desc' };
 
@@ -284,21 +292,31 @@ XML;
             $deps = $xml->addChild('dependencies');
             $required_el = $deps->addChild('required');
 
-            foreach( $config->get('requires') as $package_name => $arg ) 
+            foreach( $config->get('requires') as $key => $value ) 
             {
-                if( $package_name == 'extensions' ) {
-                    foreach( $arg as $extension ) {
-                        $pkg_el = $required_el->addChild('extension');
-                        $pkg_el->name = $extension;
+                $type = SpecUtils::detectDependency( $key , $value );
+                switch($type) {
+
+                case 'extensions':
+                    foreach( $key as $extension_name ) {
+                        $el = $required_el->addChild('extension');
+                        $el->name = $extension_name;
                     }
+                    break;
+
+                case 'core':
+                    $version = SpecUtils::parseVersion( $value );
+                    $el = $required_el->addChild( $key );
+                    if( isset( $version['min'] ) )
+                        $el->addChild( 'min' , $version['min'] );
+                    if( isset( $version['max'] ) )
+                        $el->addChild( 'max' , $version['max'] );
+                    break;
                 }
-                // php or pear-intsaller
-                elseif( in_array($package_name, array('pearinstaller','php') ) ) {
-                    $required = SpecUtils::parseVersion( $arg );
-                    $pkg_el = $required_el->addChild( $package_name );
-                    $pkg_el->addChild( 'min' , $required['min'] );
-                }
+
+
                 // for normal package
+                /*
                 else {
                     $channel = null;
                     if( strpos( $package_name , '/' ) !== false )
@@ -318,6 +336,7 @@ XML;
                         $pkg->min     = $required['min'];
                     }
                 }
+                */
             }
 
 

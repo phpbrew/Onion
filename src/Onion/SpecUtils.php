@@ -13,6 +13,65 @@ namespace Onion;
 class SpecUtils 
 {
 
+
+	/* 
+	 *
+	 * format 1:
+	 *		channel/pkg name = version expression 
+	 *
+	 * format 2:
+	 *
+	 *		pkg name = {URI} resources
+	 *
+	 * format 3:
+	 *		pkg name = {VCS};{URI};{branch or revision}
+	 *
+	 * */
+	static function detectDependency($key,$value)
+	{
+		if( $key == 'extensions' || $key == 'exts' ) {
+			return 'extensions';
+		}
+
+		if( in_array($key, array('pearinstaller','php') ) ) {
+			return 'core';
+		}
+		return 'package';
+	}
+
+	static function parseDependency($key,$value)
+	{
+		// format:  {channel domain}/{package name} = {version expression}
+		if( preg_match('/^([a-zA-Z0-9.]+)\/(\w+)$/' , $key , $regs ) ) 
+		{
+			return array(
+				'channel' => $regs[1],
+				'name'    => $regs[2],
+				'version' => self::parseVersion($value),
+			);
+		}
+		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
+		{
+
+			// URI format
+			if( preg_match('/^https?:\/\//',$value) ) {
+				return array(
+					'name' => $key,
+					'uri'  => $value,
+				);
+			}
+			// NOTE: this is not supported in package.xml 2.0
+			elseif( preg_match('/^(git|svn):(\S+)$/',$value,$regs) ) {
+				return array( 
+					'name' => $key,
+					'vcs' => $regs[1],
+					'uri' => $regs[2],
+				);
+			}
+
+		}
+	}
+
     static function parseVersion($string)
     {
         $version_pattern = '([0-9.]+)';
