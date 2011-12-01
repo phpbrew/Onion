@@ -27,6 +27,12 @@ Get onion.phar file:
 
     $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
 
+Please make sure your directory structure:
+
+    src/   # contains php source code
+    docs/  # documentation files (optional)
+    tests/ # unit testing files
+
 Fill your `package.ini` file:
 
     [package]
