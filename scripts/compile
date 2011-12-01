@@ -2,7 +2,7 @@
 <?php
 
 
-$bin      = 'bin/onion';
+$bin      = 'scripts/onion.embed';
 $pharFile = 'onion.phar';
 $src_dirs  = array('src','../GetOptionKit/src');
 $phar = new \Phar($pharFile, 0, $pharFile);
