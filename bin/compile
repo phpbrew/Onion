@@ -1,12 +1,13 @@
 #!/usr/bin/env php
 <?php
+
+
 $bin      = 'bin/onion';
 $pharFile = 'onion.phar';
 $src_dirs  = array('src','../GetOptionKit/src');
 $phar = new \Phar($pharFile, 0, $pharFile);
 $phar->setSignatureAlgorithm(\Phar::SHA1);
 $phar->startBuffering();
-
 
 foreach( $src_dirs as $src_dir ) {
     $src_dir = realpath( $src_dir );
