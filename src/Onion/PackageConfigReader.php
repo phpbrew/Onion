@@ -155,6 +155,19 @@ class PackageConfigReader
             );
         }
 
+        /* default role configs */
+        $default_roles = array(
+            'src' => 'php',
+            'tests' => 'test',
+            'data'  => 'data',
+            'examples' => 'doc',
+            'README.*' => 'doc',
+        );
+        if( ! $config->has('roles') ) {
+            $config->roles = $default_roles;
+        } else {
+            $config->roles = array_merge($default_roles,$config->roles);
+        }
     }
 
 
@@ -229,9 +242,15 @@ class PackageConfigReader
         }
     }
 
+    function buildContentsSection($contentsXml,$path,$role)
+    {
+
+    }
+
 
     function generatePackageXml()
     {
+        $cx = $this->context;
         // build pear config file.
         $config = $this->config;
 
@@ -307,31 +326,59 @@ XML;
 
 
             // build contents section, TODO: support [roles] section.
-            $contents = $xml->addChild('contents');
-            $dir = $contents->addChild('dir');
+            $cx->logger->info('Building contents section...');
+            $contentsXml = $xml->addChild('contents');
+            $dir = $contentsXml->addChild('dir');
             $dir->addAttribute('name','/');
-            $srcDir = 'src';
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
-                                    RecursiveIteratorIterator::CHILD_FIRST);
-            foreach( $iterator as $path ) {
-                if( $path->isFile() ) {
-                    # substr( $path->__tostring()  );
-                    $filepath = $path->getPathname();
-                    $md5sum   = md5_file($filepath);
-                    $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
-                    echo substr($md5sum,0,6) . '   ' . $target_filepath . ' ' . "\n";
 
-                    $role = 'data';
-                    if( preg_match('/\.php$/',$filepath) ) {
-                        $role = 'php';
+            foreach( $config->roles as $path => $role )
+            {
+
+                if( is_dir($path) ) {
+                    $srcDir = $path;
+                    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
+                                            RecursiveIteratorIterator::CHILD_FIRST);
+                    foreach( $iterator as $path ) {
+                        if( $path->isFile() ) {
+                            # substr( $path->__tostring()  );
+                            $filepath = $path->getPathname();
+                            $md5sum   = md5_file($filepath);
+                            $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
+
+                                $cx->logger->debug( sprintf('%s  %-5s  %s', 
+                                substr($md5sum,0,6),
+                                $role,
+                                $target_filepath
+                            ),1);
+
+                            /*
+                            $role = 'data';
+                            if( preg_match('/\.php$/',$filepath) ) {
+                                $role = 'php';
+                            }
+                            */
+                            $newfile = $dir->addChild('file');
+                            $newfile->addAttribute( 'install-as' , $target_filepath );
+                            $newfile->addAttribute( 'name'       , $filepath );
+                            $newfile->addAttribute( 'role'       , $role );
+                            $newfile->addAttribute( 'md5sum'     , $md5sum );
+                        }
+                    }
+                }
+                else {
+
+                    $files = glob($path);
+                    foreach( $files as $filename ) {
+                        $file = $dir->addChild('file');
+                        $file->addAttribute( 'name' , $filename );
+                        $file->addAttribute( 'role' , $role );
                     }
 
-                    # <file install-as="Twig/Autoloader.php" md5sum="b60338d1df4f145c7318d8f870925d1e" name="lib/Twig/Autoloader.php" role="php" />
-                    $newfile = $dir->addChild('file');
-                    $newfile->addAttribute( 'install-as' , $target_filepath );
-                    $newfile->addAttribute( 'name'       , $filepath );
-                    $newfile->addAttribute( 'role'       , $role );
-                    $newfile->addAttribute( 'md5sum'     , $md5sum );
+#                      $newfile = $dir->addChild('file');
+#                      $newfile->addAttribute( 'install-as' , $target_filepath );
+#                      $newfile->addAttribute( 'name'       , $filepath );
+#                      $newfile->addAttribute( 'role'       , $role );
+#                      $newfile->addAttribute( 'md5sum'     , $md5sum );
                 }
             }
 
@@ -357,8 +404,10 @@ XML;
                 </required>
             </dependencies>
             */
-            $deps = $xml->addChild('dependencies');
 
+            $cx->logger->info('Building dependencies section...');
+
+            $deps = $xml->addChild('dependencies');
             $this->buildDependencySection('required',$deps,$config);
 
             if( $config->has('optional') )
