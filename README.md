@@ -155,26 +155,23 @@ package.xml dependency
 
 
 PEAR2 Coding Standard
-http://pear.php.net/manual/en/pear2cs.php
+<http://pear.php.net/manual/en/pear2cs.php>
 
 Pyrus
-http://pear.php.net/manual/en/pyrus.php
+<http://pear.php.net/manual/en/pyrus.php>
 
+PEAR
+<http://pear.php.net/manual/en/guide.users.concepts.php>
+<http://pear.php.net/manual/en/pyrus.extending.packagefile.php>
+<http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php>
 
-http://pear.php.net/manual/en/guide.users.concepts.php
-
-http://pear.php.net/manual/en/pyrus.extending.packagefile.php
-
-http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php
-
-
+PEAR Installer
+<http://pear.php.net/manual/en/developers-core.php>
+<http://pear.php.net/manual/en/developers-changes14.php>
 
 Deployment PEAR
-http://www.eschrade.com/page/deployment-pear-4c228790/
-
-Packagist
-http://packagist.org/about
+<http://www.eschrade.com/page/deployment-pear-4c228790/>
 
 PSR-0 
-https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+<https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md>
 
