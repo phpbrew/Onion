@@ -10,7 +10,7 @@
  *
  */
 
-
+/*
 require 'UniversalClassLoader/SplClassLoader.php';
 $classLoader = new \UniversalClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
@@ -19,7 +19,7 @@ $classLoader = new \UniversalClassLoader\SplClassLoader(array(
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();
-
+*/
 
 use CLIFramework\CommandDispatcher;
 try {
