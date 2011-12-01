@@ -27,35 +27,51 @@ class SpecUtils
 	 *		pkg name = {VCS};{URI};{branch or revision}
 	 *
 	 * */
-	static function detectDependency($key,$value)
+	static function detectDependency($key,$value = null)
 	{
-		if( $key == 'extensions' || $key == 'exts' ) {
-			return 'extensions';
-		}
-
 		if( in_array($key, array('pearinstaller','php') ) ) {
 			return 'core';
 		}
+
+		// support extension/{extension name} = {version expression}
+		if( preg_match('/^ext(?:ension)?\/\w+/',$key) )
+			return 'extension';
+
+		// otherwisze it's package
 		return 'package';
 	}
 
+
+	/*
+	 * returned types: package, package.uri, package.vcs
+	 *
+	 */
 	static function parseDependency($key,$value)
 	{
 		// format:  {channel domain}/{package name} = {version expression}
 		if( preg_match('/^([a-zA-Z0-9.]+)\/(\w+)$/' , $key , $regs ) ) 
 		{
 			return array(
+				'type'    => 'package',
 				'channel' => $regs[1],
 				'name'    => $regs[2],
+				'version' => self::parseVersion($value),
+			);
+		}
+		elseif( preg_match('/^ext(?:ension)?\/(\w+)$/',$key,$regs) ) {
+			return array(
+				'type'    => 'extension',
+				'name'    => $regs[1],
 				'version' => self::parseVersion($value),
 			);
 		}
 		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
 		{
 
-			// URI format
+			// package with URI format
 			if( preg_match('/^https?:\/\//',$value) ) {
 				return array(
+					'type' => 'package.uri',
 					'name' => $key,
 					'uri'  => $value,
 				);
@@ -63,9 +79,16 @@ class SpecUtils
 			// NOTE: this is not supported in package.xml 2.0
 			elseif( preg_match('/^(git|svn):(\S+)$/',$value,$regs) ) {
 				return array( 
+					'type' => 'package.vcs',
 					'name' => $key,
 					'vcs' => $regs[1],
 					'uri' => $regs[2],
+				);
+			}
+			elseif( stripos($value,'conflicts') ) {
+				return array(
+					'type' => 'package.conflicts',
+					'name' => $key,
 				);
 			}
 

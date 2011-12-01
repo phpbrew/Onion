@@ -57,6 +57,10 @@ validate fields are:
     
     Package channel. The channel which package belongs to.
 
+* `extends`
+
+	Superseding a package
+
 * `author`
 
     Package main author, the format as below:
@@ -94,9 +98,13 @@ validate fields are:
 
 # Dependency section
 
-The dependency is defined in `[requires]` section.
+The required dependency is defined in `[required]` section.
 
-`[requires]` is optional.
+`[required]` is optional.
+
+The optional dependency is defined in `[optional]` section.
+
+`[optional]` is optional.
 
 ## The format of php dependency
 

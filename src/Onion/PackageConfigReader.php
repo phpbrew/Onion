@@ -147,18 +147,86 @@ class PackageConfigReader
 
         /* checking dependencies */
         $cx->logger->info2("Configuring dependencies...");
-        if( ! $config->has('requires') )  {
-            $cx->logger->info("* requires section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
-            $config->requires = array( 
+        if( ! $config->has('required') )  {
+            $cx->logger->info("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
+            $config->required = array( 
                 'php' => '5.3',
                 'pearinstaller' => '1.4',
             );
         }
 
-        $requires = $config->get('requires');
+    }
 
 
+    function buildDependencyItem($depinfo)
+    {
 
+        switch($depinfo['type']) {
+
+        case 'package.uri':
+            $pkg = $section->addChild('package');
+            $pkg->name = $depinfo['name'];
+            $pkg->uri  = $depinfo['uri'];
+            break;
+
+        case 'package':
+            $pkg = $section->addChild('package');
+            $pkg->name    = $depinfo['name'];
+            $pkg->channel = $depinfo['channel'];
+            if( isset($depinfo['version']['min']) )
+                $pkg->min     = $depinfo['version']['min'];
+            if( isset($depinfo['version']['max']) )
+                $pkg->min     = $depinfo['version']['max'];
+            break;
+
+
+        case 'package.conflicts':
+            $pkg = $section->addChild('package');
+            $pkg->name = $depinfo['name'];
+            $pkg->addChild('conflicts');
+            break;
+
+        case 'package.vcs':
+            die('package vcs is not supported currently.');
+            break;
+
+        }
+    }
+
+    function buildDependencySection($sectionName,$xml,$config)
+    {
+        $section = $xml->addChild($sectionName);
+        foreach( $config->get($sectionName) as $key => $value ) 
+        {
+            $type = SpecUtils::detectDependency( $key , $value );
+            switch($type) {
+
+
+            case 'core':
+                $version = SpecUtils::parseVersion( $value );
+                $el = $section->addChild( $key );
+                if( isset( $version['min'] ) )
+                    $el->addChild( 'min' , $version['min'] );
+                if( isset( $version['max'] ) )
+                    $el->addChild( 'max' , $version['max'] );
+                break;
+
+            case 'extension':
+                $depinfo = SpecUtils::parseDependency($key,$value);
+                $el = $section->addChild('extension');
+                $el->name = $depinfo['name'];
+                if( isset($depinfo['version']['min'] ))
+                    $el->min = $depinfo['version']['min'];
+                if( isset($depinfo['version']['max'] ))
+                    $el->max = $depinfo['version']['max'];
+                break;
+
+            case 'package':
+                $depinfo = SpecUtils::parseDependency($key,$value);
+                $this->buildDependencyItem($depinfo);
+                break;
+            }
+        }
     }
 
 
@@ -235,7 +303,10 @@ XML;
             # <file md5sum="d07098d9bc4ffc2817419b2436a8ca6e" name="README.markdown" role="doc" />
             # </contents>
 
-            // build contents section, TODO: support [structure] section.
+
+
+
+            // build contents section, TODO: support [roles] section.
             $contents = $xml->addChild('contents');
             $dir = $contents->addChild('dir');
             $dir->addAttribute('name','/');
@@ -266,9 +337,6 @@ XML;
 
 
 
-
-
-
             /*
             <dependencies>
                 <required>
@@ -290,54 +358,11 @@ XML;
             </dependencies>
             */
             $deps = $xml->addChild('dependencies');
-            $required_el = $deps->addChild('required');
 
-            foreach( $config->get('requires') as $key => $value ) 
-            {
-                $type = SpecUtils::detectDependency( $key , $value );
-                switch($type) {
+            $this->buildDependencySection('required',$deps,$config);
 
-                case 'extensions':
-                    foreach( $key as $extension_name ) {
-                        $el = $required_el->addChild('extension');
-                        $el->name = $extension_name;
-                    }
-                    break;
-
-                case 'core':
-                    $version = SpecUtils::parseVersion( $value );
-                    $el = $required_el->addChild( $key );
-                    if( isset( $version['min'] ) )
-                        $el->addChild( 'min' , $version['min'] );
-                    if( isset( $version['max'] ) )
-                        $el->addChild( 'max' , $version['max'] );
-                    break;
-                }
-
-
-                // for normal package
-                /*
-                else {
-                    $channel = null;
-                    if( strpos( $package_name , '/' ) !== false )
-                        list($channel,$package_name) = explode('/',$package_name);
-
-                    $required = SpecUtils::parseVersion( $arg );
-                    if( ! $required ) {
-                        if( preg_match('/http:\/\//',$arg) ) {
-                            $pkg = $required_el->addChild('package');
-                            $pkg->name = $package_name;
-                            $pkg->uri  = $arg;
-                        }
-                    } else {
-                        $pkg = $required_el->addChild('package');
-                        $pkg->name    = $package_name;
-                        $pkg->channel = $channel;
-                        $pkg->min     = $required['min'];
-                    }
-                }
-                */
-            }
+            if( $config->has('optional') )
+                $this->buildDependencySection('optional',$deps,$config);
 
 
             # TODO: support phprelease tag.

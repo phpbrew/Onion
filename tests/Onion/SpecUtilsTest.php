@@ -30,4 +30,10 @@ class SpecUtilsTest extends \PHPUnit_Framework_TestCase
 	{
 		ok( SpecUtils::parseAuthor('Yo-An Lin "c9s" <cornelius.howl@gmail.com>') );
 	}
+
+	function testDependency()
+	{
+		is( 'extension', SpecUtils::detectDependency('extension/pcre') );
+	}
 }
+
