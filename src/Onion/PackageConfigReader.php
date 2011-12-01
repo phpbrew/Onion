@@ -260,7 +260,7 @@ class PackageConfigReader
         $cx->logger->debug( sprintf('%s  %-5s  %s', 
             substr($md5sum,0,6),
             $role,
-            $target_filepath
+            $filepath
         ),1);
         $newfile = $dir->addChild('file');
         $newfile->addAttribute( 'install-as' , $target_filepath );
