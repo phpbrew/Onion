@@ -106,7 +106,22 @@ The optional dependency is defined in `[optional]` section.
 
 `[optional]` is optional.
 
-## The format of php dependency
+## Dependency Version Expression
+
+To specify minimal required version:
+
+    pkg = 0.001
+
+To specify max required version:
+
+    pkg = < 0.1.0
+
+Specify minimal and max required version:
+
+    pkg = 0.001 <=> 0.1.0
+
+
+## The format of PHP dependency
 
     php = {version expression}
 
@@ -114,6 +129,7 @@ For example:
 
     php = 5.3
 
+Optional.
 Default: 5.3
 
 ## The format of pearinstaller dependency
@@ -124,6 +140,7 @@ For example:
 
     pearinstaller = 1.4.1
 
+Optional:
 Default: 1.4
 
 ## The format of package dependency
@@ -141,13 +158,13 @@ For example:
 
 ## The format of extension dependency
 
-    extensions[] = {extension name}
+    ext/{extension name} = {version expression}
 
 For example:
 
-    extensions[] = reflection
-    extensions[] = ctype
-    extensions[] = pcre
+    ext/reflection = 0.0.1
+    ext/ctype = 
+    ext/pcre = 
 
 # Optional dependency section
 
@@ -176,17 +193,27 @@ You can define your optional dependency group as below:
     pear.php.net/SSH_RemoteShell = 
     extensions[] = ssh2
 
-# Version Expression
+# Role section
 
-To specify minimal required version:
+Format:
 
-    pkg = 0.001
+	[roles]
+	{path} = {role name}
 
-To specify max required version:
+Available roles:
 
-    pkg = < 0.1.0
+- php
+- doc
+- test
+- script
+- data
 
-Specify minimal and max required version:
+Default directory mapping to roles:
 
-    pkg = 0.001 <=> 0.1.0
+- php => `src` dir
+- doc => `docs` dir
+- test => `tests` dir
+- script => `scripts` dir
+- data => `data`, `examples` dir
 
+	
