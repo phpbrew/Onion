@@ -13,6 +13,7 @@ use SimpleXMLElement;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Exception;
+use SplFileInfo;
 use Onion\ConfigContainer;
 use Onion\SpecUtils;
 
@@ -162,7 +163,7 @@ class PackageConfigReader
             'data'  => 'data',
             'examples' => 'doc',
             'README.*' => 'doc',
-            'scripts'  => 'script',
+            'bin'      => 'script',
         );
         if( ! $config->has('roles') ) {
             $config->roles = $default_roles;
@@ -243,11 +244,29 @@ class PackageConfigReader
         }
     }
 
-    function buildContentsSection($contentsXml,$path,$role)
+    function addFileNode($dir,$fileinfo,$role,$baseDir = null)
     {
+        $cx = $this->context;
 
+        # substr( $path->__tostring()  );
+        $filepath = $fileinfo->getPathname();
+        $md5sum   = md5_file($filepath);
+
+        $target_filepath = $filepath;
+        if( $baseDir )
+            $target_filepath = substr( $filepath , strlen($baseDir) + 1 );
+
+        $cx->logger->debug( sprintf('%s  %-5s  %s', 
+            substr($md5sum,0,6),
+            $role,
+            $target_filepath
+        ),1);
+        $newfile = $dir->addChild('file');
+        $newfile->addAttribute( 'install-as' , $target_filepath );
+        $newfile->addAttribute( 'name'       , $filepath );
+        $newfile->addAttribute( 'role'       , $role );
+        $newfile->addAttribute( 'md5sum'     , $md5sum );
     }
-
 
     function generatePackageXml()
     {
@@ -336,33 +355,12 @@ XML;
             {
 
                 if( is_dir($path) ) {
-                    $srcDir = $path;
-                    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir),
+                    $baseDir = $path;
+                    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($baseDir),
                                             RecursiveIteratorIterator::CHILD_FIRST);
                     foreach( $iterator as $path ) {
                         if( $path->isFile() ) {
-                            # substr( $path->__tostring()  );
-                            $filepath = $path->getPathname();
-                            $md5sum   = md5_file($filepath);
-                            $target_filepath = substr( $filepath , strlen($srcDir) + 1 );
-
-                                $cx->logger->debug( sprintf('%s  %-5s  %s', 
-                                substr($md5sum,0,6),
-                                $role,
-                                $target_filepath
-                            ),1);
-
-                            /*
-                            $role = 'data';
-                            if( preg_match('/\.php$/',$filepath) ) {
-                                $role = 'php';
-                            }
-                            */
-                            $newfile = $dir->addChild('file');
-                            $newfile->addAttribute( 'install-as' , $target_filepath );
-                            $newfile->addAttribute( 'name'       , $filepath );
-                            $newfile->addAttribute( 'role'       , $role );
-                            $newfile->addAttribute( 'md5sum'     , $md5sum );
+                            $this->addFileNode($dir,$path,$role,$baseDir);
                         }
                     }
                 }
@@ -370,16 +368,12 @@ XML;
 
                     $files = glob($path);
                     foreach( $files as $filename ) {
-                        $file = $dir->addChild('file');
-                        $file->addAttribute( 'name' , $filename );
-                        $file->addAttribute( 'role' , $role );
+                        $fileinfo = new SplFileInfo($filename);
+                        $this->addFileNode($dir,$fileinfo,$role);
+                        # $file = $dir->addChild('file');
+                        # $file->addAttribute( 'name' , $filename );
+                        # $file->addAttribute( 'role' , $role );
                     }
-
-#                      $newfile = $dir->addChild('file');
-#                      $newfile->addAttribute( 'install-as' , $target_filepath );
-#                      $newfile->addAttribute( 'name'       , $filepath );
-#                      $newfile->addAttribute( 'role'       , $role );
-#                      $newfile->addAttribute( 'md5sum'     , $md5sum );
                 }
             }
 

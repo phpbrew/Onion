@@ -213,7 +213,7 @@ Default directory mapping to roles:
 - php => `src` dir
 - doc => `docs` dir
 - test => `tests` dir
-- script => `scripts` dir
+- script => `bin` dir
 - data => `data`, `examples` dir
 
 	
