@@ -323,7 +323,7 @@ XML;
             $version->release = $config->get('package.version');
             $version->api     = $config->get('package.version-api');
 
-            $stability        = $xml->addChild('package.stability');
+            $stability        = $xml->addChild('stability');
             $stability->release = $config->get('package.stability-release');  # XXX: detect from version number.
             $stability->api     = $config->get('package.stability-api');
 
