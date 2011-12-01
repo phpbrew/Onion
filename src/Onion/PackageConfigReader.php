@@ -187,7 +187,7 @@ class PackageConfigReader
             break;
 
         case 'package.vcs':
-            die('package vcs is not supported currently.');
+            throw new Exception('package vcs is not supported currently.');
             break;
 
         }
