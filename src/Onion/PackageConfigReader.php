@@ -173,7 +173,7 @@ class PackageConfigReader
     }
 
 
-    function buildDependencyItem($depinfo)
+    function buildDependencyItem($section,$depinfo)
     {
 
         switch($depinfo['type']) {
@@ -238,7 +238,7 @@ class PackageConfigReader
 
             case 'package':
                 $depinfo = SpecUtils::parseDependency($key,$value);
-                $this->buildDependencyItem($depinfo);
+                $this->buildDependencyItem($section,$depinfo);
                 break;
             }
         }
