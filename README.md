@@ -30,7 +30,7 @@ Get onion.phar file:
 Please make sure your directory structure:
 
     src/   # contains php source code
-    docs/  # documentation files (optional)
+    doc/   # documentation files (optional)
     tests/ # unit testing files
 
 Fill your `package.ini` file:

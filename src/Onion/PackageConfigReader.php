@@ -162,6 +162,7 @@ class PackageConfigReader
             'tests' => 'test',
             'data'  => 'data',
             'examples' => 'doc',
+            'doc'      => 'doc',
             'README.*' => 'doc',
             'bin'      => 'script',
         );
