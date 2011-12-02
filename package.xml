@@ -18,10 +18,10 @@
     <active>1</active>
   </lead>
   <date>2011-12-02</date>
-  <time>18:36:47</time>
+  <time>18:38:25</time>
   <version>
-    <release>0.0.3</release>
-    <api>0.0.3</api>
+    <release>0.0.4</release>
+    <api>0.0.4</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -63,7 +63,7 @@
       <file install-as="package.ini" name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
       <file install-as="CLI.mkd" name="doc/CLI.mkd" role="doc" md5sum="3a828cde5b2873434d427147607eddd7"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d7bcba032b74cb6741c27153bbde6e7b"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="b0f5ef975d5fe857db81785d9fc9d68b"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="cf04b62ddf70a5bbe7c95aa6ee030f6e"/>
     </dir>
   </contents>
   <dependencies>
