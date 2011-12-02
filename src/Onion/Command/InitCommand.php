@@ -17,6 +17,13 @@ use Exception;
 class InitCommand extends Command 
     implements CommandInterface
 {
+
+    function brief()
+    {
+        return 'initialize package.ini file';
+    }
+
+
     function execute($cx) 
     {
         $cx->logger->info('Checking package.ini');

@@ -17,6 +17,13 @@ use Onion\PackageConfigReader;
 class BuildCommand extends Command 
     implements CommandInterface
 {
+
+    function brief()
+    {
+        return 'build PEAR package.';
+    }
+
+
     function options($getopt)
     {
         $getopt->add('v|verbose','verbose message');

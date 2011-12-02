@@ -15,6 +15,10 @@ use CLIFramework\CommandInterface;
 class HelpCommand extends Command
     implements CommandInterface
 {
+    function brief()
+    {
+        return 'help command.';
+    }
 
     function execute($context)
     {
@@ -22,14 +26,16 @@ class HelpCommand extends Command
         $classes = get_declared_classes();
         $command_classes = array();
         foreach( $classes as $class ) {
-            if( is_a($class,'CLIFramework\Command') ) 
+            if( is_subclass_of($class,'CLIFramework\Command') ) 
                 $command_classes[] = $class;
         }
 
         // print command brief list
+        echo "Available commands:\n";
         foreach( $command_classes as $class ) {
             $cmd = new $class($this->dispatcher);
             $brief = $cmd->brief();
+            printf("  % 10s - %s\n", $cmd->toCommandName(), $brief );
         }
 
         // if empty command list

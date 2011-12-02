@@ -57,7 +57,7 @@ class CommandLoader
      * @param $parent parent command class
      *
      * */
-    public function loadSubcommand($command,$parent)
+    public function loadSubcommand($command,$parent = null)
     {
         // get parent command namespace
         $parent_ns = get_class($parent);

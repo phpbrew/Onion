@@ -76,7 +76,7 @@ class CommandDispatcher
         } 
         else 
         {
-            return $this->dispatch('help');  # help command class.
+            return $this->dispatch('help');  # dispatch to help command class.
         }
     }
 
@@ -93,7 +93,5 @@ class CommandDispatcher
         $cmd = new $class($this);
         return $cmd->topExecute($this->context);
     }
-
-
 }
 
