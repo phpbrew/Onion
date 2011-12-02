@@ -24,6 +24,8 @@ $classLoader->register();
 use CLIFramework\CommandDispatcher;
 try {
     $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
+    $dispatcher->loader->load('init');
+    $dispatcher->loader->load('build');
     $ret = $dispatcher->runDispatch();
     $ret ? exit(0) : exit(-1);
 } 
