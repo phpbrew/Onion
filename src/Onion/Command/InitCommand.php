@@ -17,8 +17,12 @@ use Exception;
 class InitCommand extends Command 
     implements CommandInterface
 {
-    function execute($context) 
+    function execute($cx) 
     {
+        $cx->logger->info('Checking package.ini');
+        if( file_exists('package.ini') )
+            throw new Exception('package.ini exists. aborting.');
+        /*
         $config = new \Onion\GlobalConfig;
         if( ! $config->exists() ) {
             // create an skeleton for user and exit.
@@ -34,15 +38,15 @@ class InitCommand extends Command
             echo "Please edit your $config_path.\n";
             return false;
         }
-
+        */
+        $author = '';
+        if( $a = getenv('ONION_AUTHOR') )
+            $author = $a;
         $content[] = '[package]';
-        $content[] = 'name = ';
-        $content[] = 'version = ';
-        $content[] = 'desc = ';
-        $content[] = 'author = ' . $author['name'] . ' ' . '<' . $author['email'] . '>';
-
-        if( file_exists('package.ini') )
-            throw new Exception('package.ini exists. aborting.');
+        $content[] = 'name = Your Package Name';
+        $content[] = 'version = 0.0.1';
+        $content[] = 'desc = Description Here';
+        $content[] = 'author = ' . $author;
         file_put_contents('package.ini' , join("\n",$content) );
     }
 }
