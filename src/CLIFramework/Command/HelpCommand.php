@@ -22,26 +22,33 @@ class HelpCommand extends Command
 
     function execute($context)
     {
-        // get command list, command classes should be preloaded.
-        $classes = get_declared_classes();
-        $command_classes = array();
-        foreach( $classes as $class ) {
-            if( is_subclass_of($class,'CLIFramework\Command') ) 
-                $command_classes[] = $class;
-        }
+        $subcommand = $context->getNextArgument();
 
-        // print command brief list
-        echo "Available commands:\n";
-        foreach( $command_classes as $class ) {
-            $cmd = new $class($this->dispatcher);
-            $brief = $cmd->brief();
-            printf("  % 10s - %s\n", $cmd->toCommandName(), $brief );
+        // if there is no subcommand to render help, show all available commands.
+        if( ! $subcommand ) {
+            // get command list, command classes should be preloaded.
+            $classes = get_declared_classes();
+            $command_classes = array();
+            foreach( $classes as $class ) {
+                if( is_subclass_of($class,'CLIFramework\Command') ) 
+                    $command_classes[] = $class;
+            }
+
+            // print command brief list
+            echo "Available commands:\n";
+            foreach( $command_classes as $class ) {
+                $cmd = new $class($this->dispatcher);
+                $brief = $cmd->brief();
+                printf("  % 10s - %s\n", $cmd->toCommandName(), $brief );
+            }
         }
 
         // if empty command list
+        /*
         $file =  __FILE__ . '.md';
         if( file_exists( $file ) )
             echo file_get_contents( $file );
+        */
         return true;
     }
 
