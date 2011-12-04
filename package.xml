@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-02</date>
-  <time>18:38:25</time>
+  <time>19:18:13</time>
   <version>
     <release>0.0.4</release>
     <api>0.0.4</api>
@@ -31,7 +31,7 @@
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file install-as="CLIFramework/Command/HelpCommand.php" name="src/CLIFramework/Command/HelpCommand.php" role="php" md5sum="2825d2762e9b61e2b5966ea74f72cb30"/>
+      <file install-as="CLIFramework/Command/HelpCommand.php" name="src/CLIFramework/Command/HelpCommand.php" role="php" md5sum="f3084a639f6c3e6e8567a1e96508658a"/>
       <file install-as="CLIFramework/Command.php" name="src/CLIFramework/Command.php" role="php" md5sum="f0849114f1fad2e4815d67685f2ee14a"/>
       <file install-as="CLIFramework/CommandContext.php" name="src/CLIFramework/CommandContext.php" role="php" md5sum="9d89ee4674cb0d1e007fe4a99c4d123c"/>
       <file install-as="CLIFramework/CommandDispatcher.php" name="src/CLIFramework/CommandDispatcher.php" role="php" md5sum="bf3fae8b6c9259fd0aca9d7b795f2536"/>
@@ -40,7 +40,7 @@
       <file install-as="CLIFramework/Formatter.php" name="src/CLIFramework/Formatter.php" role="php" md5sum="7b5edf83245660320f9ec5550e5dc5d0"/>
       <file install-as="CLIFramework/Logger.php" name="src/CLIFramework/Logger.php" role="php" md5sum="cfd3937b85863dcd944f341f1a63b84d"/>
       <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="6a476c2078bea96a28044325c699bdc0"/>
-      <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="f0057f6ff8ede910b8acd59e62ef9d1f"/>
+      <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="82515b519b637dd261667c1b7eccd57d"/>
       <file install-as="Onion/ConfigContainer.php" name="src/Onion/ConfigContainer.php" role="php" md5sum="2bf0c59c46a1eb98cf33acefc4097a1c"/>
       <file install-as="Onion/GlobalConfig.php" name="src/Onion/GlobalConfig.php" role="php" md5sum="b2de5f4a4f385dea7e86598d6f3f11d9"/>
       <file install-as="Onion/Onion.php" name="src/Onion/Onion.php" role="php" md5sum="6a4e7d381b3cb0d8d67d3a7e35ac2537"/>
@@ -63,7 +63,7 @@
       <file install-as="package.ini" name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
       <file install-as="CLI.mkd" name="doc/CLI.mkd" role="doc" md5sum="3a828cde5b2873434d427147607eddd7"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d7bcba032b74cb6741c27153bbde6e7b"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="cf04b62ddf70a5bbe7c95aa6ee030f6e"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="af334f22368108e83d6cf7a51452a937"/>
     </dir>
   </contents>
   <dependencies>

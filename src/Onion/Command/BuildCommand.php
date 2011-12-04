@@ -23,7 +23,6 @@ class BuildCommand extends Command
         return 'build PEAR package.';
     }
 
-
     function options($getopt)
     {
         $getopt->add('v|verbose','verbose message');

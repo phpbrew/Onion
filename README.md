@@ -1,4 +1,5 @@
-# Onion
+Onion
+=====
 
 Onion, The fast approach to make/install packages for PHP.
 
@@ -56,33 +57,6 @@ Then Your PEAR package is out!
 
 ## Available Config Tags
 
-[package] section:
-
-* `name`
-
-* `desc`
-
-* `summary` (optional)
-
-* `version`
-
-* `version-api` (optional)
-
-* `author`
-
-* `authors`
-
-* `channel`
-
-[required] section:
-
-* `php`
-
-* `pearinstaller`
-
-* `extension`
-
-
 please checkout [SPEC](SPEC.md)
 
 A more detailed example
@@ -124,14 +98,21 @@ A more detailed example
     extension/ctype = 
     extension/pcre = 
 
+    [roles]
+
+    ; mapping files to role
+    your_script = bin
+
+    ; glob is supported.
+    *.md = doc
+    *.php = src
+
     [optional remoteshell]
     hint = Add support for Remote Shell Operations
     channel/test = 0.1
     channel/foo = 0.2
     extensions[] = ssh2
 
-    [roles]
-    your_script = bin
 
 
 ## Community

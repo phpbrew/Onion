@@ -18,7 +18,6 @@ class CommandContext
     public $arguments;
     public $logger;
 
-
     /* for saving parsed option result */
     public $options;
 

@@ -203,7 +203,7 @@ You can define your optional dependency group as below:
 Format:
 
 	[roles]
-	{path} = {role name}
+	{path,glob} = {role name}
 
 Available roles:
 
@@ -215,10 +215,8 @@ Available roles:
 
 Default directory mapping to roles:
 
-- php => `src` dir
-- doc => `doc` dir
-- test => `tests` dir
+- php    => `src` dir
+- doc    => `doc` dir
+- test   => `tests` dir
 - script => `bin` dir
-- data => `data`, `examples` dir
-
-	
+- data   => `data`, `examples` dir

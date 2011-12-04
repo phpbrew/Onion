@@ -43,8 +43,6 @@ class Command
         return $context->options = $options;
     }
 
-
-
     /* this is for parent command and subcommands */
     function topExecute($context)
     {
@@ -77,6 +75,7 @@ class Command
     }
 
     function prepare() { }
+
     function finish() { }
 
     /* TODO: read brief from markdown format doc file. */
