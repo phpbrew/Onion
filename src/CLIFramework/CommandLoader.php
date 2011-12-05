@@ -51,7 +51,7 @@ class CommandLoader
         }
     }
 
-    /* load subcommand class
+    /* load subcommand class from command name
      *
      * @param $command
      * @param $parent parent command class

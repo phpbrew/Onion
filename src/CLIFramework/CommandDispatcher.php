@@ -19,7 +19,6 @@ class CommandDispatcher
      * contains arguments, options, and argument queue. */
     public $context;
 
-
     /* command loader */
     public $loader;
 

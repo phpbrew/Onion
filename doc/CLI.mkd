@@ -7,5 +7,22 @@ CLI Plan
     $ foo schema check {ModelName}
 
 
-    $ foo [command options] subcommand [subcommand options] [arguments]
+    $ foo [app options] 
+            subcommand [subcommand options] [arguments]
 
+    $ app [app-opts] <cmd> [cmd-opts] { <cmd> [cmd-opts] {...} } [cmd-args]
+
+    $ <app> [--app-opt] <cmd> [--cmd-opt] [cmd-arg] ...
+    $ <app> [--app-opt] <cmd> [--cmd-opt] <subcmd> [--subcmd-opt] [subcmd-arg] ...
+    $ <app> [--app-opt] <cmd> [--cmd-opt] <subcmd1> [--subcmd1-opt] <subcmd2> [--subcmd2-opt] [subcmd2-arg] ...
+    
+
+- default command.
+- option conflicts.
+- usage.
+
+
+    $class = 'App\Command\ListCommand';
+    $cmd = $app->registerCommand($class);
+    $list_cmd = $cmd->registerSubcommand('list');
+    $tree = $app->getCommandTree();
