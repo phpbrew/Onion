@@ -46,9 +46,38 @@ CLI Plan
             $cmd->registerSubcommand('FooCommand');  # subcommand class => \Onion\Command\MainCommand\FooCommand
             $cmd->registerSubcommand('BarCommand');  # subcommand class
         }
-
     }
 
     $app = new CLIApplication;
-    $app->dispatch($argv);
+    $cmd = $app->dispatch($argv);
+    $cmd->topExecute();
+
+        init app options
+        parse app options
+        get app arguments
+
+        if first argument is command
+            command = dispatch command by arguments
+            command -> init options
+            command -> parse options
+            command -> arguments
+
+            if command has subcommand and first arg is a command
+                dispatch command by arguments
+            else
+                run current command class.
+            endif
+        else
+            run default execute 
+        endif
+
+
+- GetOptionKit changes
+
+    continues parser
+
+    when encountered arguments, stop parsing , return the option result.
+    when start another parsing process, return another option result.
+
+    save current parsed position....
 
