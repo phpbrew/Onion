@@ -161,33 +161,47 @@ For example:
 
     Foo = http://www.example.com/Foo-1.3.0
 
-# Special Required Section names
-
-## Format of Git resource dependency
-
-[required "git"]
-git://github.com/c9s/GetOptionKit.git = master
-https://resources.dot.dot/git = master
-git@github.com:c9s/GetOptionKit.git = master
-
-## Format of GitHub resource dependency
-
-[required "github"]
-symfony/symfony  = master		 ; defaults by 'https' protocal
-c9s/GetOptionGit = master
-git:c9s/GetOptionGit = master  ; with git:// protocal
-https:c9s/GetOptionGit = master ; with https:// protocal
-http:c9s/GetOptionGit = a350eb035   ; with a specified commit
-
-## The format of extension dependency
+## Format of extension dependency
 
     ext/{extension name} = {version expression}
+
+Or
+
+    extension/{extension name} = {version expression}
 
 For example:
 
     ext/reflection = 0.0.1
     ext/ctype = 
     ext/pcre = 
+
+
+# Special Dependency Section
+
+## Format of SVN resource dependency
+
+[require pkgname]
+svn = http://host.com/to/svn/trunk
+revision = HEAD
+library = src
+
+XXX: we check package.ini or use package.xml (pear compatible) to check library path.
+library path check priority ( ".", "src" )
+
+## Format of Git resource dependency
+
+[require pkgname]
+git = git://github.com/c9s/GetOptionKit.git
+branch = master
+library = src
+
+## Format of GitHub resource dependency
+
+[require symfony]
+github = symfony/symfony
+protocol = http
+branch = master
+library = src
 
 # Optional dependency section
 
@@ -223,7 +237,7 @@ Format:
 	[roles]
 	{path,glob} = {role name}
 
-Available roles:
+## Available roles
 
 - php
 - doc
@@ -231,10 +245,24 @@ Available roles:
 - script
 - data
 
-Default directory mapping to roles:
+## Default directory mapping to roles:
 
 - php    => `src` dir
 - doc    => `doc` dir
 - test   => `tests` dir
 - script => `bin` dir
 - data   => `data`, `examples` dir
+
+
+# Installation
+
+how to install packages into local bundle ?
+
+Targets:
+
+* pear
+* github resources
+* github reousrces with package.ini or package.xml (PEAR)
+
+* What's the behavior of PEAR
+* What's the behavior of Composer
