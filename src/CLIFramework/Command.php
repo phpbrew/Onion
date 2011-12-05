@@ -11,7 +11,7 @@
 namespace CLIFramework;
 use GetOptionKit\GetOptionKit;
 
-class Command
+abstract class Command
 {
     public $dispatcher;
     public $cascade;
@@ -21,6 +21,11 @@ class Command
         $this->dispatcher = $dispatcher;
     }
 
+
+    function usage()
+    {
+        // return usage
+    }
 
     /* sub command override this method to define its option spec here */
     function options($getopt)
@@ -50,7 +55,6 @@ class Command
         $ret = null;
 
         if( $this->cascade ) {
-
             // if we have sub-command (not start with dashes), run it
             if( $context->hasSubcommand() ) {
                 $ret = $this->dispatcher->shiftDispatch($this);
@@ -58,21 +62,22 @@ class Command
                 // if not, and sub-commands is defined. list it.
                 throw new Exception;
             }
-        } else {
+        } 
+        else {
             $ret = $this->execute($context);
         }
 
-        if( $ret ) {
+        if( $ret ) 
+        {
 
         }
+
         $this->finish();
         return $ret;
     }
 
-    function execute($context)
-    {
-        return false;
-    }
+    /* main command execute method */
+    abstract function execute($context);
 
     function prepare() { }
 

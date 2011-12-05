@@ -20,7 +20,7 @@ class CommandDispatcher
     public $context;
 
 
-    /* command laoder */
+    /* command loader */
     public $loader;
 
     public function __construct($app_command_namespaces = array() ,$argv = null)
@@ -80,18 +80,30 @@ class CommandDispatcher
         }
     }
 
+    public function getSubcommandClass($subcommand)
+    {
+        return $this->loader->loadSubcommand( $subcommand );
+    }
+
+    public function hasSubcommand($subcommand)
+    {
+        return $this->getSubcommandClass($subcommand) ? true : false;
+    }
+
     public function shiftDispatch($parent)
     {
         $subcommand = $this->context->getNextArgument();
-        $class = $this->loader->loadSubcommand( $subcommand );
-        if( !$class)
+        if( $class = $this->getSubcommandClass($subcommand) )  {
+            $this->context->shiftArgument();
+
+            // re-dispatch context to subcommand class.
+            $cmd = new $class($this);
+            return $cmd->topExecute($this->context);
+        }
+        else {
             throw new Exception( "Subcommand '$subcommand' not found." );
-
-        $this->context->shiftArgument();
-
-        // re-dispatch context to subcommand class.
-        $cmd = new $class($this);
-        return $cmd->topExecute($this->context);
+        }
     }
+
 }
 

@@ -5,3 +5,7 @@ CLI Plan
     $ foo schema                    # call Command\SchemaCommand->execute
     $ foo schema init               # call Command\SchemaCommand\InitCommand->execute
     $ foo schema check {ModelName}
+
+
+    $ foo [command options] subcommand [subcommand options] [arguments]
+
