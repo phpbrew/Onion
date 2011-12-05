@@ -22,7 +22,33 @@ CLI Plan
 - usage.
 
 
-    $class = 'App\Command\ListCommand';
-    $cmd = $app->registerCommand($class);
-    $list_cmd = $cmd->registerSubcommand('list');
-    $tree = $app->getCommandTree();
+    class CLIApplication extends CLIFramework\Application 
+    {
+        /* application options */
+        function options($getopt)
+        {
+            // ... add options here
+        }
+
+        function init()
+        {
+            $class = 'App\Command\ListCommand';
+            $cmd = $this->registerCommand($class);
+            $list_cmd = $cmd->registerSubcommand('list');
+            $tree = $this->getCommandTree();
+
+
+            $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
+            $cmd = $dispatcher->registerCommand('BuildCommand');   # command class  => \Onion\Command\BuildCommand
+            $cmd = $dispatcher->registerCommand('InitCommand');
+
+            $cmd = $dispatcher->registerCommand('MainCommand');
+            $cmd->registerSubcommand('FooCommand');  # subcommand class => \Onion\Command\MainCommand\FooCommand
+            $cmd->registerSubcommand('BarCommand');  # subcommand class
+        }
+
+    }
+
+    $app = new CLIApplication;
+    $app->dispatch($argv);
+
