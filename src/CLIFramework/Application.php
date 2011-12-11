@@ -96,6 +96,7 @@ class Application extends CommandBase
 
         $command_stack = array();
         $subcommand_list = $this->getCommandList();
+
         $arguments = array();
         $cmd = null;
 
@@ -120,7 +121,7 @@ class Application extends CommandBase
 
                 $cmd = new $command_class;
 
-                // init subcommand option, XXX: reset option specs
+                // init subcommand option
                 $command_specs = new OptionSpecCollection;
                 $getopt->setOptions($command_specs);
                 $cmd->options( $command_specs );
@@ -160,11 +161,13 @@ class Application extends CommandBase
     }
 
 
-    public function execute( $arguments )
+    public function execute( $arguments = array() )
     {
-        // show list and help,
+        // show list and help by default
+        $help_class = $this->getCommandClass( 'help' );
+        $help = new $help_class;
+        $help->execute($arguments);
     }
-
 
 }
 

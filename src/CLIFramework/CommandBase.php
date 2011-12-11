@@ -65,6 +65,8 @@ abstract class CommandBase
      *
      * XXX: support optional class name, auto translate command name into class 
      * name.
+     *
+     * class name could be full-qualified or subclass name (under App\Command\ )
      */
     public function registerCommand($command,$class)
     {
@@ -92,12 +94,11 @@ abstract class CommandBase
      */
     public function getCommandClass($command)
     {
-        return $this->commands[ $command ];
+        return @$this->commands[ $command ];
     }
 
     /* main command execute method */
     abstract function execute($arguments);
-
 }
 
 

@@ -23,7 +23,6 @@ class Application extends \CLIFramework\Application
     function init()
     {
         parent::init();
-        $this->registerCommand('list','');
     }
 
 }
