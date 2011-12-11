@@ -13,7 +13,6 @@ use CLIFramework\Formatter;
 
 class Logger 
 {
-
     /*
      * log level
      *
@@ -26,7 +25,11 @@ class Logger
      * debug2         = 7
      *
      * */
+
+    /* current level */
     public $level = 7;
+
+    /* foramtter class */
 	public $formatter;
 
 	public function __construct()
@@ -38,6 +41,18 @@ class Logger
     {
         $this->level = $level;
     }
+
+
+    public function setFormatter( $formatter )
+    {
+        $this->formatter = $formatter;
+    }
+
+    public function getFormatter()
+    {
+        return $this->formatter;
+    }
+
 
     public function criticalError($msg)
     {
@@ -87,7 +102,5 @@ class Logger
     }
 
 }
-
-
 
 
