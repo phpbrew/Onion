@@ -11,6 +11,9 @@
 namespace CLIFramework;
 use CLIFramework\Logger;
 
+
+// XXX: abandond
+
 class CommandContext 
 {
     public $argv;

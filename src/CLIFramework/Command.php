@@ -11,30 +11,8 @@
 namespace CLIFramework;
 use GetOptionKit\GetOptionKit;
 
-abstract class Command
+abstract class Command extends CommandBase
 {
-    public $options;
-
-    function usage()
-    {
-        // return usage
-    }
-
-    /* TODO: read brief from markdown format doc file. */
-    function brief() 
-    {
-        return 'undefined.';
-    }
-
-    /* sub command override this method to define its option spec here */
-    function options($getopt)
-    {
-
-    }
-
-
-    /* main command execute method */
-    abstract function execute($arguments);
 
     /* prepare stage */
     function prepare() { }

@@ -9,8 +9,7 @@
  *
  */
 namespace tests\CLIFramework;
-
-use CLIFramework\Application;
+use TestApp\Application;
 
 class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,9 +18,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $app = new Application;
         ok( $app );
 
-        $app->registerCommand( 'list' , 'CLIFramework\\Commands\\ListCommand' );
-        $app->registerCommand( 'help' , 'CLIFramework\\Commands\\HelpCommand' );
-        $argv = explode(' ','app -a -c -b list');
+        $argv = explode(' ','app -v -d list arg1 arg2 arg3');
         $app->run($argv);
     }
 }

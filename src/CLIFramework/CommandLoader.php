@@ -39,7 +39,7 @@ class CommandLoader
     public function load($command)
     {
         $subclass = $this->translate($command);
-        $this->loadClass( $subclass );
+        return $this->loadClass( $subclass );
     }
 
 
@@ -48,7 +48,6 @@ class CommandLoader
      */
     public function loadClass($class)
     {
-
         // if it's a full-qualified class name.
         if( $class[0] == '\\' ) {
             spl_autoload_call( $class );
@@ -59,7 +58,7 @@ class CommandLoader
         // for subcommand class name (under any subcommand namespace)
         // has application command class ?
         foreach( $this->namespaces as $ns ) {
-            $class = $ns . '\\' . $subclass;
+            $class = $ns . '\\' . $class;
             if( class_exists($class) )
                 return $class;
 

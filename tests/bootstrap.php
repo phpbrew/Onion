@@ -4,7 +4,7 @@ require 'UniversalClassLoader/SplClassLoader.php';
 $classLoader = new \UniversalClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
     'CLIFramework' => 'src',
-    'TestApp' => 'tests/TestApp',
+    'TestApp' => 'tests',
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();

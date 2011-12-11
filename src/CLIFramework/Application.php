@@ -9,18 +9,18 @@
  *
  */
 namespace CLIFramework;
+
 use GetOptionKit\ContinuousOptionParser;
 use GetOptionKit\OptionSpecCollection;
+
 use CLIFramework\CommandDispatcher;
 use CLIFramework\CommandLoader;
+use CLIFramework\CommandBase;
 
-class Application 
+use Exception;
+
+class Application extends CommandBase
 {
-    /* application commands */
-    public $commands = array();
-
-    // command dispatcher
-    public $dispatcher;
 
     // command class loader
     public $loader;
@@ -30,58 +30,33 @@ class Application
 
     // command namespace for autoloader
     public $commandNamespaces = array( 
-        '\\Onion\\Command',
+        // '\\Onion\\Command',
         '\\CLIFramework\\Command'
     );
 
 
-    public $applicationOptions;
-
-
-
     function __construct()
     {
-        // default command base class
-        $this->dispatcher = new CommandDispatcher();
+        // get current class namespace, add {App}\Command\ to loader
+        $app_ref_class = new \ReflectionClass($this);
+        $app_ns = $app_ref_class->getNamespaceName();
 
         $this->loader = new CommandLoader();
+        $this->loader->addNamespace( $app_ns . '\\Command' );
         $this->loader->addNamespace( $this->commandNamespaces );
 
-        $this->optionsParser = new ContinuousOptionParser;
 
-        // $dispatcher->loader->load('build');
-        // $dispatcher->loader->load('init');
+        $this->optionsParser = new ContinuousOptionParser;
     }
 
 
     /**
      * register application option specs to the parser
      */
-    public function options(ContinuousOptionParser $parser)
+    public function options($getopt)
     {
         // $parser->add( );
 
-    }
-
-    /**
-     * register command to application
-     */
-    public function registerCommand($command,$class)
-    {
-        // try to load the class/subclass.
-        if( $this->loader->loadClass( $class ) === false )
-            throw Exception("Command class not found.");
-        $this->commands[ $command ] = $class;
-    }
-
-    public function getCommandList()
-    {
-        return array_keys( $this->commands );
-    }
-
-    public function getCommandClass($command)
-    {
-        return $this->commands[ $command ];
     }
 
 
@@ -111,18 +86,24 @@ class Application
 
         // use getoption kit to parse application options
         $getopt = $this->optionsParser;
-        $this->options($getopt);
-        $this->applicationOptions = $getopt->parse( $argv );
+
+        $specs = new OptionSpecCollection;
+
+        // init application options
+        $this->options($specs);
+        $getopt->setOptions( $specs );
+        $this->options = $getopt->parse( $argv );
 
         $command_stack = array();
-        $command_list = $this->getCommandList();
+        $subcommand_list = $this->getCommandList();
         $arguments = array();
         $cmd = null;
 
         while( ! $getopt->isEnd() ) {
-            if( in_array(  $getopt->getCurrentArgument() , $command_list ) ) {
+
+            if( in_array(  $getopt->getCurrentArgument() , $subcommand_list ) ) {
                 $getopt->advance();
-                $subcommand = array_shift( $command_list );
+                $subcommand = array_shift( $subcommand_list );
 
                 // initialize subcommand (subcommand with parent command class)
                 $command_class = null;
@@ -132,11 +113,17 @@ class Application
                 else {
                     $command_class = $this->loader->load( $subcommand );
                 }
+
+                if( ! $command_class ) {
+                    throw new Exception("command $subcommand not found.");
+                }
+
                 $cmd = new $command_class;
 
                 // init subcommand option, XXX: reset option specs
-                $getopt->setOptions( new OptionSpecCollection );
-                $cmd->options( $getopt );
+                $command_specs = new OptionSpecCollection;
+                $getopt->setOptions($command_specs);
+                $cmd->options( $command_specs );
 
                 // register subcommands
                 $cmd->init();
@@ -150,15 +137,18 @@ class Application
                 $cmd->options = $cmd_options;
                 $command_stack[] = $cmd; // save command object into the stack
 
+                // update subcommand list
+                $subcommand_list = $cmd->getCommandList();
+
             } else {
                 $arguments[] = $getopt->advance();
             }
         }
 
         // get last command and run
-        if( $last_cmd = array_pop( $command_list ) ) {
+        if( $last_cmd = array_pop( $subcommand_list ) ) {
             $last_cmd->execute( $arguments );
-            while( $cmd = array_pop( $command_list ) ) {
+            while( $cmd = array_pop( $subcommand_list ) ) {
                 // call finish stage.. of every command.
                 $cmd->finish();
             }
