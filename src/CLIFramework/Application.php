@@ -15,11 +15,15 @@ use GetOptionKit\OptionSpecCollection;
 
 use CLIFramework\CommandLoader;
 use CLIFramework\CommandBase;
+use CLIFramework\Logger;
 
 use Exception;
 
 class Application extends CommandBase
 {
+
+    // command message logger
+    public $logger;
 
     // command class loader
     public $loader;
@@ -44,6 +48,7 @@ class Application extends CommandBase
         $this->loader->addNamespace( $app_ns . '\\Command' );
         $this->loader->addNamespace( $this->commandNamespaces );
 
+        $this->logger       = new Logger;
 
         $this->optionsParser = new ContinuousOptionParser;
     }

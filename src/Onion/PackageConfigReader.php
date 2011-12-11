@@ -23,7 +23,7 @@ class PackageConfigReader
     public $config;
     public $context;
 
-    function __construct( \CLIFramework\CommandContext $cx, $file = 'package.ini')
+    function __construct( $cx, $file = 'package.ini')
     {
         $this->context = $cx;
         $this->file = $file;
