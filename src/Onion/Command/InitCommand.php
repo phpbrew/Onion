@@ -22,9 +22,10 @@ class InitCommand extends Command
         return 'initialize package.ini file';
     }
 
-    function execute($cx) 
+    function execute($arguments) 
     {
-        $cx->logger->info('Checking package.ini');
+        $logger = $this->logger;
+        $logger->info('Checking package.ini');
         if( file_exists('package.ini') )
             throw new Exception('package.ini exists. aborting.');
         /*
