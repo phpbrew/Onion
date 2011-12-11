@@ -30,32 +30,32 @@ class BuildCommand extends Command
         $getopt->add('d|debug','debug message');
     }
 
-    function execute($cx) 
+    function execute($arguments = array()) 
     {
         // options result.
-        $options = $this->getOptions($cx);
+        $options = $this->getOptions();
 
         if( ! file_exists('package.ini' ) )
             die('package.ini does not exist. please create one.');
 
-        $cx->logger->info2( 'Checking directory structure...' );
+        $logger->info2( 'Checking directory structure...' );
         if( is_dir('src') )
-            $cx->logger->info( '* found src/', 1 );
+            $logger->info( '* found src/', 1 );
         else
-            $cx->logger->warn( '* src/ directory not found.',1 );
+            $logger->warn( '* src/ directory not found.',1 );
 
         if( is_dir('tests') )
-            $cx->logger->info( '* found tests/', 1 );
+            $logger->info( '* found tests/', 1 );
         else
-            $cx->logger->warn( '* tests/ directory not found.',1 );
+            $logger->warn( '* tests/ directory not found.',1 );
 
         if( is_dir('doc') )
-            $cx->logger->info( '* found doc/', 1 );
+            $logger->info( '* found doc/', 1 );
         else
-            $cx->logger->warn( '* doc/ directory not found.',1 );
+            $logger->warn( '* doc/ directory not found.',1 );
 
-        $cx->logger->info2( 'Configuring package.ini' );
-        $config = new PackageConfigReader($cx);
+        $logger->info2( 'Configuring package.ini' );
+        $config = new PackageConfigReader($logger);
         $config->readAsPackageXml();
         $xml = $config->generatePackageXml();
 
@@ -68,10 +68,10 @@ class BuildCommand extends Command
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
 
-        $cx->logger->info2('Building PEAR package...');
+        $logger->info2('Building PEAR package...');
         system('pear -q package');
 
-        $cx->logger->info2('Done.');
+        $logger->info2('Done.');
         return true;
     }
 }

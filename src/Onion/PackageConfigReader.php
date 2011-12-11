@@ -21,14 +21,14 @@ class PackageConfigReader
 {
     public $file;
     public $config;
-    public $context;
+    public $logger;
 
-    function __construct( $cx, $file = 'package.ini')
+    function __construct( $logger, $file = 'package.ini')
     {
-        $this->context = $cx;
+        $this->logger = $logger;
         $this->file = $file;
         if( ! file_exists($file) ) {
-            $cx->logger->error( "$file not found." );
+            $logger->error( "$file not found." );
             exit(1);
         }
 
@@ -36,8 +36,8 @@ class PackageConfigReader
             $this->config = new ConfigContainer( parse_ini_file( $this->file , true ) );
         } 
         catch ( Exception $e ) {
-            $cx->logger->error( "$file syntax error." );
-            $cx->logger->error( $e->getMessage() );
+            $logger->error( "$file syntax error." );
+            $logger->error( $e->getMessage() );
             exit(1);
         }
     }
@@ -48,12 +48,10 @@ class PackageConfigReader
     {
         // prepare config data
         $config = & $this->config;
-        $cx = $this->context;
-
 
         /* check required attributes */
         if( ! $config->has('package.name') ) {
-            $cx->logger->error('package.name is not defined.');
+            $logger->error('package.name is not defined.');
             # echo "\n\n";
             # echo "\t[package]\n";
             # echo "\tname = {your package name}\n\n";
@@ -61,17 +59,17 @@ class PackageConfigReader
         }
 
         if( ! $config->has('package.desc') ) {
-            $cx->logger->error('package.desc is not defined.');
+            $logger->error('package.desc is not defined.');
             exit(1);
         }
 
         if( ! $config->has('package.version') ) {
-            $cx->logger->error('package.version is not defined.');
+            $logger->error('package.version is not defined.');
             exit(1);
         }
 
         if( ! $config->has('package.author') && ! $config->has('package.authors') ) {
-            $cx->logger->error('package author or authors is not defined.');
+            $logger->error('package author or authors is not defined.');
 
             echo "Attribute 'author' or 'authors' is not defined.\n";
             echo "Please define 'author' in your package.ini file: \n\n";
@@ -90,7 +88,7 @@ class PackageConfigReader
         }
 
         if( ! $config->has('package.license') ) {
-            $cx->logger->info("* license is not defined., use PHP license by default.",1);
+            $logger->info("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP LICENSE');
         }
 
@@ -104,19 +102,19 @@ class PackageConfigReader
             */
 
         if( ! $config->has('package.channel' ) ) {
-            $cx->logger->info("* package channel is not defined. use pear.php.net by default.",1);
+            $logger->info("* package channel is not defined. use pear.php.net by default.",1);
             $config->set('package.channel','pear.php.net');
         }
 
         if( ! $config->has('package.date') ) {
             $date = date('Y-m-d');
-            $cx->logger->info("* package date is not defined. use current date $date by default.",1);
+            $logger->info("* package date is not defined. use current date $date by default.",1);
             $config->set('package.date',$date);
         }
 
         if( ! $config->has('package.time') ) {
             $time = strftime('%X');
-            $cx->logger->info("* package time is not defined. use current time $time by default.",1);
+            $logger->info("* package time is not defined. use current time $time by default.",1);
             $config->set('package.time',strftime('%X'));
         }
 
@@ -138,7 +136,7 @@ class PackageConfigReader
         if( ! $config->has('package.stability') &&
             ! $config->has('package.stability-release') &&
             ! $config->has('package.stability-api') ) {
-            $cx->logger->info("* package.stability is not set, use alpha by default",1);
+            $logger->info("* package.stability is not set, use alpha by default",1);
             $config->set('package.stability-release', 'alpha' );
             $config->set('package.stability-api', 'alpha' );
         }
@@ -147,9 +145,9 @@ class PackageConfigReader
 
 
         /* checking dependencies */
-        $cx->logger->info2("Configuring dependencies...");
+        $logger->info2("Configuring dependencies...");
         if( ! $config->has('required') )  {
-            $cx->logger->info("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
+            $logger->info("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $config->required = array( 
                 'php' => '5.3',
                 'pearinstaller' => '1.4',
@@ -247,8 +245,6 @@ class PackageConfigReader
 
     function addFileNode($dir,$fileinfo,$role,$baseDir = null)
     {
-        $cx = $this->context;
-
         # substr( $path->__tostring()  );
         $filepath = $fileinfo->getPathname();
         $md5sum   = md5_file($filepath);
@@ -257,7 +253,7 @@ class PackageConfigReader
         if( $baseDir )
             $target_filepath = substr( $filepath , strlen($baseDir) + 1 );
 
-        $cx->logger->debug( sprintf('%s  %-5s  %s', 
+        $logger->debug( sprintf('%s  %-5s  %s', 
             substr($md5sum,0,6),
             $role,
             $filepath
@@ -271,7 +267,6 @@ class PackageConfigReader
 
     function generatePackageXml()
     {
-        $cx = $this->context;
         // build pear config file.
         $config = $this->config;
 
@@ -349,7 +344,7 @@ XML;
 
 
             // build contents section, TODO: support [roles] section.
-            $cx->logger->info('Building contents section...');
+            $logger->info('Building contents section...');
             $contentsXml = $xml->addChild('contents');
             $dir = $contentsXml->addChild('dir');
             $dir->addAttribute('name','/');
@@ -402,7 +397,7 @@ XML;
             </dependencies>
             */
 
-            $cx->logger->info('Building dependencies section...');
+            $logger->info('Building dependencies section...');
 
             $deps = $xml->addChild('dependencies');
             $this->buildDependencySection('required',$deps,$config);
@@ -417,7 +412,7 @@ XML;
 
             // use DOMDocument to reformat package.xml
             if( class_exists('DOMDocument') ) {
-                $cx->logger->info('Re-formating XML...');
+                $logger->info('Re-formating XML...');
                 $dom = new \DOMDocument('1.0');
                 $dom->preserveWhiteSpace = false;
                 $dom->formatOutput = true;
