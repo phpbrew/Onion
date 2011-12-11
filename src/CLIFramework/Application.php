@@ -102,7 +102,7 @@ class Application extends CommandBase
         $subcommand_list = $this->getCommandList();
 
         $arguments = array();
-        $cmd = null;
+        $current_cmd = $this;
 
         while( ! $getopt->isEnd() ) {
 
@@ -111,39 +111,42 @@ class Application extends CommandBase
                 $subcommand = array_shift( $subcommand_list );
 
                 // initialize subcommand (subcommand with parent command class)
-                $command_class = null;
-                if( end($command_stack) ) {
-                    $command_class = $this->loader->loadSubcommand($subcommand, end($command_stack));
-                } 
-                else {
-                    $command_class = $this->loader->load( $subcommand );
+                $command_class = $current_cmd->getCommandClass( $subcommand );
+                if( ! $command_class ) {
+                    if( end($command_stack) ) {
+                        $command_class = $this->loader->loadSubcommand($subcommand, end($command_stack));
+                    } 
+                    else {
+                        $command_class = $this->loader->load( $subcommand );
+                    }
                 }
 
                 if( ! $command_class ) {
                     throw new Exception("command $subcommand not found.");
                 }
 
-                $cmd = new $command_class;
+                // override current with subcommand object
+                $current_cmd = new $command_class;
 
                 // init subcommand option
                 $command_specs = new OptionSpecCollection;
                 $getopt->setOptions($command_specs);
-                $cmd->options( $command_specs );
+                $current_cmd->options( $command_specs );
 
                 // register subcommands
-                $cmd->init();
+                $current_cmd->init();
 
                 // parse options for command.
-                $cmd_options = $getopt->continueParse();
+                $current_cmd_options = $getopt->continueParse();
 
                 // run subcommand prepare
-                $cmd->prepare();
+                $current_cmd->prepare();
 
-                $cmd->options = $cmd_options;
-                $command_stack[] = $cmd; // save command object into the stack
+                $current_cmd->options = $current_cmd_options;
+                $command_stack[] = $current_cmd; // save command object into the stack
 
                 // update subcommand list
-                $subcommand_list = $cmd->getCommandList();
+                $subcommand_list = $current_cmd->getCommandList();
 
             } else {
                 $arguments[] = $getopt->advance();
@@ -169,8 +172,13 @@ class Application extends CommandBase
     {
         // show list and help by default
         $help_class = $this->getCommandClass( 'help' );
-        $help = new $help_class;
-        $help->execute($arguments);
+        if( $help_class ) {
+            $help = new $help_class;
+            $help->execute($arguments);
+        }
+        else {
+            throw new Exception("Help command is not defined.");
+        }
     }
 
 }
