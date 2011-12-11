@@ -68,12 +68,17 @@ abstract class CommandBase
      *
      * class name could be full-qualified or subclass name (under App\Command\ )
      */
-    public function registerCommand($command,$class)
+    public function registerCommand($command,$class = null)
     {
         // try to load the class/subclass.
         if( $this->loader->loadClass( $class ) === false )
             throw Exception("Command class not found.");
         $this->commands[ $command ] = $class;
+    }
+
+    public function hasCommand($command)
+    {
+        return isset($this->commands[ $command ]);
     }
 
 
