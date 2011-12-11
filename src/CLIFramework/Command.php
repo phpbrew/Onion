@@ -13,18 +13,17 @@ use GetOptionKit\GetOptionKit;
 
 abstract class Command
 {
-    public $dispatcher;
     public $options;
-
-    function __construct($dispatcher)
-    {
-        $this->dispatcher = $dispatcher;
-    }
-
 
     function usage()
     {
         // return usage
+    }
+
+    /* TODO: read brief from markdown format doc file. */
+    function brief() 
+    {
+        return 'undefined.';
     }
 
     /* sub command override this method to define its option spec here */
@@ -33,53 +32,23 @@ abstract class Command
 
     }
 
+
+    /* main command execute method */
+    abstract function execute($arguments);
+
+    /* prepare stage */
+    function prepare() { }
+
+    /* for finalize stage */
+    function finish() { }
+
+
     function getOptions()
     {
         return $this->options;
     }
 
-    /* this is for parent command and subcommands */
-    function topExecute($context)
-    {
-        $this->prepare();
-        $ret = null;
-
-        if( $this->cascade ) {
-            // if we have sub-command (not start with dashes), run it
-            if( $context->hasSubcommand() ) {
-                $ret = $this->dispatcher->shiftDispatch($this);
-            } else {
-                // if not, and sub-commands is defined. list it.
-                throw new Exception;
-            }
-        } 
-        else {
-            $ret = $this->execute($context);
-        }
-
-        if( $ret ) 
-        {
-
-        }
-
-        $this->finish();
-        return $ret;
-    }
-
-    /* main command execute method */
-    abstract function execute($context);
-
-    function prepare() { }
-
-    function finish() { }
-
-    /* TODO: read brief from markdown format doc file. */
-    function brief() 
-    {
-        return 'undefined.';
-    }
-
-    function toCommandName()
+    function getCommandName()
     {
         $class = get_class($this);
         $class = preg_replace( '/Command$/','', $class );
@@ -87,5 +56,6 @@ abstract class Command
         $class = end($parts);
         return strtolower( preg_replace( '/(?<=[a-z])([A-Z])/', '-\1' , $class ) );
     }
+
 
 }

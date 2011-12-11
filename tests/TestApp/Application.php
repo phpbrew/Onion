@@ -10,7 +10,21 @@
  */
 namespace TestApp;
 
-class Application extends \CLIFramework\Application {
+class Application extends \CLIFramework\Application 
+{
 
+
+    function options($getopt)
+    {
+        $getopt->add('v|verbose','Verbose message');
+        $getopt->add('d|debug','Debug message');
+        $getopt->add('c|color','Color message');
+    }
+
+    function init()
+    {
+        parent::init();
+        $this->registerCommand('list','');
+    }
 
 }

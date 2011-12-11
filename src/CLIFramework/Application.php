@@ -71,19 +71,18 @@ class Application
         // try to load the class/subclass.
         if( $this->loader->loadClass( $class ) === false )
             throw Exception("Command class not found.");
-
-        $this->commands[] = array(
-            'command' => $commmand,
-            'class'   => $class,
-        );
+        $this->commands[ $command ] = $class;
     }
 
     public function getCommandList()
     {
-        return array_map( function($item) { return $item['command']; } , $this->commands );
+        return array_keys( $this->commands );
     }
 
-
+    public function getCommandClass($command)
+    {
+        return $this->commands[ $command ];
+    }
 
 
     /* 
@@ -93,7 +92,8 @@ class Application
      */
     public function init()
     {
-
+        $this->registerCommand('list','\CLIFramework\Command\ListCommand');
+        $this->registerCommand('help','\CLIFramework\Command\HelpCommand');
     }
 
 
@@ -125,12 +125,14 @@ class Application
                 $subcommand = array_shift( $command_list );
 
                 // initialize subcommand (subcommand with parent command class)
+                $command_class = null;
                 if( end($command_stack) ) {
-                    $cmd = $this->loader->loadSubcommand($subcommand, end($command_stack));
+                    $command_class = $this->loader->loadSubcommand($subcommand, end($command_stack));
                 } 
                 else {
-                    $cmd = $this->loader->load( $subcommand );
+                    $command_class = $this->loader->load( $subcommand );
                 }
+                $cmd = new $command_class;
 
                 // init subcommand option, XXX: reset option specs
                 $getopt->setOptions( new OptionSpecCollection );
