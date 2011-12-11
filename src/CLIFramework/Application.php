@@ -10,13 +10,14 @@
  */
 namespace CLIFramework;
 use GetOptionKit\ContinuousOptionParser;
+use GetOptionKit\OptionSpecCollection;
 use CLIFramework\CommandDispatcher;
 use CLIFramework\CommandLoader;
 
 class Application 
 {
-    /* application subcommands */
-    public $subcommands = array();
+    /* application commands */
+    public $commands = array();
 
     // command dispatcher
     public $dispatcher;
@@ -71,7 +72,7 @@ class Application
         if( $this->loader->loadClass( $class ) === false )
             throw Exception("Command class not found.");
 
-        $this->subcommands[] = array(
+        $this->commands[] = array(
             'command' => $commmand,
             'class'   => $class,
         );
@@ -79,8 +80,10 @@ class Application
 
     public function getCommandList()
     {
-        return array_map( function($item) { return $item['command']; } , $this->subcommands );
+        return array_map( function($item) { return $item['command']; } , $this->commands );
     }
+
+
 
 
     /* 
@@ -111,22 +114,65 @@ class Application
         $this->options($getopt);
         $this->applicationOptions = $getopt->parse( $argv );
 
-
-
+        $command_stack = array();
+        $command_list = $this->getCommandList();
+        $arguments = array();
+        $cmd = null;
 
         while( ! $getopt->isEnd() ) {
-            if( $getopt->getCurrentArgument() == $subcommands[0] ) {
+            if( in_array(  $getopt->getCurrentArgument() , $command_list ) ) {
                 $getopt->advance();
-                $subcommand = array_shift( $subcommands );
-                $getopt->setOptions( $subcommand_specs[$subcommand] );
-                $subcommand_options[ $subcommand ] = $getopt->continueParse();
+                $subcommand = array_shift( $command_list );
+
+                // initialize subcommand (subcommand with parent command class)
+                if( end($command_stack) ) {
+                    $cmd = $this->loader->loadSubcommand($subcommand, end($command_stack));
+                } 
+                else {
+                    $cmd = $this->loader->load( $subcommand );
+                }
+
+                // init subcommand option, XXX: reset option specs
+                $getopt->setOptions( new OptionSpecCollection );
+                $cmd->options( $getopt );
+
+                // register subcommands
+                $cmd->init();
+
+                // parse options for command.
+                $cmd_options = $getopt->continueParse();
+
+                // run subcommand prepare
+                $cmd->prepare();
+
+                $cmd->options = $cmd_options;
+                $command_stack[] = $cmd; // save command object into the stack
+
             } else {
                 $arguments[] = $getopt->advance();
             }
         }
 
-        // $ret = $dispatcher->runDispatch();
+        // get last command and run
+        if( $last_cmd = array_pop( $command_list ) ) {
+            $last_cmd->execute( $arguments );
+            while( $cmd = array_pop( $command_list ) ) {
+                // call finish stage.. of every command.
+                $cmd->finish();
+            }
+        }
+        else {
+            // no command specified.
+            $this->execute( $arguments );
+        }
     }
+
+
+    public function execute( $arguments )
+    {
+        // show list and help,
+    }
+
 
 }
 

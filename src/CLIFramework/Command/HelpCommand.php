@@ -15,14 +15,15 @@ use CLIFramework\CommandInterface;
 class HelpCommand extends Command
     implements CommandInterface
 {
+
     function brief()
     {
         return 'help command.';
     }
 
-    function execute($context)
+    function execute($arguments)
     {
-        $subcommand = $context->getNextArgument();
+        $subcommand = array_shift($arguments);
 
         // if there is no subcommand to render help, show all available commands.
         if( ! $subcommand ) {

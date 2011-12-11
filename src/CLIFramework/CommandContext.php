@@ -28,37 +28,4 @@ class CommandContext
         $this->arguments    = array_slice($argv,1); // argument queue, not for option parsing
         $this->logger       = new Logger;
     }
-
-    function shiftArgument()
-    {
-        return array_shift($this->arguments);
-    }
-
-    function getNextArgument()
-    {
-        return @$this->arguments[0];
-    }
-
-    function getRestArguments()
-    {
-        return $this->arguments;
-    }
-
-    function hasSubcommand()
-    {
-        // make sure we have command class for this subcommand.
-        $next = $this->getNextArgument();
-        return $next && (strpos($next,'-') !== 0);
-    }
-
-    function hasCommand()
-    {
-        return count($this->arguments) == 0;
-    }
-
-    function parseOptions()
-    {
-
-    }
-
 }

@@ -19,17 +19,6 @@ class CommandDispatcher
      * contains arguments, options, and argument queue. */
     public $context;
 
-    public function __construct($argv = null)
-    {
-
-        if( $argv )  {
-            $this->context = is_a($argv,'CLIFramework\CommandContext') ? $argv : new CommandContext($argv);
-        } else {
-            global $argv;
-            $this->context = new CommandContext($argv);
-        }
-    }
-
     public function translateCommandClassName($command)
     {
         $args = explode('-',$command);
@@ -52,7 +41,6 @@ class CommandDispatcher
         $command = $this->context->shiftArgument();
         return $this->dispatch($command);
     }
-
 
     /* dispatch comamnd , the entry point */
     public function dispatch( $command = null )

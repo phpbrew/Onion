@@ -14,7 +14,7 @@ use GetOptionKit\GetOptionKit;
 abstract class Command
 {
     public $dispatcher;
-    public $cascade;
+    public $options;
 
     function __construct($dispatcher)
     {
@@ -33,19 +33,9 @@ abstract class Command
 
     }
 
-    /* get options from current context */
-    function getOptions($context)
+    function getOptions()
     {
-        $getopt = new GetOptionKit;
-
-        // init defined options.
-        $this->options($getopt);
-
-        // parse arguments from the argument queue.
-        $options = $getopt->parse( $context->arguments );
-
-        // save option result in command context object.
-        return $context->options = $options;
+        return $this->options;
     }
 
     /* this is for parent command and subcommands */

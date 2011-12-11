@@ -21,12 +21,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
         $app->registerCommand( 'list' , 'CLIFramework\\Commands\\ListCommand' );
         $app->registerCommand( 'help' , 'CLIFramework\\Commands\\HelpCommand' );
-
-        $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
-        $dispatcher->loader->load('build');
-        $dispatcher->loader->load('init');
-        $ret = $dispatcher->runDispatch();
-
-
+        $argv = explode(' ','app -a -c -b list');
+        $app->run($argv);
     }
 }
