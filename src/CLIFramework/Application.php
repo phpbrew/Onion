@@ -13,7 +13,6 @@ namespace CLIFramework;
 use GetOptionKit\ContinuousOptionParser;
 use GetOptionKit\OptionSpecCollection;
 
-use CLIFramework\CommandDispatcher;
 use CLIFramework\CommandLoader;
 use CLIFramework\CommandBase;
 
