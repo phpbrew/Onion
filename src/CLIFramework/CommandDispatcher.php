@@ -19,10 +19,7 @@ class CommandDispatcher
      * contains arguments, options, and argument queue. */
     public $context;
 
-    /* command loader */
-    public $loader;
-
-    public function __construct($app_command_namespaces = array() ,$argv = null)
+    public function __construct($argv = null)
     {
 
         if( $argv )  {
@@ -31,13 +28,6 @@ class CommandDispatcher
             global $argv;
             $this->context = new CommandContext($argv);
         }
-
-
-        $loader = $this->loader = new CommandLoader;
-        $loader->addNamespace( (array) $app_command_namespaces );
-
-        // push default command namespace into the list.
-        $loader->addNamespace( '\\CLIFramework\\Command' );
     }
 
     public function translateCommandClassName($command)

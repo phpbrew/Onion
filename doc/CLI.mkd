@@ -21,7 +21,6 @@ CLI Plan
 - option conflicts.
 - usage.
 
-
     class CLIApplication extends CLIFramework\Application 
     {
         /* application options */
@@ -35,12 +34,11 @@ CLI Plan
             $class = 'App\Command\ListCommand';
             $cmd = $this->registerCommand($class);
             $list_cmd = $cmd->registerSubcommand('list');
-            $tree = $this->getCommandTree();
-
 
             $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
             $cmd = $dispatcher->registerCommand('BuildCommand');   # command class  => \Onion\Command\BuildCommand
             $cmd = $dispatcher->registerCommand('InitCommand');
+
 
             $cmd = $dispatcher->registerCommand('MainCommand');
             $cmd->registerSubcommand('FooCommand');  # subcommand class => \Onion\Command\MainCommand\FooCommand
@@ -58,8 +56,8 @@ CLI Plan
 
         if first argument is command
             command = dispatch command by arguments
-            command -> init options
-            command -> parse options
+            command -> init options (override options that previous defined.)
+            command -> continue parse options
             command -> arguments
 
             if command has subcommand and first arg is a command
@@ -70,14 +68,3 @@ CLI Plan
         else
             run default execute 
         endif
-
-
-- GetOptionKit changes
-
-    continues parser
-
-    when encountered arguments, stop parsing , return the option result.
-    when start another parsing process, return another option result.
-
-    save current parsed position....
-

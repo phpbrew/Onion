@@ -39,17 +39,36 @@ class CommandLoader
     public function load($command)
     {
         $subclass = $this->translate($command);
+        $this->loadClass( $subclass );
+    }
+
+
+    /* 
+     * load command class/subclass
+     */
+    public function loadClass($class)
+    {
+
+        // if it's a full-qualified class name.
+        if( $class[0] == '\\' ) {
+            spl_autoload_call( $class );
+            if( class_exists($class) )
+                return $class;
+        }
+
+        // for subcommand class name (under any subcommand namespace)
         // has application command class ?
         foreach( $this->namespaces as $ns ) {
             $class = $ns . '\\' . $subclass;
             if( class_exists($class) )
                 return $class;
-            else
-                spl_autoload_call( $class );
+
+            spl_autoload_call( $class );
             if( class_exists($class) )
                 return $class;
         }
     }
+
 
     /* load subcommand class from command name
      *
