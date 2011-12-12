@@ -95,7 +95,7 @@ class Application extends CommandBase
 
         // init application options
         $this->options($specs);
-        $getopt->setOptions( $specs );
+        $getopt->setSpecs( $specs );
         $this->options = $getopt->parse( $argv );
 
         $command_stack = array();
@@ -109,9 +109,6 @@ class Application extends CommandBase
             if( in_array(  $getopt->getCurrentArgument() , $subcommand_list ) ) {
                 $getopt->advance();
                 $subcommand = array_shift( $subcommand_list );
-
-                // var_dump( $current_cmd ); 
-
 
                 // initialize subcommand (subcommand with parent command class)
                 $command_class = $current_cmd->getCommandClass( $subcommand );
@@ -143,7 +140,7 @@ class Application extends CommandBase
 
                 // init subcommand option
                 $command_specs = new OptionSpecCollection;
-                $getopt->setOptions($command_specs);
+                $getopt->setSpecs($command_specs);
                 $current_cmd->options( $command_specs );
 
                 // register subcommands
