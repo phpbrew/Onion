@@ -13,11 +13,11 @@ namespace TestApp;
 class Application extends \CLIFramework\Application 
 {
 
-    function options($specs)
+    function options($getopt)
     {
-        $specs->addFromSpecString('v|verbose','Verbose message');
-        $specs->addFromSpecString('d|debug','Debug message');
-        $specs->addFromSpecString('c|color','Color message');
+        $getopt->add('v|verbose','Verbose message');
+        $getopt->add('d|debug','Debug message');
+        $getopt->add('c|color','Color message');
     }
 
     function init()

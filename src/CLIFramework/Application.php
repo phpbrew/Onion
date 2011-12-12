@@ -92,10 +92,11 @@ class Application extends CommandBase
         $getopt = $this->optionsParser;
 
         $specs = new OptionSpecCollection;
+        $getopt->setSpecs( $specs );
 
         // init application options
         $this->options($specs);
-        $getopt->setSpecs( $specs );
+
         $this->options = $getopt->parse( $argv );
 
         $command_stack = array();
