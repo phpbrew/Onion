@@ -25,7 +25,9 @@ abstract class CommandBase
 
     public $options;
 
+    public $parent;
 
+    public $loader;
 
     function usage()
     {
@@ -70,11 +72,26 @@ abstract class CommandBase
      */
     public function registerCommand($command,$class = null)
     {
+
+        
         // try to load the class/subclass.
-        if( $this->loader->loadClass( $class ) === false )
-            throw Exception("Command class not found.");
+        if( $class ) {
+            if( $this->loader->loadClass( $class ) === false )
+                throw Exception("Command class not found.");
+        }
+        else {
+            if ( $this->parent ) {
+                $class = $this->loader->loadSubcommand($command,$this->parent);
+            }
+            else {
+                $class = $this->loader->load($command);
+            }
+
+        }
         $this->commands[ $command ] = $class;
     }
+
+
 
     public function hasCommand($command)
     {

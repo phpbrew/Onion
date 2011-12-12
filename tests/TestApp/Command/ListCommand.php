@@ -15,6 +15,11 @@ use CLIFramework\Command;
 class ListCommand extends Command 
 {
 
+    function init()
+    {
+        $this->registerCommand('foo');
+    }
+
     function execute($args)
     {
 

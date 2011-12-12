@@ -99,16 +99,19 @@ class Application extends CommandBase
         $this->options = $getopt->parse( $argv );
 
         $command_stack = array();
-        $subcommand_list = $this->getCommandList();
 
         $arguments = array();
         $current_cmd = $this;
+        $subcommand_list = $current_cmd->getCommandList();
 
         while( ! $getopt->isEnd() ) {
 
             if( in_array(  $getopt->getCurrentArgument() , $subcommand_list ) ) {
                 $getopt->advance();
                 $subcommand = array_shift( $subcommand_list );
+
+                // var_dump( $current_cmd ); 
+
 
                 // initialize subcommand (subcommand with parent command class)
                 $command_class = $current_cmd->getCommandClass( $subcommand );
@@ -125,8 +128,18 @@ class Application extends CommandBase
                     throw new Exception("command $subcommand not found.");
                 }
 
-                // override current with subcommand object
-                $current_cmd = new $command_class;
+                // save parent command object.
+                if( $current_cmd !== $this )
+                    $parent = $current_cmd;
+                $current_cmd = new $command_class();
+
+                // save parent command class.
+                $current_cmd->parent = $parent;
+
+                // let command has the command loader to register subcommand (load class)
+                $current_cmd->loader = $this->loader;
+
+
 
                 // init subcommand option
                 $command_specs = new OptionSpecCollection;
@@ -154,9 +167,10 @@ class Application extends CommandBase
         }
 
         // get last command and run
-        if( $last_cmd = array_pop( $subcommand_list ) ) {
+        if( $last_cmd = array_pop( $command_stack ) ) {
             $last_cmd->execute( $arguments );
-            while( $cmd = array_pop( $subcommand_list ) ) {
+            $last_cmd->finish();
+            while( $cmd = array_pop( $command_stack ) ) {
                 // call finish stage.. of every command.
                 $cmd->finish();
             }

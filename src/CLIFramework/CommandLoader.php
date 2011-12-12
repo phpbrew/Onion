@@ -22,7 +22,10 @@ class CommandLoader
     }
 
 
-    /* translate command name to class name */
+    /**
+     * translate command name to class name 
+     *
+     **/
     public function translate($command)
     {
         $args = explode('-',$command);
@@ -31,7 +34,8 @@ class CommandLoader
         return join('',$args) . 'Command';
     }
 
-    /* load command class:
+    /**
+     * load command class:
      *
      * @param string $command command name
      * @return boolean
@@ -48,6 +52,9 @@ class CommandLoader
      */
     public function loadClass($class)
     {
+        if( class_exists($class ))
+            return $class;
+
         // if it's a full-qualified class name.
         if( $class[0] == '\\' ) {
             spl_autoload_call( $class );
@@ -76,18 +83,11 @@ class CommandLoader
      * @param $parent parent command class
      *
      * */
-    public function loadSubcommand($command,   $parent = null)
+    public function loadSubcommand($subcommand, $parent)
     {
-        // get parent command namespace
-        $parent_ns = get_class($parent);
-        $parts     = explode('\\',$parent_ns);
-        $parent_class = end($parts);
-
-        // get subcommand classname
-        $class = $parent_class . '\\' . $this->translate($subcommand);
-        return $this->load($class);
+        $parent_class = get_class($parent);
+        $class = '\\' . $parent_class . '\\' . $this->translate($subcommand);
+        return $this->loadClass($class);
     }
 
 }
-
-
