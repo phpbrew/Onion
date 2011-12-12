@@ -14,6 +14,11 @@ namespace Onion;
 class Application extends \CLIFramework\Application
 {
 
+    function brief()
+    {
+        return 'Onion - PHP Package builder.';
+    }
+
     function options($specs)
     {
 

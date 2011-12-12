@@ -32,9 +32,12 @@ class HelpCommand extends Command
         } else {
             // print application subcommands
 
-            // print options
-            $this->specs->printOptions();
 
+            // print application brief
+            echo $this->parent->brief() . "\n\n";
+
+            // print application options
+            $this->parent->optionSpecs->printOptions();
 
             // get command list, command classes should be preloaded.
             $classes = get_declared_classes();
@@ -45,7 +48,7 @@ class HelpCommand extends Command
             }
 
             // print command brief list
-            echo "Available commands:\n";
+            echo "* Available commands:\n";
             foreach( $command_classes as $class ) {
                 $cmd = new $class($this->dispatcher);
                 $brief = $cmd->brief();

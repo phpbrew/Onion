@@ -191,6 +191,7 @@ class Application extends CommandBase
         $help_class = $this->getCommandClass( 'help' );
         if( $help_class ) {
             $help = new $help_class;
+            $help->parent = $this;
             $help->execute($arguments);
         }
         else {
