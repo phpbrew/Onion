@@ -18,7 +18,7 @@ class HelpCommand extends Command
 
     function brief()
     {
-        return 'help command.';
+        return 'show help message.';
     }
 
     function execute($arguments)
