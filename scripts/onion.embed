@@ -9,25 +9,19 @@
  * file that was distributed with this source code.
  *
  */
+#  require 'UniversalClassLoader/SplClassLoader.php';
+#  $classLoader = new \UniversalClassLoader\SplClassLoader(array( 
+#      'Onion' => 'src',
+#      'CLIFramework' => 'src',
+#      'GetOptionKit' => '../GetOptionKit/src',
+#  ));
+#  $classLoader->useIncludePath(true);
+#  $classLoader->register();
 
-/*
-require 'UniversalClassLoader/SplClassLoader.php';
-$classLoader = new \UniversalClassLoader\SplClassLoader(array( 
-    'Onion' => 'src',
-    'CLIFramework' => 'src',
-    'GetOptionKit' => '../GetOptionKit/src',
-));
-$classLoader->useIncludePath(true);
-$classLoader->register();
-*/
-
-use CLIFramework\CommandDispatcher;
+use Onion\Application;
 try {
-    $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
-    $dispatcher->loader->load('init');
-    $dispatcher->loader->load('build');
-    $ret = $dispatcher->runDispatch();
-    $ret ? exit(0) : exit(-1);
+    $app = new Application;
+    $app->run( $argv );
 } 
 catch( Exception $e )
 {

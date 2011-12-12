@@ -18,7 +18,6 @@ class BuildCommand extends Command
     implements CommandInterface
 {
 
-
     function brief()
     {
         return 'build PEAR package.';

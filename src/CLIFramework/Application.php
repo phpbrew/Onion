@@ -85,24 +85,28 @@ class Application extends CommandBase
      * */
     public function run(Array $argv)
     {
+
+        $current_cmd = $this;
+
         // init application 
-        $this->init();
+        $current_cmd->init();
 
         // use getoption kit to parse application options
         $getopt = $this->optionsParser;
-
         $specs = new OptionSpecCollection;
         $getopt->setSpecs( $specs );
 
         // init application options
-        $this->options($specs);
+        $current_cmd->options($specs);
 
-        $this->options = $getopt->parse( $argv );
+        // save options specs
+        $current_cmd->optionSpecs = $specs;
+
+        // save options result
+        $current_cmd->options = $getopt->parse( $argv );
 
         $command_stack = array();
-
         $arguments = array();
-        $current_cmd = $this;
         $subcommand_list = $current_cmd->getCommandList();
 
         while( ! $getopt->isEnd() ) {
@@ -143,6 +147,7 @@ class Application extends CommandBase
                 $command_specs = new OptionSpecCollection;
                 $getopt->setSpecs($command_specs);
                 $current_cmd->options( $command_specs );
+                $current_cmd->optionSpecs = $command_specs;
 
                 // register subcommands
                 $current_cmd->init();

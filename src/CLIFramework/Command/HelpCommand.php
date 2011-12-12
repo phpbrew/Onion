@@ -26,7 +26,16 @@ class HelpCommand extends Command
         $subcommand = array_shift($arguments);
 
         // if there is no subcommand to render help, show all available commands.
-        if( ! $subcommand ) {
+        if( $subcommand ) {
+
+
+        } else {
+            // print application subcommands
+
+            // print options
+            $this->specs->printOptions();
+
+
             // get command list, command classes should be preloaded.
             $classes = get_declared_classes();
             $command_classes = array();
@@ -40,9 +49,10 @@ class HelpCommand extends Command
             foreach( $command_classes as $class ) {
                 $cmd = new $class($this->dispatcher);
                 $brief = $cmd->brief();
-                printf("  % 10s - %s\n", $cmd->toCommandName(), $brief );
+                printf("  % 10s - %s\n", $cmd->getCommandName(), $brief );
             }
         }
+
 
         // if empty command list
         /*

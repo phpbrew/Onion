@@ -19,15 +19,10 @@ $classLoader = new \UniversalClassLoader\SplClassLoader(array(
 $classLoader->useIncludePath(true);
 $classLoader->register();
 
-use CLIFramework\CommandDispatcher;
+use Onion\Application;
 try {
-
-    $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
-    $dispatcher->loader->load('build');
-    $dispatcher->loader->load('init');
-
-    $ret = $dispatcher->runDispatch();
-    $ret ? exit(0) : exit(-1);
+    $app = new Application;
+    $app->run( $argv );
 } 
 catch( Exception $e )
 {

@@ -29,6 +29,8 @@ abstract class CommandBase
 
     public $loader;
 
+    public $optionSpecs;
+
     function usage()
     {
         // return usage
