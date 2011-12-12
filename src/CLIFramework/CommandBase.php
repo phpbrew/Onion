@@ -20,6 +20,12 @@ namespace CLIFramework;
 abstract class CommandBase 
 {
 
+    // command message logger
+    public $logger;
+
+    // command class loader
+    public $loader;
+
     /* application commands */
     public $commands = array();
 
@@ -27,9 +33,12 @@ abstract class CommandBase
 
     public $parent;
 
-    public $loader;
-
     public $optionSpecs;
+
+    function __construct()
+    {
+        $this->logger       = new Logger;
+    }
 
     function usage()
     {

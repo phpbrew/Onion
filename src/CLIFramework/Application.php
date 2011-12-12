@@ -21,13 +21,6 @@ use Exception;
 
 class Application extends CommandBase
 {
-
-    // command message logger
-    public $logger;
-
-    // command class loader
-    public $loader;
-
     // options parser
     public $optionParser;
 
@@ -40,6 +33,8 @@ class Application extends CommandBase
 
     function __construct()
     {
+        parent::__construct();
+
         // get current class namespace, add {App}\Command\ to loader
         $app_ref_class = new \ReflectionClass($this);
         $app_ns = $app_ref_class->getNamespaceName();
@@ -47,8 +42,6 @@ class Application extends CommandBase
         $this->loader = new CommandLoader();
         $this->loader->addNamespace( $app_ns . '\\Command' );
         $this->loader->addNamespace( $this->commandNamespaces );
-
-        $this->logger       = new Logger;
 
         $this->optionsParser = new ContinuousOptionParser;
     }
