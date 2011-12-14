@@ -10,16 +10,15 @@
  *
  */
 
-require 'UniversalClassLoader/SplClassLoader.php';
-$classLoader = new \UniversalClassLoader\SplClassLoader(array( 
+require 'Universal/ClassLoader/SplClassLoader.php';
+$classLoader = new \Universal\ClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
-    'CLIFramework' => 'src',
+    'CLIFramework' => '../CLIFramework/src',
     'GetOptionKit' => '../GetOptionKit/src',
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();
 
-use CLIFramework\CommandDispatcher;
 try {
     $dispatcher = new \CLIFramework\CommandDispatcher( '\\Onion\\Command' );
     $dispatcher->loader->load('build');
