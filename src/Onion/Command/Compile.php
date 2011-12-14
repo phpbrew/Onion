@@ -7,6 +7,7 @@ class CompileCommand
     {
         $opts->add('autoload:','autoload source file');
         $opts->add('executable:','executable source file');
+        $opts->add('src+','external source dir');
         $opts->add('output:','output');
     }
 
@@ -17,6 +18,10 @@ class CompileCommand
 
     function execute($arguments)
     {
+        $options = $this->getOptions();
+        $executable = $options->executable;
+        $src_dirs   = $options->src;
+        $output     = $options->output;
 
     }
 }
