@@ -1,7 +1,8 @@
 <?php
 namespace Onion\Command;
+use CLIFramework\Command;
 
-class CompileCommand 
+class CompileCommand extends Command
 {
     function options($opts)
     {

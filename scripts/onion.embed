@@ -9,15 +9,6 @@
  * file that was distributed with this source code.
  *
  */
-#  require 'UniversalClassLoader/SplClassLoader.php';
-#  $classLoader = new \UniversalClassLoader\SplClassLoader(array( 
-#      'Onion' => 'src',
-#      'CLIFramework' => 'src',
-#      'GetOptionKit' => '../GetOptionKit/src',
-#  ));
-#  $classLoader->useIncludePath(true);
-#  $classLoader->register();
-
 use Onion\Application;
 try {
     $app = new Application;

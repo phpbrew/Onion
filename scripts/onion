@@ -10,18 +10,17 @@
  *
  */
 
-require 'UniversalClassLoader/SplClassLoader.php';
-$classLoader = new \UniversalClassLoader\SplClassLoader(array( 
+require '../Universal/src/Universal/ClassLoader/SplClassLoader.php';
+$classLoader = new \Universal\ClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
-    'CLIFramework' => 'src',
+    'CLIFramework' => '../CLIFramework/src',
     'GetOptionKit' => '../GetOptionKit/src',
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();
 
-use Onion\Application;
 try {
-    $app = new Application;
+    $app = new \Onion\Application;
     $app->run( $argv );
 } 
 catch( Exception $e )

@@ -4,7 +4,7 @@
 
 $bin      = 'scripts/onion.embed';
 $pharFile = 'onion.phar';
-$src_dirs  = array('src','../GetOptionKit/src');
+$src_dirs  = array('src','../GetOptionKit/src','../Universal/src','../CLIFramework/src');
 $phar = new \Phar($pharFile, 0, $pharFile);
 $phar->setSignatureAlgorithm(\Phar::SHA1);
 $phar->startBuffering();
@@ -33,25 +33,27 @@ $content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
 $phar->addFromString($bin, $content);
 
 // require php5.3.2
-$path = stream_resolve_include_path('UniversalClassLoader/SplClassLoader.php');
+$path = stream_resolve_include_path('Universal/ClassLoader/SplClassLoader.php');
 if( ! file_exists( $path ) )
     die('splclassloader not found.');
 
 echo "\tinclude classloader $path\n";
 $content = php_strip_whitespace($path);
-$phar->addFromString('UniversalClassLoader/SplClassLoader.php',$content);
+$phar->addFromString('Universal/ClassLoader/SplClassLoader.php',$content);
 
 
 $stub =<<<"EOF"
 #!/usr/bin/env php
 <?php
 Phar::mapPhar('$pharFile');
-require 'phar://$pharFile/UniversalClassLoader/SplClassLoader.php';
-\$classLoader = new \\UniversalClassLoader\\SplClassLoader(array( 
+require 'phar://$pharFile/Universal/ClassLoader/SplClassLoader.php';
+\$classLoader = new \\Universal\\ClassLoader\\SplClassLoader(array( 
         'CLIFramework' => 'phar://$pharFile',
         'GetOptionKit' => 'phar://$pharFile',
+        'Universal'    => 'phar://$pharFile',
         'Onion' => 'phar://$pharFile',
 ));
+# \$classLoader->useIncludePath(true);
 \$classLoader->register();
 require 'phar://$pharFile/$bin';
 __HALT_COMPILER();
