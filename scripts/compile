@@ -33,13 +33,12 @@ $content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
 $phar->addFromString($bin, $content);
 
 // require php5.3.2
-$path = stream_resolve_include_path('Universal/ClassLoader/SplClassLoader.php');
-if( ! file_exists( $path ) )
-    die('splclassloader not found.');
-
-echo "\tinclude classloader $path\n";
-$content = php_strip_whitespace($path);
-$phar->addFromString('Universal/ClassLoader/SplClassLoader.php',$content);
+#  $path = stream_resolve_include_path('Universal/ClassLoader/SplClassLoader.php');
+#  if( ! file_exists( $path ) )
+#      die('splclassloader not found.');
+#  echo "\tinclude classloader $path\n";
+#  $content = php_strip_whitespace($path);
+#  $phar->addFromString('Universal/ClassLoader/SplClassLoader.php',$content);
 
 
 $stub =<<<"EOF"

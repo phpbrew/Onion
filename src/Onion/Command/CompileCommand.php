@@ -20,6 +20,8 @@ class CompileCommand extends Command
     function execute($arguments)
     {
         $options = $this->getOptions();
+        $logger = $this->getLogger();
+
         $executable = $options->executable;
         $src_dirs   = $options->src;
         $output     = $options->output;

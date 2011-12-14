@@ -48,6 +48,7 @@ class PackageConfigReader
     {
         // prepare config data
         $config = & $this->config;
+        $logger = $this->logger;
 
         /* check required attributes */
         if( ! $config->has('package.name') ) {
@@ -253,7 +254,8 @@ class PackageConfigReader
         if( $baseDir )
             $target_filepath = substr( $filepath , strlen($baseDir) + 1 );
 
-        $logger->debug( sprintf('%s  %-5s  %s', 
+        
+        $this->logger->debug( sprintf('%s  %-5s  %s', 
             substr($md5sum,0,6),
             $role,
             $filepath
@@ -344,6 +346,7 @@ XML;
 
 
             // build contents section, TODO: support [roles] section.
+            $logger = $this->logger;
             $logger->info('Building contents section...');
             $contentsXml = $xml->addChild('contents');
             $dir = $contentsXml->addChild('dir');
@@ -397,6 +400,7 @@ XML;
             </dependencies>
             */
 
+            $logger = $this->logger;
             $logger->info('Building dependencies section...');
 
             $deps = $xml->addChild('dependencies');

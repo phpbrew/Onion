@@ -24,7 +24,7 @@ class InitCommand extends Command
 
     function execute($arguments) 
     {
-        $logger = $this->logger;
+        $logger = $this->getLogger();
         $logger->info('Checking package.ini');
         if( file_exists('package.ini') )
             throw new Exception('package.ini exists. aborting.');

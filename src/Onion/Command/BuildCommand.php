@@ -33,6 +33,7 @@ class BuildCommand extends Command
     {
         // options result.
         $options = $this->getOptions();
+        $logger = $this->getLogger();
 
         if( ! file_exists('package.ini' ) )
             die('package.ini does not exist. please create one.');
