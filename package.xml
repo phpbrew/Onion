@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-15</date>
-  <time>00:14:49</time>
+  <time>00:52:36</time>
   <version>
     <release>0.0.5</release>
     <api>0.0.5</api>
@@ -43,13 +43,13 @@
       <file install-as="Onion/SpecUtils.php" name="src/Onion/SpecUtils.php" role="php" md5sum="3acf35cf3fd15ae23eef6dabb0d210bd"/>
       <file install-as="Onion/TestCommand/ParentCommand/SubCommand.php" name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
       <file install-as="Onion/TestCommand/ParentCommand.php" name="src/Onion/TestCommand/ParentCommand.php" role="php" md5sum="9bec2094c780a962306c2febc669f8b8"/>
+      <file install-as="bootstrap.php" name="tests/bootstrap.php" role="test" md5sum="a4dcfe19452fe6d10e9349fdb424b80d"/>
+      <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
       <file install-as="Onion/ConfigContainerTest.php" name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="6d12e7f7d407508d04bbf696ab8d988e"/>
       <file install-as="Onion/SpecUtilsTest.php" name="tests/Onion/SpecUtilsTest.php" role="test" md5sum="dc285d00e972252776345c62b3b722fd"/>
       <file install-as="TestApp/Application.php" name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file install-as="TestApp/Command/ListCommand/FooCommand.php" name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file install-as="TestApp/Command/ListCommand.php" name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
-      <file install-as="bootstrap.php" name="tests/bootstrap.php" role="test" md5sum="a4dcfe19452fe6d10e9349fdb424b80d"/>
-      <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
       <file install-as="phpunit_package.xml" name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file install-as="symfony_package.xml.tmpl" name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file install-as="twig_package.xml" name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
@@ -58,7 +58,7 @@
       <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="eb91a4d4647c991514b5975eed646edc"/>
       <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="2b73ccb0ad48e3c14638f2399227b956"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="31d54c5e0f04fb8a72b47e38aecf6ac8"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="d642d7453f0a251c54ff4bc8e1b80164"/>
     </dir>
   </contents>
   <dependencies>
