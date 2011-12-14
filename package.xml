@@ -18,10 +18,10 @@
     <active>1</active>
   </lead>
   <date>2011-12-15</date>
-  <time>00:52:36</time>
+  <time>00:53:20</time>
   <version>
-    <release>0.0.5</release>
-    <api>0.0.5</api>
+    <release>0.0.6</release>
+    <api>0.0.6</api>
   </version>
   <stability>
     <release>alpha</release>
