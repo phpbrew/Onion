@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-15</date>
-  <time>00:53:20</time>
+  <time>01:04:39</time>
   <version>
     <release>0.0.6</release>
     <api>0.0.6</api>
@@ -71,6 +71,16 @@
       </pearinstaller>
       <package>
         <name>GetOptionKit</name>
+        <channel>pear.corneltek.com</channel>
+        <min>0.0.2</min>
+      </package>
+      <package>
+        <name>CLIFramework</name>
+        <channel>pear.corneltek.com</channel>
+        <min>0.0.2</min>
+      </package>
+      <package>
+        <name>Universal</name>
         <channel>pear.corneltek.com</channel>
         <min>0.0.1</min>
       </package>
