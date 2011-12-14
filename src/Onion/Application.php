@@ -19,9 +19,9 @@ class Application extends \CLIFramework\Application
         return 'Onion - PHP Package builder.';
     }
 
-    function options($specs)
+    function options($opts)
     {
-
+        $opts->add('v|verbose','Print verbose messages');
     }
 
     function init()
