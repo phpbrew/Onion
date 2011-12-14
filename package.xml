@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-14</date>
-  <time>23:31:32</time>
+  <time>23:32:57</time>
   <version>
     <release>0.0.4</release>
     <api>0.0.4</api>
@@ -61,7 +61,7 @@
       <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="eb91a4d4647c991514b5975eed646edc"/>
       <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="2b73ccb0ad48e3c14638f2399227b956"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="507b42400cb848732b378606e794046a"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="8deeb4d253e5a2839edd5e0b7a8542eb"/>
     </dir>
   </contents>
   <dependencies>
