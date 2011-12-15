@@ -26,9 +26,5 @@ class CompileCommand extends Command
         $src_dirs   = $options->src;
         $output     = $options->output;
         $src_dirs = array_unshift( $src_dirs , 'src' );
-
-        
-
-
     }
 }
