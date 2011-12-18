@@ -105,7 +105,7 @@ A more detailed example
 
     ; glob is supported.
     *.md = doc
-    *.php = src
+    *.php = php
 
     [optional remoteshell]
     hint = Add support for Remote Shell Operations
