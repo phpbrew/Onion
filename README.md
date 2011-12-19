@@ -105,13 +105,25 @@ A more detailed example
 
     ; glob is supported.
     *.md = doc
-    *.php = src
+    *.php = php
 
     [optional remoteshell]
     hint = Add support for Remote Shell Operations
     channel/test = 0.1
     channel/foo = 0.2
     extensions[] = ssh2
+
+## What People Say
+
+nrk: 
+
+    its own package.ini file looks simple enough to edit and maintain.
+
+    It's been super-easy to get up and running and I haven't encountered any real
+    problems.  Onion looks good already.  
+
+2011-12-18 <https://github.com/nrk/predis/commit/104cd1eae7f3fb2bff3ccd3193c3e31b8502af56>
+
 
 
 

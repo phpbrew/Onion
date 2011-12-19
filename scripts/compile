@@ -1,6 +1,16 @@
 #!/usr/bin/env php
 <?php
 
+/**
+ * phar file structure
+ *
+ * {{Stub}}
+ *    {{ClassLoader}}
+ *    {{Bin or Executable or Bootstrap}}
+ * {{Halt Compiler}}
+ * {{Content Section}}
+ */
+
 
 $bin      = 'scripts/onion.embed';
 $pharFile = 'onion.phar';

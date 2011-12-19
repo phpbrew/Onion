@@ -17,10 +17,23 @@ use Onion\PackageConfigReader;
 class BuildCommand extends Command 
     implements CommandInterface
 {
-
     function brief()
     {
         return 'build PEAR package.';
+    }
+
+    function help()
+    {
+        return <<< EOT
+How To
+
+    Define your package.ini file first.
+
+    run the command below to build PEAR package:
+    
+        $ onion.phar build
+
+EOT;
     }
 
     function options($getopt)
@@ -63,6 +76,7 @@ class BuildCommand extends Command
         if( file_exists('package.xml') )
             rename('package.xml','package.xml.old');
         */
+        $this->logger->info('Writing package.xml...');
         file_put_contents('package.xml',$xml);
 
         # $this->logger->info('Validating package...');

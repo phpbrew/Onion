@@ -17,8 +17,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>1</active>
   </lead>
-  <date>2011-12-15</date>
-  <time>11:09:41</time>
+  <date>2011-12-19</date>
+  <time>14:19:37</time>
   <version>
     <release>0.0.6</release>
     <api>0.0.6</api>
@@ -57,8 +57,8 @@
       <file install-as="CLI.mkd" name="doc/CLI.mkd" role="doc" md5sum="ef611c01ef973210fbe83ec360e37b44"/>
       <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="eb91a4d4647c991514b5975eed646edc"/>
       <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
-      <file install-as="README.md" name="README.md" role="doc" md5sum="2b73ccb0ad48e3c14638f2399227b956"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="e6a1b6ef7fbd1d227aef10720ac0903f"/>
+      <file install-as="README.md" name="README.md" role="doc" md5sum="27639d627c3804a809c70e20c87d676e"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="d8739e9053d1e35674071fc7f8270644"/>
     </dir>
   </contents>
   <dependencies>
