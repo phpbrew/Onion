@@ -126,6 +126,9 @@ EOT;
         if( $classloader ) {
             $this->logger->info( "Adding classloader..." );
             $classloader_path = stream_resolve_include_path($classloader);
+            if( ! $classloader_path ) {
+                die('Please install pear.corneltek.com/Universal to embed class loader');
+            }
             $content = php_strip_whitespace($classloader_path);
             $phar->addFromString($classloader,$content);
             $stub .=<<<"EOT"
