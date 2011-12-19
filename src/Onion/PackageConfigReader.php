@@ -89,7 +89,7 @@ class PackageConfigReader
         }
 
         if( ! $config->has('package.license') ) {
-            $logger->info("* license is not defined., use PHP license by default.",1);
+            $logger->info2("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP LICENSE');
         }
 
@@ -103,19 +103,19 @@ class PackageConfigReader
             */
 
         if( ! $config->has('package.channel' ) ) {
-            $logger->info("* package channel is not defined. use pear.php.net by default.",1);
+            $logger->info2("* package channel is not defined. use pear.php.net by default.",1);
             $config->set('package.channel','pear.php.net');
         }
 
         if( ! $config->has('package.date') ) {
             $date = date('Y-m-d');
-            $logger->info("* package date is not defined. use current date $date by default.",1);
+            $logger->info2("* package date is not defined. use current date $date by default.",1);
             $config->set('package.date',$date);
         }
 
         if( ! $config->has('package.time') ) {
             $time = strftime('%X');
-            $logger->info("* package time is not defined. use current time $time by default.",1);
+            $logger->info2("* package time is not defined. use current time $time by default.",1);
             $config->set('package.time',strftime('%X'));
         }
 
@@ -137,7 +137,7 @@ class PackageConfigReader
         if( ! $config->has('package.stability') &&
             ! $config->has('package.stability-release') &&
             ! $config->has('package.stability-api') ) {
-            $logger->info("* package.stability is not set, use alpha by default",1);
+            $logger->info2("* package.stability is not set, use alpha by default",1);
             $config->set('package.stability-release', 'alpha' );
             $config->set('package.stability-api', 'alpha' );
         }
@@ -146,9 +146,9 @@ class PackageConfigReader
 
 
         /* checking dependencies */
-        $logger->info2("Configuring dependencies...");
+        $logger->info("Configuring dependencies...");
         if( ! $config->has('required') )  {
-            $logger->info("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
+            $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $config->required = array( 
                 'php' => '5.3',
                 'pearinstaller' => '1.4',
@@ -416,7 +416,7 @@ XML;
 
             // use DOMDocument to reformat package.xml
             if( class_exists('DOMDocument') ) {
-                $logger->info('Re-formating XML...');
+                $logger->info2("* Re-formating XML...",1);
                 $dom = new \DOMDocument('1.0');
                 $dom->preserveWhiteSpace = false;
                 $dom->formatOutput = true;
