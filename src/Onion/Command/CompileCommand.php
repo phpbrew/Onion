@@ -20,7 +20,6 @@ class CompileCommand extends Command
 {
     function options($opts)
     {
-
         // optional classloader script (use Universal ClassLoader by default 
         $opts->add('classloader?','embed classloader source file');
 
@@ -50,7 +49,7 @@ class CompileCommand extends Command
         $logger = $this->getLogger();
 
         $bootstrap = null;
-        $lib_dirs = array('src'); // current package source, we should read the roles from package.ini
+        $lib_dirs = array('src'); // current package source, TODO: we should read the roles from package.ini
         $output = 'output.phar';
         $classloader = null;
 

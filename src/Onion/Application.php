@@ -21,7 +21,7 @@ class Application extends \CLIFramework\Application
 
     function options($opts)
     {
-        $opts->add('v|verbose','Print verbose messages');
+        parent::options($opts);
     }
 
     function init()
@@ -30,5 +30,6 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'init' );
         $this->registerCommand( 'build' );
         $this->registerCommand( 'compile' );
+        $this->registerCommand( 'bundle' );
     }
 }
