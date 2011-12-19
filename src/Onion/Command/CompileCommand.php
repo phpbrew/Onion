@@ -109,11 +109,12 @@ class CompileCommand extends Command
         $stub = '';
 
         if( $options->executable ) {
+            $this->logger->info( 'Adding shell bang...' );
             $stub .= "#!/usr/bin/env php\n";
         }
 
         $this->logger->info( "Setting up stub..." );
-        $stub = <<<"EOT"
+        $stub .= <<<"EOT"
 <?php
 Phar::mapPhar('$pharFile');
 EOT;
