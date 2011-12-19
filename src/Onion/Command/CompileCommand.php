@@ -50,7 +50,6 @@ class CompileCommand extends Command
         $output = 'output.phar';
         $classloader = null;
 
-        $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
 
         if( $options->bootstrap )
             $bootstrap = $options->bootstrap->value;
@@ -60,10 +59,6 @@ class CompileCommand extends Command
 
         if( $options->output )
             $output = $options->output->value;
-
-        if( $options->classloader )
-            $classloader = is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) 
-                            ? $options->classloader->value : $classloader_file;
 
 
         $this->logger->info2('Compiling Phar...');
@@ -123,20 +118,43 @@ Phar::mapPhar('$pharFile');
 EOT;
 
         // use stream to resolve Universal\ClassLoader\Autoloader;
-        if( $classloader ) {
+        if( $options->classloader ) {
+
             $this->logger->info( "Adding classloader..." );
-            $classloader_path = stream_resolve_include_path($classloader);
-            if( ! $classloader_path ) {
-                die('Please install pear.corneltek.com/Universal to embed class loader');
+
+            if( is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) )
+            {
+                $classloader_file = $options->classloader->value;
+                $content = php_strip_whitespace($classloader_file);
+                $phar->addFromString($classloader_file,$content);
+                $stub .=<<<"EOT"
+require 'phar://$pharFile/$classloader_file';
+EOT;
             }
-            $content = php_strip_whitespace($classloader_path);
-            $phar->addFromString($classloader,$content);
-            $stub .=<<<"EOT"
+            else {
+                $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
+                $classloader_path = stream_resolve_include_path($classloader_file);
+
+                if( ! $classloader_path ) {
+                    $classloader_path = stream_resolve_include_path( 'phar://onion.phar/' . $classloader_file);
+                }
+
+                if( ! $classloader_path ) {
+                    die($classloader_file . ' not found.');
+                }
+
+                // try to resolve in current phar executable
+                $content = php_strip_whitespace($classloader_path);
+                $phar->addFromString($classloader_file,$content);
+                $stub .=<<<"EOT"
 require 'phar://$pharFile/$classloader_file';
 \$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;
 \$classLoader->addFallback( 'phar://$pharFile' );
 \$classLoader->register();
 EOT;
+
+            }
+
         }
 
 
