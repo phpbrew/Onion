@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-19</date>
-  <time>16:27:58</time>
+  <time>22:48:46</time>
   <version>
     <release>0.0.7</release>
     <api>0.0.7</api>
@@ -33,7 +33,7 @@
     <dir name="/">
       <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="6a95b1a91d885df8b40fc1b3054374f0"/>
       <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="8828671ecef3c6375e34c291e4aa4f8c"/>
-      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="916868a15eae3a1dc9b2674c33e756df"/>
+      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="ea8f508cb6ef9ed7a392c83bf5c2d437"/>
       <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file install-as="Onion/ConfigContainer.php" name="src/Onion/ConfigContainer.php" role="php" md5sum="2bf0c59c46a1eb98cf33acefc4097a1c"/>
       <file install-as="Onion/GlobalConfig.php" name="src/Onion/GlobalConfig.php" role="php" md5sum="b2de5f4a4f385dea7e86598d6f3f11d9"/>
@@ -59,7 +59,7 @@
       <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="eb91a4d4647c991514b5975eed646edc"/>
       <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="578b6a13e41079f2f6bc5ac5758bda85"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="46f401311d8524643f93bea635f76770"/>
       <file install-as="Changes.md" name="Changes.md" role="doc" md5sum="17b1abca0c2fa78b9f18454257817df6"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
       <file install-as="TODO.md" name="TODO.md" role="doc" md5sum="cd7767dac85f510e5aa2611583a33117"/>
@@ -86,7 +86,7 @@
       <package>
         <name>Universal</name>
         <channel>pear.corneltek.com</channel>
-        <min>0.0.1</min>
+        <min>0.0.2</min>
       </package>
       <extension>
         <name>pcre</name>
