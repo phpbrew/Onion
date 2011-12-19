@@ -76,6 +76,7 @@ EOT;
         if( file_exists('package.xml') )
             rename('package.xml','package.xml.old');
         */
+        $this->logger->info('Writing package.xml...');
         file_put_contents('package.xml',$xml);
 
         # $this->logger->info('Validating package...');
