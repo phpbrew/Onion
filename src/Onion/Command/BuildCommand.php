@@ -38,8 +38,7 @@ EOT;
 
     function options($getopt)
     {
-        $getopt->add('v|verbose','verbose message');
-        $getopt->add('d|debug','debug message');
+
     }
 
     function execute($arguments = array()) 
@@ -51,23 +50,23 @@ EOT;
         if( ! file_exists('package.ini' ) )
             die('package.ini does not exist. please create one.');
 
-        $logger->info2( 'Checking directory structure...' );
+        $logger->info( 'Checking directory structure...' );
         if( is_dir('src') )
-            $logger->info( '* found src/', 1 );
+            $logger->info2( '* found src/', 1 );
         else
             $logger->warn( '* src/ directory not found.',1 );
 
         if( is_dir('tests') )
-            $logger->info( '* found tests/', 1 );
+            $logger->info2( '* found tests/', 1 );
         else
             $logger->warn( '* tests/ directory not found.',1 );
 
         if( is_dir('doc') )
-            $logger->info( '* found doc/', 1 );
+            $logger->info2( '* found doc/', 1 );
         else
             $logger->warn( '* doc/ directory not found.',1 );
 
-        $logger->info2( 'Configuring package.ini' );
+        $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader($logger);
         $config->readAsPackageXml();
         $xml = $config->generatePackageXml();
@@ -82,10 +81,10 @@ EOT;
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
 
-        $logger->info2('Building PEAR package...');
+        $logger->info('Building PEAR package...');
         system('pear -q package');
 
-        $logger->info2('Done.');
+        $logger->info('Done.');
         return true;
     }
 }

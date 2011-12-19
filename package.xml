@@ -17,8 +17,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>1</active>
   </lead>
-  <date>2011-12-19</date>
-  <time>22:48:46</time>
+  <date>2011-12-20</date>
+  <time>00:38:35</time>
   <version>
     <release>0.0.7</release>
     <api>0.0.7</api>
@@ -31,14 +31,15 @@
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="6a95b1a91d885df8b40fc1b3054374f0"/>
-      <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="8828671ecef3c6375e34c291e4aa4f8c"/>
-      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="ea8f508cb6ef9ed7a392c83bf5c2d437"/>
+      <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="cd08c9e1a21ce6d2f7ef0c0fc2ed849f"/>
+      <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="c6c609136de4828b2f4e9d1624dbfd6c"/>
+      <file install-as="Onion/Command/BundleCommand.php" name="src/Onion/Command/BundleCommand.php" role="php" md5sum="aa7a8d364e4d0f2ab041571e2f4e5fc8"/>
+      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="432f3d94f3ef53e7469a2aebef5a28b6"/>
       <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file install-as="Onion/ConfigContainer.php" name="src/Onion/ConfigContainer.php" role="php" md5sum="2bf0c59c46a1eb98cf33acefc4097a1c"/>
       <file install-as="Onion/GlobalConfig.php" name="src/Onion/GlobalConfig.php" role="php" md5sum="b2de5f4a4f385dea7e86598d6f3f11d9"/>
       <file install-as="Onion/Onion.php" name="src/Onion/Onion.php" role="php" md5sum="6a4e7d381b3cb0d8d67d3a7e35ac2537"/>
-      <file install-as="Onion/PackageConfigReader.php" name="src/Onion/PackageConfigReader.php" role="php" md5sum="bcd86d623b4e9ef61fb8584ceb60666a"/>
+      <file install-as="Onion/PackageConfigReader.php" name="src/Onion/PackageConfigReader.php" role="php" md5sum="22fd847bbffeec43e82563351540441f"/>
       <file install-as="Onion/Packager.php" name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file install-as="Onion/PackageXml/PackageXmlWriter.php" name="src/Onion/PackageXml/PackageXmlWriter.php" role="php" md5sum="0913c185e0731fc1f8b2a126d24a39fb"/>
       <file install-as="Onion/SpecUtils.php" name="src/Onion/SpecUtils.php" role="php" md5sum="3acf35cf3fd15ae23eef6dabb0d210bd"/>
@@ -59,10 +60,10 @@
       <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="eb91a4d4647c991514b5975eed646edc"/>
       <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="46f401311d8524643f93bea635f76770"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="10f173a9b41775af388f70dd63f326a3"/>
       <file install-as="Changes.md" name="Changes.md" role="doc" md5sum="17b1abca0c2fa78b9f18454257817df6"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
-      <file install-as="TODO.md" name="TODO.md" role="doc" md5sum="cd7767dac85f510e5aa2611583a33117"/>
+      <file install-as="TODO.md" name="TODO.md" role="doc" md5sum="61564d4f16e66a27724f47da306ccf5a"/>
     </dir>
   </contents>
   <dependencies>
