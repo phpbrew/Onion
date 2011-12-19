@@ -124,7 +124,7 @@ EOT;
 
         // use stream to resolve Universal\ClassLoader\Autoloader;
         if( $classloader ) {
-            $this->logger->info( "Adding ClassLoader..." );
+            $this->logger->info( "Adding classloader..." );
             $classloader_path = stream_resolve_include_path($classloader);
             $content = php_strip_whitespace($classloader_path);
             $phar->addFromString($classloader,$content);
@@ -152,9 +152,8 @@ EOT;
         $phar->stopBuffering();
 
 
-        $this->logger->info( "Compressing Phar with GZ..." );
+        $this->logger->info( "Compressing phar with GZ..." );
         $phar->compressFiles(\Phar::GZ);
-
 
         $this->logger->info2('Done');
 
