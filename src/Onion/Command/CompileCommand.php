@@ -32,6 +32,10 @@ class CompileCommand extends Command
         $opts->add('lib+','external source dir');
 
         $opts->add('output:','output');
+
+        $opts->add('c|compress?', 'phar file compress type: gz, bz2');
+
+        $opts->add('no-compress', 'do not compress phar file.');
     }
 
     function brief()
@@ -172,11 +176,32 @@ EOT;
         $phar->setStub($stub);
         $phar->stopBuffering();
 
+        $compress_type = Phar::GZ;
+        if( $options->{'no-compress'} ) 
+        {
+            $compress_type = null;
 
-        $this->logger->info( "Compressing phar with GZ..." );
-        $phar->compressFiles(\Phar::GZ);
+        } 
+        elseif( $options->compress ) 
+        {
+            switch( $v = $options->compress->value ) {
+            case 'gz':
+                $compress_type = Phar::GZ;
+                break;
+            case 'bz2':
+                $compress_type = Phar::BZ2;
+                break;
+            default:
+                throw new Exception("Compress type: $v is not supported, valids are gz, bz2");
+                break;
+            }
+        }
+
+        if( $compress_type ) {
+            $this->logger->info( "Compressing phar ..." );
+            $phar->compressFiles($compress_type);
+        }
 
         $this->logger->info2('Done');
-
     }
 }
