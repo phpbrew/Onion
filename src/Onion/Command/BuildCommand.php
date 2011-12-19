@@ -17,10 +17,23 @@ use Onion\PackageConfigReader;
 class BuildCommand extends Command 
     implements CommandInterface
 {
-
     function brief()
     {
         return 'build PEAR package.';
+    }
+
+    function help()
+    {
+        return <<< EOT
+How To
+
+    Define your package.ini file first.
+
+    run the command below to build PEAR package:
+    
+        $ onion.phar build
+
+EOT;
     }
 
     function options($getopt)
