@@ -13,6 +13,10 @@ Let's keep hard long PEAR package.xml away! :-)
 ( We are still in development, patches, feature requests are welcome! This
   utility is in alpha development, config spec might change. )
 
+## Requirement
+
+* PHP 5.3
+* simplexml extension
 
 ## The minimal spec file
 
@@ -22,7 +26,7 @@ Let's keep hard long PEAR package.xml away! :-)
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
 
-## Quick Tutorial
+## A Quick tutorial for building PEAR package
 
 Get onion.phar file:
 
@@ -48,12 +52,18 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
 
 Then Your PEAR package is out!
 
+## Compile package to Phar executable/library file
 
+An example, we use onion.phar to compile our executable file `onion.phar`:
 
-## Requirement
-
-* PHP 5.3
-* simplexml extension
+    $ onion.phar compile \
+        --executable \
+        --classloader \
+        --bootstrap scripts/onion.embed \
+        --lib src \
+        --lib ../CLIFramework/src \
+        --lib ../GetOptionKit/src \
+        --output onion.phar
 
 ## Available Config Tags
 
