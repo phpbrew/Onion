@@ -65,8 +65,8 @@ class CompileCommand extends Command
             $classloader = is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) 
                             ? $options->classloader->value : $classloader_file;
 
-        $this->logger->info2('Compiling Phar...');
 
+        $this->logger->info2('Compiling Phar...');
 
         $pharFile = $output;
         $src_dirs  = $lib_dirs;
@@ -80,6 +80,9 @@ class CompileCommand extends Command
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
+            if( ! file_exists($src_dir) )
+                die( "$src_dir does not exist." );
+
             $src_dir = realpath( $src_dir );
             $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($src_dir),
                                     RecursiveIteratorIterator::CHILD_FIRST);
