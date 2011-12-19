@@ -29,5 +29,6 @@ class Application extends \CLIFramework\Application
         parent::init();
         $this->registerCommand( 'init' );
         $this->registerCommand( 'build' );
+        $this->registerCommand( 'compile' );
     }
 }

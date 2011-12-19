@@ -1,30 +1,158 @@
 <?php
 namespace Onion\Command;
 use CLIFramework\Command;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
+use Phar;
 
+/**
+ * Compile package to phar file.
+ *
+ * phar file structure
+ *
+ * {{Stub}}
+ *    {{ClassLoader}}
+ *    {{Bin or Executable or Bootstrap}}
+ * {{Halt Compiler}}
+ * {{Content Section}}
+ */
 class CompileCommand extends Command
 {
     function options($opts)
     {
-        $opts->add('autoload:','autoload source file');
-        $opts->add('executable:','executable source file');
-        $opts->add('src+','external source dir');
+
+        // optional classloader script (use Universal ClassLoader by default 
+        $opts->add('classloader?','embed classloader source file');
+
+        // append executable (bootstrap scripts, if it's not defined, it's just a library phar file.
+        $opts->add('bootstrap?','bootstrap or executable source file');
+
+        $opts->add('executable','is a executable script ?');
+
+        $opts->add('lib+','external source dir');
+
         $opts->add('output:','output');
     }
 
     function brief()
     {
-        return 'compile current source into a phar file.';
+        return 'compile current source into Phar format library file.';
     }
 
     function execute($arguments)
     {
         $options = $this->getOptions();
+            
         $logger = $this->getLogger();
 
-        $executable = $options->executable;
-        $src_dirs   = $options->src;
-        $output     = $options->output;
-        $src_dirs = array_unshift( $src_dirs , 'src' );
+        $bootstrap = null;
+        $lib_dirs = array('src'); // current package source, we should read the roles from package.ini
+        $output = 'output.phar';
+        $classloader = null;
+
+        $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
+
+        if( $options->bootstrap )
+            $bootstrap = $options->bootstrap->value;
+
+        if( $options->lib )
+            $lib_dirs = $options->lib->value;
+
+        if( $options->output )
+            $output = $options->output->value;
+
+        if( $options->classloader )
+            $classloader = is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) 
+                            ? $options->classloader->value : $classloader_file;
+
+        $this->logger->info2('Compiling Phar...');
+
+
+        $pharFile = $output;
+        $src_dirs  = $lib_dirs;
+
+        $this->logger->info("Creating phar file $pharFile...");
+
+        $phar = new Phar($pharFile, 0, $pharFile);
+        $phar->setSignatureAlgorithm(Phar::SHA1);
+        $phar->startBuffering();
+
+
+        // archive library directories into phar file.
+        foreach( $lib_dirs as $src_dir ) {
+            $src_dir = realpath( $src_dir );
+            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($src_dir),
+                                    RecursiveIteratorIterator::CHILD_FIRST);
+
+            // compile php file only (currently)
+            foreach( $iterator as $path ) {
+                if( $path->isFile() ) {
+                    if( preg_match('/\.php$/',$path->getFilename() ) ) {
+                        $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
+                        $content = php_strip_whitespace( $path->getRealPath() );
+                        # echo $path->getPathname() . "\n";
+                        $this->logger->debug("\tcompile " . $rel_path );
+                        $phar->addFromString($rel_path, $content);
+                    }
+                }
+            }
+        }
+
+        // including bootstrap file
+        if( $bootstrap ) {
+            $this->logger->info( "Adding bootstrap file $bootstrap..." );
+            $content = php_strip_whitespace($bootstrap);
+            $content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
+            $phar->addFromString($bootstrap, $content);
+        }
+
+        $stub = '';
+
+        if( $options->executable ) {
+            $stub .= "#!/usr/bin/env php\n";
+        }
+
+        $this->logger->info( "Setting up stub..." );
+        $stub = <<<"EOT"
+<?php
+Phar::mapPhar('$pharFile');
+EOT;
+
+        // use stream to resolve Universal\ClassLoader\Autoloader;
+        if( $classloader ) {
+            $this->logger->info( "Adding ClassLoader..." );
+            $classloader_path = stream_resolve_include_path($classloader);
+            $content = php_strip_whitespace($classloader_path);
+            $phar->addFromString($classloader,$content);
+            $stub .=<<<"EOT"
+require 'phar://$pharFile/$classloader_file';
+\$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;
+\$classLoader->addFallback( 'phar://$pharFile' );
+\$classLoader->register();
+EOT;
+        }
+
+
+        if( $bootstrap ) {
+        $this->logger->info( "Adding bootstrap script..." );
+        $stub .=<<<"EOT"
+require 'phar://$pharFile/$bootstrap';
+EOT;
+        }
+
+        $stub .=<<<"EOT"
+__HALT_COMPILER();
+EOT;
+
+        $phar->setStub($stub);
+        $phar->stopBuffering();
+
+
+        $this->logger->info( "Compressing Phar with GZ..." );
+        $phar->compressFiles(\Phar::GZ);
+
+
+        $this->logger->info2('Done');
+
     }
 }
