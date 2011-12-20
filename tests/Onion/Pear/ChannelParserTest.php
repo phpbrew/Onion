@@ -20,13 +20,17 @@ class ChannelParserTest extends \PHPUnit_Framework_TestCase
         $parser = new \Onion\Pear\ChannelParser;
         ok( $parser );
 
-        $channel = $parser->parse( 'tests/data/pear2.channel.xml' );
-        ok( $channel );
 
-        ok($channel->name);
-        ok($channel->summary);
-        ok($channel->alias);
-        ok($channel->primary);
+        $files = explode(' ','tests/data/pear2.channel.xml tests/data/pear.channel.xml tests/data/pear2.channel.xml');
+
+        foreach( $files as $file ) {
+            $channel = $parser->parse( $file );
+            ok( $channel );
+            ok($channel->name);
+            ok($channel->summary);
+            ok($channel->alias);
+            ok($channel->primary);
+        }
     }
 }
 
