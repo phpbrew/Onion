@@ -11,12 +11,23 @@
 namespace Onion\Pear;
 use Onion\Pear\Channel;
 use SimpleXMLElement;
+use Exception;
 
 class ChannelParser 
 {
 
-    function parse($xmlstr)
+
+    function parse($arg)
     {
+        $xmlstr = null;
+        if( strpos($arg,'<?xml') === 0 ) {
+            $xmlstr = $arg;
+        } elseif( is_file($arg) ) {
+            $xmlstr = file_get_contents($arg);
+        } else {
+            throw new Exception("Unexpectedd argument for channel parser.");
+        }
+
         // build channel object.
         $channel = new Channel;
         $xml = new SimpleXMLElement($xmlstr);
