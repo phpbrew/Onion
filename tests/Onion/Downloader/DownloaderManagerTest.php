@@ -18,5 +18,9 @@ class DownloaderManagerTest extends \PHPUnit_Framework_TestCase
         ok( $manager );
         ok( $d = $manager->createDownloader() );
 
+        if( getenv('TEST_REMOTE') ) {
+            $xml = $manager->download( 'http://pear.corneltek.com/channel.xml' );
+            ok( $xml );
+        }
     }
 }
