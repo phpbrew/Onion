@@ -4,7 +4,6 @@ namespace Onion\Downloader;
 class CurlDownloader 
     implements DownloaderInterface
 {
-
     function fetch($url)
     {
         $options = array();

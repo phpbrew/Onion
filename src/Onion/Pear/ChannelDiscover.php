@@ -32,7 +32,7 @@ class ChannelDiscover
             $xmlstr = $downloader->fetch($url);
         }
 
-        // create channel object.
+        // build channel object.
         $channel = new Channel;
 
         $xml = new SimpleXMLElement($xmlstr);
@@ -43,14 +43,13 @@ class ChannelDiscover
 
         // build primary server section
         $channel->primary = array();
-        foreach( $xml->servers->primary->rest->baseurl as $v ) {
-            $channel->primary[] = (string) $v;
+        foreach( $xml->servers->primary->rest->baseurl as $element ) {
+            $attrs = $element->attributes();
+            $channel->primary[ (string) $attrs->type ] = (string) $element;
         }
 
-        var_dump( $channel );
-#          $channel->name = $xml->channel->name;
-#          $channel->suggestedAlias = $xml->channel->suggestedAlias;
-
+        // XXX: support mirrors 
+        // var_dump( $channel );
         return $xml;
     }
 
