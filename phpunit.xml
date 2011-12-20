@@ -3,7 +3,12 @@
 
 <phpunit bootstrap="tests/bootstrap.php"
          backupGlobals="false"
-         verbose="true">
+         verbose="true"
+         syntaxCheck="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         printerClass="PHPUnit_Util_Log_TAP">
   <testsuites>
     <testsuite name="PHPUnit">
       <directory suffix="Test.php">tests</directory>
