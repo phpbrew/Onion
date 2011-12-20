@@ -12,6 +12,7 @@ namespace Onion\Downloader;
 
 use Onion\Downloader\CurlDownloader;
 use Onion\Downloader\DownloaderInterface;
+use DOMDocument;
 
 
 /**
@@ -76,6 +77,16 @@ class DownloaderManager
     {
         $d = $this->getDownloader();
         return $d->fetch( $url );
+    }
+
+    function downloadXml($url)
+    {
+        $xmlstr = $this->download($url);
+
+        // helper function to load xml
+        $xml = new DOMDocument();
+        $xml->loadXML($xmlstr); 
+        return $xml;
     }
 
 

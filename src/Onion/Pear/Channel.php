@@ -1,6 +1,7 @@
 <?php
 namespace Onion\Pear;
-
+use Onion\Downloader\DownloaderManager;
+use DOMDocument;
 
 /**
  * A Simple Pear Channel data manipulator
@@ -79,10 +80,78 @@ class Channel
         }
     }
 
+
+
+    // cache this.
     function getAllPackages()
     {
-        $baseurl = $this->getRestBaseUrl();
+        $dm = new DownloaderManager;
 
+        $restBaseurl = $this->getRestBaseUrl();
+        $uriComp = parse_url( $restBaseurl );
+
+        $baseurl = $uriComp['scheme'] . '://' . $uriComp['host'];
+
+        $categoryXml = $dm->downloadXml($restBaseurl . "/c/categories.xml");
+        $categories = $categoryXml->getElementsByTagName("c");
+        foreach ($categories as $category) {
+
+            // path like: /rest/c/Default/info.xml
+            $categoryLink = $category->getAttribute("xlink:href");
+            $categoryLink = str_replace("info.xml", "packagesinfo.xml", $categoryLink);
+            $packagesInfoXml = $dm->downloadXml( $baseurl . '/' . $categoryLink);
+            $packages = $packagesInfoXml->getElementsByTagName('pi');
+
+            foreach( $packages as $package ) {
+                // echo $package->C14N();
+                $p = $package->getElementsByTagName('p')->item(0);
+                $packageName    = $p->getElementsByTagName('n')->item(0)->nodeValue;
+                $packageSummary = $p->getElementsByTagName('s')->item(0)->nodeValue;
+                $packageDesc    = $p->getElementsByTagName('d')->item(0)->nodeValue;
+                $packageChannel = $p->getElementsByTagName('c')->item(0)->nodeValue;
+                $packageLicense = $p->getElementsByTagName('l')->item(0)->nodeValue;
+
+                $releases = $package->getElementsByTagName('a')->item(0)->getElementsByTagName('r');
+                foreach( $releases as $release ) {
+                    $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
+                    $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
+
+                    // var_dump( $version , $stability ); 
+                }
+
+                $deps = $package->getElementsByTagName('deps');
+                foreach( $deps as $dep ) {
+                    $version = $dep->getElementsByTagName('v')->item(0)->nodeValue;
+                    $depInfo = unserialize($dep->getElementsByTagName('d')->item(0)->nodeValue);
+                    var_dump( $depInfo ); 
+
+                    /*
+                     * depInfo structure:
+                        array(1) {
+                            ["required"]=>
+                            array(2) {
+                                ["php"]=>
+                                array(1) {
+                                ["min"]=>
+                                string(3) "5.3"
+                                }
+                                ["pearinstaller"]=>
+                                array(1) {
+                                ["min"]=>
+                                string(3) "1.4"
+                                }
+                            }
+                        }
+                    */
+
+                }
+
+            }
+
+        }
+
+        // $url = $baseurl . '/p/packages.xml';
+        // var_dump( $xml ); 
     }
 
     function getPackage()
