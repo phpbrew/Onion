@@ -69,7 +69,11 @@ class Channel
 
     function getRestBaseUrl()
     {
-        $version = array('REST1.3','REST1.2','REST1.1');
+        $versions = array('REST1.3','REST1.2','REST1.1');
+        foreach( $versions as $k ) {
+            if( isset( $this->primary[ $k ] ) )
+                return $this->primary[ $k ];
+        }
     }
 
     function getAllPackages()

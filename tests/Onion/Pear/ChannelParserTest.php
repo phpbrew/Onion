@@ -30,6 +30,9 @@ class ChannelParserTest extends \PHPUnit_Framework_TestCase
             ok($channel->summary);
             ok($channel->alias);
             ok($channel->primary);
+            
+            ok( $b = $channel->getRestBaseUrl() );
+            // var_dump( $b ); 
         }
     }
 }
