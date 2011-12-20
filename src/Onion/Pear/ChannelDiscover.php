@@ -2,8 +2,6 @@
 namespace Onion\Pear;
 use Exception;
 use Onion\Downloader\CurlDownloader;
-use Onion\Pear\Channel;
-use SimpleXMLElement;
 
 class ChannelDiscover 
 {
@@ -32,25 +30,10 @@ class ChannelDiscover
             $xmlstr = $downloader->fetch($url);
         }
 
-        // build channel object.
-        $channel = new Channel;
 
-        $xml = new SimpleXMLElement($xmlstr);
-
-        $channel->name = (string) $xml->name;
-        $channel->summary = (string) $xml->summary;
-        $channel->alias = (string) $xml->suggestedalias;
-
-        // build primary server section
-        $channel->primary = array();
-        foreach( $xml->servers->primary->rest->baseurl as $element ) {
-            $attrs = $element->attributes();
-            $channel->primary[ (string) $attrs->type ] = (string) $element;
-        }
-
-        // XXX: support mirrors 
-        // var_dump( $channel );
-        return $xml;
+        $parser = new ChannelParser;
+        $channel = $parser->parse( $xmlstr );
+        return $channel;
     }
 
 }
