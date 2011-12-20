@@ -67,8 +67,11 @@ class Channel
         return $this->mirrors;
     }
 
-    function getRestBaseUrl()
+    function getRestBaseUrl($version = null)
     {
+        if( $version && $this->primary[$version] )
+            return $this->primary[ $version ];
+
         $versions = array('REST1.3','REST1.2','REST1.1');
         foreach( $versions as $k ) {
             if( isset( $this->primary[ $k ] ) )
@@ -78,7 +81,7 @@ class Channel
 
     function getAllPackages()
     {
-
+        $baseurl = $this->getRestBaseUrl();
 
     }
 

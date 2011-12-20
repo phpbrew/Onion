@@ -47,7 +47,8 @@ class DownloaderManager
         // we select curl first because it's faster.
         if( extension_loaded('curl') ) {
             $this->downloaderClass = '\Onion\Downloader\CurlDownloader';
-        } else {
+        }
+        else {
             $this->downloaderClass = '\Onion\Downloader\PPDownloader';
         }
     }
