@@ -12,7 +12,6 @@ class ChannelDiscover
         return new $this->downloaderClass;
     }
 
-
     /**
      * lookup pear channel host
      *

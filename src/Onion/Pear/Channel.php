@@ -64,7 +64,7 @@ class Channel
 
     function getMirrorServers()
     {
-        return $this->mirroos;
+        return $this->mirrors;
     }
 
     function getRestBaseUrl()
@@ -78,6 +78,7 @@ class Channel
 
     function getAllPackages()
     {
+
 
     }
 
