@@ -1,6 +1,11 @@
 <?php
 namespace Onion\Pear;
 
+
+/**
+ * A Simple Pear Channel data manipulator
+ *
+ */
 class Channel
 {
 
@@ -31,6 +36,7 @@ class Channel
      */
     public $mirrors = array();
 
+
     function __construct()
     {
         // $this->info = $info;
@@ -38,27 +44,32 @@ class Channel
 
     function getName()
     {
-
+        return $this->name;
     }
 
     function getSummary()
     {
-
+        return $this->summary;
     }
 
-    function getSuggestedAlias()
+    function getAlias()
     {
-
+        return $this->alias;
     }
 
-    function getServers()
+    function getPrimaryServer()
     {
+        return $this->primary;
+    }
 
+    function getMirrorServers()
+    {
+        return $this->mirroos;
     }
 
     function getRestBaseUrl()
     {
-
+        $version = array('REST1.3','REST1.2','REST1.1');
     }
 
     function getAllPackages()

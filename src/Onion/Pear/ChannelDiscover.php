@@ -30,7 +30,6 @@ class ChannelDiscover
             $xmlstr = $downloader->fetch($url);
         }
 
-
         $parser = new ChannelParser;
         $channel = $parser->parse( $xmlstr );
         return $channel;
