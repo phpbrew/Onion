@@ -113,6 +113,9 @@ class Channel
         $categoryXml = $dm->downloadXml($restBaseurl . "/c/categories.xml");
         $categories = $categoryXml->getElementsByTagName("c");
 
+        $packages = array(
+        
+        );
 
         foreach ($categories as $category) {
 
@@ -188,6 +191,7 @@ class Channel
                 foreach( $deps as $dep ) {
                     $version = $dep->getElementsByTagName('v')->item(0)->nodeValue;
                     $depInfo = unserialize($dep->getElementsByTagName('d')->item(0)->nodeValue);
+
                     /*
                      * depInfo structure:
                         array(1) {
@@ -207,17 +211,19 @@ class Channel
                         }
                     */
                     $packageObj->deps[ $version ] = $depInfo;
+
+                    // build Dist Url for fetching....
+
+
                 }
                 // var_dump( $packageObj ); 
-
-
-                
+                $packages[ $package->name ] = $package;
             }
 
         }
 
-        // $url = $baseurl . '/p/packages.xml';
-        // var_dump( $xml ); 
+        // save to channel object.
+        return $this->packagesInfo = $packages;
     }
 
     function getPackage()
@@ -225,6 +231,10 @@ class Channel
 
     }
 
+    function __sleep()
+    {
+        return array( 'name' , 'alias' , 'summary' , 'primary' , 'mirrors' , 'packagesInfo' );
+    }
+
+
 }
-
-

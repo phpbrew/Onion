@@ -15,6 +15,7 @@ class ChannelDiscoverTest extends \PHPUnit_Framework_TestCase
         isa_ok( '\Onion\Pear\Channel' , $channel );
 
         $packages = $channel->getAllPackages();
+
     }
 }
 

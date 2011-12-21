@@ -26,7 +26,6 @@ class Package
     public $releases = array();
     public $deps = array();
 
-
     public function __sleep()
     {
         return array('name','summary','channel','desc','license','latest','stable','alpha','beta','releases','deps');
