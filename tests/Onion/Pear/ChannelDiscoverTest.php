@@ -14,10 +14,7 @@ class ChannelDiscoverTest extends \PHPUnit_Framework_TestCase
         ok( $channel );
         isa_ok( '\Onion\Pear\Channel' , $channel );
 
-        ini_set('apc.enable_cli',true);
-
         $packages = $channel->getAllPackages();
-        var_dump( $packages ); 
     }
 }
 

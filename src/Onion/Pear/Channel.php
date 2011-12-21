@@ -208,7 +208,7 @@ class Channel
                     */
                     $packageObj->deps[ $version ] = $depInfo;
                 }
-                var_dump( $packageObj ); 
+                // var_dump( $packageObj ); 
 
 
                 

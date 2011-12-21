@@ -32,12 +32,20 @@ class Package
         return array('name','summary','channel','desc','license','latest','stable','alpha','beta','releases','deps');
     }
 
-    public function getData()
+    public function __wakeup()
     {
+
+    }
+
+    public function toArray()
+    {
+        return (array) $this;
+
         $a = array('name','summary','channel','desc','license','latest','stable','alpha','beta','releases','deps');
         foreach( array() as $k ) {
             $a[ $k ] = $this->{ $k };
         }
         return $a;
     }
+
 }
