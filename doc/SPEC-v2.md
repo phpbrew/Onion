@@ -103,9 +103,9 @@ validate fields are:
 
 # Dependency section
 
-The required dependency is defined in `[required]` section.
+The require dependency is defined in `[require]` section.
 
-`[required]` is optional.
+`[require]` is optional.
 
 The optional dependency is defined in `[optional]` section.
 
@@ -119,41 +119,41 @@ To specify minimal required version:
 
 To specify max required version:
 
-    pkg = < 0.1.0
+    pkg = "< 0.1.0"
 
 Specify minimal and max required version:
 
-    pkg = 0.001 <=> 0.1.0
-
+    pkg = "0.001 <=> 0.1.0"
 
 ## Format of PHP dependency
 
-    php = {version expression}
+    php = "{version expression}"
 
 For example:
 
-    php = 5.3
+    php = "5.3"
 
 Optional.
 Default: 5.3
 
 ## Format of pearinstaller dependency
 
-    pearinstaller = {version expression}
+    pearinstaller = "{version expression}"
 
 For example:
 
-    pearinstaller = 1.4.1
+    pearinstaller = "1.4.1"
 
 Optional:
 Default: 1.4
 
-## Format of package dependency
+## Format of PEAR package dependency
 
-    {channel name}/{packagename} = {version expression}
-    {channel domain}/{packagename} = {version expression}
+Specify channel host and your package name
 
-## Format of URI dependency
+    {channel host}/{packagename} = {version expression}
+
+## Format of PEAR package dependency from URI
 
     {packagename} = {URI}
 
@@ -163,11 +163,11 @@ For example:
 
 ## Format of extension dependency
 
-    ext/{extension name} = {version expression}
+    ext/{extension name} = "{version expression}"
 
 Or
 
-    extension/{extension name} = {version expression}
+    extension/{extension name} = "{version expression}"
 
 For example:
 
@@ -175,37 +175,54 @@ For example:
     ext/ctype = 
     ext/pcre = 
 
-
 # Special Dependency Section
+
+For PEAR type packages, we don't need to specify autoload path.
+
+For library type packages, we need to specify autoload path for autoloading packages.
 
 ## Format of SVN resource dependency
 
-[require pkgname]
-svn = http://host.com/to/svn/trunk
-revision = HEAD
-library = src
-
-XXX: we check package.ini or use package.xml (pear compatible) to check library path.
-library path check priority ( ".", "src" )
+    [require pkgname]
+    type = pear
+    svn = http://host.com/to/svn/trunk
+    revision = HEAD
 
 ## Format of Git resource dependency
 
-[require pkgname]
-git = git://github.com/c9s/GetOptionKit.git
-branch = master
-library = src
+For PEAR type package resource:
+
+    [require pkgname]
+    type = pear
+    git  = git://github.com/c9s/GetOptionKit.git
+    branch = master
+
+For Library type package resource:
+
+    [require pkgname]
+    type = library
+    git = git://github.com/c9s/GetOptionKit.git
+    autoload = lib
 
 ## Format of GitHub resource dependency
 
-[require symfony]
-github = symfony/symfony
-protocol = http
-branch = master
-library = src
+    [require pkgname]
+    type = library
+    github = foo/bar
+    protocol = http
+    branch = master
+    autoload = src
+
+## Format of URL resource dependency
+
+    [require pkgname]
+    type = library
+    url  = http://.........
+    autoload = src
 
 # Optional dependency section
 
-the spec is inherited from `[required]` section.
+The spec is inherited from `[require]` section.
 
 ## Optional Group
 
