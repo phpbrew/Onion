@@ -43,7 +43,7 @@ class Channel
      *
      * Contains the information of packages of current channel.
      */
-    public $packagesInfo = array();
+    public $packages = array();
 
     function __construct()
     {
@@ -113,9 +113,6 @@ class Channel
         $categoryXml = $dm->downloadXml($restBaseurl . "/c/categories.xml");
         $categories = $categoryXml->getElementsByTagName("c");
 
-        $packages = array(
-        
-        );
 
         foreach ($categories as $category) {
 
@@ -217,13 +214,13 @@ class Channel
 
                 }
                 // var_dump( $packageObj ); 
-                $packages[ $package->name ] = $package;
+                $this->packages[ $packageObj->name ] = $packageObj;
             }
 
         }
 
         // save to channel object.
-        return $this->packagesInfo = $packages;
+        return $this->packages;
     }
 
     function getPackage()
@@ -233,8 +230,7 @@ class Channel
 
     function __sleep()
     {
-        return array( 'name' , 'alias' , 'summary' , 'primary' , 'mirrors' , 'packagesInfo' );
+        return array( 'name' , 'alias' , 'summary' , 'primary' , 'mirrors' , 'packages' );
     }
-
 
 }

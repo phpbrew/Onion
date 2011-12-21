@@ -16,6 +16,13 @@ class ChannelDiscoverTest extends \PHPUnit_Framework_TestCase
 
         $packages = $channel->getAllPackages();
 
+        $str = serialize( $channel );
+        ok( $str );
+
+        $channelNew = unserialize( $str );
+        ok( $channelNew );
+
+        ok( $channelNew->packages );
     }
 }
 
