@@ -38,9 +38,21 @@ class Channel
     public $mirrors = array();
 
 
+    /**
+     * Packages info
+     *
+     * Contains the information of packages of current channel.
+     */
+    public $packagesInfo = array();
+
     function __construct()
     {
-        // $this->info = $info;
+
+    }
+
+    function loadCache()
+    {
+        // XXX: try to load channel info from cache.
     }
 
     function getName()
@@ -81,9 +93,15 @@ class Channel
     }
 
 
+    function getAllPackages()
+    {
+        return $this->prefetchPackagesInfo();
+    }
+
+
 
     // cache this.
-    function getAllPackages()
+    function prefetchPackagesInfo()
     {
         $dm = new DownloaderManager;
 
@@ -94,15 +112,20 @@ class Channel
 
         $categoryXml = $dm->downloadXml($restBaseurl . "/c/categories.xml");
         $categories = $categoryXml->getElementsByTagName("c");
+
+
         foreach ($categories as $category) {
 
             // path like: /rest/c/Default/info.xml
             $categoryLink = $category->getAttribute("xlink:href");
             $categoryLink = str_replace("info.xml", "packagesinfo.xml", $categoryLink);
             $packagesInfoXml = $dm->downloadXml( $baseurl . '/' . $categoryLink);
-            $packages = $packagesInfoXml->getElementsByTagName('pi');
+            $packagesInfo = $packagesInfoXml->getElementsByTagName('pi');
+            foreach( $packagesInfo as $package ) {
 
-            foreach( $packages as $package ) {
+
+                // build package information
+
                 // echo $package->C14N();
                 $p = $package->getElementsByTagName('p')->item(0);
                 $packageName    = $p->getElementsByTagName('n')->item(0)->nodeValue;
@@ -111,20 +134,60 @@ class Channel
                 $packageChannel = $p->getElementsByTagName('c')->item(0)->nodeValue;
                 $packageLicense = $p->getElementsByTagName('l')->item(0)->nodeValue;
 
+
+                $packageObj = new Package;
+                $packageObj->name = $packageName;
+                $packageObj->summary = $packageSummary;
+                $packageObj->desc = $packageDesc;
+                $packageObj->channel = $packageChannel;
+                $packageObj->license = $packageLicense;
+                $packageObj->releases = array();
+                $packageObj->deps = array();
+
+                $latestStable = 0;
+                $latestAlpha = 0;
+                $latestBeta = 0;
+                $latest = 0;
                 $releases = $package->getElementsByTagName('a')->item(0)->getElementsByTagName('r');
                 foreach( $releases as $release ) {
                     $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
                     $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
 
-                    // var_dump( $version , $stability ); 
+                    $packageObj->releases[ $version ] = $stability;
+
+                    if( version_compare( $version , $latest ) === 1 ) {
+                        $latest = $version;
+                    }
+
+                    switch( $stability ) {
+                    case 'stable':
+                        if( version_compare( $version , $latestStable ) === 1 ) {
+                            $latestStable = $version;
+                        }
+                        break;
+                    case 'alpha':
+                        if( version_compare( $version , $latestAlpha ) === 1 ) {
+                            $latestAlpha = $version;
+                        }
+                        break;
+                    case 'beta':
+                        if( version_compare( $version , $latestBeta ) === 1 ) {
+                            $latestBeta = $version;
+                        }
+                        break;
+                    }
                 }
+
+                $packageObj->stable = $latestStable;
+                $packageObj->alpha = $latestAlpha;
+                $packageObj->beta = $latestBeta;
+                $packageObj->latest = $latest;
+
 
                 $deps = $package->getElementsByTagName('deps');
                 foreach( $deps as $dep ) {
                     $version = $dep->getElementsByTagName('v')->item(0)->nodeValue;
                     $depInfo = unserialize($dep->getElementsByTagName('d')->item(0)->nodeValue);
-                    var_dump( $depInfo ); 
-
                     /*
                      * depInfo structure:
                         array(1) {
@@ -143,9 +206,12 @@ class Channel
                             }
                         }
                     */
-
+                    $packageObj->deps[ $version ] = $depInfo;
                 }
+                var_dump( $packageObj ); 
 
+
+                
             }
 
         }

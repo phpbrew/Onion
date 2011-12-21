@@ -28,7 +28,6 @@ class ChannelDiscover
             $url = 'https://' . $pearhost . '/channel.xml';
             $xmlstr = $downloader->fetch($url);
         }
-
         $parser = new ChannelParser;
         $channel = $parser->parse( $xmlstr );
         return $channel;

@@ -89,7 +89,6 @@ class DownloaderManager
         return $xml;
     }
 
-
     /**
      * for singleton instance 
      */
