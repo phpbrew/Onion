@@ -175,13 +175,17 @@ EOT;
                 );
                 break;
 
-            case 'package':
+            case 'pear':
                 $depinfo = $this->parseDependency($key,$value);
-
                 var_dump( $depinfo ); 
 
                 // $this->buildDependencyItem($section,$depinfo);
                 break;
+
+            default:
+                throw new InvalidConfigException("Unsupported dependency type: $type ");
+                break;
+
             }
         }
 
@@ -211,7 +215,6 @@ EOT;
 		// support extension/{extension name} = {version expression}
 		if( preg_match('/^ext(?:ension)?\/\w+/',$key) )
 			return 'extension';
-
 
 		// otherwisze it's a package
 		return 'pear';
