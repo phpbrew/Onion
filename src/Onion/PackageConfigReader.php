@@ -118,9 +118,6 @@ EOT;
         $pkginfo->summary = $config->get('package.summary');
         $pkginfo->version = $config->get('package.version');
         $pkginfo->stability = $config->get('package.stability');
-
-
-
         return $pkginfo;
     }
 

@@ -12,15 +12,24 @@ namespace Onion;
 
 class Package
 {
-
     public $name;
     public $version;
     public $desc;
+    public $summary;
+    public $stability;
 
     /** 
      * ConfigContainer object
      */
     public $config;
+
+    public function getResource($packageName)
+    {
+        if( $config->has( 'resource ' . $packageName ) )
+            return $config->get( 'resource ' . $packageName );
+    }
+
+
 
 
 }
