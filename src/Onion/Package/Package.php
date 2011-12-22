@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  */
-namespace Onion;
+namespace Onion\Package;
 
 class Package
 {
@@ -16,7 +16,27 @@ class Package
     public $version;
     public $desc;
     public $summary;
+
+    public $apiVersion;
+
+    public $license;
+    public $licenseUri;
+
+    /** 
+     * main stability 
+     */
     public $stability;
+
+    /**
+     * api stability
+     */
+    public $apiStability;
+
+    /**
+     * release stability
+     */
+    public $releaseStability;
+    
 
     /** 
      * ConfigContainer object
@@ -29,6 +49,15 @@ class Package
             return $config->get( 'resource ' . $packageName );
     }
 
+    public function getDefaultStructureConfig()
+    {
+        // directory structure
+        return array(
+            'doc' => 'doc',
+            'tests' => 'tests',
+            'php' => array('src'),
+        );
+    }
 
 
 }

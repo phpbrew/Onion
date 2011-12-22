@@ -16,6 +16,7 @@ use Exception;
 use SplFileInfo;
 use Onion\ConfigContainer;
 use Onion\SpecUtils;
+use Onion\Package\Package;
 
 /**
  *
@@ -118,91 +119,41 @@ EOT;
         $pkginfo->summary = $config->get('package.summary');
         $pkginfo->version = $config->get('package.version');
         $pkginfo->stability = $config->get('package.stability');
+
+        $pkginfo->apiVersion = $config->get('package.version.api');
+        $pkginfo->apiStability = $config->get('package.stability.api');
+        $pkginfo->releaseStability = $config->get('package.stability.release');
+        $pkginfo->license = $config->get('package.license');
+        $pkginfo->licenseUri = $config->get('package.license.uri');
+
+
+        // read dependency sections
+
+        // checking dependencies
+        $logger->info("Configuring dependencies...");
+        if( ! $config->has('require') ) {
+            $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
+            $config->require = array(
+                'php' => '5.3',
+                'pearinstaller' => '1.4',
+            );
+        }
+
         return $pkginfo;
     }
-
 }
 
 class PackageConfigReader2
 {
-    public $file;
-    public $config;
-    public $logger;
-
-    function __construct( $logger, $file = 'package.ini')
-    {
-        $this->logger = $logger;
-        $this->file = $file;
-        if( ! file_exists($file) ) {
-            $logger->error( "$file not found." );
-            exit(1);
-        }
-
-        try {
-            $this->config = new ConfigContainer( parse_ini_file( $this->file , true ) );
-        } 
-        catch ( Exception $e ) {
-            $logger->error( "$file syntax error." );
-            $logger->error( $e->getMessage() );
-            exit(1);
-        }
-    }
 
     /* read package.ini as package.xml, to make the config package.xml 2.0 
      * compatible */
     function readAsPackageXml()
     {
-        // prepare config data
-        $config = & $this->config;
-        $logger = $this->logger;
-
-        /* check required attributes */
-        if( ! $config->has('package.name') ) {
-            $logger->error('package.name is not defined.');
-            # echo "\n\n";
-            # echo "\t[package]\n";
-            # echo "\tname = {your package name}\n\n";
-            exit(1);
-        }
-
-        if( ! $config->has('package.desc') ) {
-            $logger->error('package.desc is not defined.');
-            exit(1);
-        }
-
-        if( ! $config->has('package.version') ) {
-            $logger->error('package.version is not defined.');
-            exit(1);
-        }
-
-        if( ! $config->has('package.author') && ! $config->has('package.authors') ) {
-            $logger->error('package author or authors is not defined.');
-
-            echo "Attribute 'author' or 'authors' is not defined.\n";
-            echo "Please define 'author' in your package.ini file: \n\n";
-            echo "[package]\n";
-            echo "author = Name \"username\" <email@domain.com>\n\n";
-            exit(1);
-        }
-
-
-
-        /* check optional attributes */
-        if( ! $config->has('package.license') ) {
-            $logger->info2("* license is not defined., use PHP license by default.",1);
-            $config->set('package.license','PHP LICENSE');
-        }
-
-
-        // XXX: check authors[] config
-
-
         /* XXX: support license section
             *
             * <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
             */
-
-
 
         /**
          * package xml must have some default value
@@ -229,22 +180,22 @@ class PackageConfigReader2
         }
 
         // apply api_version from 'version', if not specified.
-        if( ! $config->has('package.version-api') ) {
+        if( ! $config->has('package.version.api') ) {
             $config->set('package.version-api',$config->get('package.version'));
         }
 
         if( $config->has('package.stability') ) {
             $s = $config->get('package.stability');
-            $config->set('package.stability-release', $s );
-            $config->set('package.stability-api', $s );
+            $config->set('package.stability.release', $s );
+            $config->set('package.stability.api', $s );
         }
 
         if( ! $config->has('package.stability') &&
-            ! $config->has('package.stability-release') &&
-            ! $config->has('package.stability-api') ) {
+            ! $config->has('package.stability.release') &&
+            ! $config->has('package.stability.api') ) {
             $logger->info2("* package.stability is not set, use alpha by default",1);
-            $config->set('package.stability-release', 'alpha' );
-            $config->set('package.stability-api', 'alpha' );
+            $config->set('package.stability.release', 'alpha' );
+            $config->set('package.stability.api', 'alpha' );
         }
 
         /* XXX: check stability valid keywords */

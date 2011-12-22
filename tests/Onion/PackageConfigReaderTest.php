@@ -39,7 +39,6 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
         ok( $pkg->summary );
         ok( $pkg->desc );
         ok( $pkg->stability );
-            
 
     }
 }
