@@ -8,14 +8,11 @@
  * file that was distributed with this source code.
  *
  */
-namespace Onion;
+namespace Onion\Exception;
+use Exception;
 
-interface LoggableInterface
+class InvalidConfigException extends Exception
 {
-    function setLogger( \CLIFramework\Logger $logger );
 
-    // we use __call magic to call logger
-    // function info($msg,$level = 0);
-    // function info2($msg,$level = 0);
 }
 

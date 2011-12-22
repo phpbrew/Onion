@@ -10,12 +10,20 @@
  */
 namespace Onion;
 
-interface LoggableInterface
+class Package
 {
-    function setLogger( \CLIFramework\Logger $logger );
 
-    // we use __call magic to call logger
-    // function info($msg,$level = 0);
-    // function info2($msg,$level = 0);
+    public $name;
+    public $version;
+    public $desc;
+
+    /** 
+     * ConfigContainer object
+     */
+    public $config;
+
+
 }
+
+
 

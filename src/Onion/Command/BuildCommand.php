@@ -68,8 +68,11 @@ EOT;
 
 
         $logger->info( 'Configuring package.ini' );
-        $config = new PackageConfigReader($logger);
-        $config->readAsPackageXml();
+        $config = new PackageConfigReader();
+        $config->setLogger( $logger );
+        $config->read( 'package.ini' );
+
+        # $config->readAsPackageXml();
         $xml = $config->generatePackageXml();
 
         /*

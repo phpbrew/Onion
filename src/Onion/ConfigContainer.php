@@ -87,8 +87,9 @@ class ConfigContainer
             if( isset($ref[$path]) ) {
                 $ref = & $ref[$path];
             } else {
+                return null;
                 // debug_print_backtrace();
-                throw new Exception("config key $refstr is undefined.");
+                // throw new Exception("config key $refstr is undefined.");
             }
         }
         return $ref;

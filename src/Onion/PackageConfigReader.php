@@ -36,7 +36,97 @@ use Onion\SpecUtils;
  *      $pkgxml->generate('package.xml');
  *
  */
-class PackageConfigReader
+class PackageConfigReader 
+    implements LoggableInterface 
+{
+    public $logger;
+
+    function __construct()
+    {
+    }
+
+    function setLogger( \CLIFramework\Logger $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    function getLogger()
+    {
+        return $this->logger;
+    }
+
+    function __call($name,$arguments)
+    {
+        if( $this->logger )
+            call_user_func_array( array($this->logger,$name) , $arguments );
+    }
+
+    function read($file)
+    {
+        $logger = $this->getLogger();
+        $ini = null;
+        try {
+            $ini = parse_ini_file( $file , true );
+        }
+        catch( Exception $e ) {
+            throw new Exception( "Package.ini: $file syntax error: " . $e->getMessage() );
+        }
+
+        if( ! $ini )
+            throw new Exception( "$file is empty." );
+
+        $config = new ConfigContainer( $ini );
+
+        // preprocess, validate sections only for package.ini
+        $pkginfo = new Package;
+        $pkginfo->config = $config;
+
+        // validation 
+        $requiredFields = explode(' ','package.name package.desc package.version');
+        foreach( $requiredFields as $f ) {
+            if( ! $config->has( $f ) )
+                throw new \Onion\Exception\InvalidConfigException( "$f is not defined." );
+        }
+
+        if( ! $config->has('package.authors') && ! $config->has('package.author') ) {
+            echo <<<EOT
+Attribute 'author' or 'authors' is not defined.
+Please define 'author' in your package.ini file:
+
+[package]
+author = Name <email@domain.com>
+EOT;
+            throw new \Onion\Exception\InvalidConfigException('package.author or package.authors is not defined.');
+        }
+
+
+        // set default values
+        if( ! $config->has('package.summary') ) {
+            $logger->debug("* summary is not defined., use the first paragraph from description by default.",1);
+            $descs = explode("\n",$config->get('package.desc'));
+            $config->set('package.summary',$descs[0]);  # use first line desc as summary by default.
+        }
+
+        if( ! $config->has('package.license') ) {
+            $logger->debug("* license is not defined., use PHP license by default.",1);
+            $config->set('package.license','PHP');
+        }
+
+        // build package meta info
+        $pkginfo->name = $config->get('package.name');
+        $pkginfo->desc = $config->get('package.desc');
+        $pkginfo->summary = $config->get('package.summary');
+        $pkginfo->version = $config->get('package.version');
+        $pkginfo->stability = $config->get('package.stability');
+
+
+
+        return $pkginfo;
+    }
+
+}
+
+class PackageConfigReader2
 {
     public $file;
     public $config;
@@ -101,12 +191,6 @@ class PackageConfigReader
 
 
         /* check optional attributes */
-
-        if( ! $config->has('package.summary') ) {
-            $descs = explode("\n",$config->get('package.desc'));
-            $config->set('package.summary',$descs[0]);  # use first line desc as summary by default.
-        }
-
         if( ! $config->has('package.license') ) {
             $logger->info2("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP LICENSE');
@@ -121,6 +205,11 @@ class PackageConfigReader
             * <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
             */
 
+
+
+        /**
+         * package xml must have some default value
+         */
         if( ! $config->has('package.channel' ) ) {
             $logger->info2("* package channel is not defined. use pear.php.net by default.",1);
             $config->set('package.channel','pear.php.net');

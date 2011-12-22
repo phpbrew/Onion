@@ -5,6 +5,7 @@
          backupGlobals="false"
          verbose="true"
          syntaxCheck="true"
+         colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
