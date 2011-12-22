@@ -111,6 +111,11 @@ The optional dependency is defined in `[optional]` section.
 
 `[optional]` is optional.
 
+For example,
+
+    [optional]
+    channel/pkg = 0.0.1
+
 ## Dependency Version Expression
 
 To specify minimal required version:
@@ -134,6 +139,7 @@ For example:
     php = "5.3"
 
 Optional.
+
 Default: 5.3
 
 ## Format of pearinstaller dependency
@@ -183,7 +189,10 @@ For library type packages, we need to specify autoload path for autoloading pack
 
 ## Format of SVN resource dependency
 
-    [require pkgname]
+    [require]
+    pkgname = resource   ; define the package requirement information later in [resource] section.
+
+    [resource pkgname]
     type = pear
     svn = http://host.com/to/svn/trunk
     revision = HEAD
@@ -192,21 +201,24 @@ For library type packages, we need to specify autoload path for autoloading pack
 
 For PEAR type package resource:
 
-    [require pkgname]
+    [require]
+    pkgname = resource   ; define the package requirement information later in [resource] section.
+
+    [resource pkgname]
     type = pear
     git  = git://github.com/c9s/GetOptionKit.git
     branch = master
 
 For Library type package resource:
 
-    [require pkgname]
+    [resource pkgname]
     type = library
     git = git://github.com/c9s/GetOptionKit.git
     autoload = lib
 
 ## Format of GitHub resource dependency
 
-    [require pkgname]
+    [resource pkgname]
     type = library
     github = foo/bar
     protocol = http
@@ -215,16 +227,17 @@ For Library type package resource:
 
 ## Format of URL resource dependency
 
-    [require pkgname]
+    [resource pkgname]
     type = library
     url  = http://.........
     autoload = src
 
-# Optional dependency section
+
+# Optional PEAR package dependency section
 
 The spec is inherited from `[require]` section.
 
-## Optional Group
+## Optional Group of PEAR Package Dependency
 
 You can define optional dependencies by groups.
 
@@ -242,10 +255,16 @@ In PEAR2's package.xml we wrote optional groups as below:
 
 You can define your optional dependency group as below:
 
-    [optional "SSH"]
+    [optionalgroup "SSH"]
     hint = Add support for Remote Shell Operations
     pear.php.net/SSH_RemoteShell = 
     extensions[] = ssh2
+    special = resource   ; define the package requirement information later in [resource] section.
+
+# Optional Special package dependency section
+
+    [resource special]
+    type = library
 
 # Role section
 
