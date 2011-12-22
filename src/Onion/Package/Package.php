@@ -36,6 +36,18 @@ class Package
      * release stability
      */
     public $releaseStability;
+
+
+    /**
+     * core dependencies: php and pearinstaller (optional)
+     */
+    public $coreDeps = array();
+
+
+    /**
+     * package dependencies
+     */
+    public $deps = array();
     
 
     /** 
@@ -53,11 +65,15 @@ class Package
     {
         // directory structure
         return array(
-            'doc' => 'doc',
-            'tests' => 'tests',
-            'php' => array('src'),
+            'doc'    => array('doc','examples'),
+            'tests'  => (array) 'tests',
+            'php'    => (array) 'src',
+            'script' => (array) 'bin',
+            'data'   => (array) 'data',
         );
     }
+
+
 
 
 }

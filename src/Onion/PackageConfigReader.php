@@ -131,13 +131,19 @@ EOT;
 
         // checking dependencies
         $logger->info("Configuring dependencies...");
+
+        if( $config->has('required') )
+            $logger->warn( 'section "required" has been renamed to "require".' );
+
         if( ! $config->has('require') ) {
+
+            // use default core dependency 
             $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
-            $config->require = array(
-                'php' => '5.3',
-                'pearinstaller' => '1.4',
-            );
+            $pkginfo->coreDeps[] = array( 'php' => array( 'min' => '5.3' ) );
+            $pkginfo->coreDeps[] = array( 'pearinstaller' => array( 'min' => '1.4' ) );
         }
+
+
 
         return $pkginfo;
     }
