@@ -55,6 +55,11 @@ class Package
      */
     public $config;
 
+
+
+    /**
+     * return external package resource
+     */
     public function getResource($packageName)
     {
         if( $config->has( 'resource ' . $packageName ) )

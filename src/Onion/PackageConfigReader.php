@@ -139,14 +139,145 @@ EOT;
 
             // use default core dependency 
             $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
-            $pkginfo->coreDeps[] = array( 'php' => array( 'min' => '5.3' ) );
-            $pkginfo->coreDeps[] = array( 'pearinstaller' => array( 'min' => '1.4' ) );
+            $pkginfo->coreDeps[] = array(
+                'type' => 'core',
+                'name' => 'php',
+                'version' => array( 'min' => '5.3' ),
+            );
+            $pkginfo->coreDeps[] = array( 
+                'type' => 'core',
+                'name' => 'pearinstaller',
+                'version' => array( 'min' => '1.4' ),
+            );
         }
 
 
+        foreach( $config->get('require') as $key => $value ) 
+        {
+            $type = $this->detectDependencyType( $key , $value );
+            switch($type) {
+
+            case 'core':
+                $version = SpecUtils::parseVersion( $value );
+                $pkginfo->coreDeps[] = array( 
+                    'type' => 'core',
+                    'name' => $key,
+                    'version' => $version,  /* [ min => , max => ] */
+                );
+                break;
+
+            case 'extension':
+                $depinfo = $this->parseDependency($key,$value);
+                $pkginfo->deps[] = array(
+                    'type' => 'extension',
+                    'name' => $depinfo['name'],
+                    'version' => $depinfo['version'],
+                );
+                break;
+
+            case 'package':
+                $depinfo = $this->parseDependency($key,$value);
+
+                var_dump( $depinfo ); 
+
+                // $this->buildDependencyItem($section,$depinfo);
+                break;
+            }
+        }
 
         return $pkginfo;
     }
+
+
+	/* 
+	 *
+	 * format 1:
+	 *		channel/pkg name = version expression 
+	 *
+	 * format 2:
+	 *
+	 *		pkg name = {URI} resources
+	 *
+	 * format 3:
+	 *		pkg name = {VCS};{URI};{branch or revision}
+	 *
+	 * */
+	function detectDependencyType($key,$value = null)
+	{
+		if( in_array($key, array('pearinstaller','php') ) ) {
+			return 'core';
+		}
+
+		// support extension/{extension name} = {version expression}
+		if( preg_match('/^ext(?:ension)?\/\w+/',$key) )
+			return 'extension';
+
+
+		// otherwisze it's a package
+		return 'pear';
+	}
+
+
+
+	/**
+	 */
+	function parseDependency($key,$value)
+	{
+		// format:  {channel domain}/{package name} = {version expression}
+		if( preg_match('/^([a-zA-Z0-9.]+)\/(\w+)$/' , $key , $regs ) ) 
+		{
+			if( $value != 'conflict' )
+			{
+				return array(
+					'type'     => 'pear',
+					'name'     => $regs[2],
+					'version' => SpecUtils::parseVersion($value),
+					'resource' => array( 
+						'type'     => 'channel',
+						'resource' => $regs[1],
+					)
+				);
+			}
+			else {
+				return array(
+					'type'     => 'pear',
+					'name'     => $regs[2],
+					'conflict' => 1,
+					'resource' => array( 
+						'type'     => 'channel',
+						'resource' => $regs[1],
+					)
+				);
+			}
+
+		}
+		elseif( preg_match('/^ext(?:ension)?\/(\w+)$/',$key,$regs) ) {
+			return array(
+				'type'    => 'extension',
+				'name'    => $regs[1],
+				'version' => SpecUtils::parseVersion($value),
+			);
+		}
+		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
+		{
+			// PEAR package with URI format
+			if( preg_match('/^https?:\/\//',$value) ) {
+				return array(
+					'type' => 'pear',
+					'name' => $key,
+					'resource' => array(
+						'type' => 'uri',
+						'resource'  => $value,
+					),
+				);
+			}
+		}
+		else {
+			throw new Exception("Unknown dependency type.");
+		}
+	}
+
+
 }
 
 class PackageConfigReader2
@@ -246,7 +377,7 @@ class PackageConfigReader2
             $pkg->uri  = $depinfo['uri'];
             break;
 
-        case 'package':
+        case 'pear':
             $pkg = $section->addChild('package');
             $pkg->name    = $depinfo['name'];
             $pkg->channel = $depinfo['channel'];
@@ -281,7 +412,6 @@ class PackageConfigReader2
 
             case 'core':
                 $version = SpecUtils::parseVersion( $value );
-                $el = $section->addChild( $key );
                 if( isset( $version['min'] ) )
                     $el->addChild( 'min' , $version['min'] );
                 if( isset( $version['max'] ) )
