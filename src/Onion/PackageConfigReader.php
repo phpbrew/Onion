@@ -21,7 +21,8 @@ use Onion\SpecUtils;
  *
  * package ini file reader:
  *
- *      $reader = new PackageIniReader;
+ *      $reader = new PackageIniReader();
+ *      $reader->setLogger( $logger );
  *      $pkginfo = $reader->read( 'file.ini' );
  *
  *      $pkginfo->get( 'config' );
@@ -29,7 +30,10 @@ use Onion\SpecUtils;
  *      $pkginfo->get( 'section.name' );
  *
  *      $pkgxml = new PackageXmlGenerator( $pkginfo );
- *      $pkgxml->generate();
+ *      $pkgxml->setLogger( $logger );
+ *      $pkgxml->useDefaultOptions(true);
+ *      $pkgxml->setReformat(true);
+ *      $pkgxml->generate('package.xml');
  *
  */
 class PackageConfigReader
