@@ -66,6 +66,7 @@ EOT;
         else
             $logger->warn( '* doc/ directory not found.',1 );
 
+
         $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader($logger);
         $config->readAsPackageXml();

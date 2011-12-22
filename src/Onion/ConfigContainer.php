@@ -11,6 +11,22 @@
 namespace Onion;
 use Exception;
 
+
+/**
+ * ini config container provides an interface for retrive strucutre config value
+ *
+ *  [section]
+ *  name = value
+ *
+ *  $config->get('section.name');
+ *
+ *
+ *  [section]
+ *  name.subname = value
+ *
+ *  $config->get('section.name.subname')
+ *
+ */
 class ConfigContainer 
 {
     public $array;
@@ -37,7 +53,7 @@ class ConfigContainer
 
     function has( $refstr ) 
     {
-        $paths = explode('.',$refstr);
+        $paths = explode('.',$refstr,2);
         $ref = & $this->array;
         foreach( $paths as $p ) {
             if( ! isset( $ref[ $p ] ) )
@@ -49,7 +65,7 @@ class ConfigContainer
 
     function set( $refstr , $v ) 
     {
-        $paths = explode('.',$refstr);
+        $paths = explode('.',$refstr,2);
         $ref = & $this->array;
         foreach( $paths as $p ) {
             if( ! isset( $ref[ $p ] ) ) {
@@ -65,7 +81,7 @@ class ConfigContainer
 
     function get( $refstr )
     {
-        $paths = explode('.',$refstr);
+        $paths = explode('.',$refstr,2);
         $ref = $this->array;
         foreach( $paths as $path ) {
             if( isset($ref[$path]) ) {

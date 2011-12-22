@@ -17,6 +17,21 @@ use SplFileInfo;
 use Onion\ConfigContainer;
 use Onion\SpecUtils;
 
+/**
+ *
+ * package ini file reader:
+ *
+ *      $reader = new PackageIniReader;
+ *      $pkginfo = $reader->read( 'file.ini' );
+ *
+ *      $pkginfo->get( 'config' );
+ *      $pkginfo->get( 'config.name' );
+ *      $pkginfo->get( 'section.name' );
+ *
+ *      $pkgxml = new PackageXmlGenerator( $pkginfo );
+ *      $pkgxml->generate();
+ *
+ */
 class PackageConfigReader
 {
     public $file;
@@ -430,6 +445,7 @@ XML;
             die( $e->getMessage() );
         } 
     }
-
 }
+
+
 

@@ -5,7 +5,7 @@ class ConfigContainerTest extends PHPUnit_Framework_TestCase
     {
         $config = new \Onion\ConfigContainer(array( 
             'key' => array( 
-                'subkey' => array( 'hash' => 1 ),
+                'subkey.hash' => 1
             )
         ));
         ok( $config );
@@ -23,7 +23,6 @@ class ConfigContainerTest extends PHPUnit_Framework_TestCase
 
         ok( ! $config->has('non') );
         ok( $config->has('key') );
-        ok( $config->has('key.subkey') );
         ok( $config->has('key.subkey2') );
         ok( $config->has('key.subkey.hash3') );
     }
