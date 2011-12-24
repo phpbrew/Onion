@@ -8,7 +8,8 @@
  * file that was distributed with this source code.
  *
  */
-namespace Onion\Pear;
+namespace tests\Onion\Pear;
+
 class PackageXmlParserTest extends \PHPUnit_Framework_TestCase 
 {
     function test() 
@@ -99,7 +100,7 @@ class PackageXmlParserTest extends \PHPUnit_Framework_TestCase
     </phprelease>
 </package>
 EOT;
-        $p = new PackageXmlParser( $xmlstr );
+        $p = new \Onion\Pear\PackageXmlParser( $xmlstr );
         ok( $p );
         $list = $p->getContentFiles();
 
@@ -107,7 +108,7 @@ EOT;
 
         ok( $list = $p->getContentFilesByRole( 'php' ));
 
-        var_dump( $list ); 
+        // var_dump( $list ); 
         
         $filelist = $p->getPhpReleaseFileList();
         ok( $filelist );

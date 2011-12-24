@@ -17,6 +17,7 @@ namespace Onion;
 class Installer 
 {
     public $manager;
+    public $workspace;
 
 
     /**
@@ -26,18 +27,27 @@ class Installer
     function __construct( \Onion\Dependency\DependencyManager $manager)
     {
         $this->manager = $manager;
+
+        // create workspace for temporary files
+        $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
+        if( !  file_exists($workspace) )
+            mkdir( $workspace , 0755, true );
+    }
+
+    function getWorkspace()
+    {
+        return $this->workspace;
     }
 
     function getLibraryInstaller()
     {
-        return new Installer\LibraryInstaller;
+        return new Installer\LibraryInstaller( $this );
     }
 
     function getPearInstaller()
     {
-        return new Installer\PearInstaller;
+        return new Installer\PearInstaller( $this );
     }
-
 
     function install()
     {

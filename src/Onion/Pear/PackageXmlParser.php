@@ -37,7 +37,6 @@ class ContentFile
     {
         $this->file = $file;
     }
-
 }
 
 class PackageXmlParser
@@ -56,7 +55,6 @@ class PackageXmlParser
             throw new Exception;
         }
     }
-
 
 
     /**
@@ -109,7 +107,7 @@ class PackageXmlParser
         return $files;
     }
 
-    function getPhpReleaseFileList()
+    public function getPhpReleaseFileList()
     {
         // xxx: some packages like sfYAML uses phprelease tag to use 'install-as'
         $phprelease = $this->xml->phprelease;
@@ -122,7 +120,7 @@ class PackageXmlParser
         return $filelist;
     }
 
-    function getContentFilesByRole($role)
+    public function getContentFilesByRole($role)
     {
         $files = $this->getContentFiles();
         return array_filter( $files , function($item) use ($role) { 
@@ -130,7 +128,7 @@ class PackageXmlParser
         });
     }
 
-    function getContentFiles()
+    public function getContentFiles()
     {
         $xml = $this->xml;
         $contents = $xml->contents;

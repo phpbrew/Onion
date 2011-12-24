@@ -27,3 +27,28 @@ class CurlDownloader
         return $result;
     }
 }
+
+
+/*
+ *
+    function callback($download_size, $downloaded, $upload_size, $uploaded)
+    {
+        // do your progress stuff here
+    }
+
+    $ch = curl_init('http://www.example.com');
+
+    // This is required to curl give us some progress
+    // if this is not set to false the progress function never
+    // gets called
+    curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+
+    // Set up the callback
+    curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'callback');
+
+    // Big buffer less progress info/callbacks
+    // Small buffer more progress info/callbacks
+    curl_setopt($ch, CURLOPT_BUFFERSIZE, 128);
+
+    $data = curl_exec($ch);
+*/
