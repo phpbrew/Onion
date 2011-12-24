@@ -10,12 +10,13 @@
  */
 namespace Onion\Package;
 use Onion\Package\BasePackage;
-
+use Onion\Package\PackageInterface;
 
 /**
  * package class for package.ini
  */
 class Package extends BasePackage
+    implements PackageInterface
 {
     public $name;
     public $version;
@@ -78,6 +79,11 @@ class Package extends BasePackage
     public function getDependencies()
     {
         return $this->deps;
+    }
+
+    public function getId()
+    {
+
     }
 
 }
