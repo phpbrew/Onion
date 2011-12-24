@@ -63,14 +63,36 @@ class PackageXmlParserTest extends \PHPUnit_Framework_TestCase
                 <!-- would be installed as HTML/QuickForm/Element.php -->
             </dir>
         </dir>
+        <dir name="/">
+            <file md5sum="2b7116a9f3bf6f9e8cd914c81bf79830" name="lib/sfYaml.php" role="php" />
+            <file md5sum="28196a0efdcea67d72e1eaf71e936958" name="lib/sfYamlDumper.php" role="php" />
+            <file md5sum="cb97a7ac95e5c6df398514b43dfe9191" name="lib/sfYamlInline.php" role="php" />
+            <file md5sum="02fc0966083c293c851f2de6abb24875" name="lib/sfYamlParser.php" role="php" />
+            <file md5sum="872df9017f6485111a36d2ce9c1e8bdc" name="README.markdown" role="doc" />
+            <file md5sum="4828aab1cb984d8a5d29e1c0df3cdcbd" name="LICENSE" role="doc" />
+        </dir>
     </contents>
+    <phprelease>
+        <filelist>
+            <install as="SymfonyComponents/YAML/sfYaml.php" name="lib/sfYaml.php" />
+            <install as="SymfonyComponents/YAML/sfYamlDumper.php" name="lib/sfYamlDumper.php" />
+            <install as="SymfonyComponents/YAML/sfYamlInline.php" name="lib/sfYamlInline.php" />
+            <install as="SymfonyComponents/YAML/sfYamlParser.php" name="lib/sfYamlParser.php" />
+        </filelist>
+    </phprelease>
 </package>
 EOT;
         $p = new PackageXmlParser( $xmlstr );
         ok( $p );
         $list = $p->getContentFiles();
 
+        ok( $list ); 
+
+        ok( $list = $p->getContentFilesByRole( 'php' ));
+
         var_dump( $list ); 
+        
+        
 
     }
 }

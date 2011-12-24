@@ -14,6 +14,9 @@ use Exception;
 
 class ContentFile
 {
+    /**
+     * follows the spec of http://pear.php.net/manual/en/guide.developers.package2.contents.php
+     */
     public $file;
     public $installAs;
     public $role;
@@ -55,7 +58,9 @@ class PackageXmlParser
                 $dirname = $node['name'];
                 $baseInstallDir = @$node['baseinstalldir'];
 
-                $dirpath = $parentPath . $dirname;
+                $dirpath = $parentPath;
+                if( $dirname != '/' )
+                    $dirpath .= $dirname;
 
                 // $dirpath = $parentPath ? $parentPath . DIRECTORY_SEPARATOR . $dirname : $dirname;
                 if( $baseInstallDir )
@@ -72,6 +77,7 @@ class PackageXmlParser
                 $installAs      = (string) @$node['install-as'];
                 $baseInstallDir = (string) @$node['baseinstalldir'];
                 $role           = (string) @$node['role'];
+                $md5sum         = (string) @$node['md5sum'];
 
                 $file = null;
                 if( $baseInstallDir ) {
@@ -84,10 +90,24 @@ class PackageXmlParser
                     $file->installAs = $installAs;
 
                 $file->role = $role;
+                $file->md5sum = $md5sum;
                 $files[] = $file;
             }
         }
         return $files;
+    }
+
+    function getPhpReleaseFileList()
+    {
+
+    }
+
+    function getContentFilesByRole($role)
+    {
+        $files = $this->getContentFiles();
+        return array_filter( $files , function($item) use ($role) { 
+            return $item->role == $role;
+        });
     }
 
     function getContentFiles()
@@ -97,8 +117,6 @@ class PackageXmlParser
         $children = $contents->children();
         return $this->traverseContents( $children );
     }
-
-
 
 
 
