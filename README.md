@@ -17,6 +17,8 @@ Let's keep hard long PEAR package.xml away! :-)
 
 * PHP 5.3
 * simplexml extension
+* DOMDocument extension
+* curl
 
 ## The minimal spec file
 
