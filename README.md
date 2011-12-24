@@ -54,6 +54,10 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
 
 Then Your PEAR package is out!
 
+## Install PEAR dependencies into vender/ directory
+
+    $ onion.phar -d bundle
+
 ## Compile package to Phar executable/library file
 
 An example, we use onion.phar to compile our executable file `onion.phar`:
