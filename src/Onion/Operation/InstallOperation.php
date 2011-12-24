@@ -8,17 +8,12 @@
  * file that was distributed with this source code.
  *
  */
-namespace Onion\Installer;
+namespace Onion\Operation;
 
-class PearInstaller 
-    implements InstallerInterface
+class InstallOperation
 {
 
-
-    function install( \Onion\Pear\Package $package ) 
-    {
-
-    }
 }
+
 
 

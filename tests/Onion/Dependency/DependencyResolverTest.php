@@ -23,6 +23,7 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
         ob_start();
         $pkg = $reader->read( 'tests/data/package.ini' );
         ob_end_clean();
+        $pkg->local = 1; // dont install 
 
         ok( $pkg );
         ok( $pkg->name );
@@ -42,10 +43,15 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
 
         $packages = $manager->getPackages();
 
-        var_dump( $packages ); 
+        // var_dump( $packages ); 
         foreach( $packages as $package ) {
-            echo $package->getId() . "\n";
+            ok( $package );
+            ok( $package->getId() );
+            echo get_class( $package ) . "\n";
+
+            // echo $package->getId() . "\n";
         }
+
 
     }
 }

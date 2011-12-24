@@ -64,6 +64,10 @@ class Package extends BasePackage
     public $config;
 
 
+    // local flag (not to install)
+    public $local;
+
+
     public function getDefaultStructureConfig()
     {
         // directory structure

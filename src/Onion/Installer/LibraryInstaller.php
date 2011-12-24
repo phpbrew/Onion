@@ -10,15 +10,8 @@
  */
 namespace Onion\Installer;
 
-class PearInstaller 
+class LibraryInstaller
     implements InstallerInterface
 {
-
-
-    function install( \Onion\Pear\Package $package ) 
-    {
-
-    }
+    function install( $package );
 }
-
-

@@ -75,7 +75,8 @@ class DependencyResolver
             // if installed , check if upgrade is need ?
 
             // expand package dependencies
-            $this->manager->addPackage($package);
+            if( ! $package->local )
+                $this->manager->addPackage($package);
 
 
             $deps = $package->getDependencies();
