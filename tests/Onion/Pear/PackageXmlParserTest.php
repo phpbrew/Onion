@@ -111,6 +111,10 @@ EOT;
         
         $filelist = $p->getPhpReleaseFileList();
         ok( $filelist );
+
+        foreach( $filelist as $install ) {
+            ok( $install );
+        }
     }
 }
 
