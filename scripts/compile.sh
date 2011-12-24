@@ -1,8 +1,7 @@
 #!/bin/bash
 ./scripts/onion -d compile \
     --lib src \
-    --lib ../CLIFramework/src \
-    --lib ../GetOptionKit/src \
+    --lib vendor/pear \
     --classloader \
     --bootstrap scripts/onion.embed \
     --executable \
