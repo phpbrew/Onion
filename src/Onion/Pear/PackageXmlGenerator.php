@@ -262,7 +262,7 @@ XML;
             $target_filepath = substr( $filepath , strlen($baseDir) + 1 );
 
         
-        $this->logger->debug( sprintf('%s  %-5s  %s', 
+        $this->logger->debug2( sprintf('%s  %-5s  %s', 
             substr($md5sum,0,6),
             $role,
             $filepath

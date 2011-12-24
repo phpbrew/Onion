@@ -100,13 +100,13 @@ EOT;
 
         // set default values
         if( ! $config->has('package.summary') ) {
-            $logger->debug("* summary is not defined., use the first paragraph from description by default.",1);
+            $logger->debug2("* summary is not defined., use the first paragraph from description by default.",1);
             $descs = explode("\n",$config->get('package.desc'));
             $config->set('package.summary',$descs[0]);  # use first line desc as summary by default.
         }
 
         if( ! $config->has('package.license') ) {
-            $logger->debug("* license is not defined., use PHP license by default.",1);
+            $logger->debug2("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP');
         }
 
