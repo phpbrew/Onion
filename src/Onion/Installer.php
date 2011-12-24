@@ -18,7 +18,7 @@ class Installer
 {
     public $manager;
     public $workspace;
-
+    public $libpath;
 
     /**
      * xxx: we should expand operations from manager,
@@ -32,6 +32,8 @@ class Installer
         $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
         if( !  file_exists($workspace) )
             mkdir( $workspace , 0755, true );
+
+        $this->libpath = 'vendor';
     }
 
     function getWorkspace()

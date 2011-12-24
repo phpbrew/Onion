@@ -17,7 +17,6 @@ use Phar;
 class PearInstaller 
     implements InstallerInterface
 {
-
     public $basepath = 'pear';
     public $mainInstaller;
 
@@ -59,15 +58,32 @@ class PearInstaller
         $logger->info( "Extracting ..." );
         $archive->extractTo( $packageSourceDir );
 
+
+        $pearLibPath = $this->mainInstaller->libpath . DIRECTORY_SEPARATOR . $this->basepath;
+        $logger->info( "Install to $pearLibPath" );
+
+        if( ! file_exists($pearLibPath) )
+            mkdir( $pearLibPath , 0755, true );
+
+
         // parse package.xml
         $parser = new \Onion\Pear\PackageXmlParser( $packageSourceDir . DIRECTORY_SEPARATOR . 'package.xml' );
 
         // build file list, separate by roles
-        $files = $parser->getContentFiles();
-        $installs = $parser->getPhpReleaseFileList();
+        $contentFiles = $parser->getContentFiles();
+        $installFilelist = (array) $parser->getPhpReleaseFileList();
+        $installMap = array();
+        foreach( $installFilelist as $install ) {
+            $installMap[ $install->file ] = $install->as;
+        }
 
+        // install files into it
+        foreach( $contentFiles as $file ) {
+            // install php code only (for now)
+            if( $file->role == 'php' ) {
 
-
+            }
+        }
 
     }
 }
