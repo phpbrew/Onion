@@ -209,8 +209,7 @@ class Channel
                     */
                     $packageObj->deps[ $version ] = $depInfo;
 
-                    // build Dist Url for fetching....
-
+                    // XXX: build Resource Informations for fetching
 
                 }
                 // var_dump( $packageObj ); 
@@ -223,9 +222,14 @@ class Channel
         return $this->packages;
     }
 
-    function getPackage()
+    function getPackage($name)
     {
+        return $this->packages[ $name ];
+    }
 
+    function removePackage($name)
+    {
+        return unset($this->packages[$name]);
     }
 
     function __sleep()

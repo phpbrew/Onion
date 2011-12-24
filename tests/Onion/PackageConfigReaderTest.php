@@ -33,12 +33,13 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
         ob_end_clean();
 
         ok( $pkg );
-
         ok( $pkg->name );
         ok( $pkg->version );
         ok( $pkg->summary );
         ok( $pkg->desc );
         ok( $pkg->stability );
+
+        // var_dump( $pkg );
 
     }
 }

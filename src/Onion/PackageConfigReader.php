@@ -155,6 +155,7 @@ EOT;
         foreach( $config->get('require') as $key => $value ) 
         {
             $type = $this->detectDependencyType( $key , $value );
+            
             switch($type) {
 
             case 'core':
@@ -177,9 +178,7 @@ EOT;
 
             case 'pear':
                 $depinfo = $this->parseDependency($key,$value);
-                var_dump( $depinfo ); 
-
-                // $this->buildDependencyItem($section,$depinfo);
+                $pkginfo->deps[] = $depinfo;
                 break;
 
             default:
@@ -188,12 +187,10 @@ EOT;
 
             }
         }
-
         return $pkginfo;
     }
 
-
-	/* 
+	/**
 	 *
 	 * format 1:
 	 *		channel/pkg name = version expression 
@@ -221,8 +218,8 @@ EOT;
 	}
 
 
-
 	/**
+     *
 	 */
 	function parseDependency($key,$value)
 	{
@@ -279,6 +276,16 @@ EOT;
 			throw new Exception("Unknown dependency type.");
 		}
 	}
+
+
+    /**
+     * return external package resource
+     */
+    public function getPackageResource($packageName)
+    {
+        if( $config->has( 'resource ' . $packageName ) )
+            return $config->get( 'resource ' . $packageName );
+    }
 
 
 }

@@ -57,14 +57,6 @@ class Package
 
 
 
-    /**
-     * return external package resource
-     */
-    public function getResource($packageName)
-    {
-        if( $config->has( 'resource ' . $packageName ) )
-            return $config->get( 'resource ' . $packageName );
-    }
 
     public function getDefaultStructureConfig()
     {
@@ -79,6 +71,10 @@ class Package
     }
 
 
+    public function getDependencies()
+    {
+        return $this->deps;
+    }
 
 
 }
