@@ -21,16 +21,6 @@ namespace Onion\Dependency;
 class DependencyManager
 {
     /**
-     * core dependencies:
-     *    like php, pearinstaller, extensions
-     *
-     *    xxx; currently not used.
-     */
-    public $coreDeps = array();
-    public $coreDepsById = array();
-
-
-    /**
      * contains packages
      */
     public $packages = array();
@@ -52,25 +42,6 @@ class DependencyManager
 
         } else {
             $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
-        }
-    }
-
-
-    /**
-     * requirements:
-     *
-     *    array(
-     *      'version' => array( 'min' => ... , 'max' => ... ),
-     *    );
-     */
-    function addCoreDependency( $name, $requirements )
-    {
-        if( isset( $this->coreDepsById[ $package->name ] )  ) {
-            // already defined, check the requirement or conflicts.
-
-        }
-        else {
-            $this->coreDeps[] = $this->coreDepsById[ $name ] = $requirements;
         }
     }
 

@@ -11,8 +11,12 @@
 namespace Onion\Installer;
 
 class PearInstaller 
+    implements InstallerInterface
 {
+    function install( \Onion\Pear\Package $package ) 
+    {
 
+    }
 }
 
 
