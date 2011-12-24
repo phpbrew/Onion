@@ -9,3 +9,14 @@
  *
  */
 
+namespace Onion\Dependency;
+
+class DependencyResolver 
+{
+
+
+
+
+
+}
+
