@@ -87,7 +87,7 @@ class PackageXmlParser
                     $file = new ContentFile( $parentPath . $filename );
                 }
                 if( $installAs )
-                    $file->installAs = $installAs;
+                    $file->installAs = $parentPath . $installAs;
 
                 $file->role = $role;
                 $file->md5sum = $md5sum;
