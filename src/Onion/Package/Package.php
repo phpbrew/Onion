@@ -44,6 +44,7 @@ class Package extends BasePackage
     public $releaseStability;
 
 
+
     /**
      * package dependencies
      *

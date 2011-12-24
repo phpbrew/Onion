@@ -238,4 +238,6 @@ class Channel
     {
         return array( 'name' , 'alias' , 'summary' , 'primary' , 'mirrors' , 'packages' );
     }
+
+
 }
