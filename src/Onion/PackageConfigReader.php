@@ -239,7 +239,7 @@ EOT;
 					'version' => SpecUtils::parseVersion($value),
 					'resource' => array( 
 						'type'     => 'channel',
-						'resource' => $regs[1],
+						'channel' => $regs[1],
 					)
 				);
 			}
@@ -250,7 +250,7 @@ EOT;
 					'conflict' => 1,
 					'resource' => array( 
 						'type'     => 'channel',
-						'resource' => $regs[1],
+						'channel' => $regs[1],
 					)
 				);
 			}
@@ -272,7 +272,7 @@ EOT;
 					'name' => $key,
 					'resource' => array(
 						'type' => 'uri',
-						'resource'  => $value,
+						'uri'  => $value,
 					),
 				);
 			}

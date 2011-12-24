@@ -81,10 +81,13 @@ class Package extends BasePackage
         return $this->deps;
     }
 
+    /**
+     * return package Id
+     *
+     * @return string
+     */
     public function getId()
     {
-
+        return 'pear/' . $this->name;
     }
-
 }
-

@@ -98,11 +98,13 @@ class Channel
         return $this->prefetchPackagesInfo();
     }
 
-
-
     // cache this.
     function prefetchPackagesInfo()
     {
+        if( ! empty($this->packages) ) {
+            return $this->packages;
+        }
+
         $dm = new DownloaderManager;
 
         $restBaseurl = $this->getRestBaseUrl();

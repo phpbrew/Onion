@@ -61,7 +61,7 @@ class DependencyManager
      */
     function addCoreDependency( $name, $requirements )
     {
-        if( isset( $this->coreDepsByName[ $package->name ] )  {
+        if( isset( $this->coreDepsByName[ $package->name ] )  ) {
             // already defined, check the requirement or conflicts.
 
         }

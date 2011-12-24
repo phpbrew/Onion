@@ -12,7 +12,7 @@ namespace Onion\Pear;
 use Exception;
 
 /** 
- * pear channel package 
+ * pear channel package
  * */
 class Package 
 {
@@ -41,6 +41,11 @@ class Package
      * dependencies
      */
     public $deps = array();
+
+    public function getId()
+    {
+        return $this->name;
+    }
 
     public function __sleep()
     {
