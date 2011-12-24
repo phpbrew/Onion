@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0        http://pear.php.net/dtd/tasks-1.0.xsd        http://pear.php.net/dtd/package-2.0        http://pear.php.net/dtd/package-2.0.xsd">
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                                 http://pear.php.net/dtd/tasks-1.0.xsd                                 http://pear.php.net/dtd/package-2.0                                 http://pear.php.net/dtd/package-2.0.xsd">
   <name>Onion</name>
   <channel>pear.corneltek.com</channel>
   <summary>A Simple PHP Packager Builder.</summary>
@@ -18,45 +18,19 @@
     <active>1</active>
   </lead>
   <date>2011-12-24</date>
-  <time>23:42:55</time>
+  <time>23:45:30</time>
   <version>
-    <release>0.0.8</release>
-    <api>0.0.8</api>
+    <release>0.0.9</release>
+    <api>0.0.9</api>
   </version>
   <stability>
     <release>alpha</release>
     <api>alpha</api>
   </stability>
-  <license>PHP</license>
+  <license>PHP LICENSE</license>
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file install-as="CLI.mkd" name="doc/CLI.mkd" role="doc" md5sum="ef611c01ef973210fbe83ec360e37b44"/>
-      <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
-      <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
-      <file install-as="package.ini" name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
-      <file install-as="bootstrap.php" name="tests/bootstrap.php" role="test" md5sum="89fc9e6724ddd630009dee694e550572"/>
-      <file install-as="data/corneltek.channel.xml" name="tests/data/corneltek.channel.xml" role="test" md5sum="f0444e1a159c8cfdbfc80f37b0aac159"/>
-      <file install-as="data/package.ini" name="tests/data/package.ini" role="test" md5sum="a7a0c170ba217b3334d4d3fb2d05cd6b"/>
-      <file install-as="data/package_xml/PHP_Timer_package.xml" name="tests/data/package_xml/PHP_Timer_package.xml" role="test" md5sum="1545469acf8e7af06913a41acd1939f2"/>
-      <file install-as="data/package_xml/PHPUnit_MockObject_package.xml" name="tests/data/package_xml/PHPUnit_MockObject_package.xml" role="test" md5sum="4fca002068f50fc9c8b3c772bc23127a"/>
-      <file install-as="data/package_xml/Twig_package.xml" name="tests/data/package_xml/Twig_package.xml" role="test" md5sum="39eee6cd2dc6ed75ea15eabf1425570a"/>
-      <file install-as="data/package_xml/YAML_package.xml" name="tests/data/package_xml/YAML_package.xml" role="test" md5sum="357264052fbe6d60652530a96b9f463f"/>
-      <file install-as="data/pear.channel.xml" name="tests/data/pear.channel.xml" role="test" md5sum="bba3c76dc40240dcae23af5da851ec71"/>
-      <file install-as="data/pear2.channel.xml" name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
-      <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="c4e539354ef450ed332bb54ebb3af96b"/>
-      <file install-as="Onion/ConfigContainerTest.php" name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="10ed754bdd03fc6d83689f310686ed2c"/>
-      <file install-as="Onion/Dependency/DependencyResolverTest.php" name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ba152a91f639f95af23f385db89605d4"/>
-      <file install-as="Onion/Downloader/DownloaderManagerTest.php" name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="a4ef62fefbce968a615a50e2767c5f85"/>
-      <file install-as="Onion/PackageConfigReaderTest.php" name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="b9d00f4514dff35b87aa5e6928331707"/>
-      <file install-as="Onion/Pear/ChannelDiscoverTest.php" name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="e0c210c859eae8bf9fbe61a6a71719af"/>
-      <file install-as="Onion/Pear/ChannelParserTest.php" name="tests/Onion/Pear/ChannelParserTest.php" role="test" md5sum="0c95b1f8c5bb3562615d4af8648abd8f"/>
-      <file install-as="Onion/Pear/PackageTest.php" name="tests/Onion/Pear/PackageTest.php" role="test" md5sum="b5c51321e4fb9a44215880c19b309d38"/>
-      <file install-as="Onion/Pear/PackageXmlGeneratorTest.php" name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="178949b3013c70d67e595bf20ce1422b"/>
-      <file install-as="Onion/Pear/PackageXmlParserTest.php" name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="6cda4dff1de080c1d099711570011a65"/>
-      <file install-as="TestApp/Application.php" name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
-      <file install-as="TestApp/Command/ListCommand/FooCommand.php" name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
-      <file install-as="TestApp/Command/ListCommand.php" name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
       <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="eb2e603eb35fc1f9d35930b023aabf4e"/>
       <file install-as="Onion/Command/BundleCommand.php" name="src/Onion/Command/BundleCommand.php" role="php" md5sum="903a507ff645e02628989d8ff9dba5a0"/>
@@ -94,9 +68,36 @@
       <file install-as="Onion/SpecUtils.php" name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file install-as="Onion/TestCommand/ParentCommand/SubCommand.php" name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
       <file install-as="Onion/TestCommand/ParentCommand.php" name="src/Onion/TestCommand/ParentCommand.php" role="php" md5sum="9bec2094c780a962306c2febc669f8b8"/>
+      <file install-as="bootstrap.php" name="tests/bootstrap.php" role="test" md5sum="89fc9e6724ddd630009dee694e550572"/>
+      <file install-as="data/corneltek.channel.xml" name="tests/data/corneltek.channel.xml" role="test" md5sum="f0444e1a159c8cfdbfc80f37b0aac159"/>
+      <file install-as="data/package.ini" name="tests/data/package.ini" role="test" md5sum="a7a0c170ba217b3334d4d3fb2d05cd6b"/>
+      <file install-as="data/package_xml/PHP_Timer_package.xml" name="tests/data/package_xml/PHP_Timer_package.xml" role="test" md5sum="1545469acf8e7af06913a41acd1939f2"/>
+      <file install-as="data/package_xml/PHPUnit_MockObject_package.xml" name="tests/data/package_xml/PHPUnit_MockObject_package.xml" role="test" md5sum="4fca002068f50fc9c8b3c772bc23127a"/>
+      <file install-as="data/package_xml/Twig_package.xml" name="tests/data/package_xml/Twig_package.xml" role="test" md5sum="39eee6cd2dc6ed75ea15eabf1425570a"/>
+      <file install-as="data/package_xml/YAML_package.xml" name="tests/data/package_xml/YAML_package.xml" role="test" md5sum="357264052fbe6d60652530a96b9f463f"/>
+      <file install-as="data/pear.channel.xml" name="tests/data/pear.channel.xml" role="test" md5sum="bba3c76dc40240dcae23af5da851ec71"/>
+      <file install-as="data/pear2.channel.xml" name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
+      <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="c4e539354ef450ed332bb54ebb3af96b"/>
+      <file install-as="Onion/ConfigContainerTest.php" name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="10ed754bdd03fc6d83689f310686ed2c"/>
+      <file install-as="Onion/Dependency/DependencyResolverTest.php" name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ba152a91f639f95af23f385db89605d4"/>
+      <file install-as="Onion/Downloader/DownloaderManagerTest.php" name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="a4ef62fefbce968a615a50e2767c5f85"/>
+      <file install-as="Onion/PackageConfigReaderTest.php" name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="b9d00f4514dff35b87aa5e6928331707"/>
+      <file install-as="Onion/Pear/ChannelDiscoverTest.php" name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="e0c210c859eae8bf9fbe61a6a71719af"/>
+      <file install-as="Onion/Pear/ChannelParserTest.php" name="tests/Onion/Pear/ChannelParserTest.php" role="test" md5sum="0c95b1f8c5bb3562615d4af8648abd8f"/>
+      <file install-as="Onion/Pear/PackageTest.php" name="tests/Onion/Pear/PackageTest.php" role="test" md5sum="b5c51321e4fb9a44215880c19b309d38"/>
+      <file install-as="Onion/Pear/PackageXmlGeneratorTest.php" name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="178949b3013c70d67e595bf20ce1422b"/>
+      <file install-as="Onion/Pear/PackageXmlParserTest.php" name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="6cda4dff1de080c1d099711570011a65"/>
+      <file install-as="TestApp/Application.php" name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
+      <file install-as="TestApp/Command/ListCommand/FooCommand.php" name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
+      <file install-as="TestApp/Command/ListCommand.php" name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file install-as="phpunit_package.xml" name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file install-as="symfony_package.xml.tmpl" name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file install-as="twig_package.xml" name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
+      <file install-as="package.ini" name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
+      <file install-as="CLI.mkd" name="doc/CLI.mkd" role="doc" md5sum="ef611c01ef973210fbe83ec360e37b44"/>
+      <file install-as="SPEC-v2.md" name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
+      <file install-as="SPEC.md" name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
+      <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
       <file install-as="onion.phar" name="onion.phar" role="script" md5sum="f8e0ff44884ec73249ced0f5eb45903b"/>
       <file install-as="Changes.md" name="Changes.md" role="doc" md5sum="17b1abca0c2fa78b9f18454257817df6"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="d35b66fa39aa2154004e302662b4f78b"/>
@@ -106,30 +107,11 @@
   <dependencies>
     <required>
       <php>
-        <min>3.5</min>
+        <min>5.3</min>
       </php>
       <pearinstaller>
-        <min>1.4.1</min>
+        <min>1.4</min>
       </pearinstaller>
-      <package>
-        <name>GetOptionKit</name>
-        <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
-      </package>
-      <package>
-        <name>CLIFramework</name>
-        <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
-      </package>
-      <package>
-        <name>Universal</name>
-        <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
-      </package>
-      <extension>
-        <name>pcre</name>
-        <min>0.0.0</min>
-      </extension>
     </required>
   </dependencies>
   <phprelease/>

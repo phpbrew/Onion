@@ -245,7 +245,7 @@ EOT;
 	function parseDependency($key,$value)
 	{
 		// format:  {channel host}/{package name} = {version expression}
-		if( preg_match('/^([a-zA-Z0-9.]+)\/(\w+)$/' , $key , $regs ) ) 
+		if( preg_match('/^([a-zA-Z0-9.-]+)\/(\w+)$/' , $key , $regs ) ) 
 		{
 			if( $value != 'conflict' )
 			{
