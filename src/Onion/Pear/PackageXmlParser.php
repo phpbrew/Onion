@@ -12,6 +12,18 @@ namespace Onion\Pear;
 use SimpleXMLElement;
 use Exception;
 
+class FileListInstall
+{
+    public $file;
+    public $installAs;
+
+    function __construct($file,$as = null)
+    {
+        $this->file = $file;
+        $this->installAs = $as;
+    }
+}
+
 class ContentFile
 {
     /**
@@ -99,7 +111,15 @@ class PackageXmlParser
 
     function getPhpReleaseFileList()
     {
-
+        // xxx: some packages like sfYAML uses phprelease tag to use 'install-as'
+        $phprelease = $this->xml->phprelease;
+        $filelist = array();
+        if( $phprelease->filelist ) {
+            foreach( $phprelease->filelist->children() as $install ) {
+                $filelist[] = new FileListInstall( $install['name'] , @$install['as'] );
+            }
+        }
+        return $filelist;
     }
 
     function getContentFilesByRole($role)
@@ -117,9 +137,6 @@ class PackageXmlParser
         $children = $contents->children();
         return $this->traverseContents( $children );
     }
-
-
-
 
 }
 

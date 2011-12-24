@@ -54,8 +54,6 @@ class PackageXmlParserTest extends \PHPUnit_Framework_TestCase
                     </dir>
                 </dir>
             </dir>
-
-
         </dir>
         <dir name="/" baseinstalldir="HTML">
             <dir name="QuickForm">
@@ -111,8 +109,8 @@ EOT;
 
         var_dump( $list ); 
         
-        
-
+        $filelist = $p->getPhpReleaseFileList();
+        ok( $filelist );
     }
 }
 
