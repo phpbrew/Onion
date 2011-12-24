@@ -23,9 +23,11 @@ class DependencyManager
     /**
      * core dependencies:
      *    like php, pearinstaller, extensions
+     *
+     *    xxx; currently not used.
      */
     public $coreDeps = array();
-    public $coreDepsByName = array();
+    public $coreDepsById = array();
 
 
     /**
@@ -35,15 +37,22 @@ class DependencyManager
     public $packagesByName = array();
 
 
-    function addPackage( \Onion\Package\Package $package)
+
+    function hasPackage( \Onion\Package\PackageInterface $package)
+    {
+        return isset( $this->packagesByName[ $package->getId() ] );
+    }
+
+
+    function addPackage( \Onion\Package\PackageInterface $package)
     {
         // check package
-        if( isset( $this->packagesByName[ $package->name ] ) ) {
+        if( isset( $this->packagesByName[ $package->getId() ] ) ) {
             // already defined, check the requirement or conflicts.
 
 
         } else {
-            $this->packages[] = $this->packagesByName[ $package->name ] = $package;
+            $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
 
             
             // todo: traverse package's dependency and expand them...
@@ -61,18 +70,18 @@ class DependencyManager
      */
     function addCoreDependency( $name, $requirements )
     {
-        if( isset( $this->coreDepsByName[ $package->name ] )  ) {
+        if( isset( $this->coreDepsById[ $package->name ] )  ) {
             // already defined, check the requirement or conflicts.
 
         }
         else {
-            $this->coreDeps[] = $this->coreDepsByName[ $name ] = $requirements;
+            $this->coreDeps[] = $this->coreDepsById[ $name ] = $requirements;
         }
     }
 
     function removePackage($name)
     {
-        unset( $this->packagesByName[ $name ] );
+        unset( $this->packagesById[ $name ] );
     }
 
 

@@ -24,12 +24,14 @@ class DependencyResolver
 
     function __construct()
     {
-        $this->pool = new DependencyManager;
+        $this->manager = new DependencyManager;
     }
 
     function resolvePearPackage($package)
     {
         $pId = $package->getId();
+        if( $this->manager->hasPackage( $package ) )
+            return;
 
         // get dependent package info
         echo "Resolving PEAR package: {$package->name} \n";
@@ -59,6 +61,7 @@ class DependencyResolver
                 $this->resolvePearPackage( $depPackage );
             }
         }
+        $this->manager->addPackage($package);
     }
 
     function resolve( $package )

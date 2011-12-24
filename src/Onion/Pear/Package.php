@@ -9,12 +9,14 @@
  *
  */
 namespace Onion\Pear;
+use Onion\Package\PackageInterface;
 use Exception;
 
 /** 
  * pear channel package
  * */
 class Package 
+    implements PackageInterface
 {
     public $name;
     public $desc;
