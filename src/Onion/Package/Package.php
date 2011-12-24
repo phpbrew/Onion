@@ -9,8 +9,13 @@
  *
  */
 namespace Onion\Package;
+use Onion\Package\BasePackage;
 
-class Package
+
+/**
+ * package class for package.ini
+ */
+class Package extends BasePackage
 {
     public $name;
     public $version;
