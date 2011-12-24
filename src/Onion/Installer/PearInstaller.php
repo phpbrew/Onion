@@ -62,10 +62,6 @@ class PearInstaller
 
         // build file list, separate by roles
 
-
-
-
-
         chdir( $cwd );
     }
 }
