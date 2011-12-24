@@ -34,29 +34,24 @@ class DependencyManager
      * contains packages
      */
     public $packages = array();
-    public $packagesByName = array();
+    public $packagesById = array();
 
 
 
     function hasPackage( \Onion\Package\PackageInterface $package)
     {
-        return isset( $this->packagesByName[ $package->getId() ] );
+        return isset( $this->packagesById[ $package->getId() ] );
     }
 
 
     function addPackage( \Onion\Package\PackageInterface $package)
     {
         // check package
-        if( isset( $this->packagesByName[ $package->getId() ] ) ) {
-            // already defined, check the requirement or conflicts.
-
+        if( isset( $this->packagesById[ $package->getId() ] ) ) {
+            // xxx: if already defined, check the requirement or conflicts.
 
         } else {
             $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
-
-            
-            // todo: traverse package's dependency and expand them...
-        
         }
     }
 
@@ -84,5 +79,19 @@ class DependencyManager
         unset( $this->packagesById[ $name ] );
     }
 
+    function getPackage($name)
+    {
+
+    }
+
+
+
+    /**
+     * return all packages 
+     */
+    function getPackages()
+    {
+        return $this->packages;
+    }
 
 }

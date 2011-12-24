@@ -29,15 +29,15 @@ class DependencyResolver
 
     function resolvePearPackage($package)
     {
-        $pId = $package->getId();
-
         if( $this->manager->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
             return;
         }
 
+        $this->manager->addPackage($package);
+
         // get dependent package info
-        echo "Resolving PEAR package: {$package->name} \n";
+        // echo "Resolving PEAR package: {$package->name} \n";
         $version = $package->latest;
 
         if( isset( $package->deps[ $version ]['required']['extension']) )
@@ -64,7 +64,6 @@ class DependencyResolver
                 $this->resolvePearPackage( $depPackage );
             }
         }
-        $this->manager->addPackage($package);
     }
 
     function resolve( $package )
@@ -72,15 +71,15 @@ class DependencyResolver
         // expand package and package dependencies to package object
         if( is_a( $package ,'\Onion\Package\Package' ) ) 
         {
-            $pId = $package->getId();
 
             // if installed , check if upgrade is need ?
 
             // expand package dependencies
+            $this->manager->addPackage($package);
+
+
             $deps = $package->getDependencies();
             foreach( $deps as $dep ) {
-
-
 
                 // Expand pear package (refacotr this to dependencyInfo object)
                 if( $dep['type'] == 'pear' ) {
@@ -100,8 +99,6 @@ class DependencyResolver
                 elseif( $dep['type'] == 'extension' ) {
                     $depExtensionName = $dep['name'];
                     echo "Tracking dependency for extension: {$dep['name']} ...\n";
-
-
                 }
             }
         }
@@ -114,6 +111,11 @@ class DependencyResolver
 
 
         }
+    }
+
+    function getManager()
+    {
+        return $this->manager;
     }
 
 }

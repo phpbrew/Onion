@@ -37,6 +37,15 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
         $dr = new \Onion\Dependency\DependencyResolver;
         $dr->resolve( $pkg );
 
+        $manager = $dr->getManager();
+        ok( $manager );
+
+        $packages = $manager->getPackages();
+
+        var_dump( $packages ); 
+        foreach( $packages as $package ) {
+            echo $package->getId() . "\n";
+        }
 
     }
 }

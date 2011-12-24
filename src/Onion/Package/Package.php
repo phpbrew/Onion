@@ -88,6 +88,7 @@ class Package extends BasePackage
      */
     public function getId()
     {
-        return 'pear/' . $this->name;
+        // xxx: should be with namespace
+        return $this->name;
     }
 }
