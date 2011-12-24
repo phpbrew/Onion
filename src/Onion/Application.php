@@ -32,4 +32,6 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'compile' );
         $this->registerCommand( 'bundle' );
     }
+
+
 }

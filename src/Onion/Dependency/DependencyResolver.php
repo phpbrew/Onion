@@ -21,13 +21,15 @@ use Onion\Dependency\DependencyManager;
 class DependencyResolver 
 {
     public $pool;
+    public $logger;
 
     function __construct()
     {
         $this->manager = new DependencyManager;
+        $this->logger = \Onion\Application::getLogger();
     }
 
-    function resolvePearPackage($package)
+    function resolvePearPackage(\Onion\Pear\Package $package)
     {
         if( $this->manager->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
@@ -38,11 +40,11 @@ class DependencyResolver
         $this->manager->addPackage($package);
 
         // get dependent package info
-        // echo "Resolving PEAR package: {$package->name} \n";
+        $this->logger->info( "Resolving PEAR package dependency: {$package->name}" );
         $version = $package->latest;
 
         if( isset( $package->deps[ $version ]['required']['extension']) ) {
-            foreach( $package->deps[ $version ]['required']['extension'] as $extension ) {
+            foreach( (array) $package->deps[ $version ]['required']['extension'] as $extension ) {
                 // xxx:
 
             }
@@ -54,9 +56,18 @@ class DependencyResolver
         $php = $package->deps[ $version ]['required']['pearinstaller'];
         */
         if( isset( $package->deps[ $version ]['required']['package']) ) {
-            foreach( $package->deps[ $version ]['required']['package'] as $dep ) {
+            $pkgs = $package->deps[ $version ]['required']['package'];
+
+            // sometimes it's not list, so wrap it with list.
+            if( ! isset($pkgs[0]) )
+                $pkgs = array( $pkgs );
+
+            foreach( $pkgs as $dep ) {
                 $packageName = $dep['name'];
                 $channelHost = $dep['channel'];
+
+
+                $this->logger->info("Discovering channel $channelHost for $packageName",1);
 
                 // discover pear channel
                 $discover = new \Onion\Pear\ChannelDiscover;

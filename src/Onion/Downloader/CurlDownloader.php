@@ -6,6 +6,8 @@ class CurlDownloader
 {
     function fetch($url)
     {
+        echo "Fetch $url\n";
+        
         $options = array();
         $defaults = array( 
             CURLOPT_HEADER => 0, 

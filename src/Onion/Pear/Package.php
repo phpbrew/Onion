@@ -64,7 +64,7 @@ class Package
         return $this->getDistUrlByVersion( $this->latest );
     }
 
-    public function getDistUrlByVersion(string $version, $extension = 'tgz' )
+    public function getDistUrlByVersion($version, $extension = 'tgz' )
     {
         // xxx: save for https or http base url from channel discover object
         return sprintf( 'http://%s/get/%s-%s.%s' , $this->channel, $this->name , $version , $extension );
