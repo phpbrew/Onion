@@ -61,7 +61,7 @@ class PearInstaller
 
 
         $pearLibPath = $this->mainInstaller->libpath . DIRECTORY_SEPARATOR . $this->basepath;
-        $logger->info( "Install to $pearLibPath" );
+        $logger->debug2( "Install to $pearLibPath" );
 
         if( ! file_exists($pearLibPath) )
             mkdir( $pearLibPath , 0755, true );
@@ -95,11 +95,10 @@ class PearInstaller
                 if( ! file_exists( $dir ) )
                     mkdir( $dir , 0755 , true );
 
-                $logger->info2( "Installing $installTo ..." );
+                $logger->info2( "Install $installTo" ,1 );
                 copy( $installFrom , $installTo );
             }
         }
-
     }
 }
 

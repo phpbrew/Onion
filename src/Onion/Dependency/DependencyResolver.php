@@ -66,7 +66,6 @@ class DependencyResolver
                 $packageName = $dep['name'];
                 $channelHost = $dep['channel'];
 
-
                 $this->logger->info2("Discovering channel $channelHost for $packageName",1);
 
                 // discover pear channel
@@ -97,7 +96,7 @@ class DependencyResolver
                 // Expand pear package (refacotr this to dependencyInfo object)
                 if( $dep['type'] == 'pear' ) {
                     $depPackageName = $dep['name'];
-                    echo "Tracking dependency for PEAR package: {$dep['name']} ...\n";
+                    $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
                     if( $dep['resource']['type'] == 'channel' ) {
                         $channelHost = $dep['resource']['channel'];
 
@@ -111,7 +110,7 @@ class DependencyResolver
                 }
                 elseif( $dep['type'] == 'extension' ) {
                     $depExtensionName = $dep['name'];
-                    echo "Tracking dependency for extension: {$dep['name']} ...\n";
+                    $this->logger->info2("Tracking dependency for extension: {$dep['name']} ..." , 1);
                 }
             }
         }

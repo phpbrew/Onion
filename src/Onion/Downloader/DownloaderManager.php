@@ -36,11 +36,13 @@ class DownloaderManager
      */
     public $downloaderClass;
 
+    public $logger;
 
     function __construct($select_default = true)
     {
         if( $select_default )
             $this->selectDefaultDownloader();
+        $this->logger = \Onion\Application::getLogger();
     }
 
     function selectDefaultDownloader()
@@ -75,6 +77,7 @@ class DownloaderManager
 
     function download($url)
     {
+        $this->logger->debug2( "Fetching $url ..." , 1 );
         $d = $this->getDownloader();
         return $d->fetch( $url );
     }
@@ -88,7 +91,6 @@ class DownloaderManager
                 return $xml;
             }
         }
-
         $xmlstr = $this->download($url);
 
         if( extension_loaded('apc') ) {
