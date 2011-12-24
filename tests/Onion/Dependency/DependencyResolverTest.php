@@ -14,8 +14,10 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
 {
     function test() 
     {
-        $logger = new \CLIFramework\Logger;
+        $logger = \Onion\Application::getLogger();
         ok( $logger );
+
+        $logger->setLevel(0);
 
         $reader = new \Onion\PackageConfigReader;
         $reader->setLogger( $logger );
@@ -47,8 +49,7 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
         foreach( $packages as $package ) {
             ok( $package );
             ok( $package->getId() );
-            echo get_class( $package ) . "\n";
-
+            // echo get_class( $package ) . "\n";
             // echo $package->getId() . "\n";
         }
 

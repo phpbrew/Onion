@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-24</date>
-  <time>23:38:42</time>
+  <time>23:42:55</time>
   <version>
     <release>0.0.8</release>
     <api>0.0.8</api>
@@ -46,9 +46,9 @@
       <file install-as="data/pear2.channel.xml" name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
       <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="c4e539354ef450ed332bb54ebb3af96b"/>
       <file install-as="Onion/ConfigContainerTest.php" name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="10ed754bdd03fc6d83689f310686ed2c"/>
-      <file install-as="Onion/Dependency/DependencyResolverTest.php" name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ca209c134d7a6518663974c07e02076a"/>
+      <file install-as="Onion/Dependency/DependencyResolverTest.php" name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ba152a91f639f95af23f385db89605d4"/>
       <file install-as="Onion/Downloader/DownloaderManagerTest.php" name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="a4ef62fefbce968a615a50e2767c5f85"/>
-      <file install-as="Onion/PackageConfigReaderTest.php" name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="90c6b5d0e1a470dd07a77c2c58296308"/>
+      <file install-as="Onion/PackageConfigReaderTest.php" name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="b9d00f4514dff35b87aa5e6928331707"/>
       <file install-as="Onion/Pear/ChannelDiscoverTest.php" name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="e0c210c859eae8bf9fbe61a6a71719af"/>
       <file install-as="Onion/Pear/ChannelParserTest.php" name="tests/Onion/Pear/ChannelParserTest.php" role="test" md5sum="0c95b1f8c5bb3562615d4af8648abd8f"/>
       <file install-as="Onion/Pear/PackageTest.php" name="tests/Onion/Pear/PackageTest.php" role="test" md5sum="b5c51321e4fb9a44215880c19b309d38"/>
