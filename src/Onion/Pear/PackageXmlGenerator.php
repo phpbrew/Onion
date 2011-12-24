@@ -15,7 +15,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Onion\SpecUtils;
 use Onion\LoggableInterface;
-
+use SplFileInfo;
 
 /**
  * Generate package.xml from an package
@@ -135,28 +135,16 @@ XML;
 
 			foreach( $roles as $role => $paths ) {
 				foreach( $paths as $path ) {
-					if( is_dir($path) ) {
-						$baseDir = $path;
-						$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($baseDir),
-												RecursiveIteratorIterator::CHILD_FIRST);
-						foreach( $iterator as $path ) {
-							if( $path->isFile() ) {
-								$this->addFileNode($dir,$path,$role,$baseDir);
-							}
-						}
-					}
-					else {
-						$files = glob($path);
-						foreach( $files as $filename ) {
-							$fileinfo = new SplFileInfo($filename);
-							$this->addFileNode($dir,$fileinfo,$role);
-							# $file = $dir->addChild('file');
-							# $file->addAttribute( 'name' , $filename );
-							# $file->addAttribute( 'role' , $role );
-						}
-					}
+					$this->addPathByRole( $dir, $path, $role );
 				}
 			}
+
+			$customRoles = $config->get('roles');
+			foreach( $customRoles as $pattern => $role ) {
+				$this->addPathByRole( $dir, $pattern , $role );
+			}
+
+
 
 			// dependencies section
             $logger->info('Building dependencies section...');
@@ -241,6 +229,27 @@ XML;
 		return $xml->asXML();
     }
 
+
+	function addPathByRole( $dir, $path , $role )
+	{
+		if( is_dir($path) ) {
+			$baseDir = $path;
+			$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($baseDir),
+									RecursiveIteratorIterator::CHILD_FIRST);
+			foreach( $iterator as $path ) {
+				if( $path->isFile() ) {
+					$this->addFileNode($dir,$path,$role,$baseDir);
+				}
+			}
+		}
+		else {
+			$files = glob($path);
+			foreach( $files as $filename ) {
+				$fileinfo = new SplFileInfo($filename);
+				$this->addFileNode($dir,$fileinfo,$role);
+			}
+		}
+	}
 
     function addFileNode($dir,$fileinfo,$role,$baseDir = null)
     {

@@ -124,6 +124,8 @@ EOT;
         if( ! $config->has('package.version.api') )
             $config->set('package.version.api' , $config->get('package.version') );
 
+
+
         // preprocess, validate sections only for package.ini
         $pkginfo = new Package;
         $pkginfo->config = $config;
