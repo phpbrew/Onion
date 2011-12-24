@@ -43,19 +43,15 @@ class Package
      */
     public $coreDeps = array();
 
-
     /**
      * package dependencies
      */
     public $deps = array();
-    
 
     /** 
      * ConfigContainer object
      */
     public $config;
-
-
 
 
     public function getDefaultStructureConfig()
@@ -75,6 +71,7 @@ class Package
     {
         return $this->deps;
     }
+
 
 
 }

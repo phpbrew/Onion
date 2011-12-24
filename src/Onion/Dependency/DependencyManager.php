@@ -10,9 +10,16 @@
  */
 namespace Onion\Dependency;
 
+
+/**
+ * dependency manager
+ *
+ * it's a dependency pool, contains packages and core dependencies like extension or php requirements.
+ *
+ * we use dependency resovlver to resolve the dependency tree of dependency manager.
+ */
 class DependencyManager
 {
-
     /**
      * core dependencies:
      *    like php, pearinstaller, extensions
@@ -28,7 +35,7 @@ class DependencyManager
     public $packagesByName = array();
 
 
-    function addPackage($package)
+    function addPackage( \Onion\Package\Package $package)
     {
         // check package
         if( isset( $this->packagesByName[ $package->name ] ) ) {
@@ -37,10 +44,22 @@ class DependencyManager
 
         } else {
             $this->packages[] = $this->packagesByName[ $package->name ] = $package;
+
+            // todo: traverse package's dependency and expand them...
+
+
         }
     }
 
-    function addCoreDependency($name,$requirements)
+
+    /**
+     * requirements:
+     *
+     *    array(
+     *      'version' => array( 'min' => ... , 'max' => ... ),
+     *    );
+     */
+    function addCoreDependency( $name, $requirements )
     {
         if( isset( $this->coreDepsByName[ $package->name ] )  {
             // already defined, check the requirement or conflicts.
@@ -50,5 +69,11 @@ class DependencyManager
             $this->coreDeps[] = $this->coreDepsByName[ $name ] = $requirements;
         }
     }
+
+    function removePackage($name)
+    {
+        unset( $this->packagesByName[ $name ] );
+    }
+
 
 }
