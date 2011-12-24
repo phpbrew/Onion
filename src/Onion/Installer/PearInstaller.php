@@ -73,8 +73,10 @@ class PearInstaller
         // build file list, separate by roles
         $contentFiles = $parser->getContentFiles();
         $installFilelist = (array) $parser->getPhpReleaseFileList();
+        
         $installMap = array();
         foreach( $installFilelist as $install ) {
+            // var_dump( $install ); 
             $installMap[ $install->file ] = $install->as;
         }
 
@@ -84,6 +86,10 @@ class PearInstaller
             if( $file->role == 'php' ) {
                 $installFrom = $packageSourceDir . DIRECTORY_SEPARATOR . $file->file;
                 $installTo = $pearLibPath . DIRECTORY_SEPARATOR . $file->getInstallAs();
+                if( isset($installMap[ $file->file ]) ) {
+                    $as = $installMap[ $file->file ];
+                    $installTo = $pearLibPath . DIRECTORY_SEPARATOR . $as;
+                }
 
                 $dir = dirname( $installTo );
                 if( ! file_exists( $dir ) )

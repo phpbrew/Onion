@@ -15,12 +15,12 @@ use Exception;
 class FileListInstall
 {
     public $file;
-    public $installAs;
+    public $as;
 
     function __construct($file,$as = null)
     {
         $this->file = $file;
-        $this->installAs = $as;
+        $this->as = $as;
     }
 }
 
@@ -121,7 +121,7 @@ class PackageXmlParser
         $filelist = array();
         if( $phprelease->filelist ) {
             foreach( $phprelease->filelist->children() as $install ) {
-                $filelist[] = new FileListInstall( $install['name'] , @$install['as'] );
+                $filelist[] = new FileListInstall( (string) $install['name'] , (string) @$install['as'] );
             }
         }
         return $filelist;
