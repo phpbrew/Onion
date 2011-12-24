@@ -12,7 +12,7 @@ namespace Onion\Installer;
 
 class InstallerInterface
 {
-
+    function install($package);
 }
 
 
