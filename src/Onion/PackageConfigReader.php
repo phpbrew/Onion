@@ -78,9 +78,6 @@ class PackageConfigReader
 
         $config = new ConfigContainer( $ini );
 
-        // preprocess, validate sections only for package.ini
-        $pkginfo = new Package;
-        $pkginfo->config = $config;
 
         // validation 
         $requiredFields = explode(' ','package.name package.desc package.version');
@@ -112,6 +109,10 @@ EOT;
             $logger->debug("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP');
         }
+
+        // preprocess, validate sections only for package.ini
+        $pkginfo = new Package;
+        $pkginfo->config = $config;
 
         // build package meta info
         $pkginfo->name = $config->get('package.name');

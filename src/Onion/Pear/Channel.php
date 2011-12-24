@@ -229,7 +229,7 @@ class Channel
 
     function removePackage($name)
     {
-        return unset($this->packages[$name]);
+        unset($this->packages[$name]);
     }
 
     function __sleep()

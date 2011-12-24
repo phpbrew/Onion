@@ -45,9 +45,9 @@ class DependencyManager
         } else {
             $this->packages[] = $this->packagesByName[ $package->name ] = $package;
 
+            
             // todo: traverse package's dependency and expand them...
-
-
+        
         }
     }
 
