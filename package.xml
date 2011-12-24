@@ -18,7 +18,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-24</date>
-  <time>23:22:22</time>
+  <time>23:25:13</time>
   <version>
     <release>0.0.8</release>
     <api>0.0.8</api>
@@ -59,7 +59,7 @@
       <file install-as="TestApp/Command/ListCommand.php" name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
       <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="eb2e603eb35fc1f9d35930b023aabf4e"/>
-      <file install-as="Onion/Command/BundleCommand.php" name="src/Onion/Command/BundleCommand.php" role="php" md5sum="b2a684a97416f120c33ffc1f3fb81b7c"/>
+      <file install-as="Onion/Command/BundleCommand.php" name="src/Onion/Command/BundleCommand.php" role="php" md5sum="f10cea81a270d3bae00461f724d10458"/>
       <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="b8a08bdb1e6fcf6f39a1b66e90ccbe40"/>
       <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file install-as="Onion/ConfigContainer.php" name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>

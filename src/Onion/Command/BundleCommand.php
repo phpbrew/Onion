@@ -46,24 +46,26 @@ class BundleCommand extends Command
 			return false;
 		}
 
+        $reader = new \Onion\PackageConfigReader;
+        $reader->setLogger( $logger );
 
-        // $cmd = $this->application->getCommand('build');
-        // $cmd->execute(array());
+        $pkg = $reader->read( 'package.ini' );
+        $pkg->local = 1; // dont install this
 
-        // init pear dependency manager
+        $dr = new \Onion\Dependency\DependencyResolver;
+        $dr->resolve( $pkg );
 
-        // read current package.xml file
+        $manager = $dr->getManager();
+        $packages = $manager->getPackages();
 
-        // lookup dependency
-
-        // discover required channels
-
-        // for each required packages
-        //  - use downloader to download it.
-        //  - unpack, extract file
-        //  - read package.xml and install it into .local directory.
-
-
+        // var_dump( $packages ); 
+        foreach( $packages as $package ) {
+            // ok( $package );
+            // ok( $package->getId() );
+            // echo get_class( $package ) . "\n";
+            // echo $package->getId() . "\n";
+        }
+        $installer = new \Onion\Installer( $manager );
+        $installer->install();
     }
-
 }
