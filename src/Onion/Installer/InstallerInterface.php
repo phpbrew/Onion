@@ -10,7 +10,7 @@
  */
 namespace Onion\Installer;
 
-class InstallerInterface
+interface InstallerInterface
 {
     function install($package);
 }

@@ -14,8 +14,7 @@ class PearInstaller
     implements InstallerInterface
 {
 
-
-    function install( \Onion\Pear\Package $package ) 
+    function install( $package ) 
     {
 
     }

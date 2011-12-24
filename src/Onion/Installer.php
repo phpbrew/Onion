@@ -19,6 +19,10 @@ class Installer
     public $manager;
 
 
+    /**
+     * xxx: we should expand operations from manager,
+     * installer should take operation object to process, not from manager class.
+     */
     function __construct( \Onion\Dependency\DependencyManager $manager)
     {
         $this->manager = $manager;
@@ -34,6 +38,17 @@ class Installer
         return new Installer\PearInstaller;
     }
 
+
+    function install()
+    {
+        $packages = $this->manager->getPackages();
+        foreach( $packages as $package ) {
+            if( is_a( $package , '\Onion\Pear\Package' ) ) {
+                $installer = $this->getPearInstaller();
+                $installer->install( $package );
+            }
+        }
+    }
 }
 
 

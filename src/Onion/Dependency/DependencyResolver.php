@@ -34,17 +34,19 @@ class DependencyResolver
             return;
         }
 
+        // get installed version, compare version
         $this->manager->addPackage($package);
 
         // get dependent package info
         // echo "Resolving PEAR package: {$package->name} \n";
         $version = $package->latest;
 
-        if( isset( $package->deps[ $version ]['required']['extension']) )
+        if( isset( $package->deps[ $version ]['required']['extension']) ) {
             foreach( $package->deps[ $version ]['required']['extension'] as $extension ) {
                 // xxx:
 
             }
+        }
 
         /*
          * // xxx
@@ -73,12 +75,11 @@ class DependencyResolver
         {
 
             // if installed , check if upgrade is need ?
-
-            // expand package dependencies
             if( ! $package->local )
                 $this->manager->addPackage($package);
 
 
+            // expand package dependencies
             $deps = $package->getDependencies();
             foreach( $deps as $dep ) {
 
