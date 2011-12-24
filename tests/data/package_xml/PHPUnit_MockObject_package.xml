@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                       http://pear.php.net/dtd/tasks-1.0.xsd                       http://pear.php.net/dtd/package-2.0                       http://pear.php.net/dtd/package-2.0.xsd">
+ <name>PHPUnit_MockObject</name>
+ <channel>pear.phpunit.de</channel>
+ <summary>Mock Object library for PHPUnit</summary>
+ <description>Mock Object library for PHPUnit</description>
+ <lead>
+  <name>Sebastian Bergmann</name>
+  <user>sb</user>
+  <email>sb@sebastian-bergmann.de</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-10-31</date>
+ <time>07:47:16</time>
+ <version>
+  <release>1.1.0</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>BSD License</license>
+ <notes>
+http://github.com/sebastianbergmann/phpunit-mock-objects/blob/master/README.markdown
+ </notes>
+ <contents>
+  <dir name="/">
+   <file baseinstalldir="/" md5sum="6e492eadb920c2755e32a670cf8bfee3" name="PHPUnit/Framework/MockObject/Builder/Identity.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="be2ad2669da74fdd117a71a40a2d18d7" name="PHPUnit/Framework/MockObject/Builder/InvocationMocker.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="ed962b8a3813c6bd2f885662a8c966ff" name="PHPUnit/Framework/MockObject/Builder/Match.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="e6e794f94d200658cf7add7dc917add3" name="PHPUnit/Framework/MockObject/Builder/MethodNameMatch.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="0df8687df5cd4f91d6a83f4586903550" name="PHPUnit/Framework/MockObject/Builder/Namespace.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="8a9e97e0a2fd68ab1f4c83ab98642c0c" name="PHPUnit/Framework/MockObject/Builder/ParametersMatch.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="c0234340a8d73557c35c8ebd046dcdf5" name="PHPUnit/Framework/MockObject/Builder/Stub.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="355f672a18f4e4dab3cf2a60103340a9" name="PHPUnit/Framework/MockObject/Generator/mocked_class.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="747ca12ba8caa3b9d13436eb8c640a2c" name="PHPUnit/Framework/MockObject/Generator/mocked_clone.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="6cec1ac154d4bf38bb3cb90d21d52023" name="PHPUnit/Framework/MockObject/Generator/mocked_object_method.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="2854d7704ded880f8f99e1670525aae9" name="PHPUnit/Framework/MockObject/Generator/mocked_static_method.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="74db6e89cecc6344a5d83b178a50ca95" name="PHPUnit/Framework/MockObject/Generator/trait_class.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="24ed5db5749b2d54f4c1ec88853ece55" name="PHPUnit/Framework/MockObject/Generator/unmocked_clone.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="832ad042bcfb6853225f230a4d99dd3b" name="PHPUnit/Framework/MockObject/Generator/wsdl_class.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="b87ff1b355250565af7d5ec7c877c8d7" name="PHPUnit/Framework/MockObject/Generator/wsdl_method.tpl.dist" role="php" />
+   <file baseinstalldir="/" md5sum="63bf80f98b5d84b1b71ad51a7a4c97fe" name="PHPUnit/Framework/MockObject/Invocation/Object.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="69f5e81a9eef7f43fc61ea079e9e9da5" name="PHPUnit/Framework/MockObject/Invocation/Static.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="b626ae65c76d4a17eba16b8f74341787" name="PHPUnit/Framework/MockObject/Matcher/AnyInvokedCount.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="b7772c13b235a8e8cef29b85e1af6761" name="PHPUnit/Framework/MockObject/Matcher/AnyParameters.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="05ff3520eb189a80c93a26bda0cf642f" name="PHPUnit/Framework/MockObject/Matcher/Invocation.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="3beb7a5899214ea2ac51f8df1ebc993d" name="PHPUnit/Framework/MockObject/Matcher/InvokedAtIndex.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="07b2d434cf8ac08961b350fd8f460980" name="PHPUnit/Framework/MockObject/Matcher/InvokedAtLeastOnce.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="4c9046411b049bb104ef48600bc0ed74" name="PHPUnit/Framework/MockObject/Matcher/InvokedCount.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="b964a9d1a6559edf940b4d58cf737e6d" name="PHPUnit/Framework/MockObject/Matcher/InvokedRecorder.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="b26bd35c929bcf4fb12db43c87b7145d" name="PHPUnit/Framework/MockObject/Matcher/MethodName.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="6aceb260560be2f4257b26334356ff0e" name="PHPUnit/Framework/MockObject/Matcher/Parameters.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="2af27fce23e5a233b83a8440b4529272" name="PHPUnit/Framework/MockObject/Matcher/StatelessInvocation.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="47836ccf68aa35cf9475ee69cc6dba9a" name="PHPUnit/Framework/MockObject/Stub/ConsecutiveCalls.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="b6ebb2ae7ade8f4746bf1bb47f9124c5" name="PHPUnit/Framework/MockObject/Stub/Exception.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="ee515e76f4b59a802de1303a65466819" name="PHPUnit/Framework/MockObject/Stub/MatcherCollection.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="fda0ead07dc155b143cb21a4fce8c9c1" name="PHPUnit/Framework/MockObject/Stub/Return.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="8e589338201143ffcfff41e0595b72ee" name="PHPUnit/Framework/MockObject/Stub/ReturnArgument.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="d04ee76e13a6ef53b896b7e4acd82ff8" name="PHPUnit/Framework/MockObject/Stub/ReturnCallback.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="669edcac763529a12c99ebeff021ef8c" name="PHPUnit/Framework/MockObject/Stub/ReturnSelf.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="368375a610943500728ff8d059682301" name="PHPUnit/Framework/MockObject/Stub/ReturnValueMap.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="11dae8064c793228b5d93cb1fda83452" name="PHPUnit/Framework/MockObject/Autoload.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="c6dd7ba9c21c8587d890609aad425da2" name="PHPUnit/Framework/MockObject/Generator.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="78ebd49e31f09fd51cb2d8b023e889ba" name="PHPUnit/Framework/MockObject/InvocationMocker.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="129569cae6c3f01c8819fb637b1e6605" name="PHPUnit/Framework/MockObject/Invocation.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="705b6baaa8967b3d27a95932aa1ce1d1" name="PHPUnit/Framework/MockObject/Invokable.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="2d81b4389cecb54b3871c13435647ac9" name="PHPUnit/Framework/MockObject/Matcher.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="261af8a855f9d7d1e6351bfaabb30cce" name="PHPUnit/Framework/MockObject/MockBuilder.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="71eaf7c8c1f48776c197fada04d4b76e" name="PHPUnit/Framework/MockObject/MockObject.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="f1a841ef37ec96aa9aca2aa6075b31bf" name="PHPUnit/Framework/MockObject/Stub.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="22e2aef7639197ea533eee4d9ce6d701" name="PHPUnit/Framework/MockObject/Verifiable.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="c119a73bb960673b068fbe1e88db3456" name="ChangeLog.markdown" role="doc" />
+   <file baseinstalldir="/" md5sum="abf920652ef9b627a1cecacadb04ca79" name="LICENSE" role="doc" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.7</min>
+   </php>
+   <pearinstaller>
+    <min>1.9.4</min>
+   </pearinstaller>
+   <package>
+    <name>Text_Template</name>
+    <channel>pear.phpunit.de</channel>
+    <min>1.1.1</min>
+   </package>
+   <extension>
+    <name>reflection</name>
+   </extension>
+   <extension>
+    <name>spl</name>
+   </extension>
+  </required>
+  <optional>
+   <extension>
+    <name>soap</name>
+   </extension>
+  </optional>
+ </dependencies>
+ <phprelease />
+</package>

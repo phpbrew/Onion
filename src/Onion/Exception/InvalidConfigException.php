@@ -8,15 +8,11 @@
  * file that was distributed with this source code.
  *
  */
-namespace Onion\PackageXml;
+namespace Onion\Exception;
+use Exception;
 
-
-/* Package xml 2.0 writer, translate package.ini file into package.xml */
-class PackageXmlWriter 
+class InvalidConfigException extends Exception
 {
-    public $config;
-
-
 
 }
 

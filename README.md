@@ -17,6 +17,8 @@ Let's keep hard long PEAR package.xml away! :-)
 
 * PHP 5.3
 * simplexml extension
+* DOMDocument extension
+* curl
 
 ## The minimal spec file
 
@@ -51,6 +53,18 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
     $ php ~/bin/onion.phar build
 
 Then Your PEAR package is out!
+
+## Bundle
+
+Install PEAR dependencies into vender/ directory
+
+    $ onion.phar -d bundle
+
+
+Note: Current bundle command does not support PEAR special features like:
+
+- PEAR Task: like replace content, rename ... etc
+- PECL installation
 
 ## Compile package to Phar executable/library file
 
