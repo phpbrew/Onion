@@ -76,9 +76,9 @@ EOT;
 		$generator = new PackageXmlGenerator( $package );
 		$generator->setLogger( $logger );
 
-        $this->logger->info('Writing package.xml...');
-		$generator->generate( 'package.xml' );
-
+        $logger->info('Writing package.xml...');
+		$xml = $generator->generate();
+		file_put_contents( 'package.xml', $xml );
 
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');

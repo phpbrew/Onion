@@ -83,6 +83,9 @@ XML;
             $xml              = new SimpleXMLElement($xmlstr); 
             $xml->name        = $config->{ 'package.name' };
             $xml->channel     = $config->{ 'package.channel' };
+            $xml->summary     = $config->{ 'package.summary' };
+            $xml->description = $config->{ 'package.desc' };
+
             if( $config->has('package.extends') )
                 $xml->extends = $config->get('package.extends');
 
@@ -102,8 +105,8 @@ XML;
                 }
             }
 
-            $xml->date        = $config->get('package.date');
-            $xml->time        = $config->get('package.time');
+            $xml->date        = date('Y-m-d');
+            $xml->time        = strftime('%T');
 
 			// add version block
             $version          = $xml->addChild('version');
@@ -112,14 +115,14 @@ XML;
 
 			// stability block
             $stability        = $xml->addChild('stability');
-            $stability->release = $config->get('package.stability-release');  # XXX: detect from version number.
-            $stability->api     = $config->get('package.stability-api');
+            $stability->release = $config->get('package.stability.release');  # XXX: detect from version number.
+            $stability->api     = $config->get('package.stability.api');
 
 
 			// XXX: license, support license url later
             $xml->license     = $config->get('package.license');
 
-            $xml->notes       = $config->get('package.notes');
+            $xml->notes       = $config->get('package.notes') ?: '-';
 
 
 			$roles = $package->getDefaultStructureConfig();
@@ -161,6 +164,7 @@ XML;
             $deps = $xml->addChild('dependencies');
 			$required = $deps->addChild('required');
 
+			// xxx: use from $package->coreDeps
 			{
 				$php = $required->addChild('php');
 				$php->addChild('min','3.5');
@@ -168,6 +172,8 @@ XML;
 				$pearinstaller = $required->addChild('pearinstaller');
 				$pearinstaller->addChild( 'min' , '1.4.1' );
 			}
+
+
 
 			// build required dependencies
 			foreach( $package->deps as $dep ) {
@@ -178,7 +184,34 @@ XML;
 					<min>0.0.2</min>
 				</package>
 				 */
-				var_dump( $dep ); 
+
+				// only PEAR packages
+				switch( $dep['type'] ) {
+
+				case 'pear':
+					$depPackage = $required->addChild('package');
+					$depPackage->addChild('name', $dep['name'] );
+
+					if( $dep['resource']['type'] == 'channel' ) {
+						$channelHost = $dep['resource']['channel'];
+						$depPackage->addChild('channel', $channelHost );
+					}
+					if( $dep['version'] ) {
+						foreach( $dep['version'] as $k => $v ) {
+							$depPackage->addChild( $k , $v );
+						}
+					}
+					break;
+				case 'extension':
+					$depExtension = $required->addChild('extension');
+					$depExtension->addChild('name', $dep['name'] );
+					if( $dep['version'] ) {
+						foreach( $dep['version'] as $k => $v ) {
+							$depExtension->addChild( $k , $v );
+						}
+					}
+					break;
+				}
 			}
 
 

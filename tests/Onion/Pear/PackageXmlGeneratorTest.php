@@ -18,6 +18,7 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
 	{
 		$logger = \Onion\Application::getLogger();
 		ok( $logger );
+		$logger->setLevel( 0 ); // quite 
 
         $config = new \Onion\PackageConfigReader();
         $config->setLogger( $logger );
@@ -32,6 +33,5 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
 		$xml = $generator->generate();
 		ok( $xml , 'xml build ok' );
 
-		var_dump( $xml ); 
 	}
 }

@@ -110,6 +110,20 @@ EOT;
             $config->set('package.license','PHP');
         }
 
+        if( $s = $config->get('package.stability') ) {
+            $config->set('package.stability.api' , $s );
+            $config->set('package.stability.release' , $s );
+        }
+
+        if( ! $config->has('package.stability.api') )
+            $config->set('package.stability.api','alpha');
+
+        if( ! $config->has('package.stability.release') )
+            $config->set('package.stability.release','alpha');
+
+        if( ! $config->has('package.version.api') )
+            $config->set('package.version.api' , $config->get('package.version') );
+
         // preprocess, validate sections only for package.ini
         $pkginfo = new Package;
         $pkginfo->config = $config;

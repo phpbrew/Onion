@@ -64,12 +64,12 @@ class CompileCommand extends Command
             $output = $options->output->value;
 
 
-        $this->logger->info('Compiling Phar...');
+        $logger->info('Compiling Phar...');
 
         $pharFile = $output;
         $src_dirs  = $lib_dirs;
 
-        $this->logger->info2("Creating phar file $pharFile...");
+        $logger->info2("Creating phar file $pharFile...");
 
         $phar = new Phar($pharFile, 0, $pharFile);
         $phar->setSignatureAlgorithm(Phar::SHA1);
@@ -92,7 +92,7 @@ class CompileCommand extends Command
                         $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
                         $content = php_strip_whitespace( $path->getRealPath() );
                         # echo $path->getPathname() . "\n";
-                        $this->logger->debug("\tcompile " . $rel_path );
+                        $logger->debug("\tcompile " . $rel_path );
                         $phar->addFromString($rel_path, $content);
                     }
                 }
@@ -101,7 +101,7 @@ class CompileCommand extends Command
 
         // including bootstrap file
         if( $bootstrap ) {
-            $this->logger->info2( "Adding bootstrap file $bootstrap..." );
+            $logger->info2( "Adding bootstrap file $bootstrap..." );
             $content = php_strip_whitespace($bootstrap);
             $content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
             $phar->addFromString($bootstrap, $content);
@@ -110,11 +110,11 @@ class CompileCommand extends Command
         $stub = '';
 
         if( $options->executable ) {
-            $this->logger->info2( 'Adding shell bang...' );
+            $logger->info2( 'Adding shell bang...' );
             $stub .= "#!/usr/bin/env php\n";
         }
 
-        $this->logger->info2( "Setting up stub..." );
+        $logger->info2( "Setting up stub..." );
         $stub .= <<<"EOT"
 <?php
 Phar::mapPhar('$pharFile');
@@ -123,7 +123,7 @@ EOT;
         // use stream to resolve Universal\ClassLoader\Autoloader;
         if( $options->classloader ) {
 
-            $this->logger->info2( "Adding classloader..." );
+            $logger->info2( "Adding classloader..." );
 
             if( is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) )
             {
@@ -162,7 +162,7 @@ EOT;
 
 
         if( $bootstrap ) {
-        $this->logger->info2( "Adding bootstrap script..." );
+            $logger->info2( "Adding bootstrap script..." );
         $stub .=<<<"EOT"
 require 'phar://$pharFile/$bootstrap';
 EOT;
@@ -197,10 +197,10 @@ EOT;
         }
 
         if( $compress_type ) {
-            $this->logger->info( "Compressing phar ..." );
+            $logger->info( "Compressing phar ..." );
             $phar->compressFiles($compress_type);
         }
 
-        $this->logger->info('Done');
+        $logger->info('Done');
     }
 }

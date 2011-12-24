@@ -64,7 +64,6 @@ class BundleCommand extends Command
         //  - read package.xml and install it into .local directory.
 
 
-
     }
 
 }
