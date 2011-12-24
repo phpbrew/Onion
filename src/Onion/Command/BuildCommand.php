@@ -13,6 +13,7 @@ use CLIFramework\Command;
 use CLIFramework\CommandInterface;
 use Onion\GlobalConfig;
 use Onion\PackageConfigReader;
+use Onion\Pear\PackageXmlGenerator;
 
 class BuildCommand extends Command 
     implements CommandInterface
@@ -70,17 +71,14 @@ EOT;
         $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader();
         $config->setLogger( $logger );
-        $config->read( 'package.ini' );
+        $package = $config->read( 'package.ini' );
 
-        # $config->readAsPackageXml();
-        $xml = $config->generatePackageXml();
+		$generator = new PackageXmlGenerator( $package );
+		$generator->setLogger( $logger );
 
-        /*
-        if( file_exists('package.xml') )
-            rename('package.xml','package.xml.old');
-        */
         $this->logger->info('Writing package.xml...');
-        file_put_contents('package.xml',$xml);
+		$generator->generate( 'package.xml' );
+
 
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');

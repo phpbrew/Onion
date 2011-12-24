@@ -38,11 +38,17 @@ class BundleCommand extends Command
 
     function execute($arguments)
     {
+		$logger = $this->getLogger();
+
         // convert package.ini to package.xml
-        $cmd = $this->application->getCommand('build');
-        $cmd->execute(array());
+		if( ! file_exists('package.ini') ) {
+			$logger->error('package.ini not found, please define one.');
+			return false;
+		}
 
 
+        // $cmd = $this->application->getCommand('build');
+        // $cmd->execute(array());
 
         // init pear dependency manager
 
