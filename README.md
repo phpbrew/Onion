@@ -54,9 +54,17 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
 
 Then Your PEAR package is out!
 
-## Install PEAR dependencies into vender/ directory
+## Bundle
+
+Install PEAR dependencies into vender/ directory
 
     $ onion.phar -d bundle
+
+
+Note: Current bundle command does not support PEAR special features like:
+
+- PEAR Task: like replace content, rename ... etc
+- PECL installation
 
 ## Compile package to Phar executable/library file
 
