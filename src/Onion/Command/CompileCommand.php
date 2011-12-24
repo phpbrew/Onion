@@ -136,19 +136,7 @@ EOT;
             }
             else {
                 $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
-                $classloader_path = stream_resolve_include_path($classloader_file);
 
-                if( ! $classloader_path ) {
-                    $classloader_path = stream_resolve_include_path( 'phar://onion.phar/' . $classloader_file);
-                }
-
-                if( ! $classloader_path ) {
-                    die($classloader_file . ' not found.');
-                }
-
-                // try to resolve in current phar executable
-                $content = php_strip_whitespace($classloader_path);
-                $phar->addFromString($classloader_file,$content);
                 $stub .=<<<"EOT"
 require 'phar://$pharFile/$classloader_file';
 \$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;
