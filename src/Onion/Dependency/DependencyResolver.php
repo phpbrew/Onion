@@ -30,8 +30,11 @@ class DependencyResolver
     function resolvePearPackage($package)
     {
         $pId = $package->getId();
-        if( $this->manager->hasPackage( $package ) )
+
+        if( $this->manager->hasPackage( $package ) ) {
+            // xxx: check existing package version requirement..
             return;
+        }
 
         // get dependent package info
         echo "Resolving PEAR package: {$package->name} \n";
@@ -103,9 +106,12 @@ class DependencyResolver
             }
         }
         elseif( is_a( $package , '\Onion\Package\PearPackage' ) ) {
+            // xxx: support pear package
 
         }
         elseif( is_a( $package , '\Onion\Package\LibraryPackage' ) ) {
+            // xxx: support library package
+
 
         }
     }
