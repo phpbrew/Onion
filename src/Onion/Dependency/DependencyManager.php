@@ -50,11 +50,10 @@ class DependencyManager
         unset( $this->packagesById[ $name ] );
     }
 
-    function getPackage($name)
+    function getPackage($id)
     {
-
+        return $this->packagesById[ $id ];
     }
-
 
 
     /**
