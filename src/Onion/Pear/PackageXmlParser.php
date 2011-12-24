@@ -37,6 +37,13 @@ class ContentFile
     {
         $this->file = $file;
     }
+
+    function getInstallAs()
+    {
+        if( $this->installAs )
+            return $this->installAs;
+        return $this->file;
+    }
 }
 
 class PackageXmlParser

@@ -67,7 +67,7 @@ class DependencyResolver
                 $channelHost = $dep['channel'];
 
 
-                $this->logger->info("Discovering channel $channelHost for $packageName",1);
+                $this->logger->info2("Discovering channel $channelHost for $packageName",1);
 
                 // discover pear channel
                 $discover = new \Onion\Pear\ChannelDiscover;

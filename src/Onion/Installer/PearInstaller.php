@@ -37,7 +37,8 @@ class PearInstaller
 
         // $installTmpDir = $tmpDir . DIRECTORY_SEPARATOR . 'onion' . DIRECTORY_SEPARATOR . '.work' . DIRECTORY_SEPARATOR . time() ;
         $workspace = $this->mainInstaller->getWorkspace();
-        $packageSourceDir =  $workspace . DIRECTORY_SEPARATOR . $package->name;
+        $packageDir =  $workspace . DIRECTORY_SEPARATOR . $package->name;
+        $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $package->latest;
 
         // var_dump( $package ); 
         $url = $package->getDistUrlByVersion( $package->latest );
@@ -56,7 +57,7 @@ class PearInstaller
         $archive = new \PharData($sourceFile);
 
         $logger->info( "Extracting ..." );
-        $archive->extractTo( $packageSourceDir );
+        $archive->extractTo( $packageDir );
 
 
         $pearLibPath = $this->mainInstaller->libpath . DIRECTORY_SEPARATOR . $this->basepath;
@@ -67,7 +68,7 @@ class PearInstaller
 
 
         // parse package.xml
-        $parser = new \Onion\Pear\PackageXmlParser( $packageSourceDir . DIRECTORY_SEPARATOR . 'package.xml' );
+        $parser = new \Onion\Pear\PackageXmlParser( $packageDir . DIRECTORY_SEPARATOR . 'package.xml' );
 
         // build file list, separate by roles
         $contentFiles = $parser->getContentFiles();
@@ -81,7 +82,15 @@ class PearInstaller
         foreach( $contentFiles as $file ) {
             // install php code only (for now)
             if( $file->role == 'php' ) {
+                $installFrom = $packageSourceDir . DIRECTORY_SEPARATOR . $file->file;
+                $installTo = $pearLibPath . DIRECTORY_SEPARATOR . $file->getInstallAs();
 
+                $dir = dirname( $installTo );
+                if( ! file_exists( $dir ) )
+                    mkdir( $dir , 0755 , true );
+
+                $logger->info2( "Installing $installTo ..." );
+                copy( $installFrom , $installTo );
             }
         }
 
