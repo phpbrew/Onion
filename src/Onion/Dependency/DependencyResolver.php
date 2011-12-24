@@ -29,6 +29,7 @@ class DependencyResolver
 
     function resolve( \Onion\Package\Package $package )
     {
+        // expand package and package dependencies to package object
 
     }
 

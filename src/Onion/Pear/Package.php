@@ -11,6 +11,9 @@
 namespace Onion\Pear;
 use Exception;
 
+/** 
+ * pear channel package 
+ * */
 class Package 
 {
     public $name;
@@ -18,12 +21,25 @@ class Package
     public $summary;
     public $channel;
     public $license;
+
+    /* last version */
     public $latest;
+
+    /* last stable version */
     public $stable;
+
+    /* last alpha version */
     public $alpha;
+
+    /* last beta version */
     public $beta;
 
+    /* all releases */
     public $releases = array();
+
+    /**
+     * dependencies
+     */
     public $deps = array();
 
     public function __sleep()
@@ -46,5 +62,5 @@ class Package
         }
         return $a;
     }
-
 }
+

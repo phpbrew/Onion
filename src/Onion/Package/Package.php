@@ -39,12 +39,15 @@ class Package
 
 
     /**
-     * core dependencies: php and pearinstaller (optional)
-     */
-    public $coreDeps = array();
-
-    /**
      * package dependencies
+     *
+     *  $pkginfo->deps[] = array(
+     *      'type' => 'extension',
+     *      'name' => $depinfo['name'],
+     *      'version' => $depinfo['version'],
+     *  );
+     *
+     *  types could be core, extension, pear ... etc
      */
     public $deps = array();
 
