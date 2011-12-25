@@ -132,7 +132,7 @@ XML;
             $dir = $contentsXml->addChild('dir');
             $dir->addAttribute('name','/');
 
-
+            // default roles
 			foreach( $roles as $role => $paths ) {
 				foreach( $paths as $path ) {
 					$this->addPathByRole( $dir, $path, $role );
@@ -140,9 +140,11 @@ XML;
 			}
 
 			$customRoles = $config->get('roles');
-			foreach( $customRoles as $pattern => $role ) {
-				$this->addPathByRole( $dir, $pattern , $role );
-			}
+            if( $customRoles ) {
+                foreach( $customRoles as $pattern => $role ) {
+                    $this->addPathByRole( $dir, $pattern , $role );
+                }
+            }
 
 
 
@@ -151,17 +153,6 @@ XML;
 
             $deps = $xml->addChild('dependencies');
 			$required = $deps->addChild('required');
-
-			// xxx: use from $package->coreDeps
-			{
-				$php = $required->addChild('php');
-				$php->addChild('min','3.5');
-
-				$pearinstaller = $required->addChild('pearinstaller');
-				$pearinstaller->addChild( 'min' , '1.4.1' );
-			}
-
-
 
 			// build required dependencies
 			foreach( $package->deps as $dep ) {
@@ -175,6 +166,16 @@ XML;
 
 				// only PEAR packages
 				switch( $dep['type'] ) {
+
+                case 'core':
+                    $name = $dep['name'];
+                    $depCore = $required->addChild($name);
+					if( $dep['version'] ) {
+						foreach( $dep['version'] as $k => $v ) {
+							$depCore->addChild( $k , $v );
+						}
+					}
+                    break;
 
 				case 'pear':
 					$depPackage = $required->addChild('package');

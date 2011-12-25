@@ -156,12 +156,12 @@ EOT;
 
             // use default core dependency 
             $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
-            $pkginfo->coreDeps[] = array(
+            $pkginfo->deps[] = array(
                 'type' => 'core',
                 'name' => 'php',
                 'version' => array( 'min' => '5.3' ),
             );
-            $pkginfo->coreDeps[] = array( 
+            $pkginfo->deps[] = array( 
                 'type' => 'core',
                 'name' => 'pearinstaller',
                 'version' => array( 'min' => '1.4' ),
@@ -172,12 +172,11 @@ EOT;
         foreach( $config->get('require') as $key => $value ) 
         {
             $type = $this->detectDependencyType( $key , $value );
-            
             switch($type) {
 
             case 'core':
                 $version = SpecUtils::parseVersion( $value );
-                $pkginfo->coreDeps[] = array( 
+                $pkginfo->deps[] = array( 
                     'type' => 'core',
                     'name' => $key,
                     'version' => $version,  /* [ min => , max => ] */
