@@ -101,7 +101,7 @@ XML;
                     $data =  SpecUtils::parseAuthor( $author );
                     foreach( $data as $k => $v )
                         $lead->$k = $v;
-                    $lead->active = 1;
+                    $lead->active = 'yes';
                 }
             }
 
