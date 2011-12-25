@@ -69,7 +69,7 @@ class CompileCommand extends Command
         $pharFile = $output;
         $src_dirs  = $lib_dirs;
 
-        $logger->info2("Creating phar file $pharFile...");
+        $logger->debug2("Creating phar file $pharFile...");
 
         $phar = new Phar($pharFile, 0, $pharFile);
         $phar->setSignatureAlgorithm(Phar::SHA1);
@@ -92,7 +92,7 @@ class CompileCommand extends Command
                         $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
                         $content = php_strip_whitespace( $path->getRealPath() );
                         # echo $path->getPathname() . "\n";
-                        $logger->debug("\tcompile " . $rel_path );
+                        $logger->debug2("compile " . $rel_path , 1 );
                         $phar->addFromString($rel_path, $content);
                     }
                 }
@@ -101,7 +101,7 @@ class CompileCommand extends Command
 
         // including bootstrap file
         if( $bootstrap ) {
-            $logger->info2( "Adding bootstrap file $bootstrap..." );
+            $logger->info2( "compile $bootstrap" , 1 );
             $content = php_strip_whitespace($bootstrap);
             $content = preg_replace('{^#!/usr/bin/env\s+php\s*}', '', $content);
             $phar->addFromString($bootstrap, $content);
@@ -110,7 +110,7 @@ class CompileCommand extends Command
         $stub = '';
 
         if( $options->executable ) {
-            $logger->info2( 'Adding shell bang...' );
+            $logger->debug2( 'Adding shell bang...' );
             $stub .= "#!/usr/bin/env php\n";
         }
 
@@ -136,19 +136,7 @@ EOT;
             }
             else {
                 $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
-                $classloader_path = stream_resolve_include_path($classloader_file);
 
-                if( ! $classloader_path ) {
-                    $classloader_path = stream_resolve_include_path( 'phar://onion.phar/' . $classloader_file);
-                }
-
-                if( ! $classloader_path ) {
-                    die($classloader_file . ' not found.');
-                }
-
-                // try to resolve in current phar executable
-                $content = php_strip_whitespace($classloader_path);
-                $phar->addFromString($classloader_file,$content);
                 $stub .=<<<"EOT"
 require 'phar://$pharFile/$classloader_file';
 \$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;

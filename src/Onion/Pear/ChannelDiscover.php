@@ -25,9 +25,15 @@ class ChannelDiscover
             $url = 'http://' . $pearhost . '/channel.xml';
             $xmlstr = $downloader->fetch($url);
         } catch( Exception $e ) {
-            $url = 'https://' . $pearhost . '/channel.xml';
-            $xmlstr = $downloader->fetch($url);
+
+            try {
+                $url = 'https://' . $pearhost . '/channel.xml';
+                $xmlstr = $downloader->fetch($url);
+            } catch( Exception $e ) {
+                throw new Exception("Channel discover failed: $url");
+            }
         }
+
         $parser = new ChannelParser;
         $channel = $parser->parse( $xmlstr );
         return $channel;

@@ -93,7 +93,7 @@ XML;
             $lead = $xml->addChild('lead');
             foreach( $author_data as $k => $v )
                 $lead->$k = $v;
-            $lead->active = true;
+            $lead->active = 'yes';
 
             if( $config->has('package.authors') ) {
                 foreach( $config->get('package.authors') as $author ) {
@@ -101,7 +101,7 @@ XML;
                     $data =  SpecUtils::parseAuthor( $author );
                     foreach( $data as $k => $v )
                         $lead->$k = $v;
-                    $lead->active = 1;
+                    $lead->active = 'yes';
                 }
             }
 
@@ -125,43 +125,46 @@ XML;
             $xml->notes       = $config->get('package.notes') ?: '-';
 
 
-			$roles = $package->getDefaultStructureConfig();
 
+
+            // build content sections
             $logger->info('Building contents section...');
-            $contentsXml = $xml->addChild('contents');
-            $dir = $contentsXml->addChild('dir');
-            $dir->addAttribute('name','/');
 
-
+			$roles = $package->getDefaultStructureConfig();
+            // default roles
+            $filelist = array();
 			foreach( $roles as $role => $paths ) {
 				foreach( $paths as $path ) {
-					$this->addPathByRole( $dir, $path, $role );
+                    $logger->debug( "treat path \"$path\" as \"$role\" role" , 1 );
+                    $files = $this->addPathByRole( $path, $role );
+                    $filelist = array_merge( $filelist, $files);
 				}
 			}
 
 			$customRoles = $config->get('roles');
-			foreach( $customRoles as $pattern => $role ) {
-				$this->addPathByRole( $dir, $pattern , $role );
-			}
+            if( $customRoles ) {
+                foreach( $customRoles as $pattern => $role ) {
+                    $logger->debug( "treat \"$pattern\" as \"$role\" role" , 1 );
+                    $files = $this->addPathByRole( $pattern , $role );
+                    $filelist = array_merge( $filelist, $files);
+                }
+            }
 
-
+            $contentsXml = $xml->addChild('contents');
+            $dir = $contentsXml->addChild('dir');
+            $dir->addAttribute('name','/');
+            foreach( $filelist as $contentFile ) { // ContentFile class
+                $file = $dir->addChild('file');
+                $file->addAttribute( 'name'       , $contentFile->file );
+                $file->addAttribute( 'role'       , $contentFile->role );
+                $file->addAttribute( 'md5sum'     , $contentFile->md5sum );
+            }
 
 			// dependencies section
             $logger->info('Building dependencies section...');
 
             $deps = $xml->addChild('dependencies');
 			$required = $deps->addChild('required');
-
-			// xxx: use from $package->coreDeps
-			{
-				$php = $required->addChild('php');
-				$php->addChild('min','3.5');
-
-				$pearinstaller = $required->addChild('pearinstaller');
-				$pearinstaller->addChild( 'min' , '1.4.1' );
-			}
-
-
 
 			// build required dependencies
 			foreach( $package->deps as $dep ) {
@@ -173,8 +176,20 @@ XML;
 				</package>
 				 */
 
+                $logger->debug2( sprintf("dependency %-10s %s", $dep['type'], $dep['name']) , 1);
+
 				// only PEAR packages
 				switch( $dep['type'] ) {
+
+                case 'core':
+                    $name = $dep['name'];
+                    $depCore = $required->addChild($name);
+					if( $dep['version'] ) {
+						foreach( $dep['version'] as $k => $v ) {
+							$depCore->addChild( $k , $v );
+						}
+					}
+                    break;
 
 				case 'pear':
 					$depPackage = $required->addChild('package');
@@ -207,9 +222,18 @@ XML;
 
 			// xxx: support optional group dependencies
 
-            // xxx: support phprelease tag.
+
 			// phprelease sections
-            $xml->addChild('phprelease');
+            $logger->info( "Building phprelease section..." );
+            {
+                $phprelease = $xml->addChild('phprelease');
+                $filelistNode = $phprelease->addChild('filelist');
+                foreach( $filelist as $contentFile ) { // ContentFile class
+                    $file = $filelistNode->addChild('install');
+                    $file->addAttribute( 'name'       , $contentFile->file );
+                    $file->addAttribute( 'as'         , $contentFile->installAs );
+                }
+            }
 
 
 		} catch ( Exception $e ) {
@@ -230,15 +254,17 @@ XML;
     }
 
 
-	function addPathByRole( $dir, $path , $role )
+	function addPathByRole( $path , $role )
 	{
+        $list = array();
 		if( is_dir($path) ) {
 			$baseDir = $path;
 			$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($baseDir),
 									RecursiveIteratorIterator::CHILD_FIRST);
 			foreach( $iterator as $path ) {
 				if( $path->isFile() ) {
-					$this->addFileNode($dir,$path,$role,$baseDir);
+                    $filepath = $path->getPathname();
+                    $list[] = $this->buildContentFile( $path, $role, $baseDir );
 				}
 			}
 		}
@@ -246,35 +272,30 @@ XML;
 			$files = glob($path);
 			foreach( $files as $filename ) {
 				$fileinfo = new SplFileInfo($filename);
-				$this->addFileNode($dir,$fileinfo,$role);
+                $list[] = $this->buildContentFile( $fileinfo , $role );
 			}
 		}
+        return $list;
 	}
 
-    function addFileNode($dir,$fileinfo,$role,$baseDir = null)
+    function buildContentFile($fileinfo,$role,$baseDir = '')
     {
-        # substr( $path->__tostring()  );
         $filepath = $fileinfo->getPathname();
-        $md5sum   = md5_file($filepath);
+        $contentFile = new PackageXml\ContentFile( $filepath );
+        $contentFile->role = $role;
+        $contentFile->md5sum = md5_file($filepath);
 
-        $target_filepath = $filepath;
+        $contentFile->installAs = $filepath;
         if( $baseDir )
-            $target_filepath = substr( $filepath , strlen($baseDir) + 1 );
+            $contentFile->installAs = substr( $filepath , strlen($baseDir) + 1 );
 
-        
         $this->logger->debug2( sprintf('%s  %-5s  %s', 
-            substr($md5sum,0,6),
-            $role,
-            $filepath
+            substr($contentFile->md5sum,0,6),
+            $contentFile->role,
+            $contentFile->file
         ),1);
-        $newfile = $dir->addChild('file');
-        $newfile->addAttribute( 'install-as' , $target_filepath );
-        $newfile->addAttribute( 'name'       , $filepath );
-        $newfile->addAttribute( 'role'       , $role );
-        $newfile->addAttribute( 'md5sum'     , $md5sum );
+        return $contentFile;
     }
-
-
 }
 
 

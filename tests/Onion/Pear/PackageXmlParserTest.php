@@ -12,6 +12,17 @@ namespace tests\Onion\Pear;
 
 class PackageXmlParserTest extends \PHPUnit_Framework_TestCase 
 {
+
+    function test2()
+    {
+        $p = new \Onion\Pear\PackageXmlParser( 'tests/data/package_xml/Twig/package.xml' );
+        ok( $p );
+        $list = $p->getContentFiles();
+        ok( $list ); 
+        ok( $list = $p->getContentFilesByRole( 'php' ));
+    }
+
+
     function test() 
     {
         # spec from http://pear.php.net/manual/en/guide.developers.package2.dir.php
