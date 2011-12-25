@@ -93,7 +93,7 @@ XML;
             $lead = $xml->addChild('lead');
             foreach( $author_data as $k => $v )
                 $lead->$k = $v;
-            $lead->active = true;
+            $lead->active = 'yes';
 
             if( $config->has('package.authors') ) {
                 foreach( $config->get('package.authors') as $author ) {
