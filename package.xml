@@ -12,7 +12,7 @@
     <active>1</active>
   </lead>
   <date>2011-12-25</date>
-  <time>13:11:41</time>
+  <time>13:24:03</time>
   <version>
     <release>0.0.10</release>
     <api>0.0.10</api>
@@ -54,7 +54,7 @@
       <file install-as="Onion/Application.php" name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
       <file install-as="Onion/Command/BuildCommand.php" name="src/Onion/Command/BuildCommand.php" role="php" md5sum="eb2e603eb35fc1f9d35930b023aabf4e"/>
       <file install-as="Onion/Command/BundleCommand.php" name="src/Onion/Command/BundleCommand.php" role="php" md5sum="903a507ff645e02628989d8ff9dba5a0"/>
-      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="72d1892798985837c8e9791a700763a7"/>
+      <file install-as="Onion/Command/CompileCommand.php" name="src/Onion/Command/CompileCommand.php" role="php" md5sum="4beb285d8f901308fcd406098c6d7be8"/>
       <file install-as="Onion/Command/InitCommand.php" name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file install-as="Onion/ConfigContainer.php" name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
       <file install-as="Onion/Dependency/DependencyInfo.php" name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
@@ -91,7 +91,7 @@
       <file install-as="phpunit_package.xml" name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file install-as="symfony_package.xml.tmpl" name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file install-as="twig_package.xml" name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="45db4461eb2ad779af2274165a551af2"/>
+      <file install-as="onion.phar" name="onion.phar" role="script" md5sum="f534816589e368927f9788e6aaf3a242"/>
       <file install-as="Changes.md" name="Changes.md" role="doc" md5sum="ad44b6b4271851a7c8fbe2a9510f05a5"/>
       <file install-as="README.md" name="README.md" role="doc" md5sum="abac8c963f5e235c96bdc23b358772c3"/>
       <file install-as="TODO.md" name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
