@@ -152,7 +152,9 @@ EOT;
         if( $config->has('required') )
             $logger->warn( 'section "required" has been renamed to "require".' );
 
-        if( ! $config->has('require') ) {
+
+        $requires = $config->get('require');
+        if( ! $requires ) {
 
             // use default core dependency 
             $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
@@ -168,39 +170,40 @@ EOT;
             );
         }
 
+        if( $requires ) {
+            foreach( $requires as $key => $value ) 
+            {
+                $type = $this->detectDependencyType( $key , $value );
+                switch($type) {
 
-        foreach( $config->get('require') as $key => $value ) 
-        {
-            $type = $this->detectDependencyType( $key , $value );
-            switch($type) {
+                case 'core':
+                    $version = SpecUtils::parseVersion( $value );
+                    $pkginfo->deps[] = array( 
+                        'type' => 'core',
+                        'name' => $key,
+                        'version' => $version,  /* [ min => , max => ] */
+                    );
+                    break;
 
-            case 'core':
-                $version = SpecUtils::parseVersion( $value );
-                $pkginfo->deps[] = array( 
-                    'type' => 'core',
-                    'name' => $key,
-                    'version' => $version,  /* [ min => , max => ] */
-                );
-                break;
+                case 'extension':
+                    $depinfo = $this->parseDependency($key,$value);
+                    $pkginfo->deps[] = array(
+                        'type' => 'extension',
+                        'name' => $depinfo['name'],
+                        'version' => $depinfo['version'],
+                    );
+                    break;
 
-            case 'extension':
-                $depinfo = $this->parseDependency($key,$value);
-                $pkginfo->deps[] = array(
-                    'type' => 'extension',
-                    'name' => $depinfo['name'],
-                    'version' => $depinfo['version'],
-                );
-                break;
+                case 'pear':
+                    $depinfo = $this->parseDependency($key,$value);
+                    $pkginfo->deps[] = $depinfo;
+                    break;
 
-            case 'pear':
-                $depinfo = $this->parseDependency($key,$value);
-                $pkginfo->deps[] = $depinfo;
-                break;
+                default:
+                    throw new InvalidConfigException("Unsupported dependency type: $type ");
+                    break;
 
-            default:
-                throw new InvalidConfigException("Unsupported dependency type: $type ");
-                break;
-
+                }
             }
         }
         return $pkginfo;
