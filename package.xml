@@ -9,10 +9,10 @@
     <name>Yo-An Lin</name>
     <user/>
     <email>cornelius.howl@gmail.com</email>
-    <active>1</active>
+    <active>yes</active>
   </lead>
   <date>2011-12-25</date>
-  <time>17:57:14</time>
+  <time>18:46:08</time>
   <version>
     <release>0.0.11</release>
     <api>0.0.11</api>
@@ -93,7 +93,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="4df87c3063289fb9f000b19e546c4ffa"/>
+      <file name="onion.phar" role="script" md5sum="7fc22e4224ff3183525f54494f41add2"/>
       <file name="Changes.md" role="doc" md5sum="ad44b6b4271851a7c8fbe2a9510f05a5"/>
       <file name="README.md" role="doc" md5sum="abac8c963f5e235c96bdc23b358772c3"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
