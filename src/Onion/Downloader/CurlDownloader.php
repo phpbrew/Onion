@@ -1,6 +1,8 @@
 <?php
 namespace Onion\Downloader;
 
+use Exception;
+
 class CurlDownloader 
     implements DownloaderInterface
 {
