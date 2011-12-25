@@ -125,9 +125,12 @@ XML;
             $xml->notes       = $config->get('package.notes') ?: '-';
 
 
+
+
+            // build content sections
+            $logger->info('Building contents section...');
+
 			$roles = $package->getDefaultStructureConfig();
-
-
             // default roles
             $filelist = array();
 			foreach( $roles as $role => $paths ) {
@@ -147,8 +150,6 @@ XML;
                 }
             }
 
-            // build content sections
-            $logger->info('Building contents section...');
             $contentsXml = $xml->addChild('contents');
             $dir = $contentsXml->addChild('dir');
             $dir->addAttribute('name','/');
@@ -174,6 +175,8 @@ XML;
 					<min>0.0.2</min>
 				</package>
 				 */
+
+                $logger->debug2( sprintf("dependency %-10s %s", $dep['type'], $dep['name']) , 1);
 
 				// only PEAR packages
 				switch( $dep['type'] ) {

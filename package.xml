@@ -12,10 +12,10 @@
     <active>1</active>
   </lead>
   <date>2011-12-25</date>
-  <time>17:33:20</time>
+  <time>17:39:03</time>
   <version>
-    <release>0.0.10</release>
-    <api>0.0.10</api>
+    <release>0.0.11</release>
+    <api>0.0.11</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -85,7 +85,7 @@
       <file name="src/Onion/Pear/Package.php" role="php" md5sum="2fd0ef30fb53512c55ac967fd44c3a2c"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
       <file name="src/Onion/Pear/PackageXml/FileListInstall.php" role="php" md5sum="ee11a34471009c241655f8812aa36aa4"/>
-      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="e253e3b3b3fd0a2f757b123a80e386b4"/>
+      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="00b88bf6cc1b24413f565855b5ee560f"/>
       <file name="src/Onion/Pear/PackageXmlParser.php" role="php" md5sum="3403f918f761247c298adf4cb765b61b"/>
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
@@ -93,7 +93,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="dd56367d865049d204b7b0ae27e92da4"/>
+      <file name="onion.phar" role="script" md5sum="4df87c3063289fb9f000b19e546c4ffa"/>
       <file name="Changes.md" role="doc" md5sum="ad44b6b4271851a7c8fbe2a9510f05a5"/>
       <file name="README.md" role="doc" md5sum="abac8c963f5e235c96bdc23b358772c3"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
