@@ -12,40 +12,6 @@ namespace Onion\Pear;
 use SimpleXMLElement;
 use Exception;
 
-class FileListInstall
-{
-    public $file;
-    public $as;
-
-    function __construct($file,$as = null)
-    {
-        $this->file = $file;
-        $this->as = $as;
-    }
-}
-
-class ContentFile
-{
-    /**
-     * follows the spec of http://pear.php.net/manual/en/guide.developers.package2.contents.php
-     */
-    public $file;
-    public $installAs;
-    public $role;
-
-    function __construct($file)
-    {
-        $this->file = $file;
-    }
-
-    function getInstallAs()
-    {
-        if( $this->installAs )
-            return $this->installAs;
-        return $this->file;
-    }
-}
-
 class PackageXmlParser
 {
     public $xml;
@@ -98,10 +64,10 @@ class PackageXmlParser
 
                 $file = null;
                 if( $baseInstallDir ) {
-                    $file = new ContentFile( $parentPath . $baseInstallDir . DIRECTORY_SEPARATOR . $filename );
+                    $file = new PackageXml\ContentFile( $parentPath . $baseInstallDir . DIRECTORY_SEPARATOR . $filename );
                 }
                 else {
-                    $file = new ContentFile( $parentPath . $filename );
+                    $file = new PackageXml\ContentFile( $parentPath . $filename );
                 }
                 if( $installAs )
                     $file->installAs = $parentPath . $installAs;
@@ -121,7 +87,7 @@ class PackageXmlParser
         $filelist = array();
         if( $phprelease->filelist ) {
             foreach( $phprelease->filelist->children() as $install ) {
-                $filelist[] = new FileListInstall( (string) $install['name'] , (string) @$install['as'] );
+                $filelist[] = new PackageXml\FileListInstall( (string) $install['name'] , (string) @$install['as'] );
             }
         }
         return $filelist;

@@ -33,5 +33,6 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
 		$xml = $generator->generate();
 		ok( $xml , 'xml build ok' );
 
+        // do validations from xsd file.
 	}
 }
