@@ -6,6 +6,21 @@ use Exception;
 class CurlDownloader 
     implements DownloaderInterface
 {
+
+    function progressCallback($downloadSize, $downloaded, $uploadSize, $uploaded)
+    {
+        // print progress bar
+        $percent = ($downloaded > 0 ? (float) ($downloaded / $downloadSize) : 0.0 );
+        $terminalWidth = 70;
+        $sharps = (int) $terminalWidth * $percent;
+
+        # echo "\n" . $sharps. "\n";
+        echo "\r" . 
+            str_repeat( '#' , $sharps ) . 
+            str_repeat( ' ' , $terminalWidth - $sharps ) . 
+            sprintf( ' %4d B %5d%%' , $downloaded , $percent * 100 );
+    }
+
     function fetch($url)
     {
         $options = array();
@@ -15,40 +30,26 @@ class CurlDownloader
             CURLOPT_FRESH_CONNECT => 1, 
             CURLOPT_RETURNTRANSFER => 1, 
             CURLOPT_FORBID_REUSE => 1, 
-            CURLOPT_TIMEOUT => 4, 
+            CURLOPT_TIMEOUT => 10, 
         ); 
         $ch = curl_init(); 
         curl_setopt_array($ch, ($options + $defaults)); 
-        if( ! $result = curl_exec($ch)) 
-        { 
+
+        $logger = \Onion\Application::getLogger();
+        if( $logger->level > 6 ) {
+            curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+            curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, array($this,'progressCallback'));
+            curl_setopt($ch, CURLOPT_BUFFERSIZE, 32 );
+        }
+
+        if( ! $result = curl_exec($ch)) { 
             throw new Exception( $url . ":" . curl_error($ch) );
         }
         curl_close($ch); 
+
+        if( $logger->level > 6 ) {
+            echo "\n";
+        }
         return $result;
     }
 }
-
-
-/*
- *
-    function callback($download_size, $downloaded, $upload_size, $uploaded)
-    {
-        // do your progress stuff here
-    }
-
-    $ch = curl_init('http://www.example.com');
-
-    // This is required to curl give us some progress
-    // if this is not set to false the progress function never
-    // gets called
-    curl_setopt($ch, CURLOPT_NOPROGRESS, false);
-
-    // Set up the callback
-    curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'callback');
-
-    // Big buffer less progress info/callbacks
-    // Small buffer more progress info/callbacks
-    curl_setopt($ch, CURLOPT_BUFFERSIZE, 128);
-
-    $data = curl_exec($ch);
-*/
