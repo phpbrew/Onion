@@ -17,7 +17,9 @@ class CurlDownloader
             str_repeat( '#' , $sharps ) . 
             str_repeat( ' ' , $terminalWidth - $sharps ) . 
             sprintf( ' %d bytes %d%%' , $downloaded , $percent * 100 );
-        // echo str_pad( '#' , 30 , '-' );
+
+        if( $downloadSize == $downloaded && $downloaded > 0 )
+            echo "\n";
     }
 
     function fetch($url)
@@ -41,8 +43,7 @@ class CurlDownloader
             curl_setopt($ch, CURLOPT_BUFFERSIZE, 128 );
         }
 
-        if( ! $result = curl_exec($ch)) 
-        { 
+        if( ! $result = curl_exec($ch)) { 
             throw new Exception( $url . ":" . curl_error($ch) );
         }
         curl_close($ch); 
