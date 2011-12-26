@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2011-12-26</date>
-  <time>19:57:17</time>
+  <time>20:02:39</time>
   <version>
     <release>0.0.11</release>
     <api>0.0.11</api>
@@ -31,7 +31,7 @@
       <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
       <file name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="10ed754bdd03fc6d83689f310686ed2c"/>
       <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ba152a91f639f95af23f385db89605d4"/>
-      <file name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="4dee279feca2924f0f3eb8083ca82ce7"/>
+      <file name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="ca8e4d97c3417289e8f665c5c21385c4"/>
       <file name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="b9d00f4514dff35b87aa5e6928331707"/>
       <file name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="e0c210c859eae8bf9fbe61a6a71719af"/>
       <file name="tests/Onion/Pear/ChannelParserTest.php" role="test" md5sum="0c95b1f8c5bb3562615d4af8648abd8f"/>
@@ -60,7 +60,7 @@
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyManager.php" role="php" md5sum="1a3eb526585bc8cd869d98ef2fb4f60f"/>
       <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="ccacece2facd2e8cd5ff3496daacfed0"/>
-      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="cfe028434635cb82df192ae2054849f5"/>
+      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="091df714e5aad904c68cf70511c20789"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="cc1ef974c57117eeb764a79465a7ece1"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="093df6e7d4882d4cf16ec3deac92dd5b"/>
@@ -80,7 +80,7 @@
       <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="fd56a63d90c40dc344e0b945b36418ce"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Pear/Channel.php" role="php" md5sum="07a7de197d168333481a503be51a43f2"/>
-      <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="f33c0df345f8e936fe2a20475d9e8cfd"/>
+      <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="32678aabfa0f11765fbf0f7590818fc6"/>
       <file name="src/Onion/Pear/ChannelParser.php" role="php" md5sum="7a843178f3f8d65a056594501f0d7519"/>
       <file name="src/Onion/Pear/Package.php" role="php" md5sum="2fd0ef30fb53512c55ac967fd44c3a2c"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
@@ -93,7 +93,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="91724798b50481ce8b29d03cf445089b"/>
+      <file name="onion.phar" role="script" md5sum="ec56e028034622745526343d0668dfb0"/>
       <file name="Changes.md" role="doc" md5sum="ad44b6b4271851a7c8fbe2a9510f05a5"/>
       <file name="README.md" role="doc" md5sum="abac8c963f5e235c96bdc23b358772c3"/>
     </dir>
