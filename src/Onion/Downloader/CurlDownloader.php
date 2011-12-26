@@ -6,6 +6,20 @@ use Exception;
 class CurlDownloader 
     implements DownloaderInterface
 {
+
+    function progressCallback($downloadSize, $downloaded, $uploadSize, $uploaded)
+    {
+        // print progress bar
+        $percent = ($downloaded ? (int) ($downloaded / $downloadSize) : 0 );
+        $terminalWidth = 60;
+        $sharps = (int) $terminalWidth * $percent;
+        echo "\r" . 
+            str_repeat( '#' , $sharps ) . 
+            str_repeat( ' ' , $terminalWidth - $sharps ) . 
+            sprintf( ' %d bytes %d%%' , $downloaded , $percent * 100 );
+        // echo str_pad( '#' , 30 , '-' );
+    }
+
     function fetch($url)
     {
         $options = array();
@@ -19,6 +33,14 @@ class CurlDownloader
         ); 
         $ch = curl_init(); 
         curl_setopt_array($ch, ($options + $defaults)); 
+
+        $logger = \Onion\Application::getLogger();
+        if( $logger->level > 4 ) {
+            curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+            curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, array($this,'progressCallback'));
+            curl_setopt($ch, CURLOPT_BUFFERSIZE, 128 );
+        }
+
         if( ! $result = curl_exec($ch)) 
         { 
             throw new Exception( $url . ":" . curl_error($ch) );
@@ -27,28 +49,3 @@ class CurlDownloader
         return $result;
     }
 }
-
-
-/*
- *
-    function callback($download_size, $downloaded, $upload_size, $uploaded)
-    {
-        // do your progress stuff here
-    }
-
-    $ch = curl_init('http://www.example.com');
-
-    // This is required to curl give us some progress
-    // if this is not set to false the progress function never
-    // gets called
-    curl_setopt($ch, CURLOPT_NOPROGRESS, false);
-
-    // Set up the callback
-    curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'callback');
-
-    // Big buffer less progress info/callbacks
-    // Small buffer more progress info/callbacks
-    curl_setopt($ch, CURLOPT_BUFFERSIZE, 128);
-
-    $data = curl_exec($ch);
-*/
