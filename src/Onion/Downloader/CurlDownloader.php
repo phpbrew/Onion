@@ -1,6 +1,10 @@
 <?php
 namespace Onion\Downloader;
 
+/**
+ * xxx: support authentication for curl
+ * http://www.php.net/manual/en/function.curl-setopt.php
+ */
 use Exception;
 
 class CurlDownloader 
