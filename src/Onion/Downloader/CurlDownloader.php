@@ -13,10 +13,12 @@ class CurlDownloader
         $percent = ($downloaded > 0 ? (float) ($downloaded / $downloadSize) : 0.0 );
         $terminalWidth = 70;
         $sharps = (int) $terminalWidth * $percent;
+
+        # echo "\n" . $sharps. "\n";
         echo "\r" . 
             str_repeat( '#' , $sharps ) . 
             str_repeat( ' ' , $terminalWidth - $sharps ) . 
-            sprintf( ' %d bytes %d%%' , $downloaded , $percent * 100 );
+            sprintf( ' %4d B %5d%%' , $downloaded , $percent * 100 );
     }
 
     function fetch($url)
@@ -34,10 +36,10 @@ class CurlDownloader
         curl_setopt_array($ch, ($options + $defaults)); 
 
         $logger = \Onion\Application::getLogger();
-        if( $logger->level > 4 ) {
+        if( $logger->level > 6 ) {
             curl_setopt($ch, CURLOPT_NOPROGRESS, false);
             curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, array($this,'progressCallback'));
-            curl_setopt($ch, CURLOPT_BUFFERSIZE, 128 );
+            curl_setopt($ch, CURLOPT_BUFFERSIZE, 32 );
         }
 
         if( ! $result = curl_exec($ch)) { 
@@ -45,7 +47,7 @@ class CurlDownloader
         }
         curl_close($ch); 
 
-        if( $logger->level > 4 ) {
+        if( $logger->level > 6 ) {
             echo "\n";
         }
         return $result;
