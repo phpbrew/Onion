@@ -1,6 +1,6 @@
 
 
-0.0.10 - 一 12/26 20:23:56 2011
+0.0.11 - 一 12/26 20:23:56 2011
     - Add curl progress bar stuff.
     - Add retry counter for channel discover.
     - Fix package.xml generation for pyrus installer (validation)
