@@ -10,7 +10,7 @@ class CurlDownloader
     function progressCallback($downloadSize, $downloaded, $uploadSize, $uploaded)
     {
         // print progress bar
-        $percent = ($downloaded ? (int) ($downloaded / $downloadSize) : 0 );
+        $percent = ($downloaded > 0 ? (float) ($downloaded / $downloadSize) : 0.0 );
         $terminalWidth = 70;
         $sharps = (int) $terminalWidth * $percent;
         echo "\r" . 
