@@ -11,15 +11,12 @@ class CurlDownloader
     {
         // print progress bar
         $percent = ($downloaded ? (int) ($downloaded / $downloadSize) : 0 );
-        $terminalWidth = 60;
+        $terminalWidth = 70;
         $sharps = (int) $terminalWidth * $percent;
         echo "\r" . 
             str_repeat( '#' , $sharps ) . 
             str_repeat( ' ' , $terminalWidth - $sharps ) . 
             sprintf( ' %d bytes %d%%' , $downloaded , $percent * 100 );
-
-        if( $downloadSize == $downloaded && $downloaded > 0 )
-            echo "\n";
     }
 
     function fetch($url)
@@ -31,7 +28,7 @@ class CurlDownloader
             CURLOPT_FRESH_CONNECT => 1, 
             CURLOPT_RETURNTRANSFER => 1, 
             CURLOPT_FORBID_REUSE => 1, 
-            CURLOPT_TIMEOUT => 4, 
+            CURLOPT_TIMEOUT => 10, 
         ); 
         $ch = curl_init(); 
         curl_setopt_array($ch, ($options + $defaults)); 
@@ -47,6 +44,10 @@ class CurlDownloader
             throw new Exception( $url . ":" . curl_error($ch) );
         }
         curl_close($ch); 
+
+        if( $logger->level > 4 ) {
+            echo "\n";
+        }
         return $result;
     }
 }

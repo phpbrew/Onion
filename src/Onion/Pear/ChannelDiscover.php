@@ -21,16 +21,23 @@ class ChannelDiscover
     {
         $xmlstr = '';
         $downloader = $this->getDownloader();
-        try {
-            $url = 'http://' . $pearhost . '/channel.xml';
-            $xmlstr = $downloader->fetch($url);
-        } catch( Exception $e ) {
 
+        $retry = 3;
+        while( $retry-- ) {
             try {
-                $url = 'https://' . $pearhost . '/channel.xml';
+                $url = 'http://' . $pearhost . '/channel.xml';
                 $xmlstr = $downloader->fetch($url);
+                if( $xmlstr )
+                    break;
             } catch( Exception $e ) {
-                throw new Exception("Channel discover failed: $url");
+                try {
+                    $url = 'https://' . $pearhost . '/channel.xml';
+                    $xmlstr = $downloader->fetch($url);
+                    if( $xmlstr )
+                        break;
+                } catch( Exception $e ) {
+                    throw new Exception("Channel discover failed: $url");
+                }
             }
         }
 

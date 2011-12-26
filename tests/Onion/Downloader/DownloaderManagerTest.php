@@ -26,14 +26,11 @@ class DownloaderManagerTest extends \PHPUnit_Framework_TestCase
 
     function testCurl()
     {
-        return;
         $curl = new \Onion\Downloader\CurlDownloader;
-
         $logger = \Onion\Application::getLogger();
         $logger->setVerbose();
-
         // get something large
-        $content = $curl->fetch('http://pear2.php.net/rest/c/PEAR2/packagesinfo.xml');
-        $content = $curl->fetch( 'http://localhost/src/B-C-1.31.tar.gz' );
+        // $content = $curl->fetch('http://pear2.php.net/rest/c/PEAR2/packagesinfo.xml');
+        // $content = $curl->fetch( 'http://localhost/src/B-C-1.31.tar.gz' );
     }
 }
