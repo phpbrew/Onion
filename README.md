@@ -6,12 +6,20 @@ Onion, The fast approach to make/install packages for PHP.
 Onion is able to generate a PEAR2-compatible package.xml file from a very simple config
 file, you can release your PEAR package very quickly!
 
+And through Onion, you can also install PEAR dependencies into local bundle (just like Ruby Bundler).
+
 Onion is not target to replace other package manager, its target is to make current PEAR ecosystem easier.
 
 Let's keep hard long PEAR package.xml away! :-)
 
+
 ( We are still in development, patches, feature requests are welcome! This
   utility is in alpha development, config spec might change. )
+
+## Onion is for people want to..
+
+* Build PEAR package easily, quickly.
+* Install PEAR dependencies into local project directory. (like Ruby Bundler)
 
 ## Requirement
 
@@ -154,41 +162,3 @@ nrk:
 ## Community
 
 If you have questions about Onion or want to help out, come and join us in the #onion-dev channel on `irc.freenode.net`.
-
-## Reference
-
-INI format spec: <http://www.cloanto.com/specs/ini/>
-
-Package structure
-<http://pear.php.net/manual/en/pyrus.commands.make.php>
-
-
-package.xml 2.0 tags
-<http://pear.php.net/manual/en/guide.developers.package2.tags.php>
-
-
-package.xml dependency
-<http://pear.php.net/manual/en/guide.developers.package2.dependencies.php>
-
-
-PEAR2 Coding Standard
-<http://pear.php.net/manual/en/pear2cs.php>
-
-Pyrus
-<http://pear.php.net/manual/en/pyrus.php>
-
-PEAR
-<http://pear.php.net/manual/en/guide.users.concepts.php>
-<http://pear.php.net/manual/en/pyrus.extending.packagefile.php>
-<http://pear.php.net/manual/en/guide.users.dependencytracking.generatingpackagexml.php>
-
-PEAR Installer
-<http://pear.php.net/manual/en/developers-core.php>
-<http://pear.php.net/manual/en/developers-changes14.php>
-
-Deployment PEAR
-<http://www.eschrade.com/page/deployment-pear-4c228790/>
-
-PSR-0 
-<https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md>
-
