@@ -10,4 +10,4 @@ scripts/compile.sh
 ./onion.phar -d build
 
 # use pear to install 
-sudo pear install -f package.xml
+sudo pear install -a -f package.xml

@@ -11,8 +11,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2011-12-26</date>
-  <time>20:13:06</time>
+  <date>2011-12-27</date>
+  <time>18:35:55</time>
   <version>
     <release>0.0.11</release>
     <api>0.0.11</api>
@@ -25,7 +25,6 @@
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file name="doc/CLI.mkd" role="doc" md5sum="ef611c01ef973210fbe83ec360e37b44"/>
       <file name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
       <file name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
@@ -60,7 +59,7 @@
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyManager.php" role="php" md5sum="1a3eb526585bc8cd869d98ef2fb4f60f"/>
       <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="ccacece2facd2e8cd5ff3496daacfed0"/>
-      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="cede4efab1cc5a07437715bacadc7599"/>
+      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="23f16f51fb880489d45b62620a37df05"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="cc1ef974c57117eeb764a79465a7ece1"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="093df6e7d4882d4cf16ec3deac92dd5b"/>
@@ -93,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="95ad0d45602c3bce7518278e9b11d001"/>
-      <file name="Changes.md" role="doc" md5sum="ad44b6b4271851a7c8fbe2a9510f05a5"/>
-      <file name="HACKING.md" role="doc" md5sum="237b814d3c27668cac7773c5bdf3806d"/>
-      <file name="README.md" role="doc" md5sum="abac8c963f5e235c96bdc23b358772c3"/>
+      <file name="onion.phar" role="script" md5sum="1a6b40bcafb020525dfef7e7ad5cf213"/>
+      <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
+      <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
+      <file name="README.md" role="doc" md5sum="5feb8be3fd40211238952ec1fa16c20a"/>
     </dir>
   </contents>
   <dependencies>
@@ -130,7 +129,6 @@
   </dependencies>
   <phprelease>
     <filelist>
-      <install name="doc/CLI.mkd" as="CLI.mkd"/>
       <install name="doc/SPEC-v2.md" as="SPEC-v2.md"/>
       <install name="doc/SPEC.md" as="SPEC.md"/>
       <install name="examples/package.ini" as="package.ini"/>
