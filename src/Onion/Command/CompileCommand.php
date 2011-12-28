@@ -44,15 +44,15 @@ class CompileCommand extends Command
 
     function execute($arguments)
     {
+        // xxx: read package config and get src role directories for compiling
+
         $options = $this->getOptions();
-            
         $logger = $this->getLogger();
 
         $bootstrap = null;
         $lib_dirs = array('src'); // current package source, TODO: we should read the roles from package.ini
         $output = 'output.phar';
         $classloader = null;
-
 
         if( $options->bootstrap )
             $bootstrap = $options->bootstrap->value;
