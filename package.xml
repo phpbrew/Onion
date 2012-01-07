@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2011-12-28</date>
-  <time>21:03:01</time>
+  <date>2012-01-08</date>
+  <time>01:42:26</time>
   <version>
-    <release>0.0.11</release>
-    <api>0.0.11</api>
+    <release>0.0.12</release>
+    <api>0.0.12</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -53,7 +53,7 @@
       <file name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="d8843419cee054953bf2986276d3a35a"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="903a507ff645e02628989d8ff9dba5a0"/>
-      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="4beb285d8f901308fcd406098c6d7be8"/>
+      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="60bf94ec654e72da8fc66b2a14315909"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
@@ -92,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="8e453487dedc565d8b4b9ea7c710368e"/>
+      <file name="onion.phar" role="script" md5sum="c8deb1d8392f363f3c397e88a3f9cc9e"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="5feb8be3fd40211238952ec1fa16c20a"/>
+      <file name="README.md" role="doc" md5sum="7cd5e5cfdaee9a3d13b296ab9f177a84"/>
     </dir>
   </contents>
   <dependencies>
