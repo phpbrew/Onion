@@ -53,6 +53,7 @@ Fill your `package.ini` file:
     name = Onion
     desc = package description
     version = 0.0.1
+    channel = pear.php.net
     author = Yo-An Lin <cornelius.howl@gmail.com>
 
 To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just run:
@@ -60,6 +61,21 @@ To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just 
     $ php ~/bin/onion.phar build
 
 Then Your PEAR package is out!
+
+
+## Adding package dependencies
+
+    [package]
+    name = Onion
+    desc = package description
+    version = 0.0.1
+    author = Yo-An Lin <cornelius.howl@gmail.com>
+
+    [require]
+    php = 5.3
+    pearinstaller = 1.4
+    pear.php.net/PackageName = 0.0.1
+
 
 ## Bundle
 
