@@ -65,6 +65,9 @@ class PackageConfigReader
     function read($file)
     {
         $logger = $this->getLogger();
+
+        $logger->info("Reading config file: $file");
+
         $ini = null;
         try {
             $ini = parse_ini_file( $file , true );
@@ -77,7 +80,6 @@ class PackageConfigReader
             throw new Exception( "$file is empty." );
 
         $config = new ConfigContainer( $ini );
-
 
         // validation 
         $requiredFields = explode(' ','package.name package.desc package.version');

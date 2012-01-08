@@ -1,7 +1,7 @@
 Onion
 =====
 
-Onion, The fast approach to make/install packages for PHP.
+Onion, The fast approach to make/install/bundle PEAR packages for PHP.
 
 Onion is able to generate a PEAR2-compatible package.xml file from a very simple config
 file, you can release your PEAR package very quickly!
@@ -11,10 +11,6 @@ And through Onion, you can also install PEAR dependencies into local bundle (jus
 Onion is not target to replace other package manager, its target is to make current PEAR ecosystem easier.
 
 Let's keep hard long PEAR package.xml away! :-)
-
-
-( We are still in development, patches, feature requests are welcome! This
-  utility is in alpha development, config spec might change. )
 
 ## Onion is for people want to..
 
@@ -30,11 +26,14 @@ Let's keep hard long PEAR package.xml away! :-)
 
 ## The minimal spec file
 
-    [package]
-    name = Onion
-    desc = package description
-    version = 0.0.1
-    author = Yo-An Lin <cornelius.howl@gmail.com>
+```ini
+[package]
+name = Onion
+desc = package description
+version = 0.0.1
+author = Yo-An Lin <cornelius.howl@gmail.com>
+channel = pear.php.net
+```
 
 ## A Quick tutorial for building PEAR package
 
@@ -155,8 +154,6 @@ nrk:
     problems.  Onion looks good already.  
 
 2011-12-18 <https://github.com/nrk/predis/commit/104cd1eae7f3fb2bff3ccd3193c3e31b8502af56>
-
-
 
 
 ## Community

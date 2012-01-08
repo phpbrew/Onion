@@ -75,7 +75,8 @@ class Package extends BasePackage
             'doc'    => array('doc','examples'),
             'test'  => (array) 'tests',
             'php'    => (array) 'src',
-            'script' => (array) 'bin',
+            // xxx: better config for roles
+            // 'script' => (array) 'bin',
             'data'   => (array) 'data',
         );
     }

@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2011-12-27</date>
-  <time>18:35:55</time>
+  <date>2012-01-08</date>
+  <time>01:42:26</time>
   <version>
-    <release>0.0.11</release>
-    <api>0.0.11</api>
+    <release>0.0.12</release>
+    <api>0.0.12</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -51,15 +51,15 @@
       <file name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
       <file name="tests/helpers.php" role="test" md5sum="c4e539354ef450ed332bb54ebb3af96b"/>
       <file name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
-      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="eb2e603eb35fc1f9d35930b023aabf4e"/>
+      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="d8843419cee054953bf2986276d3a35a"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="903a507ff645e02628989d8ff9dba5a0"/>
-      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="4beb285d8f901308fcd406098c6d7be8"/>
+      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="60bf94ec654e72da8fc66b2a14315909"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyManager.php" role="php" md5sum="1a3eb526585bc8cd869d98ef2fb4f60f"/>
       <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="ccacece2facd2e8cd5ff3496daacfed0"/>
-      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="23f16f51fb880489d45b62620a37df05"/>
+      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="429f9aa6a626a7137b8d03d1174c237b"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="cc1ef974c57117eeb764a79465a7ece1"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="093df6e7d4882d4cf16ec3deac92dd5b"/>
@@ -73,10 +73,10 @@
       <file name="src/Onion/Onion.php" role="php" md5sum="6a4e7d381b3cb0d8d67d3a7e35ac2537"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
       <file name="src/Onion/Package/BasePackage.php" role="php" md5sum="0548c2bb3f465e2d5f09c2845a7e5860"/>
-      <file name="src/Onion/Package/Package.php" role="php" md5sum="4387f4228aab4ec4b88af8dcc700a336"/>
+      <file name="src/Onion/Package/Package.php" role="php" md5sum="e5035f9ca6e565e3c65eab27bf7f642c"/>
       <file name="src/Onion/Package/PackageInterface.php" role="php" md5sum="7a619a551d50b5497e94592766984d38"/>
       <file name="src/Onion/Package/PearPackage.php" role="php" md5sum="f6634bde615714a09f289b1cc0a24464"/>
-      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="fd56a63d90c40dc344e0b945b36418ce"/>
+      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="a9d914895e69f22b77cc8fb01a82a3d9"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Pear/Channel.php" role="php" md5sum="07a7de197d168333481a503be51a43f2"/>
       <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="32678aabfa0f11765fbf0f7590818fc6"/>
@@ -92,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="1a6b40bcafb020525dfef7e7ad5cf213"/>
+      <file name="onion.phar" role="script" md5sum="c8deb1d8392f363f3c397e88a3f9cc9e"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="5feb8be3fd40211238952ec1fa16c20a"/>
+      <file name="README.md" role="doc" md5sum="7cd5e5cfdaee9a3d13b296ab9f177a84"/>
     </dir>
   </contents>
   <dependencies>

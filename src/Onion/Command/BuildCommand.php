@@ -71,6 +71,7 @@ EOT;
         $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader();
         $config->setLogger( $logger );
+
         $package = $config->read( 'package.ini' );
 
 		$generator = new PackageXmlGenerator( $package );
