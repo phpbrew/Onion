@@ -83,7 +83,6 @@ Install PEAR dependencies into vendor/ directory
 
     $ onion.phar -d bundle
 
-
 Note: Current bundle command does not support PEAR special features like:
 
 - PEAR Task: like replace content, rename ... etc
@@ -116,7 +115,7 @@ A more detailed example
     homepage    = http://your.web.com   # optional
     license     = PHP                   # optional, default to PHP
     version     = 0.0.1
-    version.api = 0.0.1                 # optional, defualt to "version"
+    version.api = 0.0.1                 # optional, default to "version"
     channel     = pear.php.net          # default
 
     ; lead developer
