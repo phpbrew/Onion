@@ -70,6 +70,7 @@ Then Your PEAR package is out!
     desc = package description
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
+    channel = pear.php.net
 
     [require]
     php = 5.3
