@@ -105,7 +105,7 @@ An example, we use onion.phar to compile our executable file `onion.phar`:
 
 ## Available Config Tags
 
-please checkout [doc/SPEC.md](doc/SPEC-v2.md)
+please checkout [doc/SPEC.md](https://github.com/c9s/Onion/blob/master/doc/SPEC-v2.md)
 
 
 ## Customize roles
