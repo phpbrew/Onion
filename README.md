@@ -79,7 +79,7 @@ Then Your PEAR package is out!
 
 ## Bundle
 
-Install PEAR dependencies into vender/ directory
+Install PEAR dependencies into vendor/ directory
 
     $ onion.phar -d bundle
 
@@ -116,7 +116,7 @@ A more detailed example
     homepage    = http://your.web.com   # optional
     license     = PHP                   # optional, default to PHP
     version     = 0.0.1
-    version-api = 0.0.1                 # optional, defualt to "version"
+    version.api = 0.0.1                 # optional, defualt to "version"
     channel     = pear.php.net          # default
 
     ; lead developer
@@ -130,8 +130,8 @@ A more detailed example
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
 
-    [required]
-    php = > 5.3
+    [require]
+    php = '> 5.3'
     pearinstaller = '1.4.1'
 
     ; pear package based on channel
