@@ -77,14 +77,15 @@ Then Your PEAR package is out!
     pearinstaller = 1.4
     pear.php.net/PackageName = 0.0.1
 
-
 ## Bundle
 
 Install PEAR dependencies into vendor/ directory
 
     $ onion.phar -d bundle
 
-Note: Current bundle command does not support PEAR special features like:
+### PEAR Features not support yet
+
+Current bundle command does not support PEAR special features like:
 
 - PEAR Task: like replace content, rename ... etc
 - PECL installation
@@ -104,7 +105,27 @@ An example, we use onion.phar to compile our executable file `onion.phar`:
 
 ## Available Config Tags
 
-please checkout [SPEC](SPEC.md)
+please checkout [doc/SPEC.md](doc/SPEC-v2.md)
+
+
+## Customize roles
+
+There are many built-in roles so that you don't need to define it by yourself, built-in roles are:
+
+- src/   php role
+- docs/  doc role
+- tests/ test role
+- \*.md  doc role
+
+But you can add custom roles by yourself.
+
+```ini
+[roles]
+path/to/data = data
+path/to/library = php
+path/to/doc = doc
+```
+
 
 A more detailed example
 ========================
