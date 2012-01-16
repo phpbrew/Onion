@@ -5,6 +5,7 @@ php:
   - 5.4
 
 before_script:
+  - pyrus install pear2.php.net/PEAR2_Pyrus_Developer
   - phpenv rehash
   - php onion.phar -d bundle
   - ./scripts/compile.sh
