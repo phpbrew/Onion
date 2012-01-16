@@ -6,10 +6,10 @@ php:
 
 before_script:
   - phpenv rehash
-  - "pyrus install -f -p pear2.php.net/PEAR2_Pyrus_Developer"
+  - "pyrus upgrade -f -p pear2.php.net/PEAR2_Pyrus_Developer"
   - php onion.phar -d bundle
-  - ./scripts/compile.sh
-  - php onion.phar -d build --pyrus
+#   - ./scripts/compile.sh
+#  - php onion.phar -d build --pyrus
 
 script: phpunit
 notifications:
