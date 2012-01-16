@@ -41,7 +41,7 @@ channel = pear.php.net
 
 Get onion.phar file:
 
-    $ curl -O https://github.com/c9s/Onion/raw/master/onion.phar
+    $ curl -O https://raw.github.com/c9s/Onion/master/onion.phar
 
 Please make sure your directory structure:
 
