@@ -5,10 +5,12 @@ php:
   - 5.4
 
 before_script:
-  - pyrus.phar install pear2.php.net/PEAR2_Pyrus_Developer
   - phpenv rehash
+  - "pyrus install pear2.php.net/PEAR2_Pyrus_Developer"
   - php onion.phar -d bundle
   - ./scripts/compile.sh
   - php onion.phar -d build --pyrus
 
 script: phpunit
+notifications:
+  irc: "irc.freenode.org#php-tw"
