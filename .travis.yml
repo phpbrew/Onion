@@ -5,6 +5,7 @@ php:
   - 5.4
 
 before_script:
+  - php onion.phar -d bundle
   - ./scripts/compile.sh
   - php onion.phar -d build
 
