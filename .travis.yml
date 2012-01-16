@@ -13,4 +13,4 @@ before_script:
 
 script: phpunit
 notifications:
-  irc: "irc.freenode.org#php-tw"
+  irc: "irc.freenode.org#onion-dev"
