@@ -5,10 +5,9 @@ php:
   - 5.4
 
 before_script:
-  - pyrus install pear.php.net/PEAR
   - phpenv rehash
   - php onion.phar -d bundle
   - ./scripts/compile.sh
-  - php onion.phar -d build --pear
+  - php onion.phar -d build --pyrus
 
 script: phpunit
