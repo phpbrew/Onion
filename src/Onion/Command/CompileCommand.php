@@ -42,7 +42,7 @@ class CompileCommand extends Command
         return 'compile current source into Phar format library file.';
     }
 
-    function execute($arguments)
+    function execute()
     {
         // xxx: read package config and get src role directories for compiling
 

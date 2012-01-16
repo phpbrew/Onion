@@ -36,7 +36,7 @@ class BundleCommand extends Command
      * make INSTALL_ROOT=/var/tmp/tmp_root install
      */
 
-    function execute($arguments)
+    function execute()
     {
 		$logger = $this->getLogger();
 

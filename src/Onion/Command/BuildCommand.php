@@ -42,7 +42,7 @@ EOT;
 
     }
 
-    function execute($arguments = array()) 
+    function execute() 
     {
         // options result.
         $options = $this->getOptions();
