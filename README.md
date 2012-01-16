@@ -72,21 +72,22 @@ Then Your PEAR package is out!
     desc = package description
     version = 0.0.1
     author = Yo-An Lin <cornelius.howl@gmail.com>
+    channel = pear.php.net
 
     [require]
     php = 5.3
     pearinstaller = 1.4
     pear.php.net/PackageName = 0.0.1
 
-
 ## Bundle
 
-Install PEAR dependencies into vender/ directory
+Install PEAR dependencies into vendor/ directory
 
     $ onion.phar -d bundle
 
+### PEAR Features not support yet
 
-Note: Current bundle command does not support PEAR special features like:
+Current bundle command does not support PEAR special features like:
 
 - PEAR Task: like replace content, rename ... etc
 - PECL installation
@@ -106,7 +107,27 @@ An example, we use onion.phar to compile our executable file `onion.phar`:
 
 ## Available Config Tags
 
-please checkout [SPEC](SPEC.md)
+please checkout [doc/SPEC.md](https://github.com/c9s/Onion/blob/master/doc/SPEC-v2.md)
+
+
+## Customize roles
+
+There are many built-in roles so that you don't need to define it by yourself, built-in roles are:
+
+- src/   php role
+- docs/  doc role
+- tests/ test role
+- \*.md  doc role
+
+But you can add custom roles by yourself.
+
+```ini
+[roles]
+path/to/data = data
+path/to/library = php
+path/to/doc = doc
+```
+
 
 A more detailed example
 ========================
@@ -118,7 +139,7 @@ A more detailed example
     homepage    = http://your.web.com   # optional
     license     = PHP                   # optional, default to PHP
     version     = 0.0.1
-    version-api = 0.0.1                 # optional, defualt to "version"
+    version.api = 0.0.1                 # optional, default to "version"
     channel     = pear.php.net          # default
 
     ; lead developer
@@ -132,8 +153,8 @@ A more detailed example
     contributors[] = ...                # optional
     maintainers[]  = ...                # optional
 
-    [required]
-    php = > 5.3
+    [require]
+    php = '> 5.3'
     pearinstaller = '1.4.1'
 
     ; pear package based on channel
