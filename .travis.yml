@@ -6,7 +6,7 @@ php:
 
 before_script:
   - phpenv rehash
-  - "pyrus install pear2.php.net/PEAR2_Pyrus_Developer"
+  - "pyrus install -f pear2.php.net/PEAR2_Pyrus_Developer"
   - php onion.phar -d bundle
   - ./scripts/compile.sh
   - php onion.phar -d build --pyrus
