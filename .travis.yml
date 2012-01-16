@@ -9,6 +9,6 @@ before_script:
   - phpenv rehash
   - php onion.phar -d bundle
   - ./scripts/compile.sh
-  - php onion.phar -d build
+  - php onion.phar -d build --pear
 
 script: phpunit
