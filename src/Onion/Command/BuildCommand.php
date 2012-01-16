@@ -37,9 +37,10 @@ How To
 EOT;
     }
 
-    function options($getopt)
+    function options($opts)
     {
-
+        $opts->add('pear','use pear to build PEAR package');
+        $opts->add('pyrus','use pyrus to build PEAR package');
     }
 
     function execute() 
@@ -84,8 +85,29 @@ EOT;
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
 
-        $logger->info('Building PEAR package...');
-        system('pear -q package');
+        if( $options->pear ) {
+            $logger->info('Building PEAR package with pear...');
+            system('pear -q package');
+        }
+        elseif( $options->pyrus ) {
+            $logger->info('Building PEAR package with pyrus...');
+            system('pyrus package');
+        } 
+        else {
+            $notice =<<<EOS
+package.xml is generated. you can now build your PEAR package with:
+
+PEAR:
+
+    $ pear -q package
+
+Pyrus:
+
+    $ pyrus.phar -q package
+
+EOS;
+            $logger->info( $notice );
+        }
 
         $logger->info('Done.');
         return true;

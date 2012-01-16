@@ -41,7 +41,7 @@ channel = pear.php.net
 
 Get onion.phar file:
 
-    $ curl https://github.com/c9s/Onion/raw/master/onion.phar > ~/bin/onion.phar
+    $ curl -O https://github.com/c9s/Onion/raw/master/onion.phar
 
 Please make sure your directory structure:
 
@@ -60,10 +60,15 @@ Fill your `package.ini` file:
 
 To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just run:
 
-    $ php ~/bin/onion.phar build
+    $ php onion.phar build --pear
 
 Then Your PEAR package is out!
 
+The `--pear` flag is optional.
+
+See:
+
+    $ php onion.php help build
 
 ## Adding package dependencies
 

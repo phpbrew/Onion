@@ -99,7 +99,6 @@ EOT;
             throw new \Onion\Exception\InvalidConfigException('package.author or package.authors is not defined.');
         }
 
-
         // set default values
         if( ! $config->has('package.summary') ) {
             $logger->debug2("* summary is not defined., use the first paragraph from description by default.",1);
