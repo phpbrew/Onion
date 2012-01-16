@@ -45,6 +45,7 @@ class CompileCommand extends Command
     function execute()
     {
         // xxx: read package config and get src role directories for compiling
+        ini_set('phar.readonly',0);
 
         $options = $this->getOptions();
         $logger = $this->getLogger();
