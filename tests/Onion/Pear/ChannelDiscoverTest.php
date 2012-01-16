@@ -10,7 +10,7 @@ class ChannelDiscoverTest extends \PHPUnit_Framework_TestCase
         $discover = new ChannelDiscover;
         ok( $discover );
 
-        $channel = $discover->lookup( 'pear.dev' );
+        $channel = $discover->lookup( 'pear.php.net' );
         ok( $channel );
         isa_ok( '\Onion\Pear\Channel' , $channel );
 
