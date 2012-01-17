@@ -41,7 +41,7 @@ channel = pear.php.net
 
 Get and install onion:
 
-    $ curl http://install.onionphp.org/ | sh
+    $ curl -s http://install.onionphp.org/ | sh
 
 Please make sure your directory structure:
 
