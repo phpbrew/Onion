@@ -39,9 +39,9 @@ channel = pear.php.net
 
 ## A Quick tutorial for building PEAR package
 
-Get onion.phar file:
+Get and install onion:
 
-    $ curl -O https://raw.github.com/c9s/Onion/master/onion.phar
+    $ curl http://install.onionphp.org/ | sh
 
 Please make sure your directory structure:
 
@@ -60,7 +60,7 @@ Fill your `package.ini` file:
 
 To generate a package.xml 2.0 spec file for PEAR and build a PEAR package, just run:
 
-    $ php onion.phar build --pear
+    $ onion build --pear
 
 Then Your PEAR package is out!
 
@@ -68,7 +68,7 @@ The `--pear` flag is optional.
 
 See:
 
-    $ php onion.php help build
+    $ onion help build
 
 ## Adding package dependencies
 
@@ -88,7 +88,7 @@ See:
 
 Install PEAR dependencies into vendor/ directory
 
-    $ onion.phar -d bundle
+    $ onion -d bundle
 
 ### PEAR Features not support yet
 
@@ -99,9 +99,9 @@ Current bundle command does not support PEAR special features like:
 
 ## Compile package to Phar executable/library file
 
-An example, we use onion.phar to compile our executable file `onion.phar`:
+An example, we use onion to compile our executable file `onion.phar`:
 
-    $ onion.phar compile \
+    $ onion compile \
         --executable \
         --classloader \
         --bootstrap scripts/onion.embed \
