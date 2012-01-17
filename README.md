@@ -201,9 +201,18 @@ A more detailed example
 
 ## Hacking
 
+Make a fork from Onion and clone it:
+
+    $ git clone git@github.com:c9s/Onion.git
+    $ cd Onion
+
 Run onion to download bundles
 
     $ php onion.phar -d bundle
+
+To run unit tests:
+
+    $ phpunit
 
 To test onion command:
 
