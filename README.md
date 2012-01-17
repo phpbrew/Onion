@@ -19,6 +19,17 @@ Let's keep hard long PEAR package.xml away! :-)
 * Build PEAR package easily, quickly.
 * Install PEAR dependencies into local project directory. (like Ruby Bundler)
 
+## What People Say
+
+nrk: 
+
+    its own package.ini file looks simple enough to edit and maintain.
+
+    It's been super-easy to get up and running and I haven't encountered any real
+    problems.  Onion looks good already.  
+
+2011-12-18 <https://github.com/nrk/predis/commit/104cd1eae7f3fb2bff3ccd3193c3e31b8502af56>
+
 ## Requirement
 
 * PHP 5.3
@@ -188,17 +199,19 @@ A more detailed example
     channel/foo = 0.2
     extensions[] = ssh2
 
-## What People Say
+## Hacking
 
-nrk: 
+Run onion to download bundles
 
-    its own package.ini file looks simple enough to edit and maintain.
+    $ php onion.phar -d bundle
 
-    It's been super-easy to get up and running and I haven't encountered any real
-    problems.  Onion looks good already.  
+To test onion command:
 
-2011-12-18 <https://github.com/nrk/predis/commit/104cd1eae7f3fb2bff3ccd3193c3e31b8502af56>
+    $ scripts/onion help
 
+To compile onion:
+
+    $ scripts/compile.sh
 
 ## Community
 

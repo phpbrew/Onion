@@ -11,8 +11,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-01-17</date>
-  <time>17:19:37</time>
+  <date>2012-01-18</date>
+  <time>01:39:42</time>
   <version>
     <release>0.0.12</release>
     <api>0.0.12</api>
@@ -92,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="c036cef882ce37795ec9b4d572a88897"/>
+      <file name="onion.phar" role="script" md5sum="be3a9ccf8b327107380ebb0b4654a164"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="27756f04eeca4ab6b55d720810f6fcca"/>
+      <file name="README.md" role="doc" md5sum="ce13193f019cf8f33fdecededb59f7f8"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
     </dir>
   </contents>
