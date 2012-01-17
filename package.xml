@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-01-17</date>
-  <time>00:51:12</time>
+  <time>17:19:37</time>
   <version>
     <release>0.0.12</release>
     <api>0.0.12</api>
@@ -51,7 +51,7 @@
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
-      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="f8af5c28a120bacc6e65984b760251ac"/>
+      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="1bb055bf16bfdc393389b0301181895c"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="3e459495f5460ebd9727d8eb9cf2ee5e"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
@@ -92,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="7af37327fded1e990e8fb847fbd5f0ad"/>
+      <file name="onion.phar" role="script" md5sum="c036cef882ce37795ec9b4d572a88897"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="08e4bb57aa1a323c19f7d2ee134d276c"/>
+      <file name="README.md" role="doc" md5sum="27756f04eeca4ab6b55d720810f6fcca"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
     </dir>
   </contents>

@@ -6,6 +6,8 @@
 # compile to phar file
 scripts/compile.sh
 
+chmod +x onion.phar
+
 # build new package.xml
 ./onion.phar -d build
 

@@ -106,7 +106,7 @@ Pyrus:
     $ pyrus.phar -q package
 
 EOS;
-            $logger->info( $notice );
+            echo $notice;
         }
 
         $logger->info('Done.');
