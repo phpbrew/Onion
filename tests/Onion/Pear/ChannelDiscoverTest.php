@@ -10,6 +10,7 @@ class ChannelDiscoverTest extends \PHPUnit_Framework_TestCase
         $discover = new ChannelDiscover;
         ok( $discover );
 
+        // XXX: we should also test on: components.ez.no/channel.xml
         $channel = $discover->lookup( 'pear.corneltek.com' );
         ok( $channel );
         isa_ok( '\Onion\Pear\Channel' , $channel );
