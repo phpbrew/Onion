@@ -6,3 +6,5 @@
     --bootstrap scripts/onion.embed \
     --executable \
     --output onion.phar
+mv onion.phar onion
+chmod +x onion
