@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # bundle with new dependencies
-./onion.phar -d bundle
+./onion -d bundle
 
 # compile to phar file
 scripts/compile.sh
 
-chmod +x onion.phar
-
 # build new package.xml
-./onion.phar -d build
+./onion -d build --pear
 
 # use pear to install 
 sudo pear install -a -f package.xml
+
+git commit -a -m 'Make new release'
