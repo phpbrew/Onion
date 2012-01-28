@@ -11,8 +11,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-01-18</date>
-  <time>01:39:42</time>
+  <date>2012-01-29</date>
+  <time>01:47:39</time>
   <version>
     <release>0.0.12</release>
     <api>0.0.12</api>
@@ -42,7 +42,7 @@
       <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="ba152a91f639f95af23f385db89605d4"/>
       <file name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="ca8e4d97c3417289e8f665c5c21385c4"/>
       <file name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="b9d00f4514dff35b87aa5e6928331707"/>
-      <file name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="512e9d060bf75aa978b7a15a8b60ec80"/>
+      <file name="tests/Onion/Pear/ChannelDiscoverTest.php" role="test" md5sum="53338bc3767c4fd7647308d0c206295c"/>
       <file name="tests/Onion/Pear/ChannelParserTest.php" role="test" md5sum="0c95b1f8c5bb3562615d4af8648abd8f"/>
       <file name="tests/Onion/Pear/PackageTest.php" role="test" md5sum="b5c51321e4fb9a44215880c19b309d38"/>
       <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="0a0e9aed36ae55faee4172b0c5ebf7b4"/>
@@ -51,7 +51,7 @@
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file name="src/Onion/Application.php" role="php" md5sum="2bcab197ffe76fe929d494f8e4c10cd3"/>
-      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="1bb055bf16bfdc393389b0301181895c"/>
+      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="5c3b967158b9ea80d97be9f3e15e11f4"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="3e459495f5460ebd9727d8eb9cf2ee5e"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
@@ -92,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="be3a9ccf8b327107380ebb0b4654a164"/>
+      <file name="onion.phar" role="script" md5sum="70f4d6b14bb0730017d495eb1efa1e5e"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="ce13193f019cf8f33fdecededb59f7f8"/>
+      <file name="README.md" role="doc" md5sum="536ac9bdbec95b7acea8eecb90568646"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
     </dir>
   </contents>
