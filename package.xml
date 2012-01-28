@@ -12,10 +12,10 @@
     <active>yes</active>
   </lead>
   <date>2012-01-29</date>
-  <time>01:47:45</time>
+  <time>03:35:19</time>
   <version>
-    <release>0.0.12</release>
-    <api>0.0.12</api>
+    <release>0.0.13</release>
+    <api>0.0.13</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion.phar" role="script" md5sum="70f4d6b14bb0730017d495eb1efa1e5e"/>
+      <file name="onion" role="script" md5sum="738b9f399f39914daf44aa3cc397957f"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="536ac9bdbec95b7acea8eecb90568646"/>
@@ -197,7 +197,7 @@
       <install name="data/phpunit_package.xml" as="phpunit_package.xml"/>
       <install name="data/symfony_package.xml.tmpl" as="symfony_package.xml.tmpl"/>
       <install name="data/twig_package.xml" as="twig_package.xml"/>
-      <install name="onion.phar" as="onion.phar"/>
+      <install name="onion" as="onion"/>
       <install name="Changes.md" as="Changes.md"/>
       <install name="HACKING.md" as="HACKING.md"/>
       <install name="README.md" as="README.md"/>
