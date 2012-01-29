@@ -13,3 +13,5 @@ scripts/compile.sh
 sudo pear install -a -f package.xml
 
 git commit -a -m 'Make new release'
+
+git push origin HEAD

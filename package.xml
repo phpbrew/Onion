@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-01-29</date>
-  <time>15:41:38</time>
+  <time>15:52:53</time>
   <version>
     <release>0.0.13</release>
     <api>0.0.13</api>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="627a5410802c2672b8ccf9eeaa591cf2"/>
+      <file name="onion" role="script" md5sum="458b0d72b357a952e1a3e684b1bd03a6"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="536ac9bdbec95b7acea8eecb90568646"/>
