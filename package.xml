@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-01-29</date>
-  <time>03:38:10</time>
+  <time>15:40:58</time>
   <version>
     <release>0.0.13</release>
     <api>0.0.13</api>
@@ -59,7 +59,7 @@
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyManager.php" role="php" md5sum="1a3eb526585bc8cd869d98ef2fb4f60f"/>
       <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="ccacece2facd2e8cd5ff3496daacfed0"/>
-      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="429f9aa6a626a7137b8d03d1174c237b"/>
+      <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="e7e4b9ca3279d6b18e4fcac4f7b3f102"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="cc1ef974c57117eeb764a79465a7ece1"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="093df6e7d4882d4cf16ec3deac92dd5b"/>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="8c4305e851c31fab8ece5a344d98ee2d"/>
+      <file name="onion" role="script" md5sum="627a5410802c2672b8ccf9eeaa591cf2"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="536ac9bdbec95b7acea8eecb90568646"/>
