@@ -110,7 +110,7 @@ Current bundle command does not support PEAR special features like:
 
 ## Compile package to Phar executable/library file
 
-An example, we use onion to compile our executable file `onion.phar`:
+An example, we use onion to compile our executable file `onion`:
 
     $ onion compile \
         --executable \
@@ -119,7 +119,7 @@ An example, we use onion to compile our executable file `onion.phar`:
         --lib src \
         --lib ../CLIFramework/src \
         --lib ../GetOptionKit/src \
-        --output onion.phar
+        --output onion
 
 ## Available Config Tags
 
@@ -208,7 +208,7 @@ Make a fork from Onion and clone it:
 
 Run onion to download bundles
 
-    $ php onion.phar -d bundle
+    $ ./onion -d bundle
 
 To run unit tests:
 
