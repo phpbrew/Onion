@@ -12,10 +12,10 @@
     <active>yes</active>
   </lead>
   <date>2012-02-10</date>
-  <time>20:20:15</time>
+  <time>22:42:57</time>
   <version>
-    <release>0.0.13</release>
-    <api>0.0.13</api>
+    <release>0.0.14</release>
+    <api>0.0.14</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -51,7 +51,7 @@
       <file name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
       <file name="tests/helpers.php" role="test" md5sum="4093047805c256a4455777de8b83b976"/>
       <file name="src/Onion/Application.php" role="php" md5sum="ce3205dc9585d2ae007074e8458891fc"/>
-      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="5c3b967158b9ea80d97be9f3e15e11f4"/>
+      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="c5ced060acba4b0a186ff36be6a0b776"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="3e459495f5460ebd9727d8eb9cf2ee5e"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="73bf1757cb3be4e728ce4f962e9b1912"/>
+      <file name="onion" role="script" md5sum="ad2947f5e3680fec05e4b8ed78f04497"/>
       <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="0c7c6957420d6a56c25b0c2dcc399514"/>
