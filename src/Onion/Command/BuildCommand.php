@@ -91,7 +91,7 @@ EOT;
         }
         elseif( $options->pyrus ) {
             $logger->info('Building PEAR package with pyrus...');
-            system('pyrus package');
+            system('pyrus.phar package');
         } 
         else {
             $notice =<<<EOS
