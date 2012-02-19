@@ -63,10 +63,10 @@ EOT;
         else
             $logger->warn( '* tests/ directory not found.',1 );
 
-        if( is_dir('docs') )
-            $logger->info2( '* found docs/', 1 );
+        if( is_dir('docs') || is_dir('doc') )
+            $logger->info2( '* found docs/ || doc/ ', 1 );
         else
-            $logger->warn( '* docs/ directory not found.',1 );
+            $logger->warn( '* docs/ or doc/ directory not found.',1 );
 
 
         $logger->info( 'Configuring package.ini' );
