@@ -72,7 +72,7 @@ class Package extends BasePackage
     {
         // directory structure
         return array(
-            'docs'    => array('doc', 'docs','examples'),
+            'doc'    => array('doc', 'docs','examples'),
             'test'  => (array) 'tests',
             'php'    => (array) 'src',
             // xxx: better config for roles
