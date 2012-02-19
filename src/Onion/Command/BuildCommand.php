@@ -63,10 +63,10 @@ EOT;
         else
             $logger->warn( '* tests/ directory not found.',1 );
 
-        if( is_dir('doc') )
-            $logger->info2( '* found doc/', 1 );
+        if( is_dir('docs') )
+            $logger->info2( '* found docs/', 1 );
         else
-            $logger->warn( '* doc/ directory not found.',1 );
+            $logger->warn( '* docs/ directory not found.',1 );
 
 
         $logger->info( 'Configuring package.ini' );
@@ -75,12 +75,12 @@ EOT;
 
         $package = $config->read( 'package.ini' );
 
-	$generator = new PackageXmlGenerator( $package );
-	$generator->setLogger( $logger );
+    	$generator = new PackageXmlGenerator( $package );
+    	$generator->setLogger( $logger );
 
         $logger->info('Writing package.xml...');
-	$xml = $generator->generate();
-	file_put_contents( 'package.xml', $xml );
+	    $xml = $generator->generate();
+    	file_put_contents( 'package.xml', $xml );
 
         # $this->logger->info('Validating package...');
         # system('pear -q package-validate');
