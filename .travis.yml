@@ -13,5 +13,3 @@ before_script:
 #   - ./scripts/compile.sh
 
 script: phpunit
-notifications:
-  irc: "irc.freenode.org#onion-dev"
