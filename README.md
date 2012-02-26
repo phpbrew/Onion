@@ -125,6 +125,9 @@ An example, we use onion to compile our executable file `onion`:
 
 please checkout [doc/SPEC.md](https://github.com/c9s/Onion/blob/master/doc/SPEC-v2.md)
 
+## Version Naming
+
+version naming standard from PEAR group: <http://pear.php.net/manual/en/rfc.version-naming.standard.php>
 
 ## Customize roles
 
@@ -225,3 +228,4 @@ To compile onion:
 ## Community
 
 If you have questions about Onion or want to help out, come and join us in the #onion-dev channel on `irc.freenode.net`.
+
