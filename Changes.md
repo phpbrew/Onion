@@ -1,4 +1,7 @@
 
+1.0.0  - Wed Feb 29 23:39:42 2012
+    - Add  --exclude option to compile command.
+    - mark as stable.
 
 0.0.11 - 一 12/26 20:23:56 2011
     - Add curl progress bar stuff.
