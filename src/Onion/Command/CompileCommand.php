@@ -97,7 +97,7 @@ class CompileCommand extends Command
                     if( $excludePatterns )  {
                         $exclude = false;
                         foreach( $excludePatterns as $pattern ) {
-                            if( preg_match( '#' . $pattern . '#' , $path->getFilename() ) ) {
+                            if( preg_match( '#' . $pattern . '#' , $rel_path ) ) {
                                 $exclude = true;
                                 break;
                             }
