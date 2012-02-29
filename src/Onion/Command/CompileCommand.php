@@ -78,7 +78,7 @@ class CompileCommand extends Command
         $phar->setSignatureAlgorithm(Phar::SHA1);
         $phar->startBuffering();
 
-        $excludePattern = $options->exclude ? $optinos->exclude->value : null;
+        $excludePattern = $options->exclude ? $options->exclude->value : null;
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
