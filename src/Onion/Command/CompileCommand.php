@@ -30,7 +30,7 @@ class CompileCommand extends Command
 
         $opts->add('lib+','external source dir');
 
-        $opts->add('exclude?' , 'exclude pattern');
+        $opts->add('exclude+' , 'exclude pattern');
 
         $opts->add('output:','output');
 
@@ -78,7 +78,7 @@ class CompileCommand extends Command
         $phar->setSignatureAlgorithm(Phar::SHA1);
         $phar->startBuffering();
 
-        $excludePattern = $options->exclude ? $options->exclude->value : null;
+        $excludePatterns = $options->exclude ? $options->exclude->value : null;
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
@@ -92,12 +92,23 @@ class CompileCommand extends Command
             // compile php file only (currently)
             foreach( $iterator as $path ) {
                 if( $path->isFile() ) {
+                    $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
 
-                    if( $excludePattern && preg_match( '#' . $excludePattern . '#' , $path->getFilename() ) )
-                        continue;
+                    if( $excludePatterns )  {
+                        $exclude = false;
+                        foreach( $excludePatterns as $pattern ) {
+                            if( preg_match( '#' . $pattern . '#' , $path->getFilename() ) ) {
+                                $exclude = true;
+                                break;
+                            }
+                        }
+                        if( $exclude ) {
+                            $logger->debug2("exclude " . $rel_path , 1 );
+                            continue;
+                        }
+                    }
 
                     if( preg_match('/\.php$/',$path->getFilename() ) ) {
-                        $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
                         $content = php_strip_whitespace( $path->getRealPath() );
                         # echo $path->getPathname() . "\n";
                         $logger->debug2("compile " . $rel_path , 1 );
