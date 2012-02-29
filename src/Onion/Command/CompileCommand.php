@@ -93,7 +93,7 @@ class CompileCommand extends Command
             foreach( $iterator as $path ) {
                 if( $path->isFile() ) {
 
-                    if( preg_match( '#' . $excludePattern . '#' , $path->getFilename() ) )
+                    if( $excludePattern && preg_match( '#' . $excludePattern . '#' , $path->getFilename() ) )
                         continue;
 
                     if( preg_match('/\.php$/',$path->getFilename() ) ) {
