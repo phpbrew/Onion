@@ -30,6 +30,8 @@ class CompileCommand extends Command
 
         $opts->add('lib+','external source dir');
 
+        $opts->add('exclude?' , 'exclude pattern');
+
         $opts->add('output:','output');
 
         $opts->add('c|compress?', 'phar file compress type: gz, bz2');
@@ -76,6 +78,7 @@ class CompileCommand extends Command
         $phar->setSignatureAlgorithm(Phar::SHA1);
         $phar->startBuffering();
 
+        $excludePattern = $options->exclude ? $optinos->exclude->value : null;
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
@@ -89,6 +92,10 @@ class CompileCommand extends Command
             // compile php file only (currently)
             foreach( $iterator as $path ) {
                 if( $path->isFile() ) {
+
+                    if( preg_match( '#' . $excludePattern . '#' , $path->getFilename() ) )
+                        continue;
+
                     if( preg_match('/\.php$/',$path->getFilename() ) ) {
                         $rel_path = substr($path->getPathname(),strlen($src_dir) + 1);
                         $content = php_strip_whitespace( $path->getRealPath() );
