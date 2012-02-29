@@ -14,7 +14,7 @@ namespace Onion;
 class Application extends \CLIFramework\Application
 {
     const app_name = 'Onion';
-    const app_version = '0.0.13';
+    const app_version = '1.0.1';
 
     function brief()
     {
