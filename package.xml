@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-02-29</date>
-  <time>23:38:54</time>
+  <time>23:43:18</time>
   <version>
     <release>1.0.1</release>
     <api>1.0.1</api>
@@ -50,7 +50,7 @@
       <file name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="ce3205dc9585d2ae007074e8458891fc"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="5cda2fa6326e4aa5ebf3f0efb742fde4"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="044b8ed621baa848ee596aa4595de41a"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="0aebc4ed1274617d742e642d6ed3e044"/>
@@ -93,7 +93,7 @@
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
       <file name="onion" role="script" md5sum="ff4b0aaf35f89afdc88dafa0385e5502"/>
-      <file name="Changes.md" role="doc" md5sum="9ea569cb6d2c0d77e338ad957c7ab731"/>
+      <file name="Changes.md" role="doc" md5sum="f2a217024526e5a7f8e75ff9ae8609e8"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
