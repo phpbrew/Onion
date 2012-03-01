@@ -118,7 +118,7 @@ class CompileCommand extends Command
                     }
                     else {
                         $logger->debug2("add " . $rel_path , 1 );
-                        $phar->addFile($rel_path,$path->getPathname());
+                        $phar->addFile($path->getPathname(), $rel_path);
                     }
                 }
             }
