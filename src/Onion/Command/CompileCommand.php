@@ -108,11 +108,17 @@ class CompileCommand extends Command
                         }
                     }
 
+
+                    // if it's php file.
                     if( preg_match('/\.php$/',$path->getFilename() ) ) {
                         $content = php_strip_whitespace( $path->getRealPath() );
                         # echo $path->getPathname() . "\n";
-                        $logger->debug2("compile " . $rel_path , 1 );
+                        $logger->debug2("add " . $rel_path , 1 );
                         $phar->addFromString($rel_path, $content);
+                    }
+                    else {
+                        $logger->debug2("add " . $rel_path , 1 );
+                        $phar->addFile($rel_path,$path->getPathname());
                     }
                 }
             }
