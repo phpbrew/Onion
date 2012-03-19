@@ -34,6 +34,7 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'build' );
         $this->registerCommand( 'compile' );
         $this->registerCommand( 'bundle' );
+        $this->registerCommand( 'self-update' );
     }
 
     function getCache()
