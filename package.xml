@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-03-19</date>
-  <time>19:04:42</time>
+  <time>19:10:30</time>
   <version>
     <release>1.1.0</release>
     <api>1.1.0</api>
@@ -50,7 +50,7 @@
       <file name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="38738989da580661663a9747bc057e72"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="173a51bf24a32a8b1239ad887ad51d93"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="5cd33e39cb4693706bde79a158c9bf41"/>
@@ -77,7 +77,7 @@
       <file name="src/Onion/Package/PearPackage.php" role="php" md5sum="f6634bde615714a09f289b1cc0a24464"/>
       <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="4f089849b7cb8506af9c08afb47975a3"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
-      <file name="src/Onion/Paths.php" role="php" md5sum="bf473ca1e7436bd46f03d5477cf0681b"/>
+      <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
       <file name="src/Onion/Pear/Channel.php" role="php" md5sum="07a7de197d168333481a503be51a43f2"/>
       <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="3ceb852d3add3ff4f69433a712cc3ca5"/>
       <file name="src/Onion/Pear/ChannelParser.php" role="php" md5sum="7a843178f3f8d65a056594501f0d7519"/>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="c728b8aea6ba16fb8397502043f3f543"/>
+      <file name="onion" role="script" md5sum="d3b9075d4d78d1897c1c5ea4ef39eb6c"/>
       <file name="Changes.md" role="doc" md5sum="f2a217024526e5a7f8e75ff9ae8609e8"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
