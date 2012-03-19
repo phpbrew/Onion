@@ -44,7 +44,7 @@ class Application extends \CLIFramework\Application
 
         $cache = new FileSystemCache(array(
             'expiry' => 3600, // 1 hour
-            'cache_dir' => Paths::cache_dir(),
+            'cache_dir' => Paths::system_cache_dir(),
         ));
         return $cache;
     }
