@@ -49,8 +49,8 @@ class CompileCommand extends Command
         // xxx: read package config and get src role directories for compiling
         ini_set('phar.readonly',0);
 
-        $options = $this->getOptions();
-        $logger = $this->getLogger();
+        $options = $this->options;
+        $logger = $this->logger;
 
         $bootstrap = null;
         $lib_dirs = array('src'); // current package source, TODO: we should read the roles from package.ini
@@ -146,7 +146,7 @@ Phar::mapPhar('$pharFile');
 EOT;
 
         // use stream to resolve Universal\ClassLoader\Autoloader;
-        if( $options->classloader ) {
+        if( $options->has('classloader') ) {
 
             $logger->info2( "Adding classloader..." );
 
@@ -161,7 +161,6 @@ EOT;
             }
             else {
                 $classloader_file = 'Universal/ClassLoader/SplClassLoader.php';
-
                 $stub .=<<<"EOT"
 require 'phar://$pharFile/$classloader_file';
 \$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;

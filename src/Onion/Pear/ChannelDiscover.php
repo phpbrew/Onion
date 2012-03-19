@@ -31,32 +31,31 @@ class ChannelDiscover
      */
     public function lookup($pearhost)
     {
-        $xmlstr = '';
+        $xmlstr = null;
         $downloader = $this->getDownloader();
 
-        if( $result = $this->cache->get( $pearhost ) )
-            return $result;
+        $xmlstr = $this->cache->get( $pearhost );
 
-        $httpUrl = 'http://' . $pearhost . '/channel.xml';
-        $httpsUrl = 'https://' . $pearhost . '/channel.xml';
-
-        $retry = 3;
-        while( $retry-- ) {
-            try {
-                if( $xmlstr = $downloader->fetch($httpUrl) )
-                    break;
-            } catch( Exception $e ) {
+        if( null === $xmlstr ) {
+            $httpUrl = 'http://' . $pearhost . '/channel.xml';
+            $httpsUrl = 'https://' . $pearhost . '/channel.xml';
+            $retry = 3;
+            while( $retry-- ) {
                 try {
-                    if( $xmlstr = $downloader->fetch( $httpsUrl ) )
+                    if( $xmlstr = $downloader->fetch($httpUrl) )
                         break;
-                } 
-                catch( Exception $e ) {
-                    throw new Exception("Channel discover failed: $pearhost");
+                } catch( Exception $e ) {
+                    try {
+                        if( $xmlstr = $downloader->fetch( $httpsUrl ) )
+                            break;
+                    } 
+                    catch( Exception $e ) {
+                        throw new Exception("Channel discover failed: $pearhost");
+                    }
                 }
             }
+            $this->cache->set($pearhost, $xmlstr );
         }
-
-        $this->cache->set($pearhost, $xmlstr );
 
         $parser = new ChannelParser;
         $channel = $parser->parse( $xmlstr );
