@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-03-19</date>
-  <time>19:10:30</time>
+  <time>19:18:00</time>
   <version>
     <release>1.1.0</release>
     <api>1.1.0</api>
@@ -50,11 +50,12 @@
       <file name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="173a51bf24a32a8b1239ad887ad51d93"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="9ef565aa9a3c1a336f7efe150a6a9f1d"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="5cd33e39cb4693706bde79a158c9bf41"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
+      <file name="src/Onion/Command/SelfUpdateCommand.php" role="php" md5sum="3bc116016dd530dd89cb0e4ac2bd9196"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyManager.php" role="php" md5sum="1a3eb526585bc8cd869d98ef2fb4f60f"/>
@@ -92,8 +93,8 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="d3b9075d4d78d1897c1c5ea4ef39eb6c"/>
-      <file name="Changes.md" role="doc" md5sum="f2a217024526e5a7f8e75ff9ae8609e8"/>
+      <file name="onion" role="script" md5sum="3bc8faf1596fe162f3d8255a2e592241"/>
+      <file name="Changes.md" role="doc" md5sum="96009aafc023e284499327f642f2d4b4"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
       <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
@@ -161,6 +162,7 @@
       <install name="src/Onion/Command/BundleCommand.php" as="Onion/Command/BundleCommand.php"/>
       <install name="src/Onion/Command/CompileCommand.php" as="Onion/Command/CompileCommand.php"/>
       <install name="src/Onion/Command/InitCommand.php" as="Onion/Command/InitCommand.php"/>
+      <install name="src/Onion/Command/SelfUpdateCommand.php" as="Onion/Command/SelfUpdateCommand.php"/>
       <install name="src/Onion/ConfigContainer.php" as="Onion/ConfigContainer.php"/>
       <install name="src/Onion/Dependency/DependencyInfo.php" as="Onion/Dependency/DependencyInfo.php"/>
       <install name="src/Onion/Dependency/DependencyManager.php" as="Onion/Dependency/DependencyManager.php"/>
