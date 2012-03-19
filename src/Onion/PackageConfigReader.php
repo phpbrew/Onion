@@ -42,8 +42,13 @@ class PackageConfigReader
 {
     public $logger;
 
-    function __construct()
+    public $validate = false;
+
+    function __construct( $options = array() )
     {
+        if( isset($options['validate']) )
+            $this->validate = $options['validate'];
+
     }
 
     function setLogger( \CLIFramework\Logger $logger)
@@ -81,22 +86,25 @@ class PackageConfigReader
 
         $config = new ConfigContainer( $ini );
 
-        // validation 
-        $requiredFields = explode(' ','package.name package.desc package.version');
-        foreach( $requiredFields as $f ) {
-            if( ! $config->has( $f ) )
-                throw new \Onion\Exception\InvalidConfigException( "$f is not defined." );
-        }
+        if( $this->validate ) {
 
-        if( ! $config->has('package.authors') && ! $config->has('package.author') ) {
-            echo <<<EOT
+            $requiredFields = explode(' ','package.name package.desc package.version');
+            foreach( $requiredFields as $f ) {
+                if( ! $config->has( $f ) )
+                    throw new \Onion\Exception\InvalidConfigException( "$f is not defined." );
+            }
+
+            if( ! $config->has('package.authors') && ! $config->has('package.author') ) {
+                echo <<<EOT
 Attribute 'author' or 'authors' is not defined.
 Please define 'author' in your package.ini file:
 
 [package]
 author = Name <email@domain.com>
 EOT;
-            throw new \Onion\Exception\InvalidConfigException('package.author or package.authors is not defined.');
+                throw new \Onion\Exception\InvalidConfigException('package.author or package.authors is not defined.');
+            }
+
         }
 
         // set default values

@@ -70,7 +70,9 @@ EOT;
 
 
         $logger->info( 'Configuring package.ini' );
-        $config = new PackageConfigReader();
+        $config = new PackageConfigReader(array( 
+            'validate' => true,
+        ));
         $config->setLogger( $logger );
 
         $package = $config->read( 'package.ini' );
