@@ -2,21 +2,15 @@
 namespace Onion\Pear;
 use Exception;
 use Onion\Downloader\CurlDownloader;
-use Onion\Paths;
-use CacheKit\FileSystemCache;
 
 class ChannelDiscover 
 {
     public $cache;
-
     public $downloaderClass = '\Onion\Downloader\CurlDownloader';
 
     public function __construct()
     {
-        $this->cache = new FileSystemCache(array(
-            'expiry' => 3600, // 1 hour
-            'cache_dir' => Paths::cache_dir(),
-        ));
+        $this->cache = \Onion\Application::getInstance()->getCache();
     }
 
     public function getDownloader()

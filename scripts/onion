@@ -18,12 +18,5 @@ $classLoader = new \Universal\ClassLoader\SplClassLoader(array(
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();
-
-try {
-    $app = new \Onion\Application;
-    $app->run( $argv );
-} 
-catch( Exception $e )
-{
-    die( $e->getMessage() );
-}
+$app = \Onion\Application::getInstance();
+$app->run( $argv );

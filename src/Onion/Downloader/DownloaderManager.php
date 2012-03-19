@@ -38,11 +38,14 @@ class DownloaderManager
 
     public $logger;
 
+    public $cache;
+
     function __construct($select_default = true)
     {
         if( $select_default )
             $this->selectDefaultDownloader();
-        $this->logger = \Onion\Application::getLogger();
+        $this->logger = \Onion\Application::getInstance()->getLogger();
+        $this->cache  = \Onion\Application::getInstance()->getCache();
     }
 
     function selectDefaultDownloader()
@@ -77,27 +80,23 @@ class DownloaderManager
 
     function download($url)
     {
-        $this->logger->debug2( "Fetching $url ..." , 1 );
-        $d = $this->getDownloader();
-        return $d->fetch( $url );
+        $content = $this->cache->get($url);
+        if( null === $content ) {
+            $this->logger->debug2( "Fetching $url ..." , 1 );
+            $d = $this->getDownloader();
+            $content = $d->fetch( $url );
+            $this->cache->set( $url, $content );
+        }
+        return $content;
     }
 
     function downloadXml($url)
     {
-        if( extension_loaded('apc') ) {
-            if( ($xmlstr = apc_fetch( $url ) ) ) {
-                $xml = new DOMDocument();
-                $xml->loadXML($xmlstr); 
-                return $xml;
-            }
+        $xmlstr = $this->cache->get( $url );
+        if( null === $xmlstr ) {
+            $xmlstr = $this->download($url);
+            $this->cache->set( $url, $xmlstr );
         }
-        $xmlstr = $this->download($url);
-
-        if( extension_loaded('apc') ) {
-            apc_store($url,$xmlstr);
-        }
-
-        // helper function to load xml
         $xml = new DOMDocument();
         $xml->loadXML($xmlstr); 
         return $xml;

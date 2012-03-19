@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  *
  */
-
 namespace Onion;
+use Onion\Paths;
+use CacheKit\FileSystemCache;
 
 class Application extends \CLIFramework\Application
 {
@@ -33,6 +34,26 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'build' );
         $this->registerCommand( 'compile' );
         $this->registerCommand( 'bundle' );
+    }
+
+    function getCache()
+    {
+        static $cache;
+        if( $cache )
+            return $cache;
+
+        $cache = new FileSystemCache(array(
+            'expiry' => 3600, // 1 hour
+            'cache_dir' => Paths::cache_dir(),
+        ));
+        return $cache;
+    }
+
+    static function getInstance()
+    {
+        static $instance;
+        $instance = new self;
+        return $instance;
     }
 
 }
