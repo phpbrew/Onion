@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-16</date>
-  <time>14:27:19</time>
+  <date>2012-03-19</date>
+  <time>19:04:42</time>
   <version>
-    <release>1.0.3</release>
-    <api>1.0.3</api>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
   </version>
   <stability>
     <release>stable</release>
@@ -28,7 +28,7 @@
       <file name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
       <file name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
-      <file name="tests/bootstrap.php" role="test" md5sum="b81f75394c5558c4148ec087bd037b01"/>
+      <file name="tests/bootstrap.php" role="test" md5sum="38a488d42fe78ce21f51a8664361893f"/>
       <file name="tests/data/corneltek.channel.xml" role="test" md5sum="f0444e1a159c8cfdbfc80f37b0aac159"/>
       <file name="tests/data/package.ini" role="test" md5sum="5d72c1d003c8c76b3a4bd00da71845e8"/>
       <file name="tests/data/package_xml/PHP_Timer/package.xml" role="test" md5sum="1545469acf8e7af06913a41acd1939f2"/>
@@ -50,10 +50,10 @@
       <file name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="5cda2fa6326e4aa5ebf3f0efb742fde4"/>
-      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="044b8ed621baa848ee596aa4595de41a"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="38738989da580661663a9747bc057e72"/>
+      <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
-      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="64f966db1bc667b2738d430c0d0e1323"/>
+      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="5cd33e39cb4693706bde79a158c9bf41"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
@@ -61,7 +61,7 @@
       <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="ccacece2facd2e8cd5ff3496daacfed0"/>
       <file name="src/Onion/Downloader/CurlDownloader.php" role="php" md5sum="e7e4b9ca3279d6b18e4fcac4f7b3f102"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
-      <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="cc1ef974c57117eeb764a79465a7ece1"/>
+      <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="d1ce9e7cc6cba28545e87bad584f90b0"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="093df6e7d4882d4cf16ec3deac92dd5b"/>
       <file name="src/Onion/Exception/InvalidConfigException.php" role="php" md5sum="cb6167db0b4c49f0b17a0e4164259951"/>
       <file name="src/Onion/GlobalConfig.php" role="php" md5sum="b2de5f4a4f385dea7e86598d6f3f11d9"/>
@@ -70,16 +70,16 @@
       <file name="src/Onion/Installer/PearInstaller.php" role="php" md5sum="a990d95d336d623a6e85ecc10de2d38d"/>
       <file name="src/Onion/Installer.php" role="php" md5sum="5e7fe89302fc6945960b579fc6a6ab5b"/>
       <file name="src/Onion/LoggableInterface.php" role="php" md5sum="c31c46dcff37284f35cadbed42e49978"/>
-      <file name="src/Onion/Onion.php" role="php" md5sum="6a4e7d381b3cb0d8d67d3a7e35ac2537"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
       <file name="src/Onion/Package/BasePackage.php" role="php" md5sum="0548c2bb3f465e2d5f09c2845a7e5860"/>
       <file name="src/Onion/Package/Package.php" role="php" md5sum="1ce0c1f858a902121eeda402b1b5cf61"/>
       <file name="src/Onion/Package/PackageInterface.php" role="php" md5sum="7a619a551d50b5497e94592766984d38"/>
       <file name="src/Onion/Package/PearPackage.php" role="php" md5sum="f6634bde615714a09f289b1cc0a24464"/>
-      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="040079e6281dacd234ef1c749623a214"/>
+      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="4f089849b7cb8506af9c08afb47975a3"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
+      <file name="src/Onion/Paths.php" role="php" md5sum="bf473ca1e7436bd46f03d5477cf0681b"/>
       <file name="src/Onion/Pear/Channel.php" role="php" md5sum="07a7de197d168333481a503be51a43f2"/>
-      <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="32678aabfa0f11765fbf0f7590818fc6"/>
+      <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="3ceb852d3add3ff4f69433a712cc3ca5"/>
       <file name="src/Onion/Pear/ChannelParser.php" role="php" md5sum="7a843178f3f8d65a056594501f0d7519"/>
       <file name="src/Onion/Pear/Package.php" role="php" md5sum="2fd0ef30fb53512c55ac967fd44c3a2c"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
@@ -92,7 +92,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="97ebf86d1a778557f54f21f5da12d3ce"/>
+      <file name="onion" role="script" md5sum="c728b8aea6ba16fb8397502043f3f543"/>
       <file name="Changes.md" role="doc" md5sum="f2a217024526e5a7f8e75ff9ae8609e8"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
@@ -108,19 +108,20 @@
         <min>1.4.1</min>
       </pearinstaller>
       <package>
-        <name>GetOptionKit</name>
+        <name>CacheKit</name>
         <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
       </package>
       <package>
         <name>CLIFramework</name>
         <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
+      </package>
+      <package>
+        <name>GetOptionKit</name>
+        <channel>pear.corneltek.com</channel>
       </package>
       <package>
         <name>Universal</name>
         <channel>pear.corneltek.com</channel>
-        <min>0.0.2</min>
       </package>
       <extension>
         <name>pcre</name>
@@ -175,7 +176,6 @@
       <install name="src/Onion/Installer/PearInstaller.php" as="Onion/Installer/PearInstaller.php"/>
       <install name="src/Onion/Installer.php" as="Onion/Installer.php"/>
       <install name="src/Onion/LoggableInterface.php" as="Onion/LoggableInterface.php"/>
-      <install name="src/Onion/Onion.php" as="Onion/Onion.php"/>
       <install name="src/Onion/Operation/InstallOperation.php" as="Onion/Operation/InstallOperation.php"/>
       <install name="src/Onion/Package/BasePackage.php" as="Onion/Package/BasePackage.php"/>
       <install name="src/Onion/Package/Package.php" as="Onion/Package/Package.php"/>
@@ -183,6 +183,7 @@
       <install name="src/Onion/Package/PearPackage.php" as="Onion/Package/PearPackage.php"/>
       <install name="src/Onion/PackageConfigReader.php" as="Onion/PackageConfigReader.php"/>
       <install name="src/Onion/Packager.php" as="Onion/Packager.php"/>
+      <install name="src/Onion/Paths.php" as="Onion/Paths.php"/>
       <install name="src/Onion/Pear/Channel.php" as="Onion/Pear/Channel.php"/>
       <install name="src/Onion/Pear/ChannelDiscover.php" as="Onion/Pear/ChannelDiscover.php"/>
       <install name="src/Onion/Pear/ChannelParser.php" as="Onion/Pear/ChannelParser.php"/>
