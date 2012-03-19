@@ -58,13 +58,13 @@ class CompileCommand extends Command
         $classloader = null;
 
         if( $options->bootstrap )
-            $bootstrap = $options->bootstrap->value;
+            $bootstrap = $options->bootstrap;
 
         if( $options->lib )
-            $lib_dirs = $options->lib->value;
+            $lib_dirs = $options->lib;
 
         if( $options->output )
-            $output = $options->output->value;
+            $output = $options->output;
 
 
         $logger->info('Compiling Phar...');
@@ -78,7 +78,7 @@ class CompileCommand extends Command
         $phar->setSignatureAlgorithm(Phar::SHA1);
         $phar->startBuffering();
 
-        $excludePatterns = $options->exclude ? $options->exclude->value : null;
+        $excludePatterns = $options->exclude ? $options->exclude : null;
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
@@ -150,9 +150,9 @@ EOT;
 
             $logger->info2( "Adding classloader..." );
 
-            if( is_string( $options->classloader->value ) && file_exists( $options->classloader->value ) )
+            if( is_string( $options->classloader ) && file_exists( $options->classloader ) )
             {
-                $classloader_file = $options->classloader->value;
+                $classloader_file = $options->classloader;
                 $content = php_strip_whitespace($classloader_file);
                 $phar->addFromString($classloader_file,$content);
                 $stub .=<<<"EOT"
@@ -196,7 +196,7 @@ EOT;
         } 
         elseif( $options->compress ) 
         {
-            switch( $v = $options->compress->value ) {
+            switch( $v = $options->compress ) {
             case 'gz':
                 $compress_type = Phar::GZ;
                 break;
