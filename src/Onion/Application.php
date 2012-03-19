@@ -15,7 +15,7 @@ use CacheKit\FileSystemCache;
 class Application extends \CLIFramework\Application
 {
     const name = 'Onion';
-    const version = '1.0.1';
+    const version = '1.1.0';
 
     function brief()
     {
