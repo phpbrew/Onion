@@ -9,6 +9,10 @@ class SelfUpdateCommand extends Command
 
     public function brief() { return 'self-update'; }
 
+    public function options($opts) {
+        $opts->add('b|branch:','master, develop branch');
+    }
+
     public function execute()
     {
         global $argv;
@@ -17,10 +21,12 @@ class SelfUpdateCommand extends Command
             throw new Exception("$script is not writable.");
         }
 
+        $branch = $this->options->branch ?: 'master';
+
         // fetch new version phpbrew
         $this->logger->info("Fetching phpbrew to $script...");
 
-        $url = 'https://raw.github.com/c9s/Onion/master/phpbrew';
+        $url = "https://raw.github.com/c9s/Onion/$branch/onion";
         system("curl -# -L $url > $script") == 0 or die('Update failed.');
 
         $this->logger->info("Version updated.");
