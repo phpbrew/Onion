@@ -2,12 +2,24 @@
 namespace Onion\Pear;
 use Exception;
 use Onion\Downloader\CurlDownloader;
+use Onion\Paths;
+use CacheKit\FileSystemCache;
 
 class ChannelDiscover 
 {
+    public $cache;
+
     public $downloaderClass = '\Onion\Downloader\CurlDownloader';
 
-    function getDownloader()
+    public function __construct()
+    {
+        $this->cache = new FileSystemCache(array(
+            'expiry' => 3600, // 1 hour
+            'cache_dir' => Paths::cache_dir(),
+        ));
+    }
+
+    public function getDownloader()
     {
         return new $this->downloaderClass;
     }
@@ -17,29 +29,34 @@ class ChannelDiscover
      *
      * @return Onion\Pear\Channel class
      */
-    function lookup($pearhost)
+    public function lookup($pearhost)
     {
         $xmlstr = '';
         $downloader = $this->getDownloader();
 
+        if( $result = $this->cache->get( $pearhost ) )
+            return $result;
+
+        $httpUrl = 'http://' . $pearhost . '/channel.xml';
+        $httpsUrl = 'https://' . $pearhost . '/channel.xml';
+
         $retry = 3;
         while( $retry-- ) {
             try {
-                $url = 'http://' . $pearhost . '/channel.xml';
-                $xmlstr = $downloader->fetch($url);
-                if( $xmlstr )
+                if( $xmlstr = $downloader->fetch($httpUrl) )
                     break;
             } catch( Exception $e ) {
                 try {
-                    $url = 'https://' . $pearhost . '/channel.xml';
-                    $xmlstr = $downloader->fetch($url);
-                    if( $xmlstr )
+                    if( $xmlstr = $downloader->fetch( $httpsUrl ) )
                         break;
-                } catch( Exception $e ) {
-                    throw new Exception("Channel discover failed: $url");
+                } 
+                catch( Exception $e ) {
+                    throw new Exception("Channel discover failed: $pearhost");
                 }
             }
         }
+
+        $this->cache->set($pearhost, $xmlstr );
 
         $parser = new ChannelParser;
         $channel = $parser->parse( $xmlstr );

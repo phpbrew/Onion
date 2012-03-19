@@ -9,12 +9,5 @@
  * file that was distributed with this source code.
  *
  */
-use Onion\Application;
-try {
-    $app = new Application;
-    $app->run( $argv );
-} 
-catch( Exception $e )
-{
-    die( $e->getMessage() );
-}
+$app = new Onion\Application;
+$app->run( $argv );

@@ -13,8 +13,8 @@ namespace Onion;
 
 class Application extends \CLIFramework\Application
 {
-    const app_name = 'Onion';
-    const app_version = '1.0.1';
+    const name = 'Onion';
+    const version = '1.0.1';
 
     function brief()
     {
@@ -34,6 +34,5 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'compile' );
         $this->registerCommand( 'bundle' );
     }
-
 
 }
