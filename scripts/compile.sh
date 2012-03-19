@@ -1,5 +1,5 @@
 #!/bin/bash
-./scripts/onion -d compile \
+php ./scripts/onion -d compile \
     --lib src \
     --lib vendor/pear \
     --classloader \
