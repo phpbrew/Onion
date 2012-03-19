@@ -7,8 +7,8 @@ php:
 before_script:
   - phpenv rehash
   - "pyrus upgrade -f -p pear2.php.net/PEAR2_Pyrus_Developer"
-  - bash scripts/compile.sh
   - php onion -d bundle
+  - bash scripts/compile.sh
   - php onion -d build --pyrus
 #   - ./scripts/compile.sh
 
