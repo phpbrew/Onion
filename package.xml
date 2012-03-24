@@ -11,8 +11,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-19</date>
-  <time>19:31:42</time>
+  <date>2012-03-24</date>
+  <time>19:16:38</time>
   <version>
     <release>1.1.0</release>
     <api>1.1.0</api>
@@ -53,7 +53,7 @@
       <file name="src/Onion/Application.php" role="php" md5sum="d1d20e153bc98f391b0265cb235863d2"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
-      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="5cd33e39cb4693706bde79a158c9bf41"/>
+      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="707f14060bbe0d46b3ff33e75535b264"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file name="src/Onion/Command/SelfUpdateCommand.php" role="php" md5sum="3bc116016dd530dd89cb0e4ac2bd9196"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>

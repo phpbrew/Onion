@@ -30,7 +30,7 @@ class CompileCommand extends Command
 
         $opts->add('lib+','library path');
 
-        $opts->add('include+', 'include path')
+        $opts->add('include+', 'include path');
 
         $opts->add('exclude+' , 'exclude pattern');
 
@@ -88,7 +88,8 @@ class CompileCommand extends Command
                 $phar->buildFromIterator(
                     new RecursiveIteratorIterator(
                         new RecursiveDirectoryIterator($include)),
-                    dirname(realpath($include))
+                    getcwd()
+                    // realpath($include)
                 );
             }
         }
