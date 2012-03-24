@@ -28,7 +28,9 @@ class CompileCommand extends Command
 
         $opts->add('executable','is a executable script ?');
 
-        $opts->add('lib+','external source dir');
+        $opts->add('lib+','library path');
+
+        $opts->add('include+', 'include path')
 
         $opts->add('exclude+' , 'exclude pattern');
 
@@ -79,6 +81,17 @@ class CompileCommand extends Command
         $phar->startBuffering();
 
         $excludePatterns = $options->exclude ? $options->exclude : null;
+
+
+        if( $options->include ) {
+            foreach( $options->include as $include ) {
+                $phar->buildFromIterator(
+                    new RecursiveIteratorIterator(
+                        new RecursiveDirectoryIterator($include)),
+                    dirname(realpath($include))
+                );
+            }
+        }
 
         // archive library directories into phar file.
         foreach( $lib_dirs as $src_dir ) {
