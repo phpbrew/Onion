@@ -1,12 +1,10 @@
 <?php
 namespace Onion\Pear;
 use Exception;
-use Onion\Downloader\CurlDownloader;
 
 class ChannelDiscover 
 {
     public $cache;
-    public $downloaderClass = '\Onion\Downloader\CurlDownloader';
 
     public function __construct()
     {
@@ -15,7 +13,7 @@ class ChannelDiscover
 
     public function getDownloader()
     {
-        return new $this->downloaderClass;
+        return new \CurlKit\CurlDownloader;
     }
 
     /**
@@ -36,11 +34,11 @@ class ChannelDiscover
             $retry = 3;
             while( $retry-- ) {
                 try {
-                    if( $xmlstr = $downloader->fetch($httpUrl) )
+                    if( $xmlstr = $downloader->request($httpUrl) )
                         break;
                 } catch( Exception $e ) {
                     try {
-                        if( $xmlstr = $downloader->fetch( $httpsUrl ) )
+                        if( $xmlstr = $downloader->request( $httpsUrl ) )
                             break;
                     } 
                     catch( Exception $e ) {
