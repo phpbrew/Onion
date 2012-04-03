@@ -64,10 +64,7 @@ class Category
             foreach( $depsList as $depsNode ) {
                 $v = $depsNode->getElementsByTagName('v')->item(0)->nodeValue;// version string
                 $d = unserialize($depsNode->getElementsByTagName('d')->item(0)->nodeValue); // dependency hash
-                $package->deps[] = array(
-                    'version' => $v,
-                    'dependencies' => $d,
-                );
+                $package->deps[$v] = $d;
             }
 
             $latestStable = 0;
