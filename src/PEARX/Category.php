@@ -60,6 +60,16 @@ class Category
             $package->channel = $p->getElementsByTagName('c')->item(0)->nodeValue;
             $package->license = $p->getElementsByTagName('l')->item(0)->nodeValue;
 
+            $depsList = $node->getElementsByTagName('deps');
+            foreach( $depsList as $depsNode ) {
+                $v = $depsNode->getElementsByTagName('v')->item(0)->nodeValue;// version string
+                $d = unserialize($depsNode->getElementsByTagName('d')->item(0)->nodeValue); // dependency hash
+                $package->deps[] = array(
+                    'version' => $v,
+                    'dependencies' => $d,
+                );
+            }
+
             $latestStable = 0;
             $latestAlpha = 0;
             $latestBeta = 0;
@@ -98,6 +108,7 @@ class Category
             $package->alpha = $latestAlpha;
             $package->beta = $latestBeta;
             $package->latest = $latest;
+
 
             $packages[] = $package;
         }
