@@ -125,7 +125,6 @@ class Channel
         return $xmlstr;
     }
 
-
     public function getCategories()
     {
         $baseUrl = $this->getRestBaseUrl();
@@ -150,13 +149,19 @@ class Channel
         return $list;
     }
 
-    public function fetchAllPackages()
+    public function getPackages()
     {
-
-
+        $packages = array();
+        foreach( $this->getCategories() as $category ) {
+            $packages[ $category->name ] = $category->getPackages();
+        }
+        return $packages;
     }
 
+    public function findPackage($name,$version)
+    {
 
+    }
 }
 
 

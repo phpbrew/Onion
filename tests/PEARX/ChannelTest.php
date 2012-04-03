@@ -24,6 +24,13 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         $url = $channel->getRestBaseUrl();
         ok( $url );
 
+        $packages = $channel->getPackages();
+
+        foreach( $packages as $p ) {
+            ok( $p );
+        }
+
+
         $categories = $channel->getCategories();
         ok( $categories );
 
@@ -31,11 +38,12 @@ class ChannelTest extends PHPUnit_Framework_TestCase
             ok( $category->name , 'category name' );
 
             $packages = $category->getPackages();
-            foreach( $packages as $package ) {
+            foreach( $packages as $packageName => $package ) {
                 ok( $package->name );
                 ok( $package->summary );
                 ok( $package->desc );
                 ok( $package->license );
+                ok( $package->deps );
 
                 foreach( $package->releases as $r ) {
                     ok( $r->version );

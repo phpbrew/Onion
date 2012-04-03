@@ -104,7 +104,7 @@ class Category
             $package->beta = $latestBeta;
             $package->latest = $latest;
 
-            $packages[] = $package;
+            $packages[ $package->name ] = $package;
         }
         return $packages;
     }
