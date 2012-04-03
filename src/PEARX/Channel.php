@@ -1,5 +1,6 @@
 <?php
 namespace PEARX;
+use PEARX\ChannelParser;
 
 /**
  * $channel = new PEARX\Channel( 'pear.php.net', array(
@@ -19,6 +20,17 @@ class Channel
 
     public $channelXml;
 
+    /**
+     * Channel Info object
+     */
+    public $info;
+
+
+    /**
+     * channel url scheme
+     */
+    public $scheme = 'http';
+
     public function __construct($host, $options = array() )
     {
         if( isset($options['cache']) ) {
@@ -35,9 +47,8 @@ class Channel
 
         $this->channelXml = $this->fetchChannelXml( $host );
 
-#          $parser = new ChannelParser;
-#          $channel = $parser->parse( $xmlstr );
-#          return $channel;
+        $parser = new ChannelParser;
+        $this->info = $parser->parse( $this->channelXml );
     }
 
 
@@ -46,6 +57,7 @@ class Channel
         if( $this->downloader ) {
             return $this->downloader->fetch( $url );
         }
+        ini_set('default_socket_timeout', 120);
         return file_get_contents($url);
     }
 
@@ -58,15 +70,19 @@ class Channel
         $xmlstr = $this->cache ? $this->cache->get( $host ) : null;
 
         // cache not found.
-        if( $xmlstr )
+        if( null !== $xmlstr )
             return $xmlstr;
 
         $httpUrl = 'http://' . $host . '/channel.xml';
         $httpsUrl = 'https://' . $host . '/channel.xml';
         while( $this->retry-- ) {
             try {
-                if( $xmlstr = $this->request($httpUrl) 
-                    || $xmlstr = $this->request( $httpsUrl ) ) {
+                if( $xmlstr = $this->request($httpUrl)  ) {
+                    $this->scheme = 'http';
+                    break;
+                }
+                if( $xmlstr = $this->request( $httpsUrl ) ) {
+                    $this->scheme = 'https';
                     break;
                 }
             } catch( Exception $e ) {
@@ -85,6 +101,21 @@ class Channel
         }
         return $xmlstr;
     }
+
+    public function getRestBaseUrl($version = null)
+    {
+        if( $version && $this->info->primary[$version] )
+            return $this->info->primary[ $version ];
+
+        $versions = array('REST1.3','REST1.2','REST1.1');
+        foreach( $versions as $k ) {
+            if( isset( $this->info->primary[ $k ] ) )
+                return $this->info->primary[ $k ];
+        }
+    }
+
+
+
 
 
 }

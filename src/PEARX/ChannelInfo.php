@@ -28,6 +28,10 @@ class ChannelInfo
 
     public $rest; // Latest REST version
 
+
+
+
+
 }
 
 
