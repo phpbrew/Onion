@@ -38,9 +38,14 @@ class ChannelParser
 
         // build primary server section
         $channel->primary = array();
+        $channel->rest = 'REST1.0';
         foreach( $xml->servers->primary->rest->baseurl as $element ) {
             $attrs = $element->attributes();
-            $channel->primary[ (string) $attrs->type ] = (string) $element;
+            $version = (string) $attrs->type; // REST version
+            $channel->primary[ $version ] = (string) $element;
+            if( version_compare( $version , $channel->rest ) >= 0 ) {
+                $channel->rest = $version;
+            }
         }
         return $channel;
     }
