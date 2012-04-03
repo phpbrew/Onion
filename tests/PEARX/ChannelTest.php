@@ -7,7 +7,8 @@ class ChannelTest extends PHPUnit_Framework_TestCase
     {
         return array(
             // array( 'pear.php.net' ),
-            array( 'pear.zfcampus.org' ),
+            // array( 'pear.zfcampus.org' ),
+            array( 'pear.corneltek.com' ),
         );
     }
 
@@ -20,8 +21,10 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         $channel = new PEARX\Channel($host);
         ok( $channel );
 
-        $url = $channel->getRestBaseUrl();
+        $url = $channel->info->getRestBaseUrl();
         ok( $url );
+
+        $categories = $channel->fetchCategories();
     }
 
 }

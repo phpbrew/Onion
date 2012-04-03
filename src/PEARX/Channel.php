@@ -1,6 +1,8 @@
 <?php
 namespace PEARX;
 use PEARX\ChannelParser;
+use DOMDocument;
+use Exception;
 
 /**
  * $channel = new PEARX\Channel( 'pear.php.net', array(
@@ -46,9 +48,18 @@ class Channel
         }
 
         $this->channelXml = $this->fetchChannelXml( $host );
-
         $parser = new ChannelParser;
         $this->info = $parser->parse( $this->channelXml );
+    }
+
+    public function getBaseUrl()
+    {
+        return $this->scheme . '://' . $this->info->name . '/';
+    }
+
+    public function getRestBaseUrl()
+    {
+        return $this->info->getRestBaseUrl();
     }
 
 
@@ -102,18 +113,43 @@ class Channel
         return $xmlstr;
     }
 
-    public function getRestBaseUrl($version = null)
+    public function createDOM()
     {
-        if( $version && $this->info->primary[$version] )
-            return $this->info->primary[ $version ];
-        return $this->info->primary[ $this->info->rest ];
+        $xml = new DOMDocument('1.0');
+        $xml->strictErrorChecking = false;
+        $xml->preserveWhiteSpace = false;
+        $xml->resolveExternals = false;
+        return $xml;
     }
 
+    public function fetchCategories()
+    {
+        $baseUrl = $this->info->getRestBaseUrl();
+        $url = $baseUrl . '/c/categories.xml';
+        $xmlStr = $this->request($url);
+        
+        // libxml_use_internal_errors(true);
+        $xml = $this->createDOM();
+        if( false === $xml->loadXml( $xmlStr ) ) {
+            throw new Exception("Error in XMl document: $url");
+        }
+
+        $list = array();
+        $nodes = $xml->getElementsByTagName('c');
+        foreach ($nodes as $node) {
+            // path like: /rest/c/Default/info.xml
+            $link = $node->getAttribute("xlink:href");
+            $name = $node->nodeValue;
+            $category = new Category( $this, $name , $link );
+            $list[] = $category;
+        }
+    }
+
+    public function fetchAllPackages()
+    {
 
 
-
-
-
+    }
 
 
 }

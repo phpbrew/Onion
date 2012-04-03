@@ -29,7 +29,12 @@ class ChannelInfo
     public $rest; // Latest REST version
 
 
-
+    public function getRestBaseUrl($version = null)
+    {
+        if( $version && $this->primary[$version] )
+            return $this->primary[ $version ];
+        return $this->primary[ $this->rest ];
+    }
 
 
 }

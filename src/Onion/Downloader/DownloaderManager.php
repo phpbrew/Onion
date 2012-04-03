@@ -65,7 +65,7 @@ class DownloaderManager
             $xmlstr = $this->download($url);
             $this->cache->set( $url, $xmlstr );
         }
-        $xml = new DOMDocument();
+        $xml = new DOMDocument;
         $xml->loadXML($xmlstr); 
         return $xml;
     }

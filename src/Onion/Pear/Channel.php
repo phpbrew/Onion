@@ -114,8 +114,6 @@ class Channel
 
         $categoryXml = $dm->downloadXml($restBaseurl . "/c/categories.xml");
         $categories = $categoryXml->getElementsByTagName("c");
-
-
         foreach ($categories as $category) {
 
             // path like: /rest/c/Default/info.xml
@@ -217,7 +215,6 @@ class Channel
                 // var_dump( $packageObj ); 
                 $this->packages[ $packageObj->name ] = $packageObj;
             }
-
         }
 
         // save to channel object.
