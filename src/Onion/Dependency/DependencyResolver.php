@@ -29,7 +29,7 @@ class DependencyResolver
         $this->logger = \Onion\Application::getLogger();
     }
 
-    function resolvePearPackage(\Onion\Pear\Package $package)
+    function resolvePearPackage($package)
     {
         if( $this->manager->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
@@ -64,15 +64,15 @@ class DependencyResolver
 
             foreach( $pkgs as $dep ) {
                 $packageName = $dep['name'];
-                $channelHost = $dep['channel'];
+                $host = $dep['channel'];
 
-                $this->logger->info2("Discovering channel $channelHost for $packageName",1);
+                $this->logger->info2("Discovering channel $host for $packageName",1);
 
-                // discover pear channel
-                $discover = new \Onion\Pear\ChannelDiscover;
-                $channel = $discover->lookup( $channelHost );
-                $channel->prefetchPackagesInfo();
-                $depPackage = $channel->getPackage( $packageName );
+                $channel = new \PEARX\Channel( $host, array(
+                    'cache' => \Onion\Application::getInstance()->getCache(),
+                    // xxx: downloader support
+                ));
+                $depPackage = $channel->findPackage( $packageName );
                 $this->resolvePearPackage( $depPackage );
             }
         }
@@ -98,13 +98,16 @@ class DependencyResolver
                     $depPackageName = $dep['name'];
                     $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
                     if( $dep['resource']['type'] == 'channel' ) {
-                        $channelHost = $dep['resource']['channel'];
+                        $host = $dep['resource']['channel'];
+
+                        $channel = new \PEARX\Channel( $host , array( 
+                            'cache' => \Onion\Application::getInstance()->getCache(),
+                        ));
+                        $depPackage = $channel->findPackage( $depPackageName );
 
                         // discover pear channel
-                        $discover = new \Onion\Pear\ChannelDiscover;
-                        $channel = $discover->lookup( $channelHost );
-                        $channel->prefetchPackagesInfo();
-                        $depPackage = $channel->getPackage( $depPackageName );
+                        // $channel->prefetchPackagesInfo();
+                        // $depPackage = $channel->getPackage( $depPackageName );
                         $this->resolvePearPackage( $depPackage );
                     }
                 }

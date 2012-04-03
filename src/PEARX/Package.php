@@ -11,7 +11,7 @@ class Package
     public $desc;
 
     /**
-     * @var string channel
+     * @var Channel
      */
     public $channel;
 
@@ -49,6 +49,19 @@ class Package
         if( isset( $this->versions[ $version ] ) )
             return $this->versions[ $version ];
     }
+
+    public function getReleaseDistUrl($version, $extension = 'tgz' )
+    {
+        // xxx: save for https or http base url from channel discover object
+        // return sprintf( 'http://%s/get/%s-%s.%s' , $this->channel, $this->name , $version , $extension );
+        return sprintf('%s/get/%s-%s.%s',$this->channel->getBaseUrl(), $this->name , $version , $extension );
+    }
+
+    public function getLastReleaseDistUrl()
+    {
+        return $this->getReleaseDistUrl( $this->latest );
+    }
+
 
 }
 

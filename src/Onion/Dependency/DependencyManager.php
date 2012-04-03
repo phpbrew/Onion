@@ -28,20 +28,20 @@ class DependencyManager
 
 
 
-    function hasPackage( \Onion\Package\PackageInterface $package)
+    function hasPackage($package)
     {
-        return isset( $this->packagesById[ $package->getId() ] );
+        return isset( $this->packagesById[ $package->name ] );
     }
 
 
-    function addPackage( \Onion\Package\PackageInterface $package)
+    function addPackage($package)
     {
         // check package
-        if( isset( $this->packagesById[ $package->getId() ] ) ) {
+        if( isset( $this->packagesById[ $package->name ] ) ) {
             // xxx: if already defined, check the requirement or conflicts.
 
         } else {
-            $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
+            $this->packages[] = $this->packagesById[ $package->name ] = $package;
         }
     }
 

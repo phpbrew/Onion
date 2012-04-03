@@ -55,7 +55,8 @@ class Category
             $package->name    = $p->getElementsByTagName('n')->item(0)->nodeValue;
             $package->summary = $p->getElementsByTagName('s')->item(0)->nodeValue;
             $package->desc    = $p->getElementsByTagName('d')->item(0)->nodeValue;
-            $package->channel = $p->getElementsByTagName('c')->item(0)->nodeValue;
+            // $package->channel = $p->getElementsByTagName('c')->item(0)->nodeValue;
+            $package->channel = $this->channel;
             $package->license = $p->getElementsByTagName('l')->item(0)->nodeValue;
 
             $depsList = $node->getElementsByTagName('deps');

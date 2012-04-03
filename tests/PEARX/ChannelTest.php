@@ -31,7 +31,6 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         ok( $package->license );
     }
 
-
     /**
      * @dataProvider getChannels
      */
