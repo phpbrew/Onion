@@ -126,7 +126,7 @@ class Channel
     }
 
 
-    public function fetchCategories()
+    public function getCategories()
     {
         $baseUrl = $this->getRestBaseUrl();
         $url = $baseUrl . '/c/categories.xml';

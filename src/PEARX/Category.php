@@ -28,7 +28,7 @@ class Category
 
     public function fetchInfoXml()
     {
-        $xmlstr = $this->channel->request( $this->infoUrl );
+        $xmlstr = $this->channel->core->request( $this->infoUrl );
         $this->infoXml = Utils::create_dom();
         $this->infoXml->loadXml( $xmlstr );
         // XXX:
@@ -36,7 +36,8 @@ class Category
 
     public function getPackages()
     {
-        $xmlstr = $this->channel->request( $this->packagesInfoUrl );
+        $xmlstr = $this->channel->core->request( $this->packagesInfoUrl );
+
         $xml = Utils::create_dom();
         if( false === $xml->loadXml( $xmlstr ) ) {
             throw new Exception( "Package Info XML load failed: " . $this->packagesInfoUrl );
@@ -73,7 +74,7 @@ class Category
                 $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
                 $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
 
-                $package->releases[ $version ] = $stability;
+                $package->addRelease( $version , $stability );
 
                 if( version_compare( $version , $latest ) === 1 ) {
                     $latest = $version;
@@ -102,7 +103,6 @@ class Category
             $package->alpha = $latestAlpha;
             $package->beta = $latestBeta;
             $package->latest = $latest;
-
 
             $packages[] = $package;
         }

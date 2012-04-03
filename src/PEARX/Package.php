@@ -21,8 +21,9 @@ class Package
      */
     public $license;
 
-
     public $releases = array();
+
+    public $versions = array();
 
     public $deps = array();
 
@@ -34,7 +35,20 @@ class Package
 
     public $latest;
 
+    public function addRelease( $version , $stability )
+    {
+        $this->releases[] = array( 
+            'version' => $version,
+            'stability' => $stability,
+        );
+        $this->versions[ $version ] = $stability;
+    }
 
+    public function getRelease( $version ) 
+    {
+        if( isset( $this->versions[ $version ] ) )
+            return $this->versions[ $version ];
+    }
 
 }
 

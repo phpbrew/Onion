@@ -24,7 +24,7 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         $url = $channel->getRestBaseUrl();
         ok( $url );
 
-        $categories = $channel->fetchCategories();
+        $categories = $channel->getCategories();
         ok( $categories );
 
         foreach( $categories as $category ) {
