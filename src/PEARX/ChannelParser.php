@@ -1,17 +1,18 @@
 <?php
-/*
- * This file is part of the Onion package.
- *
- * (c) Yo-An Lin <cornelius.howl@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- */
-namespace Onion\Pear;
-use Onion\Pear\Channel;
+namespace PEARX;
 use SimpleXMLElement;
 use Exception;
+
+/**
+ * PEARX Channel Parser
+ *
+ *    $parser = new ChannelParser;
+ *    $parser->parse( $xml );
+ *    $parser->parse( $xmlurl );
+ *    $parser->parse( $file );
+ *
+ *
+ */
 
 class ChannelParser 
 {
@@ -21,14 +22,14 @@ class ChannelParser
         $xmlstr = null;
         if( strpos($arg,'<?xml') === 0 ) {
             $xmlstr = $arg;
-        } elseif( is_file($arg) ) {
+        } elseif( is_file($arg) || preg_match('#^https?://#',$arg) ) {
             $xmlstr = file_get_contents($arg);
         } else {
             throw new Exception("Unexpectedd argument for channel parser.");
         }
 
-        // build channel object.
-        $channel = new Channel;
+        // build channel info object.
+        $channel = new ChannelInfo;
         $xml = new SimpleXMLElement($xmlstr);
 
         $channel->name = (string) $xml->name;
@@ -37,9 +38,14 @@ class ChannelParser
 
         // build primary server section
         $channel->primary = array();
+        $channel->rest = 'REST1.0';
         foreach( $xml->servers->primary->rest->baseurl as $element ) {
             $attrs = $element->attributes();
-            $channel->primary[ (string) $attrs->type ] = (string) $element;
+            $version = (string) $attrs->type; // REST version
+            $channel->primary[ $version ] = (string) $element;
+            if( version_compare( $version , $channel->rest ) >= 0 ) {
+                $channel->rest = $version;
+            }
         }
         return $channel;
     }

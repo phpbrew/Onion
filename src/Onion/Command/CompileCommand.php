@@ -89,7 +89,6 @@ class CompileCommand extends Command
                     new RecursiveIteratorIterator(
                         new RecursiveDirectoryIterator($include)),
                     getcwd()
-                    // realpath($include)
                 );
             }
         }

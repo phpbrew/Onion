@@ -3,6 +3,7 @@ require 'tests/helpers.php';
 require 'vendor/pear/Universal/ClassLoader/SplClassLoader.php';
 $classLoader = new \Universal\ClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
+    'PEARX' => 'src',
     'CurlKit' => 'src',
     'CacheKit'     => 'vendor/pear',
     'CLIFramework' => 'vendor/pear',
