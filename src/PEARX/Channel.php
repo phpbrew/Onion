@@ -106,13 +106,11 @@ class Channel
     {
         if( $version && $this->info->primary[$version] )
             return $this->info->primary[ $version ];
-
-        $versions = array('REST1.3','REST1.2','REST1.1');
-        foreach( $versions as $k ) {
-            if( isset( $this->info->primary[ $k ] ) )
-                return $this->info->primary[ $k ];
-        }
+        return $this->info->primary[ $this->info->rest ];
     }
+
+
+
 
 
 
