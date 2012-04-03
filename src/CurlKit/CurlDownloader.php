@@ -88,6 +88,15 @@ class CurlDownloader
     // curl_setopt($tuCurl, CURLOPT_POST, 1); 
     // curl_setopt($tuCurl, CURLOPT_POSTFIELDS, $data); 
     
+    // curl_setopt($s,CURLOPT_COOKIEJAR,$this->_cookieFileLocation); 
+    // curl_setopt($s,CURLOPT_COOKIEFILE,$this->_cookieFileLocation); 
 
+
+    // basic auth
+    // curl_setopt($s, CURLOPT_USERPWD, $this->auth_name.':'.$this->auth_pass); 
+    //
+    // get info
+    // $this->_status = curl_getinfo($s,CURLINFO_HTTP_CODE); 
+    
 }
 
