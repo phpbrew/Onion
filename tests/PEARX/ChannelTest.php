@@ -36,6 +36,11 @@ class ChannelTest extends PHPUnit_Framework_TestCase
                 ok( $package->summary );
                 ok( $package->desc );
                 ok( $package->license );
+
+                foreach( $package->releases as $r ) {
+                    ok( $r->version );
+                    ok( $r->stability );
+                }
             }
         }
     }

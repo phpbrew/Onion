@@ -37,7 +37,7 @@ class Package
 
     public function addRelease( $version , $stability )
     {
-        $this->releases[] = array( 
+        $this->releases[] = (object) array( 
             'version' => $version,
             'stability' => $stability,
         );
