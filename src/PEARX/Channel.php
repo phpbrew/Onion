@@ -54,20 +54,11 @@ class Channel
      */
     public $scheme = 'http';
 
+    public $core;
+
     public function __construct($host, $options = array() )
     {
-        if( isset($options['cache']) ) {
-            $this->cache = $options['cache'];
-        }
-
-        if( isset($options['downloader']) ) {
-            $this->downloader = $options['downloader'];
-        }
-
-        if( isset($options['retry']) ) {
-            $this->retry = $options['retry'];
-        }
-
+        $this->core = new Core( $options );
         $this->channelXml = $this->fetchChannelXml( $host );
 
         $parser = new ChannelParser;
@@ -93,16 +84,6 @@ class Channel
     }
 
 
-
-    public function request($url)
-    {
-        if( $this->downloader ) {
-            return $this->downloader->fetch( $url );
-        }
-        ini_set('default_socket_timeout', 120);
-        return file_get_contents($url);
-    }
-
     /**
      * fetch channel.xml from PEAR channel server.
      */
@@ -119,11 +100,11 @@ class Channel
         $httpsUrl = 'https://' . $host . '/channel.xml';
         while( $this->retry-- ) {
             try {
-                if( $xmlstr = $this->request($httpUrl)  ) {
+                if( $xmlstr = $this->core->request($httpUrl)  ) {
                     $this->scheme = 'http';
                     break;
                 }
-                if( $xmlstr = $this->request( $httpsUrl ) ) {
+                if( $xmlstr = $this->core->request( $httpsUrl ) ) {
                     $this->scheme = 'https';
                     break;
                 }
@@ -149,7 +130,7 @@ class Channel
     {
         $baseUrl = $this->getRestBaseUrl();
         $url = $baseUrl . '/c/categories.xml';
-        $xmlStr = $this->request($url);
+        $xmlStr = $this->core->request($url);
         
         // libxml_use_internal_errors(true);
         $xml = Utils::create_dom();
