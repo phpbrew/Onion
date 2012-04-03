@@ -25,6 +25,19 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         ok( $url );
 
         $categories = $channel->fetchCategories();
+        ok( $categories );
+
+        foreach( $categories as $category ) {
+            ok( $category->name , 'category name' );
+
+            $packages = $category->getPackages();
+            foreach( $packages as $package ) {
+                ok( $package->name );
+                ok( $package->summary );
+                ok( $package->desc );
+                ok( $package->license );
+            }
+        }
     }
 
 }

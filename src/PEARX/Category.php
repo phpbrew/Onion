@@ -1,5 +1,6 @@
 <?php
 namespace PEARX;
+use PEARX\Utils;
 
 class Category
 {
@@ -28,7 +29,7 @@ class Category
     public function fetchInfoXml()
     {
         $xmlstr = $this->channel->request( $this->infoUrl );
-        $this->infoXml = $this->channel->createDOM();
+        $this->infoXml = Utils::create_dom();
         $this->infoXml->loadXml( $xmlstr );
         // XXX:
     }
@@ -36,8 +37,71 @@ class Category
     public function getPackages()
     {
         $xmlstr = $this->channel->request( $this->packagesInfoUrl );
-        $this->packagesInfoXml = $this->channel->createDOM();
-        $this->packagesInfoXml->loadXml( $xmlstr );
+
+        echo $xmlstr;
+
+        $xml = Utils::create_dom();
+        if( false === $xml->loadXml( $xmlstr ) ) {
+            throw new Exception( "Package Info XML load failed: " . $this->packagesInfoUrl );
+        }
+
+
+        $this->packagesInfoXml = $xml;
+
+        $packageNodes = $xml->getElementsByTagName('pi');
+        $packages = array();
+        foreach( $packageNodes as $node ) {
+            $package = new Package;
+
+            $p = $node->getElementsByTagName('p')->item(0);
+            $package->name    = $p->getElementsByTagName('n')->item(0)->nodeValue;
+            $package->summary = $p->getElementsByTagName('s')->item(0)->nodeValue;
+            $package->desc    = $p->getElementsByTagName('d')->item(0)->nodeValue;
+            $package->channel = $p->getElementsByTagName('c')->item(0)->nodeValue;
+            $package->license = $p->getElementsByTagName('l')->item(0)->nodeValue;
+
+            $latestStable = 0;
+            $latestAlpha = 0;
+            $latestBeta = 0;
+            $latest = 0;
+            $releases = $node->getElementsByTagName('a')->item(0)->getElementsByTagName('r');
+            foreach( $releases as $release ) {
+                $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
+                $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
+
+                $package->releases[ $version ] = $stability;
+
+                if( version_compare( $version , $latest ) === 1 ) {
+                    $latest = $version;
+                }
+
+                switch( $stability ) {
+                case 'stable':
+                    if( version_compare( $version , $latestStable ) === 1 ) {
+                        $latestStable = $version;
+                    }
+                    break;
+                case 'alpha':
+                    if( version_compare( $version , $latestAlpha ) === 1 ) {
+                        $latestAlpha = $version;
+                    }
+                    break;
+                case 'beta':
+                    if( version_compare( $version , $latestBeta ) === 1 ) {
+                        $latestBeta = $version;
+                    }
+                    break;
+                }
+            }
+
+            $package->stable = $latestStable;
+            $package->alpha = $latestAlpha;
+            $package->beta = $latestBeta;
+            $package->latest = $latest;
+
+            $packages[] = $package;
+        }
+        return $packages;
     }
 
 }

@@ -113,14 +113,6 @@ class Channel
         return $xmlstr;
     }
 
-    public function createDOM()
-    {
-        $xml = new DOMDocument('1.0');
-        $xml->strictErrorChecking = false;
-        $xml->preserveWhiteSpace = false;
-        $xml->resolveExternals = false;
-        return $xml;
-    }
 
     public function fetchCategories()
     {
@@ -129,7 +121,7 @@ class Channel
         $xmlStr = $this->request($url);
         
         // libxml_use_internal_errors(true);
-        $xml = $this->createDOM();
+        $xml = Utils::create_dom();
         if( false === $xml->loadXml( $xmlStr ) ) {
             throw new Exception("Error in XMl document: $url");
         }
@@ -143,6 +135,7 @@ class Channel
             $category = new Category( $this, $name , $link );
             $list[] = $category;
         }
+        return $list;
     }
 
     public function fetchAllPackages()
