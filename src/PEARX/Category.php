@@ -37,9 +37,6 @@ class Category
     public function getPackages()
     {
         $xmlstr = $this->channel->request( $this->packagesInfoUrl );
-
-        echo $xmlstr;
-
         $xml = Utils::create_dom();
         if( false === $xml->loadXml( $xmlstr ) ) {
             throw new Exception( "Package Info XML load failed: " . $this->packagesInfoUrl );

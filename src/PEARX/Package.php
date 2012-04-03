@@ -15,6 +15,10 @@ class Package
      */
     public $channel;
 
+
+    /**
+     * @var string license
+     */
     public $license;
 
 
@@ -29,6 +33,8 @@ class Package
     public $beta;
 
     public $latest;
+
+
 
 }
 
