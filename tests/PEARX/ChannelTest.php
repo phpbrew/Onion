@@ -21,7 +21,7 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         $channel = new PEARX\Channel($host);
         ok( $channel );
 
-        $url = $channel->info->getRestBaseUrl();
+        $url = $channel->getRestBaseUrl();
         ok( $url );
 
         $categories = $channel->fetchCategories();

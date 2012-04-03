@@ -3,6 +3,7 @@ namespace PEARX;
 use PEARX\ChannelParser;
 use DOMDocument;
 use Exception;
+use PEARX\Core;
 
 /**
  * $channel = new PEARX\Channel( 'pear.php.net', array(
@@ -14,6 +15,32 @@ use Exception;
  */
 class Channel
 {
+    /**
+     * @var string channel host name
+     */
+    public $name;
+
+    /**
+     * @var string suggestedalias
+     */
+    public $alias;
+
+
+    /**
+     * @var string summary
+     */
+    public $summary;
+
+    /**
+     * primary server
+     */
+    public $primary = array();
+
+    public $rest; // Latest REST version
+
+
+
+
     public $cache;
 
     public $downloader;
@@ -21,12 +48,6 @@ class Channel
     public $retry = 3;
 
     public $channelXml;
-
-    /**
-     * Channel Info object
-     */
-    public $info;
-
 
     /**
      * channel url scheme
@@ -48,19 +69,29 @@ class Channel
         }
 
         $this->channelXml = $this->fetchChannelXml( $host );
+
         $parser = new ChannelParser;
-        $this->info = $parser->parse( $this->channelXml );
+        $info = $parser->parse( $this->channelXml );
+
+        $this->name = $info->name;
+        $this->summary = $info->summary;
+        $this->alias = $info->alias;
+        $this->primary = $info->primary;
+        $this->rest = $info->rest;
     }
 
     public function getBaseUrl()
     {
-        return $this->scheme . '://' . $this->info->name . '/';
+        return $this->scheme . '://' . $this->name . '/';
     }
 
-    public function getRestBaseUrl()
+    public function getRestBaseUrl($version = null)
     {
-        return $this->info->getRestBaseUrl();
+        if( $version && $this->primary[$version] )
+            return $this->primary[ $version ];
+        return $this->primary[ $this->rest ];
     }
+
 
 
     public function request($url)
@@ -116,7 +147,7 @@ class Channel
 
     public function fetchCategories()
     {
-        $baseUrl = $this->info->getRestBaseUrl();
+        $baseUrl = $this->getRestBaseUrl();
         $url = $baseUrl . '/c/categories.xml';
         $xmlStr = $this->request($url);
         
