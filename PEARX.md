@@ -33,9 +33,7 @@ A non-installer dependency PEAR channel information library.
 
 To use PEARX with Cache and CurlDownlaoder
 
-    use CacheKit\FileSystemCache;
-
-    $cache = new FileSystemCache(array(
+    $cache = new CacheKit\FileSystemCache(array(
         'expiry' => 60 * 30, // 30 minutes
         'cache_dir' => '/tmp/cache',
     ));

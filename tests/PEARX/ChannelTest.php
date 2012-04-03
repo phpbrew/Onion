@@ -13,6 +13,25 @@ class ChannelTest extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testPackageFind()
+    {
+        $cache = new CacheKit\FileSystemCache(array(
+            'expiry' => 10,
+            'cache_dir' => 'tests/tmp',
+        ));
+        $channel = new PEARX\Channel('pear.corneltek.com', array( 
+            'cache' => $cache,
+        ));
+
+        $package = $channel->findPackage('Onion');
+        ok( $package );
+        ok( $package->name );
+        is( 'Onion' , $package->name );
+        ok( $package->summary );
+        ok( $package->license );
+    }
+
+
     /**
      * @dataProvider getChannels
      */
@@ -29,7 +48,6 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         foreach( $packages as $p ) {
             ok( $p );
         }
-
 
         $categories = $channel->getCategories();
         ok( $categories );
