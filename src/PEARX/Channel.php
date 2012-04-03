@@ -158,9 +158,13 @@ class Channel
         return $packages;
     }
 
-    public function findPackage($name,$version)
+    public function findPackage($name)
     {
-
+        foreach( $this->getCategories() as $category ) {
+            $packages = $category->getPackages();
+            if( isset($packages[$name]) )
+                return $packages[ $name ];
+        }
     }
 }
 
