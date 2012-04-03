@@ -13,6 +13,8 @@ class Channel
 {
     public $cache;
 
+    public $downloader;
+
     public $retry = 3;
 
     public $channelXml;
@@ -22,6 +24,11 @@ class Channel
         if( isset($options['cache']) ) {
             $this->cache = $options['cache'];
         }
+
+        if( isset($options['downloader']) ) {
+            $this->downloader = $options['downloader'];
+        }
+
         if( isset($options['retry']) ) {
             $this->retry = $options['retry'];
         }
@@ -34,13 +41,20 @@ class Channel
     }
 
 
+    public function request($url)
+    {
+        if( $this->downloader ) {
+            return $this->downloader->fetch( $url );
+        }
+        return file_get_contents($url);
+    }
+
     /**
      * fetch channel.xml from PEAR channel server.
      */
     public function fetchChannelXml($host)
     {
         $xmlstr = null;
-        $downloader = $this->getDownloader();
         $xmlstr = $this->cache ? $this->cache->get( $host ) : null;
 
         // cache not found.
@@ -51,8 +65,8 @@ class Channel
         $httpsUrl = 'https://' . $host . '/channel.xml';
         while( $this->retry-- ) {
             try {
-                if( $xmlstr = $downloader->fetch($httpUrl) 
-                    || $xmlstr = $downloader->fetch( $httpsUrl ) ) {
+                if( $xmlstr = $this->request($httpUrl) 
+                    || $xmlstr = $this->request( $httpsUrl ) ) {
                     break;
                 }
             } catch( Exception $e ) {
