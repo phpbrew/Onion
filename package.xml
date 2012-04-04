@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-24</date>
-  <time>19:16:38</time>
+  <date>2012-04-04</date>
+  <time>14:56:34</time>
   <version>
-    <release>1.1.0</release>
-    <api>1.1.0</api>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
   </version>
   <stability>
     <release>stable</release>
@@ -28,7 +28,7 @@
       <file name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
       <file name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
-      <file name="tests/bootstrap.php" role="test" md5sum="38a488d42fe78ce21f51a8664361893f"/>
+      <file name="tests/bootstrap.php" role="test" md5sum="8276db5c1ae25cdff5f1ca1553c9f4dc"/>
       <file name="tests/data/corneltek.channel.xml" role="test" md5sum="f0444e1a159c8cfdbfc80f37b0aac159"/>
       <file name="tests/data/package.ini" role="test" md5sum="5d72c1d003c8c76b3a4bd00da71845e8"/>
       <file name="tests/data/package_xml/PHP_Timer/package.xml" role="test" md5sum="1545469acf8e7af06913a41acd1939f2"/>
@@ -47,13 +47,15 @@
       <file name="tests/Onion/Pear/PackageTest.php" role="test" md5sum="b5c51321e4fb9a44215880c19b309d38"/>
       <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="0a0e9aed36ae55faee4172b0c5ebf7b4"/>
       <file name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="241bfc4290bfcf179049020d7d0c73d3"/>
+      <file name="tests/PEARX/ChannelParserTest.php" role="test" md5sum="734c61da212924826c87242f311155d0"/>
+      <file name="tests/PEARX/ChannelTest.php" role="test" md5sum="015a9a9a3a98c0dd0d2f529ce87ae807"/>
       <file name="tests/TestApp/Application.php" role="test" md5sum="676dc451abeed5d0197417aa15fef308"/>
       <file name="tests/TestApp/Command/ListCommand/FooCommand.php" role="test" md5sum="55ca48ae0b3ade3672666fae2587cd81"/>
       <file name="tests/TestApp/Command/ListCommand.php" role="test" md5sum="8b9d5900c998fae2ab55de72e35a75d0"/>
       <file name="src/Onion/Application.php" role="php" md5sum="d1d20e153bc98f391b0265cb235863d2"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="e8d48bba14a9d98ff8bd9aded70849cd"/>
-      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="707f14060bbe0d46b3ff33e75535b264"/>
+      <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
       <file name="src/Onion/Command/SelfUpdateCommand.php" role="php" md5sum="3bc116016dd530dd89cb0e4ac2bd9196"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="8beb454eb34d6792ae66fe1431a67726"/>
@@ -81,7 +83,7 @@
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
       <file name="src/Onion/Pear/Channel.php" role="php" md5sum="07a7de197d168333481a503be51a43f2"/>
       <file name="src/Onion/Pear/ChannelDiscover.php" role="php" md5sum="3ceb852d3add3ff4f69433a712cc3ca5"/>
-      <file name="src/Onion/Pear/ChannelParser.php" role="php" md5sum="7a843178f3f8d65a056594501f0d7519"/>
+      <file name="src/Onion/Pear/ChannelParser.php" role="php" md5sum="59b4ff327c6a901b50c07c90c171c8f1"/>
       <file name="src/Onion/Pear/Package.php" role="php" md5sum="2fd0ef30fb53512c55ac967fd44c3a2c"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
       <file name="src/Onion/Pear/PackageXml/FileListInstall.php" role="php" md5sum="ee11a34471009c241655f8812aa36aa4"/>
@@ -90,14 +92,16 @@
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
       <file name="src/Onion/TestCommand/ParentCommand.php" role="php" md5sum="9bec2094c780a962306c2febc669f8b8"/>
+      <file name="src/PEARX/Channel.php" role="php" md5sum="d84d9d495d482a4e6c8f971a7e847e16"/>
+      <file name="src/PEARX/ChannelInfo.php" role="php" md5sum="6d89e0c741b70b81806f9dd005b1ea5b"/>
+      <file name="src/PEARX/ChannelParser.php" role="php" md5sum="ccf91c1c25e42c5391366be531bf6e24"/>
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="7a81a29cced32c1391d54af2dd25a1f2"/>
+      <file name="onion" role="script" md5sum="21534c004610688222135182d3328003"/>
       <file name="Changes.md" role="doc" md5sum="96009aafc023e284499327f642f2d4b4"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
-      <file name="TODO.md" role="doc" md5sum="6788291898367fff53033faa71b36e59"/>
     </dir>
   </contents>
   <dependencies>
@@ -150,6 +154,8 @@
       <install name="tests/Onion/Pear/PackageTest.php" as="Onion/Pear/PackageTest.php"/>
       <install name="tests/Onion/Pear/PackageXmlGeneratorTest.php" as="Onion/Pear/PackageXmlGeneratorTest.php"/>
       <install name="tests/Onion/Pear/PackageXmlParserTest.php" as="Onion/Pear/PackageXmlParserTest.php"/>
+      <install name="tests/PEARX/ChannelParserTest.php" as="PEARX/ChannelParserTest.php"/>
+      <install name="tests/PEARX/ChannelTest.php" as="PEARX/ChannelTest.php"/>
       <install name="tests/TestApp/Application.php" as="TestApp/Application.php"/>
       <install name="tests/TestApp/Command/ListCommand/FooCommand.php" as="TestApp/Command/ListCommand/FooCommand.php"/>
       <install name="tests/TestApp/Command/ListCommand.php" as="TestApp/Command/ListCommand.php"/>
@@ -193,6 +199,9 @@
       <install name="src/Onion/SpecUtils.php" as="Onion/SpecUtils.php"/>
       <install name="src/Onion/TestCommand/ParentCommand/SubCommand.php" as="Onion/TestCommand/ParentCommand/SubCommand.php"/>
       <install name="src/Onion/TestCommand/ParentCommand.php" as="Onion/TestCommand/ParentCommand.php"/>
+      <install name="src/PEARX/Channel.php" as="PEARX/Channel.php"/>
+      <install name="src/PEARX/ChannelInfo.php" as="PEARX/ChannelInfo.php"/>
+      <install name="src/PEARX/ChannelParser.php" as="PEARX/ChannelParser.php"/>
       <install name="data/phpunit_package.xml" as="phpunit_package.xml"/>
       <install name="data/symfony_package.xml.tmpl" as="symfony_package.xml.tmpl"/>
       <install name="data/twig_package.xml" as="twig_package.xml"/>
@@ -200,7 +209,6 @@
       <install name="Changes.md" as="Changes.md"/>
       <install name="HACKING.md" as="HACKING.md"/>
       <install name="README.md" as="README.md"/>
-      <install name="TODO.md" as="TODO.md"/>
     </filelist>
   </phprelease>
 </package>
