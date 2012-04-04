@@ -48,16 +48,13 @@ class BundleCommand extends Command
 		}
 
         $reader = new \Onion\PackageConfigReader;
-        $reader->setLogger( $logger );
-
-        $pkg = $reader->read( 'package.ini' );
-        $pkg->local = 1; // dont install this
+        $package = $reader->read( 'package.ini' );
+        $package->local = 1; // dont install this
 
         $dr = new DependencyResolver;
-        $dr->resolve( $pkg );
+        $dr->resolve( $package );
 
-        $pool = $dr->getPool();
-        $packages = $pool->getPackages();
+        $packages = $dr->getPool()->getPackages();
 
         // var_dump( $packages ); 
         foreach( $packages as $package ) {

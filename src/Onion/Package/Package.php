@@ -12,8 +12,11 @@ namespace Onion\Package;
 use Onion\Package\BasePackage;
 use Onion\Package\PackageInterface;
 
+
 /**
- * package class for package.ini
+ * General Onion Package
+ *
+ * Package class for package.ini
  */
 class Package implements PackageInterface
 {
@@ -22,40 +25,19 @@ class Package implements PackageInterface
     public $desc;
     public $summary;
 
-    public $apiVersion;
 
     public $license;
+
+    // optional
     public $licenseUri;
 
     /** 
-     * main stability 
+     * main stability (optional)
      */
     public $stability;
 
-    /**
-     * api stability
-     */
-    public $apiStability;
 
-    /**
-     * release stability
-     */
-    public $releaseStability;
-
-
-
-    /**
-     * package dependencies
-     *
-     *  $pkginfo->deps[] = array(
-     *      'type' => 'extension',
-     *      'name' => $depinfo['name'],
-     *      'version' => $depinfo['version'],
-     *  );
-     *
-     *  types could be core, extension, pear ... etc
-     */
-    public $deps = array();
+    public $dependencies = array();
 
     /** 
      * ConfigContainer object
@@ -66,24 +48,22 @@ class Package implements PackageInterface
     // local flag (not to install)
     public $local;
 
-
-    public function getDefaultStructureConfig()
+    public function addDependency($type,$name,$require,$resource = array() )
     {
-        // directory structure
-        return array(
-            'doc'    => array('doc', 'docs','examples'),
-            'test'  => (array) 'tests',
-            'php'    => (array) 'src',
-            // xxx: better config for roles
-            // 'script' => (array) 'bin',
-            'data'   => (array) 'data',
+        $require = \Onion\SpecUtils::parseVersion($require);
+        $this->dependencies[] = array( 
+            'type' => $type,
+            'name' => $name,
+            'require' => $require,
+            'resource' => $resource,
         );
     }
 
 
+
     public function getDependencies()
     {
-        return $this->deps;
+        return $this->dependencies;
     }
 
     /**
@@ -96,4 +76,7 @@ class Package implements PackageInterface
         // xxx: should be with namespace
         return $this->name;
     }
+
 }
+
+

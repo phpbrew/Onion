@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of the Onion package.
  *
  * (c) Yo-An Lin <cornelius.howl@gmail.com>
@@ -88,7 +88,7 @@ class DependencyResolver
         foreach( $deps as $dep ) {
 
             // Expand pear package (refacotr this to dependencyInfo object)
-            if( $dep['type'] == 'pear' ) {
+            if( 'pear' === $dep['type'] ) {
                 $depPackageName = $dep['name'];
                 $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
                 if( $dep['resource']['type'] == 'channel' ) {
