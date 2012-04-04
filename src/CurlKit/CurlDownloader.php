@@ -33,12 +33,10 @@ class CurlDownloader
 
     public $refreshConnect = 1;
     public $followLocation = 1;
+
+    public $connectionTimeout = 10;
     public $timeout = 30;
 
-    public function setTimeout($timeout)
-    {
-        $this->timeout = $timeout;
-    }
 
     public function newCurlResource( $extra = array() ) 
     {
@@ -48,11 +46,26 @@ class CurlDownloader
                 + array( 
                     CURLOPT_FRESH_CONNECT => $this->refreshConnect,
                     CURLOPT_FOLLOWLOCATION => $this->followLocation,
+
+                    // connection timeout
+                    CURLOPT_CONNECTTIMEOUT => $this->connectionTimeout,
+
+                    // max function call timeout
                     CURLOPT_TIMEOUT => $this->timeout,
                 ) 
                 + $extra
         )); 
         return $ch;
+    }
+
+    public function setTimeout($seconds)
+    {
+        $this->timeout = $seconds;
+    }
+
+    public function setConnectionTimeout( $seconds )
+    {
+        $this->connectionTimeout = $seconds;
     }
 
     /**
