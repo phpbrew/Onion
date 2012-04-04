@@ -10,9 +10,8 @@
  */
 namespace Onion\Package;
 
-class PearPackage extends BasePackage
+class PearPackage
 {
-
 
 
 }

@@ -11,6 +11,7 @@
 
 namespace Onion\Command;
 use CLIFramework\Command;
+use Onion\Dependency\DependencyResolver;
 
 /**
  * Bundle dependencies
@@ -52,7 +53,7 @@ class BundleCommand extends Command
         $pkg = $reader->read( 'package.ini' );
         $pkg->local = 1; // dont install this
 
-        $dr = new \Onion\Dependency\DependencyResolver;
+        $dr = new DependencyResolver;
         $dr->resolve( $pkg );
 
         $pool = $dr->getPool();
