@@ -33,11 +33,11 @@ class CurlDownloader
 
     public $refreshConnect = 1;
     public $followLocation = 1;
-    public $timeout = 10;
+    public $timeout = 30;
 
     public function setTimeout($timeout)
     {
-        $this->timeout = 10;
+        $this->timeout = $timeout;
     }
 
     public function newCurlResource( $extra = array() ) 
