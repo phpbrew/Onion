@@ -1,4 +1,9 @@
 
+version 1.2.0  - 三  4/ 4 15:04:42 2012
+    - Refactor PEAR channel discover, parser.
+    - Clean up dependency resolver.
+    - Fix package parsring.
+
 version 1.1.0  - 一  3/19 19:16:58 2012
     - Add CacheKit support.
     - Add self-update option
