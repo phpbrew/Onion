@@ -23,7 +23,7 @@ class Core
 
     public function request($url, $force = false)
     {
-        if( false == $force && $content = $this->cache->get( $url ) ) {
+        if( false == $force && $this->cache && $content = $this->cache->get( $url ) ) {
             if( $content )
                 return $content;
         }
