@@ -55,10 +55,8 @@ class Installer
     {
         $packages = $this->manager->getPackages();
         foreach( $packages as $package ) {
-            if( is_a( $package , '\Onion\Pear\Package' ) ) {
-                $installer = $this->getPearInstaller();
-                $installer->install( $package );
-            }
+            $installer = $this->getPearInstaller();
+            $installer->install( $package );
         }
     }
 }

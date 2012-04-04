@@ -62,6 +62,10 @@ class Package
         return $this->getReleaseDistUrl( $this->latest );
     }
 
+    public function getId()
+    {
+        return $this->name;
+    }
 
 }
 

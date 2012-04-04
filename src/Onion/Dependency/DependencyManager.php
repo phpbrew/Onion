@@ -30,18 +30,18 @@ class DependencyManager
 
     function hasPackage($package)
     {
-        return isset( $this->packagesById[ $package->name ] );
+        return isset( $this->packagesById[ $package->getId() ] );
     }
 
 
     function addPackage($package)
     {
         // check package
-        if( isset( $this->packagesById[ $package->name ] ) ) {
+        if( isset( $this->packagesById[ $package->getId() ] ) ) {
             // xxx: if already defined, check the requirement or conflicts.
 
         } else {
-            $this->packages[] = $this->packagesById[ $package->name ] = $package;
+            $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
         }
     }
 

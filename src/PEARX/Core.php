@@ -21,13 +21,23 @@ class Core
         }
     }
 
-    public function request($url)
+    public function request($url, $force = false)
     {
+        if( false == $force && $content = $this->cache->get( $url ) ) {
+            if( $content )
+                return $content;
+        }
+
         if( $this->downloader ) {
-            return $this->downloader->fetch( $url );
+            $content = $this->downloader->fetch( $url );
         }
         ini_set('default_socket_timeout', 120);
-        return file_get_contents($url);
+        $content = file_get_contents($url);
+
+        if( $this->cache ) {
+            $this->cache->set( $url , $content );
+        }
+        return $content;
     }
 
 

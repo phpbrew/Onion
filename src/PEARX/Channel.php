@@ -90,7 +90,7 @@ class Channel
     public function fetchChannelXml($host)
     {
         $xmlstr = null;
-        $xmlstr = $this->cache ? $this->cache->get( $host ) : null;
+        $xmlstr = $this->core->cache ? $this->core->cache->get( $host ) : null;
 
         // cache not found.
         if( null !== $xmlstr )

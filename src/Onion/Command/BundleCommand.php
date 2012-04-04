@@ -67,7 +67,6 @@ class BundleCommand extends Command
         }
         $installer = new \Onion\Installer( $manager );
         $installer->install();
-
 		$logger->info('Done');
     }
 }
