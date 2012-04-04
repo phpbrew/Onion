@@ -8,9 +8,7 @@
  * file that was distributed with this source code.
  *
  */
-
 namespace Onion\Dependency;
-use Onion\Dependency\DependencyManager;
 
 /**
  *
@@ -25,19 +23,19 @@ class DependencyResolver
 
     function __construct()
     {
-        $this->manager = new DependencyManager;
+        $this->pool = new DependencyPool;
         $this->logger = \Onion\Application::getLogger();
     }
 
     function resolvePearPackage($package)
     {
-        if( $this->manager->hasPackage( $package ) ) {
+        if( $this->pool->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
             return;
         }
 
         // get installed version, compare version
-        $this->manager->addPackage($package);
+        $this->pool->addPackage($package);
 
         // get dependent package info
         $this->logger->info( "Resolving PEAR package dependency: {$package->getId()}" );
@@ -83,7 +81,7 @@ class DependencyResolver
         // expand package and package dependencies to package object
         // if installed , check if upgrade is need ?
         if( ! $package->local )
-            $this->manager->addPackage($package);
+            $this->pool->addPackage($package);
 
         // expand package dependencies
         $deps = $package->getDependencies();
@@ -115,9 +113,9 @@ class DependencyResolver
         }
     }
 
-    function getManager()
+    public function getPool()
     {
-        return $this->manager;
+        return $this->pool;
     }
 
 }

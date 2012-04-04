@@ -12,13 +12,13 @@ namespace Onion\Dependency;
 
 
 /**
- * dependency manager
+ * dependency pool
  *
  * it's a dependency pool, contains packages and core dependencies like extension or php requirements.
  *
  * we use dependency resovlver to resolve the dependency tree of dependency manager.
  */
-class DependencyManager
+class DependencyPool
 {
     /**
      * contains packages

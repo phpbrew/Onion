@@ -16,17 +16,17 @@ namespace Onion;
  */
 class Installer 
 {
-    public $manager;
+    public $pool;
     public $workspace;
     public $libpath;
 
     /**
-     * xxx: we should expand operations from manager,
-     * installer should take operation object to process, not from manager class.
+     * xxx: we should expand operations from pool,
+     * installer should take operation object to process, not from dependency pool class.
      */
-    function __construct( \Onion\Dependency\DependencyManager $manager)
+    function __construct($pool)
     {
-        $this->manager = $manager;
+        $this->pool = $pool;
 
         // create workspace for temporary files
         $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
@@ -53,7 +53,7 @@ class Installer
 
     function install()
     {
-        $packages = $this->manager->getPackages();
+        $packages = $this->pool->getPackages();
         foreach( $packages as $package ) {
             $installer = $this->getPearInstaller();
             $installer->install( $package );
