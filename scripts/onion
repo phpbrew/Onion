@@ -13,9 +13,9 @@
 require __DIR__ . '/../vendor/pear/Universal/ClassLoader/SplClassLoader.php';
 $classLoader = new \Universal\ClassLoader\SplClassLoader(array( 
     'Onion' => 'src',
-    'PEARX' => 'src',
     'CurlKit' => 'src',
     'CLIFramework' => 'vendor/pear',
+    'PEARX' => 'vendor/pear',
     'GetOptionKit' => 'vendor/pear',
 ));
 $classLoader->useIncludePath(true);
