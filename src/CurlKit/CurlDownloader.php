@@ -72,6 +72,11 @@ class CurlDownloader
             return $this->options[ CURLOPT_PROGRESSFUNCTION ];
     }
 
+    public function fetch($url)
+    {
+        return $this->request( $url );
+    }
+
     public function request($url, $params = array() , $options = array() ) 
     {
         $options[ CURLOPT_URL ] = $url;
