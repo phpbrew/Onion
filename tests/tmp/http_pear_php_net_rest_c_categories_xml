@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<a xmlns="http://pear.php.net/dtd/rest.allcategories"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://pear.php.net/dtd/rest.allcategories
+    http://pear.php.net/dtd/rest.allcategories.xsd">
+<ch>pear.php.net</ch>
+ <c xlink:href="/rest/c/Audio/info.xml">Audio</c>
+ <c xlink:href="/rest/c/Authentication/info.xml">Authentication</c>
+ <c xlink:href="/rest/c/Benchmarking/info.xml">Benchmarking</c>
+ <c xlink:href="/rest/c/Caching/info.xml">Caching</c>
+ <c xlink:href="/rest/c/Configuration/info.xml">Configuration</c>
+ <c xlink:href="/rest/c/Console/info.xml">Console</c>
+ <c xlink:href="/rest/c/Database/info.xml">Database</c>
+ <c xlink:href="/rest/c/Date%2Band%2BTime/info.xml">Date and Time</c>
+ <c xlink:href="/rest/c/Encryption/info.xml">Encryption</c>
+ <c xlink:href="/rest/c/Event/info.xml">Event</c>
+ <c xlink:href="/rest/c/File%2BFormats/info.xml">File Formats</c>
+ <c xlink:href="/rest/c/File%2BSystem/info.xml">File System</c>
+ <c xlink:href="/rest/c/Gtk%2BComponents/info.xml">Gtk Components</c>
+ <c xlink:href="/rest/c/Gtk2%2BComponents/info.xml">Gtk2 Components</c>
+ <c xlink:href="/rest/c/GUI/info.xml">GUI</c>
+ <c xlink:href="/rest/c/HTML/info.xml">HTML</c>
+ <c xlink:href="/rest/c/HTTP/info.xml">HTTP</c>
+ <c xlink:href="/rest/c/Images/info.xml">Images</c>
+ <c xlink:href="/rest/c/Internationalization/info.xml">Internationalization</c>
+ <c xlink:href="/rest/c/Logging/info.xml">Logging</c>
+ <c xlink:href="/rest/c/Mail/info.xml">Mail</c>
+ <c xlink:href="/rest/c/Math/info.xml">Math</c>
+ <c xlink:href="/rest/c/Multimedia/info.xml">Multimedia</c>
+ <c xlink:href="/rest/c/Networking/info.xml">Networking</c>
+ <c xlink:href="/rest/c/Numbers/info.xml">Numbers</c>
+ <c xlink:href="/rest/c/Payment/info.xml">Payment</c>
+ <c xlink:href="/rest/c/PEAR/info.xml">PEAR</c>
+ <c xlink:href="/rest/c/PEAR%2BWebsite/info.xml">PEAR Website</c>
+ <c xlink:href="/rest/c/PHP/info.xml">PHP</c>
+ <c xlink:href="/rest/c/Processing/info.xml">Processing</c>
+ <c xlink:href="/rest/c/QA%2BTools/info.xml">QA Tools</c>
+ <c xlink:href="/rest/c/Scheduling/info.xml">Scheduling</c>
+ <c xlink:href="/rest/c/Science/info.xml">Science</c>
+ <c xlink:href="/rest/c/Search%2BEngine/info.xml">Search Engine</c>
+ <c xlink:href="/rest/c/Security/info.xml">Security</c>
+ <c xlink:href="/rest/c/Semantic%2BWeb/info.xml">Semantic Web</c>
+ <c xlink:href="/rest/c/Streams/info.xml">Streams</c>
+ <c xlink:href="/rest/c/Structures/info.xml">Structures</c>
+ <c xlink:href="/rest/c/System/info.xml">System</c>
+ <c xlink:href="/rest/c/Testing/info.xml">Testing</c>
+ <c xlink:href="/rest/c/Text/info.xml">Text</c>
+ <c xlink:href="/rest/c/Tools%2Band%2BUtilities/info.xml">Tools and Utilities</c>
+ <c xlink:href="/rest/c/Validate/info.xml">Validate</c>
+ <c xlink:href="/rest/c/Version%2BControl/info.xml">Version Control</c>
+ <c xlink:href="/rest/c/Web%2BServices/info.xml">Web Services</c>
+ <c xlink:href="/rest/c/XML/info.xml">XML</c>
+</a>

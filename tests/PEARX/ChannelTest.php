@@ -13,6 +13,29 @@ class ChannelTest extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testPackageFindPear()
+    {
+        $cache = new CacheKit\FileSystemCache(array(
+            'expiry' => 30,
+            'cache_dir' => 'tests/tmp',
+        ));
+        $channel = new PEARX\Channel('pear.php.net', array( 
+            'cache' => $cache,
+        ));
+
+        $package = $channel->findPackage('Console_Getopt');
+        ok( $package );
+        ok( $package->name );
+        ok( $package->summary );
+        ok( $package->license );
+
+        $package = $channel->findPackage('File_Util');
+        ok( $package );
+        ok( $package->name );
+        ok( $package->summary );
+        ok( $package->license );
+    }
+
     public function testPackageFind()
     {
         $cache = new CacheKit\FileSystemCache(array(
@@ -30,6 +53,7 @@ class ChannelTest extends PHPUnit_Framework_TestCase
         ok( $package->summary );
         ok( $package->license );
     }
+
 
     /**
      * @dataProvider getChannels

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<f xmlns="http://pear.php.net/dtd/rest.categorypackageinfo"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo
+    http://pear.php.net/dtd/rest.categorypackageinfo.xsd">
+<pi>
+<p><n>Config</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Configuration">Configuration</ca>
+ <l>PHP License</l>
+ <s>Your configuration's swiss-army knife.</s>
+ <d>The Config package provides methods for configuration manipulation.
+* Creates configurations from scratch
+* Parses and outputs different formats (XML, PHP, INI, Apache...)
+* Edits existing configurations
+* Converts configurations to other formats
+* Allows manipulation of sections, comments, directives...
+* Parses configurations into a tree structure
+* Provides XPath like access to directives</d>
+ <r xlink:href="/rest/r/config"/>
+</p>
+<a>
+ <r><v>1.10.12</v><s>stable</s></r>
+ <r><v>1.10.11</v><s>stable</s></r>
+ <r><v>1.10.10</v><s>stable</s></r>
+ <r><v>1.10.9</v><s>stable</s></r>
+ <r><v>1.10.8</v><s>stable</s></r>
+ <r><v>1.10.8RC1</v><s>beta</s></r>
+ <r><v>1.10.7</v><s>stable</s></r>
+ <r><v>1.10.6</v><s>stable</s></r>
+ <r><v>1.10.5</v><s>stable</s></r>
+ <r><v>1.10.4</v><s>stable</s></r>
+ <r><v>1.10.3</v><s>stable</s></r>
+ <r><v>1.10.2</v><s>stable</s></r>
+ <r><v>1.10.1</v><s>stable</s></r>
+ <r><v>1.10</v><s>stable</s></r>
+ <r><v>1.9</v><s>stable</s></r>
+ <r><v>1.8.1</v><s>stable</s></r>
+ <r><v>1.8</v><s>stable</s></r>
+ <r><v>1.7</v><s>stable</s></r>
+ <r><v>1.6</v><s>stable</s></r>
+ <r><v>1.5</v><s>stable</s></r>
+ <r><v>1.4</v><s>stable</s></r>
+ <r><v>1.3</v><s>stable</s></r>
+ <r><v>1.2</v><s>stable</s></r>
+ <r><v>1.1</v><s>beta</s></r>
+ <r><v>1.0</v><s>beta</s></r>
+ <r><v>0.3.1</v><s>stable</s></r>
+</a>
+<deps>
+ <v>0.3.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.10.1</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.10</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10.11</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10.12</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10.2</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.3</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.4</v>
+ <d>a:2:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.5</v>
+ <d>a:2:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.6</v>
+ <d>a:2:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.7</v>
+ <d>a:2:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.10.8</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10.8RC1</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10.9</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:2:{i:0;a:2:{s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:1;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.10</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.2</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.4</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.5</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.6</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.7</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.8.1</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.8</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.9</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:10:&quot;XML_Parser&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:8:&quot;XML_Util&quot;;}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Config_Lite</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Configuration">Configuration</ca>
+ <l>lgpl</l>
+ <s>a lightweight and fast Config class for ini style text configuration files.</s>
+ <d>This package defines a class for config/settings text files in ini style. 
+Currently classes available are:
+ * Config_Lite: a lightweight class with arrayaccess to handle ini style files
+ * Config_Lite_Exception: Interface implemented by Exceptions</d>
+ <r xlink:href="/rest/r/config_lite"/>
+</p>
+<a>
+ <r><v>0.1.2</v><s>beta</s></r>
+ <r><v>0.1.1</v><s>beta</s></r>
+ <r><v>0.1.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.1.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+</f>

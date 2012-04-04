@@ -43,8 +43,9 @@ class Category
             throw new Exception( "Package Info XML load failed: " . $this->packagesInfoUrl );
         }
 
-
         $this->packagesInfoXml = $xml;
+
+        try {
 
         $packageNodes = $xml->getElementsByTagName('pi');
         $packages = array();
@@ -70,33 +71,35 @@ class Category
             $latestAlpha = 0;
             $latestBeta = 0;
             $latest = 0;
-            $releases = $node->getElementsByTagName('a')->item(0)->getElementsByTagName('r');
-            foreach( $releases as $release ) {
-                $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
-                $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
+            $a = $node->getElementsByTagName('a')->item(0);
+            if( $a && $releases = $a->getElementsByTagName('r') ) {
+                foreach( $releases as $release ) {
+                    $version = $release->getElementsByTagName('v')->item(0)->nodeValue;
+                    $stability = $release->getElementsByTagName('s')->item(0)->nodeValue;
 
-                $package->addRelease( $version , $stability );
+                    $package->addRelease( $version , $stability );
 
-                if( version_compare( $version , $latest ) === 1 ) {
-                    $latest = $version;
-                }
+                    if( version_compare( $version , $latest ) === 1 ) {
+                        $latest = $version;
+                    }
 
-                switch( $stability ) {
-                case 'stable':
-                    if( version_compare( $version , $latestStable ) === 1 ) {
-                        $latestStable = $version;
+                    switch( $stability ) {
+                    case 'stable':
+                        if( version_compare( $version , $latestStable ) === 1 ) {
+                            $latestStable = $version;
+                        }
+                        break;
+                    case 'alpha':
+                        if( version_compare( $version , $latestAlpha ) === 1 ) {
+                            $latestAlpha = $version;
+                        }
+                        break;
+                    case 'beta':
+                        if( version_compare( $version , $latestBeta ) === 1 ) {
+                            $latestBeta = $version;
+                        }
+                        break;
                     }
-                    break;
-                case 'alpha':
-                    if( version_compare( $version , $latestAlpha ) === 1 ) {
-                        $latestAlpha = $version;
-                    }
-                    break;
-                case 'beta':
-                    if( version_compare( $version , $latestBeta ) === 1 ) {
-                        $latestBeta = $version;
-                    }
-                    break;
                 }
             }
 
@@ -106,6 +109,10 @@ class Category
             $package->latest = $latest;
 
             $packages[ $package->name ] = $package;
+        }
+
+        } catch ( Exception $e ) {
+            die( "Package parsing failed: {$this->packagesInfoUrl}" .  $e->getMessage() );
         }
         return $packages;
     }

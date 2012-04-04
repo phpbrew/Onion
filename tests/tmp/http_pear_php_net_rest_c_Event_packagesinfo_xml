@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<f xmlns="http://pear.php.net/dtd/rest.categorypackageinfo"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo
+    http://pear.php.net/dtd/rest.categorypackageinfo.xsd">
+<pi>
+<p><n>Event_Dispatcher</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Event">Event</ca>
+ <l>BSD License</l>
+ <s>Dispatch notifications using PHP callbacks</s>
+ <d>The Event_Dispatcher acts as a notification dispatch table.
+It is used to notify other objects of interesting things. This 
+information is encapsulated in Event_Notification objects. Client 
+objects register themselves with the Event_Dispatcher as observers of
+specific notifications posted by other objects. When an event occurs, 
+an object posts an appropriate notification to the Event_Dispatcher.
+The Event_Dispatcher dispatches a message to each registered 
+observer, passing the notification as the sole argument.</d>
+ <r xlink:href="/rest/r/event_dispatcher"/>
+</p>
+<a>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.9.1</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.9.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Event_SignalEmitter</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Event">Event</ca>
+ <l>LGPL</l>
+ <s>Generic signal emitting class with the same API as GObject.</s>
+ <d>Generic signal emitting class with the same API as GObject.
+  Since GObject doesn't allow classes to define or emit own signals,
+  this class provides a PHP implementation with the same API.</d>
+ <r xlink:href="/rest/r/event_signalemitter"/>
+</p>
+<a>
+ <r><v>0.3.2</v><s>beta</s></r>
+ <r><v>0.3.1</v><s>beta</s></r>
+ <r><v>0.3.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.3.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:3:&quot;5.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.3.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:3:&quot;5.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.7.2&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.3.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:3:&quot;5.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.7.2&quot;;}}}</d>
+</deps>
+</pi>
+</f>

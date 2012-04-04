@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<f xmlns="http://pear.php.net/dtd/rest.categorypackageinfo"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo
+    http://pear.php.net/dtd/rest.categorypackageinfo.xsd">
+<pi>
+<p><n>Console_Getopt</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>PHP License</l>
+ <s>Command-line option parser</s>
+ <d>This is a PHP implementation of &quot;getopt&quot; supporting both
+short and long options.</d>
+ <r xlink:href="/rest/r/console_getopt"/>
+</p>
+<a>
+ <r><v>1.3.1</v><s>stable</s><co><c>pear.php.net</c><p>PEAR</p><min>1.4.0</min><max>1.10.0</max></co>
+</r>
+ <r><v>1.3.0</v><s>stable</s><co><c>pear.php.net</c><p>PEAR</p><min>1.4.0</min><max>1.10.0</max></co>
+</r>
+ <r><v>1.2.3</v><s>stable</s><co><c>pear.php.net</c><p>PEAR</p><min>1.4.0</min><max>1.6.0</max></co>
+</r>
+ <r><v>1.2.2</v><s>stable</s><co><c>pear.php.net</c><p>PEAR</p><min>1.4.0</min><max>1.5.0</max></co>
+</r>
+ <r><v>1.2.1</v><s>stable</s></r>
+ <r><v>1.2</v><s>stable</s></r>
+ <r><v>1.0</v><s>stable</s></r>
+ <r><v>0.11</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.11</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.2.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.2.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.3&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.2.3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.3&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.3.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.9.1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.3.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.3.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.8.0&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_Table</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>BSD</l>
+ <s>Class that makes it easy to build console style tables</s>
+ <d>Provides methods such as addRow(), insertRow(), addCol() etc. to build console tables with or without headers and with user defined table rules and padding.</d>
+ <r xlink:href="/rest/r/console_table"/>
+</p>
+<a>
+ <r><v>1.1.4</v><s>stable</s></r>
+ <r><v>1.1.3</v><s>stable</s></r>
+ <r><v>1.1.2</v><s>stable</s></r>
+ <r><v>1.1.1</v><s>stable</s></r>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.0.8</v><s>stable</s></r>
+ <r><v>1.0.7</v><s>stable</s></r>
+ <r><v>1.0.6</v><s>stable</s></r>
+ <r><v>1.0.5</v><s>stable</s></r>
+ <r><v>1.0.4</v><s>stable</s></r>
+ <r><v>1.0.3</v><s>stable</s></r>
+ <r><v>1.0.2</v><s>stable</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0</v><s>stable</s></r>
+ <r><v>0.8</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.8</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.3</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.4</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.5</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.6</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.7</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.8</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.3</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:13:&quot;Console_Color&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;0.0.4&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.4</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:13:&quot;Console_Color&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;0.0.4&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_Color</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>MIT</l>
+ <s>This Class allows you to easily use ANSI console colors in your application.</s>
+ <d>You can use Console_Color::convert to transform colorcodes like %r into ANSI
+control codes. print Console_Color::convert(&amp;amp;amp;quot;%rHello World!%n&amp;amp;amp;quot;); would print
+&amp;amp;amp;quot;Hello World&amp;amp;amp;quot; in red, for example.</d>
+ <r xlink:href="/rest/r/console_color"/>
+ <dc>pear.php.net</dc>
+ <dp> Console_Color2</dp>
+</p>
+<a>
+ <r><v>1.0.3</v><s>stable</s></r>
+ <r><v>1.0.2</v><s>stable</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.0.4</v><s>beta</s></r>
+ <r><v>0.0.3</v><s>beta</s></r>
+ <r><v>0.0.2</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.0.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.0.3</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.0.4</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_ProgressBar</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>MIT</l>
+ <s>This class provides you with an easy-to-use interface to progress bars.</s>
+ <d>The class allows you to display progress bars in your terminal. You can use
+this for displaying the status of downloads or other tasks that take some
+time.</d>
+ <r xlink:href="/rest/r/console_progressbar"/>
+</p>
+<a>
+ <r><v>0.5.2beta</v><s>beta</s></r>
+ <r><v>0.5.1beta</v><s>beta</s></r>
+ <r><v>0.5.0beta</v><s>beta</s></r>
+ <r><v>0.4.0beta</v><s>beta</s></r>
+ <r><v>0.2</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.4.0beta</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.5.0beta</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.5.1beta</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.5.2beta</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_Getargs</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>PHP License</l>
+ <s>A command-line arguments parser</s>
+ <d>The Console_Getargs package implements a Command Line arguments and
+parameters parser for your CLI applications. It performs some basic
+arguments validation and automatically creates a formatted help text,
+based on the given configuration.</d>
+ <r xlink:href="/rest/r/console_getargs"/>
+</p>
+<a>
+ <r><v>1.3.5</v><s>stable</s></r>
+ <r><v>1.3.4</v><s>stable</s></r>
+ <r><v>1.3.3</v><s>stable</s></r>
+ <r><v>1.3.2</v><s>stable</s></r>
+ <r><v>1.3.1</v><s>stable</s></r>
+ <r><v>1.3.0</v><s>stable</s></r>
+ <r><v>1.2.1</v><s>stable</s></r>
+ <r><v>1.2.0</v><s>stable</s></r>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.1.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.2.0</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.2.1</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3.0</v>
+ <d>a:1:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3.1</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3.2</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3.3</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;php&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;4.1.0&quot;;s:8:&quot;optional&quot;;s:2:&quot;no&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.3.4</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.3.5</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_CommandLine</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>MIT</l>
+ <s>A full featured command line options and arguments parser</s>
+ <d>Console_CommandLine is a full featured package for managing command-line 
+options and arguments highly inspired from python optparse module, it allows 
+the developer to easily build complex command line interfaces.
+
+Main features:
+  * handles sub commands (ie. $ myscript.php -q subcommand -f file),
+  * can be completely built from an xml definition file,
+  * generate --help and --version options automatically,
+  * can be completely customized,
+  * builtin support for i18n,
+  * and much more...</d>
+ <r xlink:href="/rest/r/console_commandline"/>
+</p>
+<a>
+ <r><v>1.1.3</v><s>stable</s></r>
+ <r><v>1.1.2</v><s>stable</s></r>
+ <r><v>1.1.1</v><s>stable</s></r>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.0.6</v><s>stable</s></r>
+ <r><v>1.0.5</v><s>stable</s></r>
+ <r><v>1.0.4</v><s>stable</s></r>
+ <r><v>1.0.3</v><s>stable</s></r>
+ <r><v>1.0.2</v><s>stable</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>1.0.0RC3</v><s>beta</s></r>
+ <r><v>1.0.0RC2</v><s>beta</s></r>
+ <r><v>1.0.0RC1</v><s>beta</s></r>
+ <r><v>0.2.1</v><s>beta</s></r>
+ <r><v>0.2.0</v><s>beta</s></r>
+ <r><v>0.1.1</v><s>alpha</s></r>
+ <r><v>0.1.0</v><s>alpha</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0RC1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0RC2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0RC3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.4</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.5</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.6</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_GetoptPlus</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>The BSD License</l>
+ <s>Command-line option parser - Console Getopt+ (Getopt Plus)</s>
+ <d>This package is (1) a PHP5 port/rewrite of Console_Getopt, (2) with added functionalities, and (3) with a Web interface to run getopt-like shell commands through a browser (not implemented yet).
+
+(1) Console_getoptPlus:getopt() is a replacement for Console_getopt:getopt().
+Same for getopt2() and readPHPArgv(). It returns PEAR_Exception instead of PEAR_Error. Error messages are the same.
+
+(2) GetoptPlus:getoptplus uses an array-based description of the command. It can generates the command usage/help automaticly. It can return the parsed options and parameters in an associative array. It can be set to accept option shortcut names.
+
+Fully tested with phpUnit. Code coverage test close to 100%.
+
+Usage is fully documented in docs/examples files.</d>
+ <r xlink:href="/rest/r/console_getoptplus"/>
+</p>
+<a>
+ <r><v>1.0.0RC1</v><s>beta</s></r>
+</a>
+<deps>
+ <v>1.0.0RC1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:3:&quot;5.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Console_Color2</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Console">Console</ca>
+ <l>MIT</l>
+ <s>This Class allows you to easily use ANSI console colors in your application.</s>
+ <d>You can use Console_Color::convert to transform colorcodes like %r into ANSI
+control codes. $console = new Console_Color2(); print $console-&gt;convert(&quot;%rHello World!%n&quot;); would print
+&quot;Hello World&quot; in red, for example.</d>
+ <r xlink:href="/rest/r/console_color2"/>
+</p>
+<a>
+ <r><v>0.1.1</v><s>alpha</s></r>
+ <r><v>0.1.0</v><s>alpha</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.5.6&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.5.6&quot;;}}}</d>
+</deps>
+</pi>
+</f>
