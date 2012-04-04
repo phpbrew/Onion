@@ -20,6 +20,7 @@ use Onion\Package\PackageInterface;
  */
 class Package implements PackageInterface
 {
+
     public $name;
     public $version;
     public $desc;
@@ -44,13 +45,14 @@ class Package implements PackageInterface
      */
     public $config;
 
-
-    // local flag (not to install)
-    public $local;
+    // virtual flag (not to install)
+    public $virtual;
 
     public function addDependency($type,$name,$require,$resource = array() )
     {
-        $require = \Onion\SpecUtils::parseVersion($require);
+        if( is_string($require) ) {
+            $require = \Onion\SpecUtils::parseVersion($require);
+        }
         $this->dependencies[] = array( 
             'type' => $type,
             'name' => $name,

@@ -86,18 +86,17 @@ class PackageConfigReader
                 switch($type) {
 
                 case 'core':
-                    $version = SpecUtils::parseVersion( $value );
-                    $pkginfo->addDependency('core',$key, $version);
+                    $pkginfo->addDependency('core',$key, $value);
                     break;
 
                 case 'extension':
                     $depinfo = $this->parseDependency($key,$value);
-                    $pkginfo->addDependency('extension',$depinfo['name'],$depinfo['version']);
+                    $pkginfo->addDependency('extension',$depinfo['name'],$depinfo['require']);
                     break;
 
                 case 'pear':
                     $depinfo = $this->parseDependency($key,$value);
-                    $pkginfo->addDependency('pear',$key,$value);
+                    $pkginfo->addDependency('pear',$depinfo['name'],$depinfo['require'],$depinfo['resource']);
                     break;
 
                 default:
@@ -155,9 +154,9 @@ class PackageConfigReader
 				return array(
 					'type'     => 'pear',
 					'name'     => $regs[2],
-					'version' => SpecUtils::parseVersion($value),
+					'require' => SpecUtils::parseVersion($value),
 					'resource' => array( 
-						'type'     => 'channel',
+						'type'     => 'pear',
 						'channel' => $regs[1],
 					)
 				);
@@ -168,7 +167,7 @@ class PackageConfigReader
 					'name'     => $regs[2],
 					'conflict' => 1,
 					'resource' => array( 
-						'type'     => 'channel',
+						'type'     => 'pear',
 						'channel' => $regs[1],
 					)
 				);
@@ -179,7 +178,7 @@ class PackageConfigReader
 			return array(
 				'type'    => 'extension',
 				'name'    => $regs[1],
-				'version' => SpecUtils::parseVersion($value),
+				'require' => SpecUtils::parseVersion($value),
 			);
 		}
 		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 

@@ -26,7 +26,7 @@ class SpecUtils
             \s*
             \$/x",$string,$regs) ) 
         {
-            return array( 'min' => $regs[1] ?: '0.0.0' );
+            return  array( 'min' => $regs[1] ?: '0.0.0' );
         }
 		elseif( preg_match("/^
             \s*
@@ -36,7 +36,7 @@ class SpecUtils
 			\s*
 			\$/x",$string,$regs) ) 
         {
-			return array( 'min' => $regs[1] ?: '0.0.0' );
+			return  array( 'min' => $regs[1] ?: '0.0.0' );
         }
 		elseif( preg_match("/^
             \s*
@@ -46,7 +46,7 @@ class SpecUtils
 			\s*
 			\$/x",$string,$regs) ) 
         {
-            return array( 'max' => $regs[1] );
+            return  array( 'max' => $regs[1] );
         }
 		elseif( preg_match("/^
             \s*

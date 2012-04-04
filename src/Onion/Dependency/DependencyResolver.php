@@ -19,12 +19,18 @@ namespace Onion\Dependency;
 class DependencyResolver 
 {
     public $pool;
+
     public $logger;
 
     function __construct()
     {
         $this->pool = new DependencyPool;
         $this->logger = \Onion\Application::getLogger();
+    }
+
+    public function getPool()
+    {
+        return $this->pool;
     }
 
     function resolvePearPackage($package)
@@ -76,12 +82,17 @@ class DependencyResolver
         }
     }
 
-    function resolve( $package )
+
+    /**
+     * Resolve Onion Package
+     */
+    public function resolve( $package )
     {
         // expand package and package dependencies to package object
         // if installed , check if upgrade is need ?
-        if( ! $package->local )
+        if( ! $package->virtual ) {
             $this->pool->addPackage($package);
+        }
 
         // expand package dependencies
         $deps = $package->getDependencies();
@@ -90,19 +101,43 @@ class DependencyResolver
             // Expand pear package (refacotr this to dependencyInfo object)
             if( 'pear' === $dep['type'] ) {
                 $depPackageName = $dep['name'];
-                $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
-                if( $dep['resource']['type'] == 'channel' ) {
-                    $host = $dep['resource']['channel'];
+                $this->logger->info2("Tracking PEAR package dependency: {$dep['name']} ..." , 1);
+                $require = $dep['require'];
 
+                // handle PEAR channel resource
+                if( $dep['resource']['type'] == 'pear' ) {
+                    $host = $dep['resource']['channel'];
                     $channel = new \PEARX\Channel( $host , array( 
                         'cache' => \Onion\Application::getInstance()->getCache(),
                         'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
                     ));
                     $depPackage = $channel->findPackage( $depPackageName );
 
-                    // discover pear channel
-                    // $channel->prefetchPackagesInfo();
-                    // $depPackage = $channel->getPackage( $depPackageName );
+                    // find compatible release version
+                    $targetVersion;
+                    if( $require ) {
+                        foreach( array_reverse($depPackage->releases) as $r ) {
+                            if( isset($require['max']) ) {
+                                if( version_compare($r->version,$require['max']) > 0 ) {
+                                    continue;
+                                }
+                            }
+                            if( isset($require['min']) ) {
+                                if( version_compare($r->version,$require['min']) > 0 ) {
+                                    $targetVersion = $r->version;
+                                } 
+                            }
+                            // $r->version, $r->stability;
+                        }
+                        if( null === $targetVersion )
+                            throw new Exception("No valid dependency found: $depPackageName");
+                    }
+                    else {
+                        $targetVersion = $depPackage->latest;
+                    }
+
+
+                    // new \Onion\Operation\InstallOperation;
                     $this->resolvePearPackage( $depPackage );
                 }
             }
@@ -113,9 +148,5 @@ class DependencyResolver
         }
     }
 
-    public function getPool()
-    {
-        return $this->pool;
-    }
 
 }
