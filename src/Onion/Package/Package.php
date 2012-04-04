@@ -15,8 +15,7 @@ use Onion\Package\PackageInterface;
 /**
  * package class for package.ini
  */
-class Package extends BasePackage
-    implements PackageInterface
+class Package implements PackageInterface
 {
     public $name;
     public $version;
