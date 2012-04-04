@@ -70,7 +70,7 @@ class DependencyResolver
 
                 $channel = new \PEARX\Channel( $host, array(
                     'cache' => \Onion\Application::getInstance()->getCache(),
-                    // xxx: downloader support
+                    'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
                 ));
                 $depPackage = $channel->findPackage( $packageName );
                 $this->resolvePearPackage( $depPackage );
@@ -98,6 +98,7 @@ class DependencyResolver
 
                     $channel = new \PEARX\Channel( $host , array( 
                         'cache' => \Onion\Application::getInstance()->getCache(),
+                        'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
                     ));
                     $depPackage = $channel->findPackage( $depPackageName );
 
