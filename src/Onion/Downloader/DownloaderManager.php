@@ -9,82 +9,50 @@
  *
  */
 namespace Onion\Downloader;
-
-use Onion\Downloader\CurlDownloader;
-use Onion\Downloader\DownloaderInterface;
 use DOMDocument;
-
+use Onion\Downloader\DownloaderInterface;
+use CurlKit\CurlDownloader;
 
 /**
  * Detect appropriate downloader for package, file download.
- *
  */
 class DownloaderManager 
 {
-
-    /**
-     * downloader object, if user forced a custom downloader 
-     *
-     * @var \Onion\Downloader\DownloaderInterface
-     */
-    public $downloader;
 
     /**
      * default downloader class
      *
      * @var string
      */
-    public $downloaderClass;
+    public $downloaderFactory;
 
     public $logger;
 
     public $cache;
 
-    function __construct($select_default = true)
+    function __construct()
     {
-        if( $select_default )
-            $this->selectDefaultDownloader();
         $this->logger = \Onion\Application::getInstance()->getLogger();
         $this->cache  = \Onion\Application::getInstance()->getCache();
+        if( extension_loaded('curl') )
+            $this->downloaderFactory = 'Onion\Downloader\CurlDownloaderFactory';
+        else
+            $this->downloaderFactory = 'Onion\Downloader\PPDownloaderFactory';
     }
 
-    function selectDefaultDownloader()
+    public function getDownloader()
     {
-        // we select curl first because it's faster.
-        if( extension_loaded('curl') ) {
-            $this->downloaderClass = '\Onion\Downloader\CurlDownloader';
-        }
-        else {
-            $this->downloaderClass = '\Onion\Downloader\PPDownloader';
-        }
+        $class = $this->downloaderFactory;
+        return $class::create();
     }
 
-    function createDownloader()
-    {
-        if( ! $this->downloaderClass )
-            throw new Exception("Downloader Class is not defined.");
-        return new $this->downloaderClass;
-    }
-
-    function getDownloader()
-    {
-        if( $this->downloader )
-            return $this->downloader;
-        return $this->createDownloader();
-    }
-
-    function setDownloaderClass($class)
-    {
-        $this->downloaderClass = $class;
-    }
-
-    function download($url)
+    public function download($url)
     {
         $content = $this->cache->get($url);
         if( null === $content ) {
             $this->logger->debug2( "Fetching $url ..." , 1 );
             $d = $this->getDownloader();
-            $content = $d->fetch( $url );
+            $content = $d->request( $url );
             $this->cache->set( $url, $content );
         }
         return $content;
@@ -97,7 +65,7 @@ class DownloaderManager
             $xmlstr = $this->download($url);
             $this->cache->set( $url, $xmlstr );
         }
-        $xml = new DOMDocument();
+        $xml = new DOMDocument;
         $xml->loadXML($xmlstr); 
         return $xml;
     }

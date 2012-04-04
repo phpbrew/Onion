@@ -10,11 +10,10 @@
  */
 namespace Onion\Downloader;
 
-
 class PPDownloader 
     implements DownloaderInterface
 {
-    function fetch($url)
+    function request($url)
     {
         return file_get_contents($url);
     }

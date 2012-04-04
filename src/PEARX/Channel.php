@@ -1,5 +1,9 @@
 <?php
 namespace PEARX;
+use PEARX\ChannelParser;
+use DOMDocument;
+use Exception;
+use PEARX\Core;
 
 /**
  * $channel = new PEARX\Channel( 'pear.php.net', array(
@@ -11,6 +15,32 @@ namespace PEARX;
  */
 class Channel
 {
+    /**
+     * @var string channel host name
+     */
+    public $name;
+
+    /**
+     * @var string suggestedalias
+     */
+    public $alias;
+
+
+    /**
+     * @var string summary
+     */
+    public $summary;
+
+    /**
+     * primary server
+     */
+    public $primary = array();
+
+    public $rest; // Latest REST version
+
+
+
+
     public $cache;
 
     public $downloader;
@@ -19,35 +49,40 @@ class Channel
 
     public $channelXml;
 
+    /**
+     * channel url scheme
+     */
+    public $scheme = 'http';
+
+    public $core;
+
     public function __construct($host, $options = array() )
     {
-        if( isset($options['cache']) ) {
-            $this->cache = $options['cache'];
-        }
-
-        if( isset($options['downloader']) ) {
-            $this->downloader = $options['downloader'];
-        }
-
-        if( isset($options['retry']) ) {
-            $this->retry = $options['retry'];
-        }
-
+        $this->core = new Core( $options );
         $this->channelXml = $this->fetchChannelXml( $host );
 
-#          $parser = new ChannelParser;
-#          $channel = $parser->parse( $xmlstr );
-#          return $channel;
+        $parser = new ChannelParser;
+        $info = $parser->parse( $this->channelXml );
+
+        $this->name = $info->name;
+        $this->summary = $info->summary;
+        $this->alias = $info->alias;
+        $this->primary = $info->primary;
+        $this->rest = $info->rest;
     }
 
-
-    public function request($url)
+    public function getBaseUrl()
     {
-        if( $this->downloader ) {
-            return $this->downloader->fetch( $url );
-        }
-        return file_get_contents($url);
+        return $this->scheme . '://' . $this->name . '/';
     }
+
+    public function getRestBaseUrl($version = null)
+    {
+        if( $version && $this->primary[$version] )
+            return $this->primary[ $version ];
+        return $this->primary[ $this->rest ];
+    }
+
 
     /**
      * fetch channel.xml from PEAR channel server.
@@ -55,18 +90,22 @@ class Channel
     public function fetchChannelXml($host)
     {
         $xmlstr = null;
-        $xmlstr = $this->cache ? $this->cache->get( $host ) : null;
+        $xmlstr = $this->core->cache ? $this->core->cache->get( $host ) : null;
 
         // cache not found.
-        if( $xmlstr )
+        if( null !== $xmlstr )
             return $xmlstr;
 
         $httpUrl = 'http://' . $host . '/channel.xml';
         $httpsUrl = 'https://' . $host . '/channel.xml';
         while( $this->retry-- ) {
             try {
-                if( $xmlstr = $this->request($httpUrl) 
-                    || $xmlstr = $this->request( $httpsUrl ) ) {
+                if( $xmlstr = $this->core->request($httpUrl)  ) {
+                    $this->scheme = 'http';
+                    break;
+                }
+                if( $xmlstr = $this->core->request( $httpsUrl ) ) {
+                    $this->scheme = 'https';
                     break;
                 }
             } catch( Exception $e ) {
@@ -86,7 +125,47 @@ class Channel
         return $xmlstr;
     }
 
+    public function getCategories()
+    {
+        $baseUrl = $this->getRestBaseUrl();
+        $url = $baseUrl . '/c/categories.xml';
+        $xmlStr = $this->core->request($url);
+        
+        // libxml_use_internal_errors(true);
+        $xml = Utils::create_dom();
+        if( false === $xml->loadXml( $xmlStr ) ) {
+            throw new Exception("Error in XMl document: $url");
+        }
 
+        $list = array();
+        $nodes = $xml->getElementsByTagName('c');
+        foreach ($nodes as $node) {
+            // path like: /rest/c/Default/info.xml
+            $link = $node->getAttribute("xlink:href");
+            $name = $node->nodeValue;
+            $category = new Category( $this, $name , $link );
+            $list[] = $category;
+        }
+        return $list;
+    }
+
+    public function getPackages()
+    {
+        $packages = array();
+        foreach( $this->getCategories() as $category ) {
+            $packages[ $category->name ] = $category->getPackages();
+        }
+        return $packages;
+    }
+
+    public function findPackage($name)
+    {
+        foreach( $this->getCategories() as $category ) {
+            $packages = $category->getPackages();
+            if( isset($packages[$name]) )
+                return $packages[ $name ];
+        }
+    }
 }
 
 

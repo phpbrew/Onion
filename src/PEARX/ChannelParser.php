@@ -29,20 +29,25 @@ class ChannelParser
         }
 
         // build channel info object.
-        $channel = new ChannelInfo;
         $xml = new SimpleXMLElement($xmlstr);
 
-        $channel->name = (string) $xml->name;
-        $channel->summary = (string) $xml->summary;
-        $channel->alias = (string) $xml->suggestedalias;
+        $channel = array();
+        $channel['name'] = (string) $xml->name;
+        $channel['summary'] = (string) $xml->summary;
+        $channel['alias'] = (string) $xml->suggestedalias;
 
         // build primary server section
-        $channel->primary = array();
+        $channel['primary'] = array();
+        $channel['rest'] = 'REST1.0';
         foreach( $xml->servers->primary->rest->baseurl as $element ) {
             $attrs = $element->attributes();
-            $channel->primary[ (string) $attrs->type ] = (string) $element;
+            $version = (string) $attrs->type; // REST version
+            $channel['primary'][ $version ] = (string) $element;
+            if( version_compare( $version , $channel['rest'] ) >= 0 ) {
+                $channel['rest'] = $version;
+            }
         }
-        return $channel;
+        return (object) $channel;
     }
 
 }

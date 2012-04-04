@@ -40,11 +40,10 @@ class PearInstaller
         $packageDir =  $workspace . DIRECTORY_SEPARATOR . $package->name;
         $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $package->latest;
 
-        // var_dump( $package ); 
-        $url = $package->getDistUrlByVersion( $package->latest );
+        $url = $package->getReleaseDistUrl( $package->latest );
 
         // download the package.
-        $logger->info( "Downloading " . $package->getId() . '-' . $package->latest . "..." );
+        $logger->info( "Downloading " . $package->name . '-' . $package->latest . "..." );
 
         $cwd = getcwd();
         chdir( $workspace );

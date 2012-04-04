@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<f xmlns="http://pear.php.net/dtd/rest.categorypackageinfo"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo
+    http://pear.php.net/dtd/rest.categorypackageinfo.xsd">
+<pi>
+<p><n>Crypt_CBC</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP 2.02</l>
+ <s>A class to emulate Perl's Crypt::CBC module.</s>
+ <d>A class to emulate Perl's Crypt::CBC module.</d>
+ <r xlink:href="/rest/r/crypt_cbc"/>
+</p>
+<a>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.4</v><s>stable</s></r>
+ <r><v>0.3</v><s>stable</s></r>
+ <r><v>0.2</v><s>stable</s></r>
+ <r><v>0.1</v><s>stable</s></r>
+</a>
+<deps>
+ <v>0.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.3</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.4</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_RC4</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP</l>
+ <s>Encryption class for RC4 encryption.
+
+Users are highly encourages to migrate to Crypt_RC42 (Crypt RC4 2.0); a PHP5 compatible release with multiple bug fixes.</s>
+ <d>RC4 encryption class</d>
+ <r xlink:href="/rest/r/crypt_rc4"/>
+ <dc>pear.php.net</dc>
+ <dp> Crypt_RC42</dp>
+</p>
+<a>
+ <r><v>1.0.3</v><s>stable</s></r>
+ <r><v>1.0.2</v><s>stable</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0</v><s>stable</s></r>
+ <r><v>0.1</v><s>stable</s></r>
+</a>
+<deps>
+ <v>0.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.3</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0</v>
+ <d>b:0;</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_Xtea</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP 2.02</l>
+ <s>A class that implements the Tiny Encryption Algorithm (TEA) (New Variant).</s>
+ <d>A class that implements the Tiny Encryption Algorithm (TEA) (New Variant).
+This class does not depend on mcrypt.
+Since the latest fix handles properly dealing with unsigned integers,
+which where solved by introducing new functions _rshift(), _add(), the
+speed of the encryption and decryption has radically dropped.
+Do not use for large amounts of data.
+Original code from http://vader.brad.ac.uk/tea/source.shtml#new_ansi
+Currently to be found at: http://www.simonshepherd.supanet.com/source.shtml#new_ansi</d>
+ <r xlink:href="/rest/r/crypt_xtea"/>
+</p>
+<a>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.1.0RC5</v><s>beta</s></r>
+ <r><v>1.1.0RC4</v><s>beta</s></r>
+ <r><v>1.1.0RC3</v><s>beta</s></r>
+ <r><v>1.1.0RC2</v><s>beta</s></r>
+ <r><v>1.1.0RC1</v><s>beta</s></r>
+ <r><v>1.0</v><s>stable</s></r>
+</a>
+<deps>
+ <v>1.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC3</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC4</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC5</v>
+ <d>b:0;</d>
+</deps>
+</pi>
+<pi>
+<p><n>Message</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP</l>
+ <s>Message hash and digest (HMAC) generation methods and classes</s>
+ <d>Classes for message hashing and HMAC signature generation
+using the mhash functions.</d>
+ <r xlink:href="/rest/r/message"/>
+</p>
+<a>
+ <r><v>0.6</v><s>beta</s></r>
+ <r><v>0.5</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.5</v>
+ <d>a:1:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:6:&quot;0.8.16&quot;;s:4:&quot;name&quot;;s:5:&quot;mhash&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>0.6</v>
+ <d>b:0;</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_CHAP</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>BSD</l>
+ <s>Generating CHAP packets.</s>
+ <d>This package provides Classes for generating CHAP packets.
+Currently these types of CHAP are supported:
+* CHAP-MD5
+* MS-CHAPv1
+* MS-CHAPv2
+For MS-CHAP the mhash and mcrypt extensions must be loaded.</d>
+ <r xlink:href="/rest/r/crypt_chap"/>
+</p>
+<a>
+ <r><v>1.5.0</v><s>stable</s></r>
+ <r><v>1.0.2</v><s>stable</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.8.6</v><s>alpha</s></r>
+ <r><v>0.8.5</v><s>alpha</s></r>
+ <r><v>0.8.2</v><s>alpha</s></r>
+</a>
+<deps>
+ <v>0.8.2</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.8.5</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.8.6</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:2:{i:1;a:3:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:5:&quot;mhash&quot;;}i:2;a:3:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:4:&quot;name&quot;;s:6:&quot;mcrypt&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:5:&quot;mhash&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:6:&quot;mcrypt&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.2</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:5:&quot;mhash&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:6:&quot;mcrypt&quot;;}}}}</d>
+</deps>
+
+<deps>
+ <v>1.5.0</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.2&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:4:&quot;hash&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:6:&quot;mcrypt&quot;;}}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_HMAC</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP</l>
+ <s>A class to calculate RFC 2104 compliant hashes.</s>
+ <d>A class to calculate RFC 2104 compliant hashes.</d>
+ <r xlink:href="/rest/r/crypt_hmac"/>
+ <dc>pear.php.net</dc>
+ <dp> Crypt_HMAC2</dp>
+</p>
+<a>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.9</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.9</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>b:0;</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_Blowfish</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>New BSD</l>
+ <s>Allows for quick two-way blowfish encryption without requiring the MCrypt PHP extension.</s>
+ <d>This package allows you to perform two-way blowfish encryption on the fly using only PHP. This package does not require the MCrypt PHP extension to work, although it can make use of it if available.</d>
+ <r xlink:href="/rest/r/crypt_blowfish"/>
+</p>
+<a>
+ <r><v>1.1.0RC2</v><s>beta</s></r>
+ <r><v>1.1.0RC1</v><s>beta</s></r>
+ <r><v>1.0.1</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.8.1</v><s>beta</s></r>
+ <r><v>0.7.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.7.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>0.8.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.0.1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC1</v>
+ <d>b:0;</d>
+</deps>
+
+<deps>
+ <v>1.1.0RC2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.7.2&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_RSA</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP</l>
+ <s>Provides RSA-like key generation, encryption/decryption, signing and signature checking.
+
+Users are strongly advised to migrate to phpseclib's Crypt_RSA; which is better maintained and less vulnerable to security issues.</s>
+ <d>This package allows you to use two-key strong cryptography like RSA with arbitrary key length.
+It uses one of the following extensions for math calculations:
+ - PECL big_int extension ( http://pecl.php.net/packages/big_int ) version greater than or equal to 1.0.3
+ - PHP GMP extension ( http://php.net/gmp )
+ - PHP BCMath extension ( http://php.net/manual/en/ref.bc.php ) for both PHP4 and PHP5</d>
+ <r xlink:href="/rest/r/crypt_rsa"/>
+ <dc>phpseclib.sourceforge.net</dc>
+ <dp> Crypt_RSA</dp>
+</p>
+<a>
+ <r><v>1.2.1</v><s>beta</s></r>
+ <r><v>1.2.0b</v><s>beta</s></r>
+ <r><v>1.1.0b</v><s>beta</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>1.0.0RC6</v><s>beta</s></r>
+</a>
+<deps>
+ <v>1.0.0</v>
+ <d>a:3:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}i:3;a:5:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;1.0.3&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:7:&quot;big_int&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0RC6</v>
+ <d>a:3:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}i:3;a:5:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;1.0.3&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:7:&quot;big_int&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.1.0b</v>
+ <d>a:3:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}i:3;a:5:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;1.0.3&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:7:&quot;big_int&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.2.0b</v>
+ <d>a:3:{i:1;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:2;a:4:{s:4:&quot;type&quot;;s:3:&quot;ext&quot;;s:3:&quot;rel&quot;;s:3:&quot;has&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}i:3;a:5:{s:4:&quot;type&quot;;s:3:&quot;pkg&quot;;s:3:&quot;rel&quot;;s:2:&quot;ge&quot;;s:7:&quot;version&quot;;s:5:&quot;1.0.3&quot;;s:8:&quot;optional&quot;;s:3:&quot;yes&quot;;s:4:&quot;name&quot;;s:7:&quot;big_int&quot;;}}</d>
+</deps>
+
+<deps>
+ <v>1.2.1</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}s:8:&quot;optional&quot;;a:2:{s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:7:&quot;big_int&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.0.3&quot;;}s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_XXTEA</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>LGPL License</l>
+ <s>An implementation of the XXTEA encryption algorithm. NOTICE: unregular default behavior.</s>
+ <d>This package allows you to encrypt and decrypt strings or long integer arrays with the XXTEA encryption algorithm, which is secure, fast and suitable for web development.
+
+NOTICE: Due to some historical reasons, this package's default behavior DIFFER to regular encryption classes. And the author will think over the solution.</d>
+ <r xlink:href="/rest/r/crypt_xxtea"/>
+</p>
+<a>
+ <r><v>0.9.0</v><s>beta</s></r>
+ <r><v>0.8.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.8.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.9.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_GPG</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>LGPL</l>
+ <s>GNU Privacy Guard (GnuPG)</s>
+ <d>This package provides an object oriented interface to GNU Privacy Guard (GnuPG). It requires the GnuPG executable to be on the system.
+
+Though GnuPG can support symmetric-key cryptography, this package is intended only to facilitate public-key cryptography.
+
+This package requires PHP version 5.2.1 or greater.</d>
+ <r xlink:href="/rest/r/crypt_gpg"/>
+</p>
+<a>
+ <r><v>1.3.2</v><s>stable</s></r>
+ <r><v>1.3.1</v><s>stable</s></r>
+ <r><v>1.3.0</v><s>stable</s></r>
+ <r><v>1.2.0</v><s>stable</s></r>
+ <r><v>1.1.1</v><s>stable</s></r>
+ <r><v>1.1.0</v><s>stable</s></r>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>1.0.0RC1</v><s>beta</s></r>
+ <r><v>0.7.1</v><s>beta</s></r>
+ <r><v>0.7.0</v><s>beta</s></r>
+ <r><v>0.6.0</v><s>beta</s></r>
+ <r><v>0.5.0</v><s>beta</s></r>
+ <r><v>0.4.0</v><s>beta</s></r>
+ <r><v>0.3.11</v><s>alpha</s></r>
+ <r><v>0.3.10</v><s>alpha</s></r>
+</a>
+<deps>
+ <v>0.3.10</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.5&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.3.11</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.5&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.4.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.5&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.5.0</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:5:&quot;gnupg&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.6.0</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:5:&quot;gnupg&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.7.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.7.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0RC1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.1.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.2.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.3.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:4:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:5:&quot;posix&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.3.1</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:5:&quot;posix&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.3.2</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.1&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:2:&quot;os&quot;;a:2:{s:4:&quot;name&quot;;s:7:&quot;windows&quot;;s:9:&quot;conflicts&quot;;s:0:&quot;&quot;;}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:5:&quot;posix&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_DiffieHellman</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>New BSD License</l>
+ <s>Implementation of Diffie-Hellman Key Exchange cryptographic protocol for PHP5</s>
+ <d>Implementation of the Diffie-Hellman Key Exchange cryptographic protocol
+in PHP5. Enables two parties without any prior knowledge of each other
+establish a secure shared secret key across an insecure channel
+of communication.</d>
+ <r xlink:href="/rest/r/crypt_diffiehellman"/>
+</p>
+<a>
+ <r><v>0.2.6</v><s>beta</s></r>
+ <r><v>0.2.5</v><s>beta</s></r>
+ <r><v>0.2.3</v><s>beta</s></r>
+ <r><v>0.2.2</v><s>beta</s></r>
+ <r><v>0.2.1</v><s>beta</s></r>
+ <r><v>0.2.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.2.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.2</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:4:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:8:&quot;mbstring&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.3</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:4:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:8:&quot;mbstring&quot;;}}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.5</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:4:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:8:&quot;mbstring&quot;;}}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.6</v>
+ <d>a:2:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:9:&quot;extension&quot;;a:2:{i:0;a:1:{s:4:&quot;name&quot;;s:6:&quot;bcmath&quot;;}i:1;a:1:{s:4:&quot;name&quot;;s:8:&quot;mbstring&quot;;}}}s:8:&quot;optional&quot;;a:1:{s:9:&quot;extension&quot;;a:1:{s:4:&quot;name&quot;;s:3:&quot;gmp&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_HMAC2</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>New BSD License</l>
+ <s>Implementation of Hashed Message Authentication Code for PHP5</s>
+ <d>Implementation of Hashed Message Authentication Code for PHP5.
+This package may use the hash or mhash extensions when enabled to
+extend the range of cryptographic hash functions beyond the natively
+implemented MD5 and SHA1.</d>
+ <r xlink:href="/rest/r/crypt_hmac2"/>
+</p>
+<a>
+ <r><v>1.0.0</v><s>stable</s></r>
+ <r><v>0.2.1</v><s>beta</s></r>
+ <r><v>0.2.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.2.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>0.2.1</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.0.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.6&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_MicroID</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>New BSD License</l>
+ <s>PHP MicroID library.</s>
+ <d>Provides methods needed to generate and verify MicroIDs.</d>
+ <r xlink:href="/rest/r/crypt_microid"/>
+</p>
+<a>
+ <r><v>0.1.0</v><s>alpha</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.1.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Crypt_RC42</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Encryption">Encryption</ca>
+ <l>PHP</l>
+ <s>Encryption class for RC4 encryption for PHP 5</s>
+ <d>RC4 encryption class for PHP 5</d>
+ <r xlink:href="/rest/r/crypt_rc42"/>
+</p>
+<a>
+ <r><v>0.9.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.9.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}}}</d>
+</deps>
+</pi>
+</f>

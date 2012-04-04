@@ -13,7 +13,7 @@ class SelfUpdateCommand extends Command
         $opts->add('b|branch:','master, develop branch');
     }
 
-    public function execute()
+    public function execute($branch = 'master')
     {
         global $argv;
         $script = realpath( $argv[0] );
@@ -21,7 +21,7 @@ class SelfUpdateCommand extends Command
             throw new Exception("$script is not writable.");
         }
 
-        $branch = $this->options->branch ?: 'master';
+        $branch = $this->options->branch ?: $branch ?: 'master';
 
         // fetch new version phpbrew
         $this->logger->info("self updating ($branch)...");

@@ -12,13 +12,13 @@ namespace Onion\Dependency;
 
 
 /**
- * dependency manager
+ * dependency pool
  *
  * it's a dependency pool, contains packages and core dependencies like extension or php requirements.
  *
  * we use dependency resovlver to resolve the dependency tree of dependency manager.
  */
-class DependencyManager
+class DependencyPool
 {
     /**
      * contains packages
@@ -28,13 +28,13 @@ class DependencyManager
 
 
 
-    function hasPackage( \Onion\Package\PackageInterface $package)
+    function hasPackage($package)
     {
         return isset( $this->packagesById[ $package->getId() ] );
     }
 
 
-    function addPackage( \Onion\Package\PackageInterface $package)
+    function addPackage($package)
     {
         // check package
         if( isset( $this->packagesById[ $package->getId() ] ) ) {

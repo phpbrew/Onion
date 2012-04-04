@@ -8,9 +8,7 @@
  * file that was distributed with this source code.
  *
  */
-
 namespace Onion\Dependency;
-use Onion\Dependency\DependencyManager;
 
 /**
  *
@@ -25,22 +23,22 @@ class DependencyResolver
 
     function __construct()
     {
-        $this->manager = new DependencyManager;
+        $this->pool = new DependencyPool;
         $this->logger = \Onion\Application::getLogger();
     }
 
-    function resolvePearPackage(\Onion\Pear\Package $package)
+    function resolvePearPackage($package)
     {
-        if( $this->manager->hasPackage( $package ) ) {
+        if( $this->pool->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
             return;
         }
 
         // get installed version, compare version
-        $this->manager->addPackage($package);
+        $this->pool->addPackage($package);
 
         // get dependent package info
-        $this->logger->info( "Resolving PEAR package dependency: {$package->name}" );
+        $this->logger->info( "Resolving PEAR package dependency: {$package->getId()}" );
         $version = $package->latest;
 
         if( isset( $package->deps[ $version ]['required']['extension']) ) {
@@ -64,15 +62,15 @@ class DependencyResolver
 
             foreach( $pkgs as $dep ) {
                 $packageName = $dep['name'];
-                $channelHost = $dep['channel'];
+                $host = $dep['channel'];
 
-                $this->logger->info2("Discovering channel $channelHost for $packageName",1);
+                $this->logger->info2("Discovering channel $host for $packageName",1);
 
-                // discover pear channel
-                $discover = new \Onion\Pear\ChannelDiscover;
-                $channel = $discover->lookup( $channelHost );
-                $channel->prefetchPackagesInfo();
-                $depPackage = $channel->getPackage( $packageName );
+                $channel = new \PEARX\Channel( $host, array(
+                    'cache' => \Onion\Application::getInstance()->getCache(),
+                    'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
+                ));
+                $depPackage = $channel->findPackage( $packageName );
                 $this->resolvePearPackage( $depPackage );
             }
         }
@@ -81,53 +79,43 @@ class DependencyResolver
     function resolve( $package )
     {
         // expand package and package dependencies to package object
-        if( is_a( $package ,'\Onion\Package\Package' ) ) 
-        {
+        // if installed , check if upgrade is need ?
+        if( ! $package->local )
+            $this->pool->addPackage($package);
 
-            // if installed , check if upgrade is need ?
-            if( ! $package->local )
-                $this->manager->addPackage($package);
+        // expand package dependencies
+        $deps = $package->getDependencies();
+        foreach( $deps as $dep ) {
 
+            // Expand pear package (refacotr this to dependencyInfo object)
+            if( $dep['type'] == 'pear' ) {
+                $depPackageName = $dep['name'];
+                $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
+                if( $dep['resource']['type'] == 'channel' ) {
+                    $host = $dep['resource']['channel'];
 
-            // expand package dependencies
-            $deps = $package->getDependencies();
-            foreach( $deps as $dep ) {
+                    $channel = new \PEARX\Channel( $host , array( 
+                        'cache' => \Onion\Application::getInstance()->getCache(),
+                        'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
+                    ));
+                    $depPackage = $channel->findPackage( $depPackageName );
 
-                // Expand pear package (refacotr this to dependencyInfo object)
-                if( $dep['type'] == 'pear' ) {
-                    $depPackageName = $dep['name'];
-                    $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
-                    if( $dep['resource']['type'] == 'channel' ) {
-                        $channelHost = $dep['resource']['channel'];
-
-                        // discover pear channel
-                        $discover = new \Onion\Pear\ChannelDiscover;
-                        $channel = $discover->lookup( $channelHost );
-                        $channel->prefetchPackagesInfo();
-                        $depPackage = $channel->getPackage( $depPackageName );
-                        $this->resolvePearPackage( $depPackage );
-                    }
-                }
-                elseif( $dep['type'] == 'extension' ) {
-                    $depExtensionName = $dep['name'];
-                    $this->logger->info2("Tracking dependency for extension: {$dep['name']} ..." , 1);
+                    // discover pear channel
+                    // $channel->prefetchPackagesInfo();
+                    // $depPackage = $channel->getPackage( $depPackageName );
+                    $this->resolvePearPackage( $depPackage );
                 }
             }
-        }
-        elseif( is_a( $package , '\Onion\Package\PearPackage' ) ) {
-            // xxx: support pear package
-
-        }
-        elseif( is_a( $package , '\Onion\Package\LibraryPackage' ) ) {
-            // xxx: support library package
-
-
+            elseif( $dep['type'] == 'extension' ) {
+                $depExtensionName = $dep['name'];
+                $this->logger->info2("Tracking dependency for extension: {$dep['name']} ..." , 1);
+            }
         }
     }
 
-    function getManager()
+    public function getPool()
     {
-        return $this->manager;
+        return $this->pool;
     }
 
 }
