@@ -10,11 +10,12 @@
  */
 namespace Onion\Dependency;
 
+
+
 /**
  *
  * $dr = new DependencyResolver;
  * $dependencyQueue = $dr->resolve( Onion\Package\Package $package );
- *
  */
 class DependencyResolver 
 {
@@ -144,6 +145,7 @@ class DependencyResolver
             elseif( $dep['type'] == 'extension' ) {
                 $depExtensionName = $dep['name'];
                 $this->logger->info2("Tracking dependency for extension: {$dep['name']} ..." , 1);
+                // XXX:
             }
         }
     }

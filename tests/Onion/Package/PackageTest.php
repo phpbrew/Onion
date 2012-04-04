@@ -2,6 +2,8 @@
 
 class PackageTest extends PHPUnit_Framework_TestCase
 {
+
+
 	function testPackage()
 	{
 		$package = new Onion\Package\Package;
@@ -26,7 +28,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
 		ok( $package->getDependencies() );
 
 		foreach( $package->getDependencies() as $dep ) {
-
+			ok( $dep );
 		}
 	}
 }
