@@ -1,8 +1,9 @@
 
 version 1.2.0  - 三  4/ 4 15:04:42 2012
-    - Refactor PEAR channel discover, parser.
-    - Clean up dependency resolver.
-    - Fix package parsring.
+    - Refactored PEAR channel discover, parser.
+    - Add ProgressStar to CurlKit
+    - Cleaned up dependency resolver.
+    - Fixed package parsring.
 
 version 1.1.0  - 一  3/19 19:16:58 2012
     - Add CacheKit support.
