@@ -7,7 +7,7 @@ class CurlDownloaderTest extends PHPUnit_Framework_TestCase
         $downloader = new CurlKit\CurlDownloader;
         ok( $downloader );
 
-        $content = $downloader->request( 'http://github.com' );
+        $content = $downloader->request( 'http://pear.corneltek.com/channel.xml' );
         ok( $content );
     }
 }
