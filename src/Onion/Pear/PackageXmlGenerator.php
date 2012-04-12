@@ -144,6 +144,9 @@ XML;
 			$customRoles = $config->get('roles');
             if( $customRoles ) {
                 foreach( $customRoles as $pattern => $role ) {
+                    if (in_array($pattern, $roles['test'])) {
+                        continue;
+                    }
                     $logger->debug( "treat \"$pattern\" as \"$role\" role" , 1 );
                     $files = $this->addPathByRole( $pattern , $role );
                     $filelist = array_merge( $filelist, $files);
@@ -264,7 +267,7 @@ XML;
 			foreach( $iterator as $path ) {
 				if( $path->isFile() ) {
                     $filepath = $path->getPathname();
-                    $list[] = $this->buildContentFile( $path, $role, $baseDir );
+                    $list[(string) $path] = $this->buildContentFile( $path, $role, $baseDir );
 				}
 			}
 		}
@@ -272,7 +275,7 @@ XML;
 			$files = glob($path);
 			foreach( $files as $filename ) {
 				$fileinfo = new SplFileInfo($filename);
-                $list[] = $this->buildContentFile( $fileinfo , $role );
+                $list[(string) $filename] = $this->buildContentFile( $fileinfo , $role );
 			}
 		}
         return $list;

@@ -35,4 +35,24 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
 
         // do validations from xsd file.
 	}
+
+    function test2()
+    {
+        $logger = \Onion\Application::getLogger();
+        $logger->setLevel( 0 );
+
+        $config = new \Onion\PackageConfigReader();
+        $config->setLogger( $logger );
+
+        $package = $config->read( 'package.ini' );
+        $package->config->array['roles']['src'] = 'php';
+
+        $generator = new \Onion\Pear\PackageXmlGenerator( $package );
+        $generator->setLogger( $logger );
+
+        $installElement = '<install name="src/Onion/Application.php" as="Onion/Application.php"/>';
+        $generatedXml = $generator->generate();
+
+        is(1, substr_count($generatedXml, $installElement), 'Only one install should appear per file.');
+    }
 }
