@@ -127,9 +127,22 @@ class ConfigContainer
         return new ArrayIterator($this->array);
     }
 
+    public function getRequires()
+    {
+        $requires = array();
+
+    }
+
     public function getChannels()
     {
-
+        $channels = array();
+        foreach( $this->array as $key => $options ) {
+            if( preg_match('/^channel\s+"?(\w+)"?/i', $key, $regs ) ) {
+                $name = $regs[1];
+                $channels[ $name ]  = $options;
+            }
+        }
+        return $channels;
     }
 
     public function getResources()
