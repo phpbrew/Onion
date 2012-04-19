@@ -353,6 +353,8 @@ the login data:
 - Login (Pseudo mechanism)
 - SCRAM</d>
  <r xlink:href="/rest/r/auth_sasl"/>
+ <dc>pear.php.net</dc>
+ <dp> Auth_SASL2</dp>
 </p>
 <a>
  <r><v>1.0.6</v><s>stable</s></r>
@@ -658,6 +660,7 @@ to obtain the user's id - including your own code.</d>
  <r xlink:href="/rest/r/auth_prefmanager"/>
 </p>
 <a>
+ <r><v>1.2.1</v><s>stable</s></r>
  <r><v>1.2.0</v><s>stable</s></r>
  <r><v>1.1.4</v><s>stable</s></r>
  <r><v>1.1.3</v><s>stable</s></r>
@@ -753,6 +756,11 @@ to obtain the user's id - including your own code.</d>
 
 <deps>
  <v>1.2.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.4.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:2:&quot;DB&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.7.0&quot;;}}}</d>
+</deps>
+
+<deps>
+ <v>1.2.1</v>
  <d>a:1:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.4.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.0&quot;;}s:7:&quot;package&quot;;a:3:{s:4:&quot;name&quot;;s:2:&quot;DB&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.7.0&quot;;}}}</d>
 </deps>
 </pi>
@@ -957,6 +965,31 @@ Auth_PrefManager2 supports data containers to allow reading/writing with differe
 <deps>
  <v>0.4.0</v>
  <d>a:2:{s:8:&quot;required&quot;;a:3:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;4.2.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:7:&quot;1.4.0b1&quot;;}s:7:&quot;package&quot;;a:2:{i:0;a:3:{s:4:&quot;name&quot;;s:4:&quot;PEAR&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.3.1&quot;;}i:1;a:3:{s:4:&quot;name&quot;;s:8:&quot;LiveUser&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:7:&quot;0.16.12&quot;;}}}s:8:&quot;optional&quot;;a:1:{s:7:&quot;package&quot;;a:6:{i:0;a:3:{s:4:&quot;name&quot;;s:3:&quot;Log&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.7.0&quot;;}i:1;a:3:{s:4:&quot;name&quot;;s:2:&quot;DB&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.6.0&quot;;}i:2;a:3:{s:4:&quot;name&quot;;s:3:&quot;MDB&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;1.1.4&quot;;}i:3;a:3:{s:4:&quot;name&quot;;s:4:&quot;MDB2&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;s:3:&quot;min&quot;;s:5:&quot;2.1.0&quot;;}i:4;a:2:{s:4:&quot;name&quot;;s:8:&quot;XML_Tree&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}i:5;a:2:{s:4:&quot;name&quot;;s:9:&quot;Crypt_RC4&quot;;s:7:&quot;channel&quot;;s:12:&quot;pear.php.net&quot;;}}}}</d>
+</deps>
+</pi>
+<pi>
+<p><n>Auth_SASL2</n>
+ <c>pear.php.net</c>
+ <ca xlink:href="/rest/c/Authentication">Authentication</ca>
+ <l>BSD</l>
+ <s>Abstraction of various SASL mechanism responses.
+
+Rewritten to take advantage of PHP5 style &amp;amp; syntax</s>
+ <d>Provides code to generate responses to common SASL mechanisms, including:
+- Digest-MD5
+- Cram-MD5
+- Plain
+- Anonymous
+- Login (Pseudo mechanism)
+- SCRAM</d>
+ <r xlink:href="/rest/r/auth_sasl2"/>
+</p>
+<a>
+ <r><v>0.1.0</v><s>beta</s></r>
+</a>
+<deps>
+ <v>0.1.0</v>
+ <d>a:1:{s:8:&quot;required&quot;;a:2:{s:3:&quot;php&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;5.0.0&quot;;}s:13:&quot;pearinstaller&quot;;a:1:{s:3:&quot;min&quot;;s:5:&quot;1.4.3&quot;;}}}</d>
 </deps>
 </pi>
 <pi>
