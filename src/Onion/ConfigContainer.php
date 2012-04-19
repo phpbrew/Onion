@@ -131,18 +131,18 @@ class ConfigContainer
     {
         $requires = array();
 
-    }
+        // parse require section
 
-    public function getChannels()
-    {
-        $channels = array();
+
+
+        // parse special require section
         foreach( $this->array as $key => $options ) {
-            if( preg_match('/^channel\s+"?(\w+)"?/i', $key, $regs ) ) {
+            if( preg_match('/^require\s+"?(\w+)"?/i', $key, $regs ) ) {
                 $name = $regs[1];
-                $channels[ $name ]  = $options;
+                $requires[ $name ]  = $options;
             }
         }
-        return $channels;
+        return $requires;
     }
 
     public function getResources()
