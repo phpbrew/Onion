@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-04-23</date>
-  <time>18:57:51</time>
+  <time>19:00:04</time>
   <version>
     <release>1.2.1</release>
     <api>1.2.1</api>
@@ -71,7 +71,7 @@
       <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="32b7c4bd4e42dd0fe6d35f56379610c0"/>
       <file name="src/CurlKit/ProgressBar.php" role="php" md5sum="c568810361f861fd873e1d2bba789630"/>
       <file name="src/CurlKit/ProgressStar.php" role="php" md5sum="83633f0639b36f086e897b89de4de082"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="d1d20e153bc98f391b0265cb235863d2"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="3ce1363b71e7336cfd0453a58f04bde7"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/BundleCommand.php" role="php" md5sum="05c07433bf9ea6f6f45ed543912ddf9e"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
@@ -111,7 +111,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="1c556d0932b4491f96366f2a43636b91"/>
+      <file name="onion" role="script" md5sum="774a2468d488436e41f8c97b86dedca7"/>
       <file name="Changes.md" role="doc" md5sum="e47b693aa8e4bca959b5a2495b7d9034"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="211179b067c3132f0ec32bca6d58fd08"/>
