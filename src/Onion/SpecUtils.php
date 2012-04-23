@@ -80,7 +80,7 @@ class SpecUtils
             if( count($regs) == 4 ) {
                 list($orig,$name,$user,$email) = $regs;
                 $author['name'] = $name;
-                // $author['user'] = $user;
+                $author['user'] = $user;
                 $author['email'] = $email;
             }
             elseif( count($regs) == 3 ) {
