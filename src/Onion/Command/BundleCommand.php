@@ -55,15 +55,8 @@ class BundleCommand extends Command
         $dr->resolve( $package );
 
         $pool = $dr->getPool();
-        $packages = $pool->getPackages();
+        // $packages = $pool->getPackages();
 
-        // var_dump( $packages ); 
-        foreach( $packages as $package ) {
-            // ok( $package );
-            // ok( $package->getId() );
-            // echo get_class( $package ) . "\n";
-            // echo $package->getId() . "\n";
-        }
         $installer = new \Onion\Installer( $pool );
         $installer->install();
 		$logger->info('Done');

@@ -9,7 +9,6 @@ $classLoader = new \Universal\ClassLoader\SplClassLoader(array(
     'CLIFramework' => 'vendor/pear',
     'GetOptionKit' => 'vendor/pear',
     'TestApp' => 'tests',
-    // 'Pyrus' => '/Users/c9s/git/others/php/pyrus/Pyrus/src',
 ));
 $classLoader->useIncludePath(false);
 $classLoader->register();
