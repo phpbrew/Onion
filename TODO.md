@@ -1,5 +1,8 @@
 TODO
 ====
+* system-wide install support
+* install dir option support
+
 * support github installation
 * bundle dependencies into ./local/ and ./onion.lock (json)
 
