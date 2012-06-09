@@ -5,10 +5,13 @@ use CurlKit\Progress\ProgressBar;
 
 class CurlDownloaderFactory 
 {
-    static function create() 
+    static function create($quiet = false) 
     {
-        $d = new CurlDownloader;
-        $d->setProgressHandler( new ProgressBar );
-        return $d;
+        if( $quiet ) {
+            return new CurlDownloader();
+        }
+        return new CurlDownloader( array( 
+            'progress' => new ProgressBar
+        ));
     }
 }
