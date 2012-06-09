@@ -14,9 +14,9 @@ use CLIFramework\Command;
 use Onion\Dependency\DependencyResolver;
 
 /**
- * Bundle dependencies
+ * Bundle/Install dependencies
  */
-class BundleCommand extends Command
+class InstallCommand extends Command
 {
 
     function brief()
@@ -39,7 +39,7 @@ class BundleCommand extends Command
 
     function execute()
     {
-		$logger = $this->getLogger();
+		$logger = $this->logger;
 
         // convert package.ini to package.xml
 		if( ! file_exists('package.ini') ) {
