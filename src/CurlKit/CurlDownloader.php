@@ -37,8 +37,16 @@ class CurlDownloader
     public $connectionTimeout = 10;
     public $timeout = 30;
 
+    public $progress;
 
-    public function newCurlResource( $extra = array() ) 
+    public function __construct($options = array() )
+    {
+        if( isset($options['progress']) ) {
+            $this->setProgressHandler( $options['progress'] );
+        }
+    }
+
+    public function createCurlResource( $extra = array() ) 
     {
         $ch = curl_init(); 
         curl_setopt_array($ch, (
@@ -75,6 +83,7 @@ class CurlDownloader
      */
     public function setProgressHandler( $handler ) 
     {
+        $this->progress = $handler;
         $this->options[ CURLOPT_NOPROGRESS ] = false;
         $this->options[ CURLOPT_PROGRESSFUNCTION ] = array($handler,'callback');
     }
@@ -93,7 +102,7 @@ class CurlDownloader
     public function request($url, $params = array() , $options = array() ) 
     {
         $options[ CURLOPT_URL ] = $url;
-        $ch = $this->newCurlResource( $options );
+        $ch = $this->createCurlResource( $options );
         if( ! $result = curl_exec($ch)) { 
             throw new Exception( $url . ":" . curl_error($ch) );
         }
