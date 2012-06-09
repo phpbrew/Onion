@@ -2,7 +2,9 @@
 namespace CurlKit;
 use Exception;
 
-class ProgressBar {
+class ProgressBar
+    implements ProgressInterface
+{
 
     function callback($downloadSize, $downloaded, $uploadSize, $uploaded)
     {
@@ -20,4 +22,3 @@ class ProgressBar {
 
 }
 
-?>

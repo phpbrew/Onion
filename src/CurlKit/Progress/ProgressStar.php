@@ -2,6 +2,7 @@
 namespace CurlKit;
 
 class ProgressStar
+    implements ProgressInterface
 {
     public $stars = array('-','\\','|','/');
     public $i = 0;
