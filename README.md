@@ -101,13 +101,6 @@ Install PEAR dependencies into vendor/ directory
 
     $ onion -d bundle
 
-### PEAR Features not support yet
-
-Current bundle command does not support PEAR special features like:
-
-- PEAR Task: like replace content, rename ... etc
-- PECL installation
-
 ## Compile package to Phar executable/library file
 
 An example, we use onion to compile our executable file `onion`:
@@ -225,7 +218,16 @@ To compile onion:
 
     $ scripts/compile.sh
 
+### PEAR Features not support yet
+
+Current bundle command does not support PEAR special features like:
+
+- PEAR Task: like replace content, rename ... etc
+- PECL installation
+
+
 ## Community
 
 If you have questions about Onion or want to help out, come and join us in the #onion-dev channel on `irc.freenode.net`.
+
 
