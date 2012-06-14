@@ -99,7 +99,7 @@ See:
 
 Install PEAR dependencies into vendor/ directory
 
-    $ onion -d bundle
+    $ onion install
 
 ## Compile package to Phar executable/library file
 
@@ -202,9 +202,9 @@ Make a fork from Onion and clone it:
     $ git clone git@github.com:c9s/Onion.git
     $ cd Onion
 
-Run onion to download bundles
+Run onion to install dependencies
 
-    $ ./onion -d bundle
+    $ ./onion install
 
 To run unit tests:
 
@@ -220,7 +220,7 @@ To compile onion:
 
 ### PEAR Features not support yet
 
-Current bundle command does not support PEAR special features like:
+Current `install` command does not support PEAR special features like:
 
 - PEAR Task: like replace content, rename ... etc
 - PECL installation
