@@ -1,12 +1,22 @@
 <?php
 class ConfigContainerTest extends PHPUnit_Framework_TestCase 
 {
+
+
+    function testFromPackageINI()
+    {
+        $container = new Onion\ConfigContainer( parse_ini_file('tests/data/package.ini', true) );
+        $resources = $container->getResources();
+        var_dump( $resources ); 
+    }
+
+
     function test()
     {
         $config = new \Onion\ConfigContainer(array( 
             'key' => array( 
                 'subkey.hash' => 1
-            )
+            ),
         ));
         ok( $config );
         $val = $config->get('key.subkey.hash');
@@ -25,5 +35,7 @@ class ConfigContainerTest extends PHPUnit_Framework_TestCase
         ok( $config->has('key') );
         ok( $config->has('key.subkey2') );
         ok( $config->has('key.subkey.hash3') );
+
+
     }
 }

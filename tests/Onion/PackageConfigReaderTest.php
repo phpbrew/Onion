@@ -12,6 +12,7 @@ namespace Onion;
 use PHPUnit_Framework_TestCase;
 class PackageConfigReaderTest extends PHPUnit_Framework_TestCase 
 {
+
     function test() 
     {
         $logger = new \CLIFramework\Logger;
@@ -39,6 +40,9 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
         ok( $pkg->summary );
         ok( $pkg->desc );
         ok( $pkg->stability );
+
+        $resources = $reader->getResources();
+        
 
         // var_dump( $pkg );
 

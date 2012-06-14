@@ -13,5 +13,5 @@ namespace Onion\Installer;
 class LibraryInstaller
     implements InstallerInterface
 {
-    function install( $package );
+    function install( $package ) {  }
 }

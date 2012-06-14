@@ -40,6 +40,8 @@ use Onion\Package\Package;
 class PackageConfigReader 
     implements LoggableInterface 
 {
+    public $config;
+
     public $logger;
 
     public $validate = false;
@@ -70,7 +72,6 @@ class PackageConfigReader
     function read($file)
     {
         $logger = $this->getLogger();
-
         $logger->info("Reading config file: $file");
 
         $ini = null;
@@ -84,7 +85,7 @@ class PackageConfigReader
         if( ! $ini )
             throw new Exception( "$file is empty." );
 
-        $config = new ConfigContainer( $ini );
+        $this->config = $config = new ConfigContainer( $ini );
 
         if( $this->validate ) {
 
@@ -312,15 +313,13 @@ EOT;
     /**
      * return external package resource
      */
-    public function getPackageResource($packageName)
+    public function getResources()
     {
-        if( $config->has( 'resource ' . $packageName ) )
-            return $config->get( 'resource ' . $packageName );
+        var_dump( $this->config ); 
+
     }
+
 }
-
-
-
 
 
 
