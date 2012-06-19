@@ -12,6 +12,7 @@
 namespace Onion\Command;
 use CLIFramework\Command;
 use Onion\Dependency\DependencyResolver;
+use Onion\Installer;
 
 /**
  * Bundle/Install dependencies
@@ -64,7 +65,7 @@ class InstallCommand extends Command
         $pool = $dr->getPool();
         // $packages = $pool->getPackages();
 
-        $installer = new \Onion\Installer( $pool );
+        $installer = new Installer( $pool );
         $installer->install();
 		$logger->info('Done');
     }
