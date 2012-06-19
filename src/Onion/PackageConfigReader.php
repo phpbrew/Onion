@@ -315,8 +315,6 @@ EOT;
      */
     public function getResources()
     {
-        var_dump( $this->config ); 
-
     }
 
 }
