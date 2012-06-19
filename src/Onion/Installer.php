@@ -17,8 +17,10 @@ namespace Onion;
 class Installer 
 {
     public $pool;
+
     public $workspace;
-    public $libpath;
+
+    public $libpath = 'vendor';
 
     /**
      * XXX: we should expand operations from pool,
@@ -34,15 +36,21 @@ class Installer
 
         // create workspace for temporary files
         if( isset($options['workspace']) ) {
-            $workspace = $options['workspace'];
+            $this->workspace = $options['workspace'];
         } else {
-            $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
+            $this->workspace = '.onion' 
+                . DIRECTORY_SEPARATOR 
+                . 'workspaces' . DIRECTORY_SEPARATOR . time();
+        }
+        if( !  file_exists($this->workspace) ) {
+            mkdir( $this->workspace , 0755, true );
         }
 
-        if( !  file_exists($workspace) )
-            mkdir( $workspace , 0755, true );
-
-        $this->libpath = 'vendor';
+        if( isset($options['lib_dir']) ) {
+            $this->libpath = $options['lib_dir'];
+        } else {
+            $this->libpath = 'vendor';
+        }
     }
 
     function getWorkspace()

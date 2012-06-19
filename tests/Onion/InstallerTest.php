@@ -4,7 +4,6 @@ class InstallerTest extends PHPUnit_Framework_TestCase
 {
     function test()
     {
-
         $reader = new Onion\PackageConfigReader;
         ok($reader);
 
