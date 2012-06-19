@@ -1,6 +1,7 @@
 <?php
-namespace CurlKit;
+namespace CurlKit\Progress;
 use Exception;
+use CurlKit\Progress\ProgressInterface;
 
 class ProgressBar
     implements ProgressInterface

@@ -1,5 +1,6 @@
 <?php
-namespace CurlKit;
+namespace CurlKit\Progress;
+use CurlKit\Progress\ProgressInterface;
 
 class ProgressStar
     implements ProgressInterface
