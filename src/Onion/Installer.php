@@ -12,7 +12,7 @@ namespace Onion;
 
 
 /**
- * main installer
+ * Main installer
  */
 class Installer 
 {
