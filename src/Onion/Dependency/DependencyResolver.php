@@ -95,7 +95,6 @@ class DependencyResolver
                 $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
                 if( $dep['resource']['type'] == 'channel' ) {
                     $host = $dep['resource']['channel'];
-
                     $channel = new \PEARX\Channel( $host , array( 
                         'cache' => \Onion\Application::getInstance()->getCache(),
                         'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(

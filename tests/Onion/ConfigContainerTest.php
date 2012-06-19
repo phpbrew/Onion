@@ -5,9 +5,9 @@ class ConfigContainerTest extends PHPUnit_Framework_TestCase
 
     function testFromPackageINI()
     {
-        $container = new Onion\ConfigContainer( parse_ini_file('tests/data/package.ini', true) );
+        $container = new Onion\ConfigContainer( parse_ini_file('tests/data/new_package.ini', true) );
         $resources = $container->getResources();
-        var_dump( $resources ); 
+        // var_dump( $resources ); 
     }
 
 
