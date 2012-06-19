@@ -21,7 +21,12 @@ class InstallCommand extends Command
 
     function brief()
     {
-        return 'use pear to install dependencies into current .local path';
+        return 'Install dependencies into current vendor path';
+    }
+
+    function options($opts)
+    {
+        $opts->add('b|base','base directory path');
     }
 
 
