@@ -14,6 +14,13 @@ use Phar;
 
 // xxx: use logger to parse
 
+
+
+/**
+ *
+ *
+ *
+ */
 class PearInstaller 
     implements InstallerInterface
 {
@@ -28,7 +35,6 @@ class PearInstaller
     function install( $package ) 
     {
         $logger = \Onion\Application::getLogger();
-
         $logger->info( "Installing {$package->name}" );
 
         // create temp dir
