@@ -65,8 +65,13 @@ class InstallCommand extends Command
         $pool = $dr->getPool();
         // $packages = $pool->getPackages();
 
-        $installer = new Installer( $pool );
-        $installer->install();
+        $installer = new Installer(array(
+            'pool' => $pool 
+        ));
+        $packages = $pool->getPackages();
+        foreach( $packages as $package ) {
+            $installer->install($package);
+        }
 		$logger->info('Done');
     }
 }

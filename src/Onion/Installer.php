@@ -27,9 +27,10 @@ class Installer
      * @param DependencyPool $pool
      * @param array $options
      */
-    function __construct($pool, $options = array() )
+    function __construct($options = array() )
     {
-        $this->pool = $pool;
+        if( isset($options['pool']) )
+            $this->pool = $options['pool'];
 
         // create workspace for temporary files
         if( isset($options['workspace']) ) {
@@ -59,13 +60,10 @@ class Installer
         return new Installer\PearInstaller( $this );
     }
 
-    function install()
+    function install($package)
     {
-        $packages = $this->pool->getPackages();
-        foreach( $packages as $package ) {
-            $installer = $this->getPearInstaller();
-            $installer->install( $package );
-        }
+        $pearInstaller = $this->getPearInstaller();
+        return $pearInstaller->install( $package );
     }
 }
 

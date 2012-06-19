@@ -44,17 +44,10 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
         ok( $pool );
 
         $packages = $pool->getPackages();
-
-        // var_dump( $packages ); 
         foreach( $packages as $package ) {
             ok( $package );
             ok( $package->name );
-            // echo get_class( $package ) . "\n";
-            // echo $package->name . "\n";
         }
-
-        $installer = new \Onion\Installer( $pool );
-        $installer->install();
     }
 }
 

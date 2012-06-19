@@ -65,14 +65,14 @@ class PackageConfigReader
 
     function __call($name,$arguments)
     {
-        if( $this->logger )
+        if( $this->logger && method_exists($this->logger,$name) ) {
             call_user_func_array( array($this->logger,$name) , $arguments );
+        }
     }
 
     function read($file)
     {
-        $logger = $this->getLogger();
-        $logger->info("Reading config file: $file");
+        $this->info("Reading config file: $file");
 
         $ini = null;
         try {
@@ -110,13 +110,13 @@ EOT;
 
         // set default values
         if( ! $config->has('package.summary') ) {
-            $logger->debug2("* summary is not defined., use the first paragraph from description by default.",1);
+            $this->debug2("* summary is not defined., use the first paragraph from description by default.",1);
             $descs = explode("\n",$config->get('package.desc'));
             $config->set('package.summary',$descs[0]);  # use first line desc as summary by default.
         }
 
         if( ! $config->has('package.license') ) {
-            $logger->debug2("* license is not defined., use PHP license by default.",1);
+            $this->debug2("* license is not defined., use PHP license by default.",1);
             $config->set('package.license','PHP');
         }
 
@@ -157,17 +157,17 @@ EOT;
         // read dependency sections
 
         // checking dependencies
-        $logger->info("Configuring dependencies...");
+        $this->info("Configuring dependencies...");
 
         if( $config->has('required') )
-            $logger->warn( 'section "required" has been renamed to "require".' );
+            $this->warn( 'section "required" has been renamed to "require".' );
 
 
         $requires = $config->get('require');
         if( ! $requires ) {
 
             // use default core dependency 
-            $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
+            $this->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $pkginfo->deps[] = array(
                 'type' => 'core',
                 'name' => 'php',
