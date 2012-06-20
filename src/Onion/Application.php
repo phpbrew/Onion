@@ -22,8 +22,7 @@ class Application extends \CLIFramework\Application
         return 'Onion - PHP Package builder.';
     }
 
-    function options($opts)
-    {
+    function options($opts) {
         parent::options($opts);
     }
 

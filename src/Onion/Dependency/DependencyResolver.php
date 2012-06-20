@@ -65,11 +65,10 @@ class DependencyResolver
                 $host = $dep['channel'];
 
                 $this->logger->info2("Discovering channel $host for $packageName",1);
-
                 $channel = new \PEARX\Channel( $host, array(
                     'cache' => \Onion\Application::getInstance()->getCache(),
                     'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(
-                        $this->logger->level == 0  // quiet
+                        $this->logger->level == 2 // quiet, but should throw error and exceptions
                     ),
                 ));
                 $depPackage = $channel->findPackage( $packageName );

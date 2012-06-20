@@ -7,6 +7,9 @@ class ProgressBar
     implements ProgressInterface
 {
 
+    public $done = false;
+    public $showSize = 10240;
+
     function callback($downloadSize, $downloaded, $uploadSize, $uploaded)
     {
         if( $downloadSize < $this->showSize ) {

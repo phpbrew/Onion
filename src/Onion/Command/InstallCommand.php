@@ -45,13 +45,13 @@ class InstallCommand extends Command
 
     function execute()
     {
-		$logger = $this->logger;
+        $logger = $this->logger;
 
         // convert package.ini to package.xml
-		if( ! file_exists('package.ini') ) {
-			$logger->error('package.ini not found, please define one.');
-			return false;
-		}
+        if( ! file_exists('package.ini') ) {
+            $logger->error('package.ini not found, please define one.');
+            return false;
+        }
 
         $reader = new \Onion\PackageConfigReader;
         $reader->setLogger( $logger );
@@ -67,6 +67,6 @@ class InstallCommand extends Command
 
         $installer = new Installer( $pool );
         $installer->install();
-		$logger->info('Done');
+        $logger->info('Done');
     }
 }

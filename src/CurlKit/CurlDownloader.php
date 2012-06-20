@@ -29,6 +29,7 @@ class CurlDownloader
         CURLOPT_RETURNTRANSFER => 1, 
         CURLOPT_FORBID_REUSE => 1, 
         CURLOPT_BUFFERSIZE => 64,
+        CURLOPT_NOPROGRESS => true,
     );
 
     public $refreshConnect = 1;

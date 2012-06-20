@@ -47,17 +47,23 @@ class PearInstaller
         $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $package->latest;
 
         $url = $package->getReleaseDistUrl( $package->latest );
+        $info = parse_url( $url );
 
         // download the package.
         $logger->info( "Downloading " . $package->name . '-' . $package->latest . "..." );
 
         $cwd = getcwd();
         chdir( $workspace );
-        system( "curl -O --progress-bar $url" );
+
+        $dm = new \Onion\Downloader\DownloaderManager;
+        $downloader = $dm->createDownloader($logger->level == 2);
+        $content = $downloader->request($url);
+
+        // store file
+        file_put_contents( basename($info['path']) , $content );
+
         chdir( $cwd );
 
-
-        $info = parse_url( $url );
         $sourceFile = $workspace . DIRECTORY_SEPARATOR . basename($info['path']);
         $archive = new \PharData($sourceFile);
 

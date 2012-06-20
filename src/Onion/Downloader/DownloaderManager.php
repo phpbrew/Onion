@@ -41,10 +41,10 @@ class DownloaderManager
             $this->downloaderFactory = 'Onion\Downloader\PPDownloaderFactory';
     }
 
-    public function createDownloader()
+    public function createDownloader($quiet = false)
     {
         $class = $this->downloaderFactory;
-        return $class::create();
+        return $class::create($quiet);
     }
 
     public function download($url)
@@ -52,7 +52,7 @@ class DownloaderManager
         $content = $this->cache->get($url);
         if( null === $content ) {
             $this->logger->debug2( "Fetching $url ..." , 1 );
-            $d = $this->createDownloader();
+            $d = $this->createDownloader( $this->logger->level == 2 );
             $content = $d->request( $url );
             $this->cache->set( $url, $content );
         }
