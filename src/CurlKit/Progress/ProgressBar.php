@@ -15,10 +15,10 @@ class ProgressBar
         if( $downloadSize < $this->showSize ) {
             return;
         }
+
         if( $this->done ) {
             return;
         }
-
 
         // print progress bar
         $percent = ($downloaded > 0 ? (float) ($downloaded / $downloadSize) : 0.0 );
@@ -32,6 +32,7 @@ class ProgressBar
             sprintf( ' %4d B %5d%%' , $downloaded , $percent * 100 );
 
         if( $downloadSize != 0 && $downloadSize === $downloaded ) {
+            $this->done = true;
             echo "\n";
         }
     }

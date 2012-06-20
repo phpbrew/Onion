@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2012-06-20</date>
-  <time>19:11:17</time>
+  <time>19:43:03</time>
   <version>
     <release>1.2.1</release>
     <api>1.2.1</api>
@@ -48,23 +48,23 @@
       <file name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="07b9dd0741b413ea10179624399a717c"/>
       <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="0b8dc2df83c22d73275b2e507805e033"/>
       <file name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="241bfc4290bfcf179049020d7d0c73d3"/>
-      <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="5bde45aee399345b36d0c08e599d8f02"/>
-      <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="06fdf8d8d704f512eef07fae7727b0fa"/>
+      <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="53dd735db3928653ef0e60bfb9048191"/>
+      <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="5e0bf07982793d8d88fef8c743182de3"/>
       <file name="src/CurlKit/Progress/ProgressInterface.php" role="php" md5sum="38c46e77d6045c6cb903e36fe2e2f214"/>
       <file name="src/CurlKit/Progress/ProgressStar.php" role="php" md5sum="45284e6cb587732d5dfd621fde9693d2"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="5ce7545e9ab5bddacf8310637a035218"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="72d603eb7a8e791da0824e059197d759"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
-      <file name="src/Onion/Command/InstallCommand.php" role="php" md5sum="af106cddb9ce3346c673c08993f88ada"/>
+      <file name="src/Onion/Command/InstallCommand.php" role="php" md5sum="2491c2b7e8fef5494b3b9593c9ad8aa4"/>
       <file name="src/Onion/Command/SelfUpdateCommand.php" role="php" md5sum="513e746b748e5cbdd8850039c617f0dc"/>
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="af19775b813f3c1374f1410907ba37b8"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyPool.php" role="php" md5sum="abaf2ae19245d7fc97a54a243a461b5d"/>
-      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="d8d360e957b61664cb72601fef24c412"/>
-      <file name="src/Onion/Downloader/CurlDownloaderFactory.php" role="php" md5sum="244a869a1c8a36c4ef0f06d250307571"/>
+      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="17601e35d859ad806079d3b297ce9528"/>
+      <file name="src/Onion/Downloader/CurlDownloaderFactory.php" role="php" md5sum="939531675b583a6a42d5078e1416c571"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
-      <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="185bed9dd5bc86ef5610c074f4eceda7"/>
+      <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="b36eca978d4fd667edf2cc8964b9adce"/>
       <file name="src/Onion/Downloader/PPDownloader.php" role="php" md5sum="c6a06617e2bac028a04f07430d501eaf"/>
       <file name="src/Onion/Downloader/PPDownloaderFactory.php" role="php" md5sum="f1155f1d393c767fdbc0f96f9545e6b1"/>
       <file name="src/Onion/Exception/InvalidConfigException.php" role="php" md5sum="cb6167db0b4c49f0b17a0e4164259951"/>
@@ -72,7 +72,7 @@
       <file name="src/Onion/INIParser.php" role="php" md5sum="ff0a811959e7e6f522d47cebe3fd5e27"/>
       <file name="src/Onion/Installer/InstallerInterface.php" role="php" md5sum="87264409060a1d76fd4baf3bdbca2880"/>
       <file name="src/Onion/Installer/LibraryInstaller.php" role="php" md5sum="d67f16cfac8106b5020892ffc7cb0e97"/>
-      <file name="src/Onion/Installer/PearInstaller.php" role="php" md5sum="0c19b540bc2aa2c13b5fcb0da5c86559"/>
+      <file name="src/Onion/Installer/PearInstaller.php" role="php" md5sum="d650c1864769ed23be819e60625d95aa"/>
       <file name="src/Onion/Installer.php" role="php" md5sum="e44a842ef2e3308e3bb5e4dceaf049cb"/>
       <file name="src/Onion/LoggableInterface.php" role="php" md5sum="c31c46dcff37284f35cadbed42e49978"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
@@ -93,7 +93,7 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="06868b77ef168896d815ec63fc064026"/>
+      <file name="onion" role="script" md5sum="029adea3ba94b5607a340debc1806276"/>
       <file name="Changes.md" role="doc" md5sum="e47b693aa8e4bca959b5a2495b7d9034"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.md" role="doc" md5sum="d04fad8e8f95ee0a0d90877997494aa4"/>
