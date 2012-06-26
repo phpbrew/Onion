@@ -68,8 +68,8 @@ EOT;
         else
             $logger->warn( '* docs/ or doc/ directory not found.',1 );
 
-        if( is_dir('scripts') || is_dir('script') || is_dir('bin') )
-            $logger->info2( '* found scripts/ || script/ || bin/ ', 1 );
+        if( is_dir('bin') )
+            $logger->info2( '* found bin/ ', 1 );
 
         $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader(array(
