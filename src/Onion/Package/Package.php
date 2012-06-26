@@ -74,8 +74,7 @@ class Package implements PackageInterface
             'doc'    => array('doc', 'docs','examples'),
             'test'  => (array) 'tests',
             'php'    => (array) 'src',
-            // xxx: better config for roles
-            'script' => (array) 'bin',
+            'script' => array('bin', 'scripts', 'script'),
             'data'   => (array) 'data',
         );
     }

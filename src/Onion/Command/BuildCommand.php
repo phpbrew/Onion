@@ -68,8 +68,8 @@ EOT;
         else
             $logger->warn( '* docs/ or doc/ directory not found.',1 );
 
-        if( is_dir('scripts') || is_dir('script') )
-            $logger->info2( '* found scripts/ || script ', 1 );
+        if( is_dir('scripts') || is_dir('script') || is_dir('bin') )
+            $logger->info2( '* found scripts/ || script/ || bin/ ', 1 );
 
         $logger->info( 'Configuring package.ini' );
         $config = new PackageConfigReader(array(
@@ -83,7 +83,8 @@ EOT;
     	$generator->setLogger( $logger );
 
         $logger->info('Writing package.xml...');
-	    $xml = $generator->generate();
+
+        $xml = $generator->generate();
     	file_put_contents( 'package.xml', $xml );
 
         # $this->logger->info('Validating package...');
