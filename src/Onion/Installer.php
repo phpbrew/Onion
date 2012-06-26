@@ -21,15 +21,23 @@ class Installer
     public $libpath;
 
     /**
-     * xxx: we should expand operations from pool,
+     * XXX: we should expand operations from pool,
      * installer should take operation object to process, not from dependency pool class.
+     *
+     * @param DependencyPool $pool
+     * @param array $options
      */
-    function __construct($pool)
+    function __construct($pool, $options = array() )
     {
         $this->pool = $pool;
 
         // create workspace for temporary files
-        $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
+        if( isset($options['workspace']) ) {
+            $workspace = $options['workspace'];
+        } else {
+            $workspace = $this->workspace = '.onion' . DIRECTORY_SEPARATOR . 'workspaces' . DIRECTORY_SEPARATOR . time();
+        }
+
         if( !  file_exists($workspace) )
             mkdir( $workspace , 0755, true );
 

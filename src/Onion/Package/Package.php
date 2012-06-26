@@ -27,8 +27,8 @@ class Package implements PackageInterface
     public $license;
     public $licenseUri;
 
-    /** 
-     * main stability 
+    /**
+     * main stability
      */
     public $stability;
 
@@ -57,7 +57,7 @@ class Package implements PackageInterface
      */
     public $deps = array();
 
-    /** 
+    /**
      * ConfigContainer object
      */
     public $config;
@@ -74,8 +74,7 @@ class Package implements PackageInterface
             'doc'    => array('doc', 'docs','examples'),
             'test'  => (array) 'tests',
             'php'    => (array) 'src',
-            // xxx: better config for roles
-            // 'script' => (array) 'bin',
+            'script' => (array) 'bin',
             'data'   => (array) 'data',
         );
     }

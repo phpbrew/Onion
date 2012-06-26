@@ -15,15 +15,14 @@ use CacheKit\FileSystemCache;
 class Application extends \CLIFramework\Application
 {
     const name = 'Onion';
-    const version = '1.2.1';
+    const version = '1.4.0';
 
     function brief()
     {
         return 'Onion - PHP Package builder.';
     }
 
-    function options($opts)
-    {
+    function options($opts) {
         parent::options($opts);
     }
 
@@ -33,7 +32,10 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'init' );
         $this->registerCommand( 'build' );
         $this->registerCommand( 'compile' );
-        $this->registerCommand( 'bundle' );
+        $this->registerCommand( 'install' );
+
+        // for backward-compatible (new command "install")
+        $this->registerCommand( 'bundle' , 'Onion\Command\InstallCommand' );
         $this->registerCommand( 'self-update' );
     }
 

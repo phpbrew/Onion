@@ -65,10 +65,11 @@ class DependencyResolver
                 $host = $dep['channel'];
 
                 $this->logger->info2("Discovering channel $host for $packageName",1);
-
                 $channel = new \PEARX\Channel( $host, array(
                     'cache' => \Onion\Application::getInstance()->getCache(),
-                    'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
+                    'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(
+                        $this->logger->level == 2 // quiet, but should throw error and exceptions
+                    ),
                 ));
                 $depPackage = $channel->findPackage( $packageName );
                 $this->resolvePearPackage( $depPackage );
@@ -93,10 +94,11 @@ class DependencyResolver
                 $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
                 if( $dep['resource']['type'] == 'channel' ) {
                     $host = $dep['resource']['channel'];
-
                     $channel = new \PEARX\Channel( $host , array( 
                         'cache' => \Onion\Application::getInstance()->getCache(),
-                        'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(),
+                        'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(
+                            $this->logger->level == 0 // --quiet option
+                        ),
                     ));
                     $depPackage = $channel->findPackage( $depPackageName );
 

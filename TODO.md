@@ -1,7 +1,11 @@
 TODO
 ====
+* system-wide install support
+* install dir option support
+
 * support github installation
 * bundle dependencies into ./local/ and ./onion.lock (json)
+* quite option should also disable downlaod progress
 
 * compile command: which compile source into phar file.
 * dist:   make php package. 

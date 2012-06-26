@@ -15,7 +15,7 @@ use Onion\GlobalConfig;
 use Onion\PackageConfigReader;
 use Onion\Pear\PackageXmlGenerator;
 
-class BuildCommand extends Command 
+class BuildCommand extends Command
     implements CommandInterface
 {
     function brief()
@@ -31,7 +31,7 @@ How To
     Define your package.ini file first.
 
     run the command below to build PEAR package:
-    
+
         $ onion.phar build
 
 EOT;
@@ -43,7 +43,7 @@ EOT;
         $opts->add('pyrus','use pyrus to build PEAR package');
     }
 
-    function execute() 
+    function execute()
     {
         // options result.
         $options = $this->getOptions();
@@ -68,9 +68,11 @@ EOT;
         else
             $logger->warn( '* docs/ or doc/ directory not found.',1 );
 
+        if( is_dir('bin') )
+            $logger->info2( '* found bin/ ', 1 );
 
         $logger->info( 'Configuring package.ini' );
-        $config = new PackageConfigReader(array( 
+        $config = new PackageConfigReader(array(
             'validate' => true,
         ));
         $config->setLogger( $logger );
@@ -81,7 +83,8 @@ EOT;
     	$generator->setLogger( $logger );
 
         $logger->info('Writing package.xml...');
-	    $xml = $generator->generate();
+
+        $xml = $generator->generate();
     	file_put_contents( 'package.xml', $xml );
 
         # $this->logger->info('Validating package...');
@@ -94,7 +97,7 @@ EOT;
         elseif( $options->pyrus ) {
             $logger->info('Building PEAR package with pyrus...');
             system('pyrus.phar package');
-        } 
+        }
         else {
             $notice =<<<EOS
 package.xml is generated. you can now build your PEAR package with:

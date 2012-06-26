@@ -12,16 +12,22 @@
 namespace Onion\Command;
 use CLIFramework\Command;
 use Onion\Dependency\DependencyResolver;
+use Onion\Installer;
 
 /**
- * Bundle dependencies
+ * Bundle/Install dependencies
  */
-class BundleCommand extends Command
+class InstallCommand extends Command
 {
 
     function brief()
     {
-        return 'use pear to install dependencies into current .local path';
+        return 'Install dependencies into current vendor path';
+    }
+
+    function options($opts)
+    {
+        $opts->add('b|base','base directory path');
     }
 
 
@@ -39,13 +45,13 @@ class BundleCommand extends Command
 
     function execute()
     {
-		$logger = $this->getLogger();
+        $logger = $this->logger;
 
         // convert package.ini to package.xml
-		if( ! file_exists('package.ini') ) {
-			$logger->error('package.ini not found, please define one.');
-			return false;
-		}
+        if( ! file_exists('package.ini') ) {
+            $logger->error('package.ini not found, please define one.');
+            return false;
+        }
 
         $reader = new \Onion\PackageConfigReader;
         $reader->setLogger( $logger );
@@ -59,8 +65,8 @@ class BundleCommand extends Command
         $pool = $dr->getPool();
         // $packages = $pool->getPackages();
 
-        $installer = new \Onion\Installer( $pool );
+        $installer = new Installer( $pool );
         $installer->install();
-		$logger->info('Done');
+        $logger->info('Done');
     }
 }
