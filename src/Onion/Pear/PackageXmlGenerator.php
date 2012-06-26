@@ -26,7 +26,7 @@ use SplFileInfo;
  *      $pkgxml->setUseDefault(true);
  *      $pkgxml->setReformat(true);
  *      $pkgxml->generate('package.xml');
- * 
+ *
  */
 class PackageXmlGenerator
     implements LoggableInterface
@@ -80,7 +80,7 @@ class PackageXmlGenerator
 </package>
 XML;
 
-            $xml              = new SimpleXMLElement($xmlstr); 
+            $xml              = new SimpleXMLElement($xmlstr);
             $xml->name        = $config->{ 'package.name' };
             $xml->channel     = $config->{ 'package.channel' };
             $xml->summary     = $config->{ 'package.summary' };
@@ -131,6 +131,7 @@ XML;
             $logger->info('Building contents section...');
 
 			$roles = $package->getDefaultStructureConfig();
+
             // default roles
             $filelist = array();
 			foreach( $roles as $role => $paths ) {
@@ -292,7 +293,7 @@ XML;
         if( $baseDir )
             $contentFile->installAs = substr( $filepath , strlen($baseDir) + 1 );
 
-        $this->logger->debug2( sprintf('%s  %-5s  %s', 
+        $this->logger->debug2( sprintf('%s  %-5s  %s',
             substr($contentFile->md5sum,0,6),
             $contentFile->role,
             $contentFile->file
