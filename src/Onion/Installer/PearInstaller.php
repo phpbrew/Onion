@@ -41,7 +41,6 @@ class PearInstaller
         // (PHP 5 >= 5.2.1)
         // $tmpDir = sys_get_temp_dir();
 
-        // $installTmpDir = $tmpDir . DIRECTORY_SEPARATOR . 'onion' . DIRECTORY_SEPARATOR . '.work' . DIRECTORY_SEPARATOR . time() ;
         $workspace = $this->mainInstaller->getWorkspace();
         $packageDir =  $workspace . DIRECTORY_SEPARATOR . $package->name;
         $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $package->latest;
