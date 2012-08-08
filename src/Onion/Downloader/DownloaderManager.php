@@ -15,6 +15,7 @@ use CurlKit\CurlDownloader;
 
 /**
  * Detect appropriate downloader for package, file download.
+ *
  */
 class DownloaderManager 
 {
@@ -40,10 +41,10 @@ class DownloaderManager
             $this->downloaderFactory = 'Onion\Downloader\PPDownloaderFactory';
     }
 
-    public function getDownloader()
+    public function createDownloader($quiet = false)
     {
         $class = $this->downloaderFactory;
-        return $class::create();
+        return $class::create($quiet);
     }
 
     public function download($url)
@@ -51,14 +52,14 @@ class DownloaderManager
         $content = $this->cache->get($url);
         if( null === $content ) {
             $this->logger->debug2( "Fetching $url ..." , 1 );
-            $d = $this->getDownloader();
+            $d = $this->createDownloader( $this->logger->level == 2 );
             $content = $d->request( $url );
             $this->cache->set( $url, $content );
         }
         return $content;
     }
 
-    function downloadXml($url)
+    public function downloadXml($url)
     {
         $xmlstr = $this->cache->get( $url );
         if( null === $xmlstr ) {

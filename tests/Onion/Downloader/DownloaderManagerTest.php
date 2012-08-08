@@ -16,7 +16,7 @@ class DownloaderManagerTest extends \PHPUnit_Framework_TestCase
     {
         $manager = new \Onion\Downloader\DownloaderManager;
         ok( $manager );
-        ok( $d = $manager->getDownloader() );
+        ok( $d = $manager->createDownloader() );
 
         if( getenv('TEST_REMOTE') ) {
             $xml = $manager->download( 'http://pear.corneltek.com/channel.xml' );

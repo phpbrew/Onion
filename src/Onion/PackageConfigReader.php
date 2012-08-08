@@ -37,6 +37,8 @@ use Onion\Package\Package;
  */
 class PackageConfigReader 
 {
+    public $config;
+    public $logger;
     public $validate = false;
 
     function __construct( $options = array() )
@@ -48,6 +50,9 @@ class PackageConfigReader
 
     function read($file)
     {
+        $logger = $this->getLogger();
+        $logger->info("Reading config file: $file");
+
         $ini = null;
         try {
             $ini = parse_ini_file( $file , true );
@@ -59,7 +64,7 @@ class PackageConfigReader
         if( ! $ini )
             throw new Exception( "$file is empty." );
 
-        $config = new ConfigContainer( $ini );
+        $this->config = $config = new ConfigContainer( $ini );
 
         // preprocess, validate sections only for package.ini
         $pkginfo = new Package;
@@ -109,28 +114,28 @@ class PackageConfigReader
         return $pkginfo;
     }
 
-	/**
-	 *
-	 * format 1:
-	 *		{channel}/{package name} = {version expression }
-	 *
-	 * format 2:
-	 *
-	 *		{package name} = {URI}
-	 *
-	 * format 3:
-	 *		{package name} = {resource id}
+    /**
      *
-	 *
-	 * */
-	function detectDependencyType($key,$value = null)
-	{
-		if( in_array($key, array('pearinstaller','php') ) ) {
-			return 'core';
-		}
-		// support extension/{extension name} = {version expression}
+     * format 1:
+     *      {channel}/{package name} = {version expression }
+     *
+     * format 2:
+     *
+     *      {package name} = {URI}
+     *
+     * format 3:
+     *      {package name} = {resource id}
+     *
+     *
+     * */
+    function detectDependencyType($key,$value = null)
+    {
+        if( in_array($key, array('pearinstaller','php') ) ) {
+            return 'core';
+        }
+        // support extension/{extension name} = {version expression}
         elseif( preg_match('/^ext(?:ension)?\/\w+/',$key) ) {
-			return 'extension';
+            return 'extension';
 
         } 
         // todo: check if there is a resource for this.
@@ -138,71 +143,76 @@ class PackageConfigReader
             // otherwisze it's a package
             return 'pear';
         }
-	}
+    }
 
 
-	/**
+    /**
      *
-	 */
-	function parseDependency($key,$value)
-	{
-		// format:  {channel host}/{package name} = {version expression}
-		if( preg_match('/^([a-zA-Z0-9.-]+)\/(\w+)$/' , $key , $regs ) ) 
-		{
-			if( $value != 'conflict' )
-			{
-				return array(
-					'type'     => 'pear',
-					'name'     => $regs[2],
-					'require' => SpecUtils::parseVersion($value),
-					'resource' => array( 
-						'type'     => 'pear',
-						'channel' => $regs[1],
-					)
-				);
-			}
-			else {
-				return array(
-					'type'     => 'pear',
-					'name'     => $regs[2],
-					'conflict' => 1,
-					'resource' => array( 
-						'type'     => 'pear',
-						'channel' => $regs[1],
-					)
-				);
-			}
+     */
+    function parseDependency($key,$value)
+    {
+        // format:  {channel host}/{package name} = {version expression}
+        if( preg_match('/^([a-zA-Z0-9.-]+)\/(\w+)$/' , $key , $regs ) ) 
+        {
+            if( $value != 'conflict' )
+            {
+                return array(
+                    'type'     => 'pear',
+                    'name'     => $regs[2],
+                    'require' => SpecUtils::parseVersion($value),
+                    'resource' => array( 
+                        'type'     => 'pear',
+                        'channel' => $regs[1],
+                    )
+                );
+            }
+            else {
+                return array(
+                    'type'     => 'pear',
+                    'name'     => $regs[2],
+                    'conflict' => 1,
+                    'resource' => array( 
+                        'type'     => 'pear',
+                        'channel' => $regs[1],
+                    )
+                );
+            }
 
-		}
-		elseif( preg_match('/^ext(?:ension)?\/(\w+)$/',$key,$regs) ) {
-			return array(
-				'type'    => 'extension',
-				'name'    => $regs[1],
-				'require' => SpecUtils::parseVersion($value),
-			);
-		}
-		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
-		{
-			// PEAR package with URI format
-			if( preg_match('/^https?:\/\//',$value) ) {
-				return array(
-					'type' => 'pear',
-					'name' => $key,
-					'resource' => array(
-						'type' => 'uri',
-						'uri'  => $value,
-					),
-				);
-			}
-		}
-		else {
-			throw new Exception("Unknown dependency type.");
-		}
-	}
+        }
+        elseif( preg_match('/^ext(?:ension)?\/(\w+)$/',$key,$regs) ) {
+            return array(
+                'type'    => 'extension',
+                'name'    => $regs[1],
+                'require' => SpecUtils::parseVersion($value),
+            );
+        }
+        elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
+        {
+            // PEAR package with URI format
+            if( preg_match('/^https?:\/\//',$value) ) {
+                return array(
+                    'type' => 'pear',
+                    'name' => $key,
+                    'resource' => array(
+                        'type' => 'uri',
+                        'uri'  => $value,
+                    ),
+                );
+            }
+        }
+        else {
+            throw new Exception("Unknown dependency type.");
+        }
+    }
+
+    /**
+     * return external package resource
+     */
+    public function getResources()
+    {
+    }
+
 }
-
-
-
 
 
 

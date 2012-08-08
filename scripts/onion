@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  *
  */
-
-require __DIR__ . '/../vendor/pear/Universal/ClassLoader/SplClassLoader.php';
-$classLoader = new \Universal\ClassLoader\SplClassLoader(array( 
-    'Onion' => 'src',
-    'CurlKit' => 'src',
-    'CLIFramework' => 'vendor/pear',
-    'PEARX' => 'vendor/pear',
-    'GetOptionKit' => 'vendor/pear',
+define('BASE_PATH', realpath(__DIR__ . '/../'));
+require BASE_PATH . '/vendor/pear/Universal/ClassLoader/SplClassLoader.php';
+$classLoader = new \Universal\ClassLoader\SplClassLoader(array(
+    'Onion' => BASE_PATH . '/src',
+    'CurlKit' => BASE_PATH . '/src',
+    'CLIFramework' => BASE_PATH . '/vendor/pear',
+    'PEARX' => BASE_PATH . '/vendor/pear',
+    'GetOptionKit' => BASE_PATH . '/vendor/pear',
 ));
 $classLoader->useIncludePath(true);
 $classLoader->register();

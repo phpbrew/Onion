@@ -10,6 +10,9 @@
  */
 namespace Onion;
 use Exception;
+use ArrayAccess;
+use IteratorAggregate;
+use ArrayIterator;
 
 
 /**
@@ -28,6 +31,7 @@ use Exception;
  *
  */
 class ConfigContainer 
+    implements ArrayAccess, IteratorAggregate
 {
     public $array;
 
@@ -94,4 +98,63 @@ class ConfigContainer
         }
         return $ref;
     }
+
+
+    
+    public function offsetSet($name,$value)
+    {
+        $this->array[ $name ] = $value;
+    }
+    
+    public function offsetExists($name)
+    {
+        return isset($this->array[ $name ]);
+    }
+    
+    public function offsetGet($name)
+    {
+        return $this->array[ $name ];
+    }
+    
+    public function offsetUnset($name)
+    {
+        unset($this->array[$name]);
+    }
+
+
+    public function getIterator() 
+    {
+        return new ArrayIterator($this->array);
+    }
+
+    public function getRequires()
+    {
+        $requires = array();
+
+        // parse require section
+
+
+
+        // parse special require section
+        foreach( $this->array as $key => $options ) {
+            if( preg_match('/^require\s+"?(\w+)"?/i', $key, $regs ) ) {
+                $name = $regs[1];
+                $requires[ $name ]  = $options;
+            }
+        }
+        return $requires;
+    }
+
+    public function getResources()
+    {
+        $resources = array();
+        foreach( $this->array as $key => $options ) {
+            if( preg_match('/^resource\s+"?(\w+)"?/i', $key, $regs ) ) {
+                $name = $regs[1];
+                $resources[ $name ]  = $options;
+            }
+        }
+        return $resources;
+    }
+
 }

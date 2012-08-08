@@ -22,8 +22,7 @@ class Application extends \CLIFramework\Application
         return 'Onion - PHP Package builder.';
     }
 
-    function options($opts)
-    {
+    function options($opts) {
         parent::options($opts);
     }
 
@@ -33,7 +32,10 @@ class Application extends \CLIFramework\Application
         $this->registerCommand( 'init' );
         $this->registerCommand( 'build' );
         $this->registerCommand( 'compile' );
-        $this->registerCommand( 'bundle' );
+        $this->registerCommand( 'install' );
+
+        // for backward-compatible (new command "install")
+        $this->registerCommand( 'bundle' , 'Onion\Command\InstallCommand' );
         $this->registerCommand( 'self-update' );
     }
 
@@ -44,7 +46,7 @@ class Application extends \CLIFramework\Application
             return $cache;
 
         $cache = new FileSystemCache(array(
-            'expiry' => 60 * 30, // 30 minutes
+            'expiry' => 60, // 60 seconds
             'cache_dir' => Paths::system_cache_dir(),
         ));
         return $cache;
