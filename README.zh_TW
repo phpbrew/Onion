@@ -1,0 +1,350 @@
+# 如何利用 Onion 管理 PHP 專案
+
+註：本文介紹內容轉載自[如何利用 Onion 管理 PHP 專案](http://www.openfoundry.org/tw/tech-column/8779--onion-php-)。
+
+相信只要是 Ruby 開發者，都會對 Gem 這個專案套件管理機制非常讚賞。而其中還有一個很棒的工具叫做 `bundler` ，它能在我們佈署專案時，協助我們處理專案所會相依的 gem 套件。
+
+PHP 在這方面雖然有 [PEAR](http://pear.php.net/) 這個套件管理庫，但是能夠處理專案相依套件的功能卻付之闕如。所幸網路高手 [c9s](https://github.com/c9s) 也發現了這個問題，因此他便開發了 [Onion](https://github.com/c9s/Onion) 這個非常好用的 PEAR 套件管理工具。
+
+在[利用 GitHub 建立自己的 PEAR 頻道](http://www.openfoundry.org/tw/tech-column/8733--github-pear-)一文中，筆者曾簡單地介紹 Onion 建立 PEAR 套件的方式，本文將繼續為大家介紹 Onion 的其他強項功能。
+
+## Onion 入門
+
+接下來筆者先為大家介紹 Onion 的基礎。
+
+### 安裝
+
+Onion 的安裝很簡單，只要透過 `curl` 指令就可以快速安裝：
+
+    $ curl -s http://install.onionphp.org/ | sh
+
+這樣一來， `onion` 指令會被安裝在個人家目錄的 `bin` 資料夾下。如果你不想放在這個路徑，那麼你也可以從以下路徑直接下載：
+
+    https://raw.github.com/c9s/Onion/master/onion
+    
+然後再將它設為可執行，並搬到可以被系統 PATH 環境變數所找到的路徑下即可 (例如 `/usr/local/bin/`) 。
+
+### 功能簡介
+
+安裝好 `onion` 指令後，直接輸入：
+
+    $ onion
+    
+應該會看到以下輸出： 
+
+    Onion - PHP Package builder.
+
+    Available options:
+               -v, --verbose   Print verbose message.
+                 -d, --debug   Print debug message.
+                 -q, --quiet   Be quiet.
+                  -h, --help   help
+                   --version   show version
+
+    Available commands:
+         help         - show help message.
+         init         - initialize package.ini file
+         build        - build PEAR package.
+         compile      - compile current source into Phar format library file.
+         install      - Install dependencies into current vendor path
+         bundle       - Install dependencies into current vendor path
+         self-update  - self-update
+         
+在 `onion` 中可以使用的指令有：
+
+- `help` ：顯示說明文件，如上所示。
+- `init` ：初始化 `package.ini` 文件。
+- `build` ：建立 PEAR 套件。
+- `compile` ：將目前的專案編譯為 Phar 格式的函式庫。
+- `install` ：在 `vendor` 目錄下，安裝目前專案所相依的套件。
+- `bundle` ：同 `install` 指令，為舊版相容用。
+- `self-update` ：自我更新成最新的版本。
+
+以下為大家介紹如何使用這些功能。
+
+### 專案初始化
+
+在新版的 Onion 中，我們可以直接利用 `init` 指令來幫我們建立一個預設的 `package.ini` 檔案，語法格式如下：
+
+    $ onion init <dir>        
+
+`package.ini` 是 Onion 用來管理套件所必要的檔案，稍後筆者會再為大家詳細介紹它。
+
+### 建立 PEAR 套件
+
+在[利用 GitHub 建立自己的 PEAR 頻道](http://www.openfoundry.org/tw/tech-column/8733--github-pear-)一文中，筆者已經介紹過 `build` 指令的用法：
+
+    $ onion build --pear
+    
+這樣一來， Onion 會透過 PEAR 的內建功能，為我們把目前的專案打包成 PEAR 可以接受的壓縮檔格式。
+
+### 編譯為 Phar 格式的函式庫
+
+PHP 的 Phar 格式類似 Java 中的 JAR 格式，可以將套件下所有的 PHP 檔案全部包成一個壓縮檔，方法如下：
+
+    $ onion compile --output example.phar 
+                    --executable 
+                    --bootstrap example.php 
+                    --classloader 
+                    --lib src 
+                    --lib vendor/pear
+    
+這麼一來我們會得到一個 `example.phar` 的檔案，而程式進入點則為專案中的 `example.php` 。以下方式就可以讓這個 Phar 檔直接執行：
+
+    $ mv example.phar example
+    $ chmod +x example
+    $ ./example
+    
+<p class="note">註：如果各位打算將套件打包成 Phar 檔的話，那麼要注意 require(_once) 及 include(_once) 所引入的檔案路徑，必須是相對的才行。</p>    
+
+### 安裝目前專案所相依的套件
+
+在開發 Ruby 專案時，我們可以用 Gemfile 來管理相依的套件；而這對 Onion 來說，也是很容易的事情。
+
+在 `package.ini` 中定義好專案所相依的 PEAR 套件後，就可以用以下指令來安裝：
+
+    $ onion install
+    
+接下來 Onion 就會把這些相依套件安裝在專案的 `vendor/pear` 路徑下。
+
+至於如何在 `package.ini` 設定相依套件，稍後筆者會再詳細介紹。
+
+### 自我更新版本
+
+[c9s](https://github.com/c9s) 所開發的 PHP 工具幾乎都有這個強大的功能，可以自行將工具的版本升級，指令如下：
+
+    $ onion self-update
+    
+這樣一來，就可以更新到最新的版本。
+
+## package.ini 常用設定介紹
+
+接下來筆者要為大家介紹 `package.ini` 中，幾個比較常用區段的設定說明。
+
+### package
+
+這個區段是在執行完 `init` 指令後，就會自動建立好的。 Onion 會事先提供： `name` 、 `version` 、 `desc` 及 `author` 等四個參數；以下為目前所支援的參數說明，標明「選用」的參數可以不寫：
+
+    [package]
+    ; 套件名稱
+    name = Your Package Name
+    
+    ; 套件描述
+    desc = Description
+    
+    ; 同 desc (選用)
+    summary = ....
+    
+    ; 套件的官方網站 (選用)
+    homepage = http://your.web.com
+    
+    ; 版權說明，預設為 PHP (選用)
+    license = PHP
+    
+    ; 版本號
+    version = 0.0.1
+    
+    ; API 的版本號，預設同 version (選用)
+    version.api = 0.0.1
+    
+    ; 套件頻道，在打包成 PEAR 壓縮檔時會需要用到
+    ; 預設為 pear.php.net (選用)
+    channel = pear.php.net
+    
+    ; 專案作者
+    author = Author Name <author@example.com>
+
+    ; 專案有多個作者時可以用以下方式定義 (選用)
+    authors[] = Author Name <author@example.com>
+    authors[] = Author Name
+
+    ; 程式碼貢獻者及維護者 (選用)
+    contributors[] = ...
+    maintainers[]  = ...
+
+### require
+
+這個區段主要描述專案所需要的環境及相依套件，它們在使用 `install` 指令時會用到；預設不會提供，需要自己加入。
+
+    [require]
+    ; PHP 版本，可加入 > 及 < 等前置字元
+    php = '> 5.3'
+    
+    ; PEAR 安裝程式版本
+    pearinstaller = '1.4.1'
+
+    ; 專案所相依的 PEAR 套件，格式為「頻道/套件名稱 = 版本號」
+    ; 其中版本號可以省略，這樣 Onion 會直接下載最新版本
+    pear.channel.net/package = 1.1
+
+    ; 相依套件的另一種寫法，直接使用 URI 定義
+    package = http://www.example.com/Foo-1.3.0
+
+    ; 專案會用到的 PHP extension
+    extensions[] = 'reflection'
+    extensions[] = 'ctype'
+    extensions[] = 'pcre'
+
+### roles
+
+這個區段主要在定檔套件中檔案的角色，它們會依照角色的不同，被安裝到適當的位置裡。
+
+    [roles]
+
+    ; 通常套件如果有提供 shell script 的話，可以將它放在 bin 目錄下
+    ; 並且給它 script 角色，那麼在透過 pear 指令安裝時，
+    ; 它就會被安裝為系統指令
+    bin/your_script = script
+
+    ; 其他副檔名的角色，支援萬用字元 (*)
+    *.md = doc
+    *.php = php
+    
+其他的區段在實務上筆者幾乎用不到，若是有使用上的疑問，可以請教原作者 [c9s](https://github.com/c9s) 。     
+
+## 範例
+
+以下筆者將用 Library 及 Web Applicaton 這兩種不同的範例，來介紹 Onion 在實際專案上是怎麼使用的。
+
+### Library
+    
+通常我們會希望開發出來的功能是可以被重複使用的，這時把它們打包成 library 是明智的選擇。這裡筆者將介紹
+
+首先我們要依照 Onion 所規範的方式來定義專案的目錄結構，假設專案的路徑為 `/path/to/library` ：
+
+    $ mkdir -p /path/to/library
+    $ cd /path/to/library
+    $ mkdir bin src docs tests
+    
+其中 `bin` 是放置 Shell Script ， `src` 是存放 PHP 程式原始碼； `docs` 則是用來存放文件， `tests` 則放置測試程式。
+
+接下來我們要建立 `package.ini` ，執行：
+
+    $ onion init .
+    
+建立 `package.ini` 後，修改裡面的內容：
+
+    [package]
+    name = UriFetcher
+    version = 0.0.1
+    desc = Fetch and cache data from URI
+    author = Jace Ju <jaceju@example.com>
+    channel = pear.jaceju.net
+    
+    [require]
+    php = "> 5.3"
+    pearinstaller = 1.4.1
+    
+    [roles]
+    bin/urifetcher = script
+    *.md = doc
+    *.php = php
+    
+這裡我虛構了 `UriFetcher` 這個套件，它必須在 PHP 5.3 以上版本執行；另外這個套件也提供 `urifetcher` 這個 Shell Script ；當然，這裡的內容只是範例，請大家依實際狀況調整。
+
+現在我們可以開始撰寫套件內容了，這邊就不再為大家詳細介紹程式內容，只單純列出這個套件的檔案清單：
+
+	library
+	├── bin
+	│   └── urifetcher
+	├── docs
+	│   └── INSTALL.md
+	├── src
+	│   ├── UriFetcher
+	│   │   ├── Cache.php
+	│   │   └── Curl.php
+	│   └── UriFetcher.php
+	├── tests
+	│   └── src
+	│       ├── UriFetcher
+	│       │   ├── CacheTest.php
+	│       │   └── CurlTest.php
+	│       └── UriFetcherTest.php
+	└── package.ini
+		        
+在 `src` 目錄下，所有 PHP 類別檔的命名與路徑都要按照 [PHP FIG PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) 的規範。
+
+而在 `tests` 目錄下，每個類別檔的單元測試程式一樣也是要遵守 PSR-0 規範。
+
+在開發的過程中，各位可以選擇使用 TDD 或其他慣用的開發流程。在確定功能無誤後，我們就可以建立 `package.xml` ，方便我們將套件安裝到系統上測試；這個步驟可以透過以下指令來執行：
+
+    $ onion build
+
+建立好 `package.xml` 後，就透過以下指令來進行安裝測試：
+
+    $ pear config-set auto_discover 1
+    $ pear install -f package.xml
+    
+另外因為我們有加入 `urifetcher` 這個 shell script ，所以可以利用以下指令來查看它是否有被正常安裝：
+
+    $ which urifetcher
+    
+在系統安裝測試無誤後，就可以按照[利用 GitHub 建立自己的 PEAR 頻道](http://www.openfoundry.org/tw/tech-column/8733--github-pear-)一文中所介紹的方式，來將套件打包並上傳到我們自訂的頻道。
+
+### Web Application
+
+Web Application 的開發方式其實與 Library 很像，差別在於它需要佈署在 Web Server 上面來向瀏覽者提供服務，而非透過程式的呼叫。
+
+通常它的目錄結構會如下所示：
+
+	webapp
+	├── appliation
+	│   ├── controllers
+	│   ├── models
+	│   └── views
+	├── public
+	│   ├── css
+	│   ├── img
+	│   ├── js
+	│   ├── lib
+	│   └── index.php
+	└── vendor
+	    └── pear
+	    
+當然大家也可以採用目前一些常見 Web Framework 所定義好的目錄結構，基本概念都是差不多的。
+
+第一步我們當然是先初始化我們的 `package.ini` ，這裡假設專案路徑為 `/path/to/webapp` ：
+
+    $ cd /path/to/webapp
+    $ onion init .
+
+然後修改 `package.ini` 的內容：
+
+    [require]
+    pear.twig-project.org/Twig =
+
+這裡筆者假設會在這個專案裡面會用到 Twig 這個樣版套件。
+
+各位應該會發現筆者在這裡只用到 `require` 這個區段，這是因為我們不需要打包 Web Application ，所以不需要把 `package.ini` 轉譯為 `package.xml` ；換句話說，在 Web Application 中，我們只需要透用 Onion 來管理相依套件。
+
+接下來不論在在開發、測試或正式上線等環境，我們都可以用以下的方式來安裝相依套件：
+
+    $ onion install
+    
+而在程式裡面，我們必須在進入點 (通常是 `index.php` ) 的最上方，加入這段 PHP 碼：
+
+    <?php
+    
+    // 加入此段程式碼
+    set_include_path(implode(PATH_SEPARATOR, array(
+        __DIR__ . '/vendor/pear',
+        get_include_path(),
+    )));
+    
+    // 自動載入的程式碼
+    // ...
+    
+這樣程式才能夠先取用 `vendor/pear` 中的相依套件。
+
+大致上筆者常用的功能就是這些，其他更進階的功能，各位可以在 Onion 的官網與作者討論。
+
+## 心得
+
+PHP 在第四版時，套件管理這個概念才正式進入 PHP ；而在實作上， PEAR 套件的開發方式也比其他語言的機制繁瑣。
+
+但即便如此，透過了 Onion 這個方便的工具，不但讓我們能夠輕鬆地管理專案的相依套件，也能夠讓我們能以簡單的方式來設定自行開發的套件。
+
+或許 PEAR 這個架構現在看起來是老舊了些，但還是有其他高手正努力為 PHP 開發更良好的套件管理機制。相信有一天，我們能夠以更方便更快速的方式，來打造屬於我們自己的 PHP 套件。
+
+
+
