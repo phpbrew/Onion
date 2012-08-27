@@ -16,7 +16,7 @@ class SelfUpdateCommand extends Command
     public function execute($branch = 'master')
     {
         global $argv;
-        $script = realpath( $argv[0] );
+        $script = preg_replace('/ /', '\ ', realpath( $argv[0] ));
         if( ! is_writable($script) ) {
             throw new Exception("$script is not writable.");
         }
