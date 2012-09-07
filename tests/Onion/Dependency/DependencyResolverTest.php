@@ -14,7 +14,7 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
 {
     function test() 
     {
-        $logger = \Onion\Application::getLogger();
+        $logger = \Onion\Application::getInstance()->getLogger();
         ok( $logger );
 
         $logger->setLevel(0);
