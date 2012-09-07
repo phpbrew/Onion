@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0        http://pear.php.net/dtd/tasks-1.0.xsd        http://pear.php.net/dtd/package-2.0        http://pear.php.net/dtd/package-2.0.xsd">
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0               http://pear.php.net/dtd/tasks-1.0.xsd               http://pear.php.net/dtd/package-2.0               http://pear.php.net/dtd/package-2.0.xsd">
   <name>Onion</name>
   <channel>pear.corneltek.com</channel>
   <summary>A Simple PHP Packager Builder.</summary>
@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-06-23</date>
-  <time>09:31:30</time>
+  <date>2012-09-07</date>
+  <time>23:40:09</time>
   <version>
-    <release>1.4.0</release>
-    <api>1.4.0</api>
+    <release>1.4.1</release>
+    <api>1.4.1</api>
   </version>
   <stability>
     <release>stable</release>
@@ -26,11 +26,10 @@
   <contents>
     <dir name="/">
       <file name="doc/InstallerFlow.md" role="doc" md5sum="c90dc4974c13f6234207143f9e3b3b51"/>
-      <file name="doc/Package.md" role="doc" md5sum="f91a237502bbcab7236e8e34e9585f68"/>
       <file name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
       <file name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
       <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
-      <file name="tests/bootstrap.php" role="test" md5sum="7bd7788a63eba52e0bec64e7cee5afbd"/>
+      <file name="tests/bootstrap.php" role="test" md5sum="439a1142f049bce2324633607e848b84"/>
       <file name="tests/CurlKit/CurlDownloaderTest.php" role="test" md5sum="e0f24c6fd4af0d7a68e76c4735ca8b37"/>
       <file name="tests/data/corneltek.channel.xml" role="test" md5sum="f0444e1a159c8cfdbfc80f37b0aac159"/>
       <file name="tests/data/new_package.ini" role="test" md5sum="3cd429dfe8d0ea2312d898985abcc942"/>
@@ -43,16 +42,16 @@
       <file name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
       <file name="tests/helpers.php" role="test" md5sum="4093047805c256a4455777de8b83b976"/>
       <file name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="5d3d920e7240abcdf589499803db112b"/>
-      <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="429c41f198014a15c650978d9f42de8c"/>
+      <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="f84110c36134f5784d11768853a165d6"/>
       <file name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="a4ef62fefbce968a615a50e2767c5f85"/>
       <file name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="07b9dd0741b413ea10179624399a717c"/>
-      <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="0b8dc2df83c22d73275b2e507805e033"/>
+      <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="eb3292682078f201de61091c95f5578b"/>
       <file name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="241bfc4290bfcf179049020d7d0c73d3"/>
       <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="53dd735db3928653ef0e60bfb9048191"/>
       <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="69762e25b69af0456266ce52f97b34c9"/>
       <file name="src/CurlKit/Progress/ProgressInterface.php" role="php" md5sum="38c46e77d6045c6cb903e36fe2e2f214"/>
       <file name="src/CurlKit/Progress/ProgressStar.php" role="php" md5sum="45284e6cb587732d5dfd621fde9693d2"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="72d603eb7a8e791da0824e059197d759"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="efa872ab35d8745f82a36377adb2fe45"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
@@ -61,7 +60,7 @@
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="af19775b813f3c1374f1410907ba37b8"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyPool.php" role="php" md5sum="abaf2ae19245d7fc97a54a243a461b5d"/>
-      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="17601e35d859ad806079d3b297ce9528"/>
+      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="cf0334fdad670c05009ddc5582040ba4"/>
       <file name="src/Onion/Downloader/CurlDownloaderFactory.php" role="php" md5sum="939531675b583a6a42d5078e1416c571"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="b36eca978d4fd667edf2cc8964b9adce"/>
@@ -72,7 +71,7 @@
       <file name="src/Onion/INIParser.php" role="php" md5sum="ff0a811959e7e6f522d47cebe3fd5e27"/>
       <file name="src/Onion/Installer/InstallerInterface.php" role="php" md5sum="87264409060a1d76fd4baf3bdbca2880"/>
       <file name="src/Onion/Installer/LibraryInstaller.php" role="php" md5sum="d67f16cfac8106b5020892ffc7cb0e97"/>
-      <file name="src/Onion/Installer/PearInstaller.php" role="php" md5sum="d650c1864769ed23be819e60625d95aa"/>
+      <file name="src/Onion/Installer/PearInstaller.php" role="php" md5sum="0e177fcb0bf5d9c213454ae2e6cbbc57"/>
       <file name="src/Onion/Installer.php" role="php" md5sum="e44a842ef2e3308e3bb5e4dceaf049cb"/>
       <file name="src/Onion/LoggableInterface.php" role="php" md5sum="c31c46dcff37284f35cadbed42e49978"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
@@ -84,7 +83,7 @@
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
       <file name="src/Onion/Pear/PackageXml/FileListInstall.php" role="php" md5sum="ee11a34471009c241655f8812aa36aa4"/>
-      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="d8f035f36366f95d79dd9361b45ad079"/>
+      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="c87a8b683cb2151a5dcf609252b244df"/>
       <file name="src/Onion/Pear/PackageXmlParser.php" role="php" md5sum="3403f918f761247c298adf4cb765b61b"/>
       <file name="src/Onion/Repository/PEAR.php" role="php" md5sum="862ec5210bcf13240214c7b8ded1bb92"/>
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
@@ -93,10 +92,10 @@
       <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
       <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
       <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="onion" role="script" md5sum="029adea3ba94b5607a340debc1806276"/>
+      <file name="onion" role="script" md5sum="e430277549d34bc0702458ca6063fbca"/>
       <file name="Changes.md" role="doc" md5sum="e47b693aa8e4bca959b5a2495b7d9034"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.md" role="doc" md5sum="d04fad8e8f95ee0a0d90877997494aa4"/>
+      <file name="README.md" role="doc" md5sum="53f202e3a48fdfd230f2be9a649f9ff0"/>
       <file name="TODO.md" role="doc" md5sum="6d38d14589b7a8e9a9e9c1fcae983aea"/>
     </dir>
   </contents>
@@ -133,7 +132,6 @@
   <phprelease>
     <filelist>
       <install name="doc/InstallerFlow.md" as="InstallerFlow.md"/>
-      <install name="doc/Package.md" as="Package.md"/>
       <install name="doc/SPEC-v2.md" as="SPEC-v2.md"/>
       <install name="doc/SPEC.md" as="SPEC.md"/>
       <install name="examples/package.ini" as="package.ini"/>
