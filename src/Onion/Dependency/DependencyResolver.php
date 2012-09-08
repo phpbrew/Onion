@@ -84,6 +84,8 @@ class DependencyResolver
         if( ! $package->local )
             $this->pool->addPackage($package);
 
+        $app = \Onion\Application::getInstance();
+
         // expand package dependencies
         $deps = $package->getDependencies();
         foreach( $deps as $dep ) {
@@ -95,9 +97,9 @@ class DependencyResolver
                 if( $dep['resource']['type'] == 'channel' ) {
                     $host = $dep['resource']['channel'];
                     $channel = new \PEARX\Channel( $host , array( 
-                        'cache' => \Onion\Application::getInstance()->getCache(),
+                        'cache' => $app->getCache(),
                         'downloader' => \Onion\Downloader\CurlDownloaderFactory::create(
-                            $this->logger->level == 0 // --quiet option
+                            $app->getLogger()->level == 2 // --quiet option
                         ),
                     ));
                     $depPackage = $channel->findPackage( $depPackageName );
