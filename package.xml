@@ -12,10 +12,10 @@
     <active>yes</active>
   </lead>
   <date>2012-09-08</date>
-  <time>17:22:03</time>
+  <time>17:22:28</time>
   <version>
-    <release>1.4.1</release>
-    <api>1.4.1</api>
+    <release>1.4.2</release>
+    <api>1.4.2</api>
   </version>
   <stability>
     <release>stable</release>
@@ -51,7 +51,7 @@
       <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="69762e25b69af0456266ce52f97b34c9"/>
       <file name="src/CurlKit/Progress/ProgressInterface.php" role="php" md5sum="38c46e77d6045c6cb903e36fe2e2f214"/>
       <file name="src/CurlKit/Progress/ProgressStar.php" role="php" md5sum="45284e6cb587732d5dfd621fde9693d2"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="f3e1853909e1b6d6d8cb92122db34670"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="a11ff4b9ecb514adee7d4aba09b6ce63"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="da0e916c71f7a8395d70c9d5ff4ce228"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
