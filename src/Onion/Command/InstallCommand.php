@@ -45,7 +45,7 @@ class InstallCommand extends Command
 
     function execute()
     {
-        $logger = $this->logger;
+        $logger = $this->getLogger();
 
         // convert package.ini to package.xml
         if( ! file_exists('package.ini') ) {

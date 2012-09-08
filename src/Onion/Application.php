@@ -22,7 +22,8 @@ class Application extends \CLIFramework\Application
         return 'Onion - PHP Package builder.';
     }
 
-    function options($opts) {
+    function options($opts) 
+    {
         parent::options($opts);
     }
 
@@ -55,8 +56,9 @@ class Application extends \CLIFramework\Application
     static function getInstance()
     {
         static $instance;
-        $instance = new self;
-        return $instance;
+        if($instance)
+            return $instance;
+        return $instance = new self;
     }
 
 }
