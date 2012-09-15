@@ -27,8 +27,8 @@ class Package implements PackageInterface
     public $license;
     public $licenseUri;
 
-    /** 
-     * main stability 
+    /**
+     * main stability
      */
     public $stability;
 
@@ -57,8 +57,8 @@ class Package implements PackageInterface
      */
     public $deps = array();
 
-    /** 
-     * ConfigContainer object
+    /**
+     * @var \Onion\ConfigContainer
      */
     public $config;
 
@@ -69,15 +69,20 @@ class Package implements PackageInterface
 
     public function getDefaultStructureConfig()
     {
-        // directory structure
-        return array(
-            'doc'    => array('doc', 'docs','examples'),
-            'test'  => (array) 'tests',
-            'php'    => (array) 'src',
-            // xxx: better config for roles
-            // 'script' => (array) 'bin',
-            'data'   => (array) 'data',
-        );
+        $configuredStructure = $this->config->get('structure');
+
+        if (empty($configuredStructure)) {
+            return array(
+                'doc'    => array('doc', 'docs','examples'),
+                'test'  => (array) 'tests',
+                'php'    => (array) 'src',
+                // xxx: better config for roles
+                // 'script' => (array) 'bin',
+                'data'   => (array) 'data',
+            );
+        }
+
+        return $configuredStructure;
     }
 
 
