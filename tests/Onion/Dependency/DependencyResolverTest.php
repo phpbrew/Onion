@@ -14,7 +14,7 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
 {
     function test() 
     {
-        $logger = \Onion\Application::getLogger();
+        $logger = \Onion\Application::getInstance()->getLogger();
         ok( $logger );
 
         $logger->setLevel(0);
@@ -38,6 +38,7 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
         ok( $pkg->getDependencies() );
 
         $dr = new \Onion\Dependency\DependencyResolver;
+        $dr->setLogger($logger);
         $dr->resolve( $pkg );
 
         $pool = $dr->getPool();
@@ -55,6 +56,17 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
 
         $installer = new \Onion\Installer( $pool );
         $installer->install();
+    }
+
+    public function testShouldSetLogger()
+    {
+        $logger = new \CLIFramework\Logger;
+
+        $dependencyResolver = new \Onion\Dependency\DependencyResolver;
+
+        $dependencyResolver->setLogger($logger);
+
+        $this->assertSame($logger, $dependencyResolver->getLogger());
     }
 }
 

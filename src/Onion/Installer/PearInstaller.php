@@ -34,7 +34,7 @@ class PearInstaller
 
     function install( $package ) 
     {
-        $logger = \Onion\Application::getLogger();
+        $logger = \Onion\Application::getInstance()->getLogger();
         $logger->info( "Installing {$package->name}" );
 
         // create temp dir

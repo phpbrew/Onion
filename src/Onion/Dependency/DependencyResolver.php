@@ -21,10 +21,20 @@ class DependencyResolver
     public $pool;
     public $logger;
 
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
     function __construct()
     {
         $this->pool = new DependencyPool;
-        $this->logger = \Onion\Application::getLogger();
+        $this->logger = \Onion\Application::getInstance()->getLogger();
     }
 
     function resolvePearPackage($package)
