@@ -11,8 +11,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-09-08</date>
-  <time>23:55:15</time>
+  <date>2012-09-17</date>
+  <time>01:32:21</time>
   <version>
     <release>1.4.2</release>
     <api>1.4.2</api>
@@ -42,9 +42,13 @@
       <file name="tests/data/pear2.channel.xml" role="test" md5sum="087a7d8bf8522cfcbfbb3019e2b01ddf"/>
       <file name="tests/helpers.php" role="test" md5sum="4093047805c256a4455777de8b83b976"/>
       <file name="tests/Onion/ConfigContainerTest.php" role="test" md5sum="5d3d920e7240abcdf589499803db112b"/>
-      <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="f84110c36134f5784d11768853a165d6"/>
+      <file name="tests/Onion/Dependency/DependencyResolverTest.php" role="test" md5sum="db976f93aa35456b526c5b61cd96d773"/>
       <file name="tests/Onion/Downloader/DownloaderManagerTest.php" role="test" md5sum="a4ef62fefbce968a615a50e2767c5f85"/>
+      <file name="tests/Onion/Package/fixtures/stub.ini" role="test" md5sum="ab4db697e89a6edf7a6a01a1f919b3be"/>
+      <file name="tests/Onion/Package/fixtures/stub_with_no_structure.ini" role="test" md5sum="3cd429dfe8d0ea2312d898985abcc942"/>
+      <file name="tests/Onion/Package/PackageTest.php" role="test" md5sum="5d74f815e322dee308be5f9030a61e1b"/>
       <file name="tests/Onion/PackageConfigReaderTest.php" role="test" md5sum="07b9dd0741b413ea10179624399a717c"/>
+      <file name="tests/Onion/Pear/fixtures/stub.ini" role="test" md5sum="b281bd797949f4df8b707d3600bff3a9"/>
       <file name="tests/Onion/Pear/PackageXmlGeneratorTest.php" role="test" md5sum="eb3292682078f201de61091c95f5578b"/>
       <file name="tests/Onion/Pear/PackageXmlParserTest.php" role="test" md5sum="241bfc4290bfcf179049020d7d0c73d3"/>
       <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="53dd735db3928653ef0e60bfb9048191"/>
@@ -60,7 +64,7 @@
       <file name="src/Onion/ConfigContainer.php" role="php" md5sum="af19775b813f3c1374f1410907ba37b8"/>
       <file name="src/Onion/Dependency/DependencyInfo.php" role="php" md5sum="4916cd00598a87fca95e362387320cfe"/>
       <file name="src/Onion/Dependency/DependencyPool.php" role="php" md5sum="abaf2ae19245d7fc97a54a243a461b5d"/>
-      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="c6cc6f56e121f4efe7f8f04bf069d697"/>
+      <file name="src/Onion/Dependency/DependencyResolver.php" role="php" md5sum="f98d8d71dbe555eafba08aab01635e5c"/>
       <file name="src/Onion/Downloader/CurlDownloaderFactory.php" role="php" md5sum="939531675b583a6a42d5078e1416c571"/>
       <file name="src/Onion/Downloader/DownloaderInterface.php" role="php" md5sum="d612a6b19e5761b7141fb4a7563cfa4f"/>
       <file name="src/Onion/Downloader/DownloaderManager.php" role="php" md5sum="b36eca978d4fd667edf2cc8964b9adce"/>
@@ -75,10 +79,10 @@
       <file name="src/Onion/Installer.php" role="php" md5sum="e44a842ef2e3308e3bb5e4dceaf049cb"/>
       <file name="src/Onion/LoggableInterface.php" role="php" md5sum="c31c46dcff37284f35cadbed42e49978"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
-      <file name="src/Onion/Package/Package.php" role="php" md5sum="cd9b2373a09de87fffdde9801edd34b7"/>
+      <file name="src/Onion/Package/Package.php" role="php" md5sum="4c6c7bd81c2714d05920a8cb2c3d3c5a"/>
       <file name="src/Onion/Package/PackageInterface.php" role="php" md5sum="7a619a551d50b5497e94592766984d38"/>
       <file name="src/Onion/Package/PearPackage.php" role="php" md5sum="d4a6652b2d309379aaf8017f95bcde2b"/>
-      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="713c0195d13cfe96528efe24d694bf7a"/>
+      <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="2f1d05d4988f9290a03918192200a59e"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
       <file name="src/Onion/Pear/PackageXml/ContentFile.php" role="php" md5sum="79aecec980404382b43ba872d981b70b"/>
@@ -126,6 +130,7 @@
       <package>
         <name>PEARX</name>
         <channel>pear.corneltek.com</channel>
+        <min>1.0.1</min>
       </package>
     </required>
   </dependencies>
@@ -150,7 +155,11 @@
       <install name="tests/Onion/ConfigContainerTest.php" as="Onion/ConfigContainerTest.php"/>
       <install name="tests/Onion/Dependency/DependencyResolverTest.php" as="Onion/Dependency/DependencyResolverTest.php"/>
       <install name="tests/Onion/Downloader/DownloaderManagerTest.php" as="Onion/Downloader/DownloaderManagerTest.php"/>
+      <install name="tests/Onion/Package/fixtures/stub.ini" as="Onion/Package/fixtures/stub.ini"/>
+      <install name="tests/Onion/Package/fixtures/stub_with_no_structure.ini" as="Onion/Package/fixtures/stub_with_no_structure.ini"/>
+      <install name="tests/Onion/Package/PackageTest.php" as="Onion/Package/PackageTest.php"/>
       <install name="tests/Onion/PackageConfigReaderTest.php" as="Onion/PackageConfigReaderTest.php"/>
+      <install name="tests/Onion/Pear/fixtures/stub.ini" as="Onion/Pear/fixtures/stub.ini"/>
       <install name="tests/Onion/Pear/PackageXmlGeneratorTest.php" as="Onion/Pear/PackageXmlGeneratorTest.php"/>
       <install name="tests/Onion/Pear/PackageXmlParserTest.php" as="Onion/Pear/PackageXmlParserTest.php"/>
       <install name="src/CurlKit/CurlDownloader.php" as="CurlKit/CurlDownloader.php"/>
