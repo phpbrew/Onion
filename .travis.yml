@@ -5,9 +5,10 @@ php:
 
 before_script:
   - phpenv rehash
+  - pear channel-discover pear.corneltek.com
+  - pear install corneltek/Universal
   - php bin/onion install
   - bash scripts/compile
   - php bin/onion build
-#   - ./scripts/compile.sh
 
 script: phpunit
