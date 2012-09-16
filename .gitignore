@@ -1,3 +1,4 @@
 .onion
 vendor
 tests/tmp
+.idea/
