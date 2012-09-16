@@ -37,8 +37,8 @@ use Onion\Package\Package;
  *      $pkgxml->generate('package.xml');
  *
  */
-class PackageConfigReader 
-    implements LoggableInterface 
+class PackageConfigReader
+    implements LoggableInterface
 {
     public $config;
 
@@ -76,7 +76,7 @@ class PackageConfigReader
 
         $ini = null;
         try {
-            $ini = parse_ini_file( $file , true );
+            $ini = $this->parseFile($file);
         }
         catch( Exception $e ) {
             throw new Exception( "Package.ini: $file syntax error: " . $e->getMessage() );
@@ -166,14 +166,14 @@ EOT;
         $requires = $config->get('require');
         if( ! $requires ) {
 
-            // use default core dependency 
+            // use default core dependency
             $logger->info2("* required section is not defined. use php 5.3 and pearinstaller 1.4 by default.",1);
             $pkginfo->deps[] = array(
                 'type' => 'core',
                 'name' => 'php',
                 'version' => array( 'min' => '5.3' ),
             );
-            $pkginfo->deps[] = array( 
+            $pkginfo->deps[] = array(
                 'type' => 'core',
                 'name' => 'pearinstaller',
                 'version' => array( 'min' => '1.4' ),
@@ -181,14 +181,14 @@ EOT;
         }
 
         if( $requires ) {
-            foreach( $requires as $key => $value ) 
+            foreach( $requires as $key => $value )
             {
                 $type = $this->detectDependencyType( $key , $value );
                 switch($type) {
 
                 case 'core':
                     $version = SpecUtils::parseVersion( $value );
-                    $pkginfo->deps[] = array( 
+                    $pkginfo->deps[] = array(
                         'type' => 'core',
                         'name' => $key,
                         'version' => $version,  /* [ min => , max => ] */
@@ -242,7 +242,7 @@ EOT;
         elseif( preg_match('/^ext(?:ension)?\/\w+/',$key) ) {
 			return 'extension';
 
-        } 
+        }
         // todo: check if there is a resource for this.
         else {
             // otherwisze it's a package
@@ -257,7 +257,7 @@ EOT;
 	function parseDependency($key,$value)
 	{
 		// format:  {channel host}/{package name} = {version expression}
-		if( preg_match('/^([a-zA-Z0-9.-]+)\/(\w+)$/' , $key , $regs ) ) 
+		if( preg_match('/^([a-zA-Z0-9.-]+)\/(\w+)$/' , $key , $regs ) )
 		{
 			if( $value != 'conflict' )
 			{
@@ -265,7 +265,7 @@ EOT;
 					'type'     => 'pear',
 					'name'     => $regs[2],
 					'version' => SpecUtils::parseVersion($value),
-					'resource' => array( 
+					'resource' => array(
 						'type'     => 'channel',
 						'channel' => $regs[1],
 					)
@@ -276,7 +276,7 @@ EOT;
 					'type'     => 'pear',
 					'name'     => $regs[2],
 					'conflict' => 1,
-					'resource' => array( 
+					'resource' => array(
 						'type'     => 'channel',
 						'channel' => $regs[1],
 					)
@@ -291,7 +291,7 @@ EOT;
 				'version' => SpecUtils::parseVersion($value),
 			);
 		}
-		elseif( preg_match('/^(\w+)$/',$key,$regs) ) 
+		elseif( preg_match('/^(\w+)$/',$key,$regs) )
 		{
 			// PEAR package with URI format
 			if( preg_match('/^https?:\/\//',$value) ) {
@@ -315,6 +315,32 @@ EOT;
      */
     public function getResources()
     {
+    }
+
+    private function parseFile($file)
+    {
+        $ini = parse_ini_file($file, true);
+        if (isset($ini['structure'])) {
+            $ini['structure'] = $this->parseCommaSeparatedListValue($ini['structure']);
+        }
+
+        return $ini;
+    }
+
+    private function parseCommaSeparatedListValue(array $entry)
+    {
+        foreach ($entry as $key => $value) {
+            if (false !== strpos($value, ',')) {
+                $list = explode(',', $value);
+                foreach ($list as $item) {
+                    $parsedStructure[$key][] = trim($item);
+                }
+            } else {
+                $parsedStructure[$key][] = $value;
+            }
+        }
+
+        return $parsedStructure;
     }
 
 }
