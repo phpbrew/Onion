@@ -6,7 +6,7 @@ php:
 before_script:
   - phpenv rehash
   - php onion install
-  - bash scripts/compile.sh
+  - bash scripts/compile
   - php onion build
 #   - ./scripts/compile.sh
 
