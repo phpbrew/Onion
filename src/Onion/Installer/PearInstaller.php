@@ -9,8 +9,9 @@
  *
  */
 namespace Onion\Installer;
-use Onion\Pear\PackageXmlParser;
 use Phar;
+use Onion\Pear\PackageXmlParser;
+use PEARX\Installer;
 
 // xxx: use logger to parse
 
@@ -27,12 +28,12 @@ class PearInstaller
     public $basepath = 'pear';
     public $mainInstaller;
 
-    function __construct($main)
+    public function __construct($main)
     {
         $this->mainInstaller = $main;
     }
 
-    function install( $package ) 
+    public function install( $package ) 
     {
         $logger = \Onion\Application::getInstance()->getLogger();
         $logger->info( "Installing {$package->name}" );
@@ -51,6 +52,7 @@ class PearInstaller
         // download the package.
         $logger->info( "Downloading " . $package->name . '-' . $package->latest . "..." );
 
+        // switch to workspace and download the package.
         $cwd = getcwd();
         chdir( $workspace );
 
@@ -60,54 +62,18 @@ class PearInstaller
 
         // store file
         file_put_contents( basename($info['path']) , $content );
-
         chdir( $cwd );
 
-        $sourceFile = $workspace . DIRECTORY_SEPARATOR . basename($info['path']);
-        $archive = new \PharData($sourceFile);
-
-        $logger->info( "Extracting ..." );
-        $archive->extractTo( $packageDir );
-
-
+        $tarFile = $workspace . DIRECTORY_SEPARATOR . basename($info['path']);
         $pearLibPath = $this->mainInstaller->libpath . DIRECTORY_SEPARATOR . $this->basepath;
-        $logger->debug2( "Install to $pearLibPath" );
-
         if( ! file_exists($pearLibPath) )
             mkdir( $pearLibPath , 0755, true );
 
-
-        // parse package.xml
-        $parser = new \Onion\Pear\PackageXmlParser( $packageDir . DIRECTORY_SEPARATOR . 'package.xml' );
-
-        // build file list, separate by roles
-        $contentFiles = $parser->getContentFiles();
-        $installFilelist = (array) $parser->getPhpReleaseFileList();
-        
-        $installMap = array();
-        foreach( $installFilelist as $install ) {
-            // var_dump( $install ); 
-            $installMap[ $install->file ] = $install->as;
-        }
-
-        // install files into it
-        foreach( $contentFiles as $file ) {
-            // install php code only (for now)
-            if( $file->role == 'php' ) {
-                $installFrom = $packageSourceDir . DIRECTORY_SEPARATOR . $file->file;
-                $installTo = $pearLibPath . DIRECTORY_SEPARATOR . $file->getInstallAs();
-                if( isset($installMap[ $file->file ]) ) {
-                    $as = $installMap[ $file->file ];
-                    $installTo = $pearLibPath . DIRECTORY_SEPARATOR . $as;
-                }
-
-                $dir = dirname( $installTo );
-                if( ! file_exists( $dir ) )
-                    mkdir( $dir , 0755 , true );
-
-                $logger->info2( "Install $installTo" ,1 );
-                copy( $installFrom , $installTo );
-            }
+        $installer = new \PEARX\Installer;
+        $installer->setWorkspace( $workspace );
+        $filelist = $installer->install( $tarFile, $pearLibPath );
+        foreach( $filelist as $installed ) {
+            $logger->debug( $installed->to , 1 );
         }
     }
 }
