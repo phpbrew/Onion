@@ -54,7 +54,6 @@ class InstallCommand extends Command
         }
 
         $reader = new \Onion\PackageConfigReader;
-        $reader->setLogger( $logger );
 
         $pkg = $reader->read( 'package.ini' );
         $pkg->local = 1; // dont install this
