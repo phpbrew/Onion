@@ -15,12 +15,7 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
 
     function test() 
     {
-        $logger = new \CLIFramework\Logger;
-        ok( $logger );
-        $logger->setLevel(0);
-
         $reader = new PackageConfigReader;
-        $reader->setLogger( $logger );
 
         ob_start();
         $reader->info( 'msg' );

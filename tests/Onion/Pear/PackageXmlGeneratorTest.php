@@ -21,7 +21,6 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
 		$logger->setLevel( 0 ); // quite 
 
         $config = new \Onion\PackageConfigReader();
-        $config->setLogger( $logger );
 		ok( $config );
 
         $package = $config->read( 'package.ini' );
@@ -42,7 +41,6 @@ class PackageXmlGeneratorTest extends \PHPUnit_Framework_TestCase
         $logger->setLevel( 0 );
 
         $config = new \Onion\PackageConfigReader();
-        $config->setLogger( $logger );
 
         $package = $config->read( 'package.ini' );
         $package->config->array['roles']['src'] = 'php';
