@@ -10,18 +10,8 @@
  */
 namespace Onion\Installer;
 use Phar;
-use Onion\Pear\PackageXmlParser;
 use PEARX\Installer;
 
-// xxx: use logger to parse
-
-
-
-/**
- *
- *
- *
- */
 class PearInstaller 
     implements InstallerInterface
 {
