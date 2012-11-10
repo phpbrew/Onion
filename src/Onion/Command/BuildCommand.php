@@ -73,8 +73,6 @@ EOT;
         $config = new PackageConfigReader(array( 
             'validate' => true,
         ));
-        $config->setLogger( $logger );
-
         $package = $config->read( 'package.ini' );
 
     	$generator = new PackageXmlGenerator( $package );
