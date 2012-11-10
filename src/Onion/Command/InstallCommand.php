@@ -52,9 +52,7 @@ class InstallCommand extends Command
             $logger->error('package.ini not found, please define one.');
             return false;
         }
-
         $reader = new \Onion\PackageConfigReader;
-        $reader->setLogger( $logger );
 
         $pkg = $reader->read( 'package.ini' );
         $pkg->local = 1; // dont install this

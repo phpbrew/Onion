@@ -275,10 +275,12 @@ XML;
         return $list;
     }
 
-    function buildContentFile($fileinfo, $role, $baseDir = '')
+    public function buildContentFile($fileinfo, $role, $baseDir = '')
     {
         $filepath = $fileinfo->getPathname();
-        $contentFile = new PackageXml\ContentFile($filepath);
+
+        $contentFile = (object) array();
+        $contentFile->file = $filepath;
         $contentFile->role = $role;
         $contentFile->md5sum = md5_file($filepath);
 
@@ -286,8 +288,7 @@ XML;
         if ($baseDir)
             $contentFile->installAs = substr($filepath, strlen($baseDir) + 1);
 
-        $this->logger->debug2(sprintf('%s  %-5s  %s', substr($contentFile->md5sum, 0, 6), $contentFile->role, $contentFile->file
-                ), 1);
+        $this->logger->debug2(sprintf('%s  %-5s  %s', substr($contentFile->md5sum, 0, 6), $contentFile->role, $contentFile->file), 1);
         return $contentFile;
     }
 
