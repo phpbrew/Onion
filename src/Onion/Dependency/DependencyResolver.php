@@ -9,6 +9,7 @@
  *
  */
 namespace Onion\Dependency;
+use Exception;
 
 /**
  *
@@ -31,13 +32,13 @@ class DependencyResolver
         return $this->logger;
     }
 
-    function __construct()
+    public function __construct()
     {
         $this->pool = new DependencyPool;
         $this->logger = \Onion\Application::getInstance()->getLogger();
     }
 
-    function resolvePearPackage($package)
+    public function resolvePearPackage($package, $depInfo)
     {
         if( $this->pool->hasPackage( $package ) ) {
             // xxx: check existing package version requirement..
@@ -49,12 +50,44 @@ class DependencyResolver
 
         // get dependent package info
         $this->logger->info( "Resolving PEAR package dependency: {$package->getId()}" );
-        $version = $package->latest;
 
-        if( isset( $package->deps[ $version ]['required']['extension']) ) {
-            foreach( (array) $package->deps[ $version ]['required']['extension'] as $extension ) {
-                // xxx:
+        // use latest version by default, if version requirement is not defined.
+        $targetVersion = $package->latest;
+        if( isset($depInfo['version']) && ! empty($depInfo['version']) ) {
+            $releaseVersions = array_keys($package->deps);
+            $availableVersions = array();
 
+            if( isset($depInfo['version']['min']) ) {
+                $minVersion = $depInfo['version']['min'];
+
+                $this->logger->info( 'Require ' .  $package->getId() . ' >= ' . $minVersion );
+
+                $availableVersions = array_filter( $releaseVersions, function($releaseVersion) use($minVersion) {
+                    return version_compare( $releaseVersion , $minVersion ) >= 0;
+                });
+            }
+
+            if( isset($depInfo['version']['max']) ) {
+                $maxVersion = $depInfo['version']['max'];
+
+                $this->logger->info( 'Require ' .  $package->getId() . ' <= ' . $maxVersion );
+
+                $availableVersions = array_filter( $availableVersions, function($releaseVersion) use($maxVersion) {
+                    return version_compare( $releaseVersion , $maxVersion ) <= 0;
+                });
+            }
+            if( empty($availableVersions) ) {
+                throw new Exception("Non of available version for " . $package->name );
+            }
+
+            $this->logger->info('Found version: ' . join(', ', $availableVersions) );
+
+            $targetVersion = end($availableVersions);
+        } 
+
+        if( isset( $package->deps[$targetVersion]['required']['extension']) ) {
+            foreach( (array) $package->deps[ $targetVersion ]['required']['extension'] as $extension ) {
+                // XXX: install extensions
             }
         }
 
@@ -63,8 +96,8 @@ class DependencyResolver
         $php = $package->deps[ $version ]['required']['php'];
         $php = $package->deps[ $version ]['required']['pearinstaller'];
         */
-        if( isset( $package->deps[ $version ]['required']['package']) ) {
-            $pkgs = $package->deps[ $version ]['required']['package'];
+        if( isset( $package->deps[ $targetVersion ]['required']['package']) ) {
+            $pkgs = $package->deps[ $targetVersion ]['required']['package'];
 
             // sometimes it's not list, so wrap it with list.
             if( ! isset($pkgs[0]) )
@@ -82,12 +115,12 @@ class DependencyResolver
                     ),
                 ));
                 $depPackage = $channel->findPackage( $packageName );
-                $this->resolvePearPackage( $depPackage );
+                $this->resolvePearPackage( $depPackage , $dep );
             }
         }
     }
 
-    function resolve( $package )
+    public function resolve( $package )
     {
         // expand package and package dependencies to package object
         // if installed , check if upgrade is need ?
@@ -117,7 +150,7 @@ class DependencyResolver
                     // discover pear channel
                     // $channel->prefetchPackagesInfo();
                     // $depPackage = $channel->getPackage( $depPackageName );
-                    $this->resolvePearPackage( $depPackage );
+                    $this->resolvePearPackage( $depPackage , $dep );
                 }
             }
             elseif( $dep['type'] == 'extension' ) {
