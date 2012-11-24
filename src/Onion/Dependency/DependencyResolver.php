@@ -55,14 +55,17 @@ class DependencyResolver
         $targetVersion = $package->latest;
         if( isset($depInfo['version']) && ! empty($depInfo['version']) ) {
             $releaseVersions = array_keys($package->deps);
-            $availableVersions = array();
+
+            $this->logger->debug('Found release versions: ' . join(', ', $releaseVersions) );
+
+            $availableVersions = $releaseVersions;
 
             if( isset($depInfo['version']['min']) ) {
                 $minVersion = $depInfo['version']['min'];
 
                 $this->logger->info( 'Require ' .  $package->getId() . ' >= ' . $minVersion );
 
-                $availableVersions = array_filter( $releaseVersions, function($releaseVersion) use($minVersion) {
+                $availableVersions = array_filter( $availableVersions, function($releaseVersion) use($minVersion) {
                     return version_compare( $releaseVersion , $minVersion ) >= 0;
                 });
             }
@@ -76,13 +79,16 @@ class DependencyResolver
                     return version_compare( $releaseVersion , $maxVersion ) <= 0;
                 });
             }
+
+
+            $availableVersions = array_values($availableVersions);
+
             if( empty($availableVersions) ) {
                 throw new Exception("Non of available version for " . $package->name );
             }
-
-            $this->logger->info('Found version: ' . join(', ', $availableVersions) );
-
-            $targetVersion = end($availableVersions);
+            $this->logger->debug('Found version: ' . join(', ', $availableVersions) );
+            $targetVersion = $availableVersions[0];
+            $this->logger->debug('Target version: ' . $targetVersion);
         } 
 
         if( isset( $package->deps[$targetVersion]['required']['extension']) ) {
@@ -136,7 +142,7 @@ class DependencyResolver
             // Expand pear package (refacotr this to dependencyInfo object)
             if( $dep['type'] == 'pear' ) {
                 $depPackageName = $dep['name'];
-                $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ..." , 1);
+                $this->logger->info2("Tracking dependency for PEAR package: {$dep['name']} ...");
                 if( $dep['resource']['type'] == 'channel' ) {
                     $host = $dep['resource']['channel'];
                     $channel = new \PEARX\Channel( $host , array( 

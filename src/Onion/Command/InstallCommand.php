@@ -43,7 +43,7 @@ class InstallCommand extends Command
      * make INSTALL_ROOT=/var/tmp/tmp_root install
      */
 
-    function execute()
+    public function execute()
     {
         $logger = $this->getLogger();
 
