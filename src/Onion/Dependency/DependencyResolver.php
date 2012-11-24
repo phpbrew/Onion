@@ -45,8 +45,6 @@ class DependencyResolver
             return;
         }
 
-        // get installed version, compare version
-        $this->pool->addPackage($package);
 
         // get dependent package info
         $this->logger->info( "Resolving PEAR package dependency: {$package->getId()}" );
@@ -90,6 +88,9 @@ class DependencyResolver
             $targetVersion = $availableVersions[0];
             $this->logger->debug('Target version: ' . $targetVersion);
         } 
+
+        // get installed version, compare version
+        $this->pool->addPackage($package, $targetVersion);
 
         if( isset( $package->deps[$targetVersion]['required']['extension']) ) {
             foreach( (array) $package->deps[ $targetVersion ]['required']['extension'] as $extension ) {

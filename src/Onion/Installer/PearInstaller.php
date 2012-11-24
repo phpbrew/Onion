@@ -23,7 +23,7 @@ class PearInstaller
         $this->mainInstaller = $main;
     }
 
-    public function install( $package ) 
+    public function install( $package , $targetVersion = null ) 
     {
         $logger = \Onion\Application::getInstance()->getLogger();
         $logger->info( "Installing {$package->name}" );
@@ -32,15 +32,19 @@ class PearInstaller
         // (PHP 5 >= 5.2.1)
         // $tmpDir = sys_get_temp_dir();
 
+        if( ! $targetVersion )
+            $targetVersion = $package->latest;
+
+
         $workspace = $this->mainInstaller->getWorkspace();
         $packageDir =  $workspace . DIRECTORY_SEPARATOR . $package->name;
-        $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $package->latest;
+        $packageSourceDir = $packageDir . DIRECTORY_SEPARATOR . $package->name . '-' . $targetVersion;
 
-        $url = $package->getReleaseDistUrl( $package->latest );
+        $url = $package->getReleaseDistUrl( $targetVersion );
         $info = parse_url( $url );
 
         // download the package.
-        $logger->info( "Downloading " . $package->name . '-' . $package->latest . "..." );
+        $logger->info( "Downloading " . $package->name . '-' . $targetVersion . "..." );
 
         // switch to workspace and download the package.
         $cwd = getcwd();

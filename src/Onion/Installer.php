@@ -9,7 +9,7 @@
  *
  */
 namespace Onion;
-
+use Exception;
 
 /**
  * main installer
@@ -27,7 +27,7 @@ class Installer
      * @param DependencyPool $pool
      * @param array $options
      */
-    function __construct($pool, $options = array() )
+    public function __construct($pool, $options = array() )
     {
         $this->pool = $pool;
 
@@ -44,27 +44,27 @@ class Installer
         $this->libpath = 'vendor';
     }
 
-    function getWorkspace()
+    public function getWorkspace()
     {
         return $this->workspace;
     }
 
-    function getLibraryInstaller()
+    public function getLibraryInstaller()
     {
         return new Installer\LibraryInstaller( $this );
     }
 
-    function getPearInstaller()
+    public function getPearInstaller()
     {
         return new Installer\PearInstaller( $this );
     }
 
-    function install()
+    public function install()
     {
         $packages = $this->pool->getPackages();
         foreach( $packages as $package ) {
             $installer = $this->getPearInstaller();
-            $installer->install( $package );
+            $installer->install($package , $this->pool->getPackageVersion($package) );
         }
     }
 }

@@ -26,15 +26,17 @@ class DependencyPool
     public $packages = array();
     public $packagesById = array();
 
+    /**
+     * @var array target package versions.
+     */
+    public $packageVersion = array();
 
-
-    function hasPackage($package)
+    public function hasPackage($package)
     {
         return isset( $this->packagesById[ $package->getId() ] );
     }
 
-
-    function addPackage($package)
+    public function addPackage($package, $version)
     {
         // check package
         if( isset( $this->packagesById[ $package->getId() ] ) ) {
@@ -42,15 +44,24 @@ class DependencyPool
 
         } else {
             $this->packages[] = $this->packagesById[ $package->getId() ] = $package;
+            $this->packageVersions[ $package->getId() ] = $version;
         }
     }
 
-    function removePackage($name)
+    public function getPackageVersion($package)
     {
-        unset( $this->packagesById[ $name ] );
+        if( isset($this->packageVersions[ $package->getId() ]) ) {
+            return $this->packageVersions[ $package->getId() ];
+        }
     }
 
-    function getPackage($id)
+    public function removePackage($id)
+    {
+        unset( $this->packagesById[ $id ] );
+        unset( $this->packageVersions[ $id ] );
+    }
+
+    public function getPackage($id)
     {
         return $this->packagesById[ $id ];
     }
@@ -59,7 +70,7 @@ class DependencyPool
     /**
      * return all packages 
      */
-    function getPackages()
+    public function getPackages()
     {
         return $this->packages;
     }
