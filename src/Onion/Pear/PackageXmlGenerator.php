@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  *
  */
-
 namespace Onion\Pear;
 
 use SimpleXMLElement;
@@ -146,7 +145,7 @@ XML;
             $customRoles = $config->get('roles');
             if ($customRoles) {
                 foreach ($customRoles as $pattern => $role) {
-                    if (in_array($pattern, $roles['test'])) {
+                    if ( isset($roles['test']) && in_array($pattern, $roles['test'])) {
                         continue;
                     }
                     $logger->debug("treat \"$pattern\" as \"$role\" role", 1);
