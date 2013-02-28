@@ -74,7 +74,7 @@ class Package implements PackageInterface
         if (empty($configuredStructure)) {
             return array(
                 'doc'    => array('doc', 'docs','examples'),
-                'test'  => (array) 'tests',
+                // 'test'  => (array) 'tests',
                 'php'    => (array) 'src',
                 // xxx: better config for roles
                 // 'script' => (array) 'bin',
