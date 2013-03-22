@@ -18,7 +18,7 @@ Let's keep hard long PEAR package.xml away! :-)
 
 ## Onion is for people want to..
 
-* Build PEAR package easily, quickly.
+* Build PEAR, PECL package easily, quickly.
 * Install PEAR dependencies into local project directory. (like Ruby Bundler)
 
 ## What People Say
