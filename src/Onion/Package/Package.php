@@ -75,7 +75,8 @@ class Package implements PackageInterface
             return array(
                 'doc'    => array('doc', 'docs','examples'),
                 // 'test'  => (array) 'tests',
-                'php'    => (array) 'src',
+                'php'    => array('src'),
+                'src'    => array('*.h','*.c','config.m4','config.w32'),
                 // xxx: better config for roles
                 // 'script' => (array) 'bin',
                 'data'   => (array) 'data',
