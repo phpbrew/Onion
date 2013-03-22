@@ -135,10 +135,12 @@ XML;
             // default roles
             $filelist = array();
             foreach ($roles as $role => $paths) {
-                foreach ($paths as $path) {
-                    $logger->debug("treat path \"$path\" as \"$role\" role", 1);
-                    $files = $this->addPathByRole($path, $role);
-                    $filelist = array_merge($filelist, $files);
+                if ( $role === "php" ) {
+                    foreach ($paths as $path) {
+                        $logger->debug("treat path \"$path\" as \"$role\" role", 1);
+                        $files = $this->addPathByRole($path, $role);
+                        $filelist = array_merge($filelist, $files);
+                    }
                 }
             }
 

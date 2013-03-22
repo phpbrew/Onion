@@ -16,11 +16,9 @@ class DependencyResolverTest extends \PHPUnit_Framework_TestCase
     {
         $logger = \Onion\Application::getInstance()->getLogger();
         ok( $logger );
-
         $logger->setLevel(0);
 
         $reader = new \Onion\PackageConfigReader;
-        $reader->setLogger( $logger );
 
         // ob_start();
         $pkg = $reader->read( 'tests/data/package.ini' );
