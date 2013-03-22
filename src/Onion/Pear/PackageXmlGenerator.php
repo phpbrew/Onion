@@ -90,6 +90,8 @@ XML;
             if ($config->has('package.extends'))
                 $xml->extends = $config->get('package.extends');
 
+            $provideExtension = $config->get('package.extension');
+
             $author_data = SpecUtils::parseAuthor($config->get('package.author'));
             $lead = $xml->addChild('lead');
             foreach ($author_data as $k => $v)
@@ -153,6 +155,18 @@ XML;
                     $filelist = array_merge($filelist, $files);
                 }
             }
+
+            // filter filelists
+
+            $filelist = array_filter($filelist, function($file) use($provideExtension) {
+                $role = $file->role;
+                if ( $provideExtension && ! in_array($role, array("src") ) ) {
+                    return false;
+                } elseif ( ! $provideExtension && ! in_array($role, array("php") ) ) {
+                    return false;
+                }
+                return true;
+            });
 
             $contentsXml = $xml->addChild('contents');
             $dir = $contentsXml->addChild('dir');
@@ -223,9 +237,9 @@ XML;
 
 
             // since phprelease can not be used for providesextension
-            if ( $extension = $config->get('package.extension') ) {
+            if ( $provideExtension ) {
                 // for <providesextension>extname</providesextension>
-                $xml->providesextension = $extension;
+                $xml->providesextension = $provideExtension;
                 $xml->addChild('extsrcrelease');
             } else {
                 // xxx: support optional dependencies
@@ -235,11 +249,9 @@ XML;
                     $phprelease = $xml->addChild('phprelease');
                     $filelistNode = $phprelease->addChild('filelist');
                     foreach ($filelist as $contentFile) { // ContentFile class
-                        if ( in_array($contentFile->role,array('php','script','doc')) ) {
-                            $file = $filelistNode->addChild('install');
-                            $file->addAttribute('name', $contentFile->file);
-                            $file->addAttribute('as', $contentFile->installAs);
-                        }
+                        $file = $filelistNode->addChild('install');
+                        $file->addAttribute('name', $contentFile->file);
+                        $file->addAttribute('as', $contentFile->installAs);
                     }
                 }
             }
