@@ -116,6 +116,16 @@ An example, we use onion to compile our executable file `onion`:
         --lib ../GetOptionKit/src \
         --output onion
 
+
+## For C Extensions
+
+Simple put a extension attribute:
+
+    [package]
+    ...
+    extension = yourext
+
+
 ## Available Config Tags
 
 please checkout [doc/SPEC.md](https://github.com/c9s/Onion/blob/master/doc/SPEC-v2.md)
