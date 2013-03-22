@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2013-02-28</date>
-  <time>19:25:39</time>
+  <date>2013-03-22</date>
+  <time>12:19:40</time>
   <version>
-    <release>1.5.0</release>
-    <api>1.5.0</api>
+    <release>1.6.1</release>
+    <api>1.6.1</api>
   </version>
   <stability>
     <release>stable</release>
@@ -33,7 +33,7 @@
       <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="69762e25b69af0456266ce52f97b34c9"/>
       <file name="src/CurlKit/Progress/ProgressInterface.php" role="php" md5sum="38c46e77d6045c6cb903e36fe2e2f214"/>
       <file name="src/CurlKit/Progress/ProgressStar.php" role="php" md5sum="45284e6cb587732d5dfd621fde9693d2"/>
-      <file name="src/Onion/Application.php" role="php" md5sum="607446f8401717db808f01a4454b920d"/>
+      <file name="src/Onion/Application.php" role="php" md5sum="8209c6f412b1aebe9dac5c3e346502f2"/>
       <file name="src/Onion/Command/BuildCommand.php" role="php" md5sum="d3dae88c428e5ed0814e9927c6ddfd16"/>
       <file name="src/Onion/Command/CompileCommand.php" role="php" md5sum="462ddad12678f5bae9cebcfbadd9d569"/>
       <file name="src/Onion/Command/InitCommand.php" role="php" md5sum="9ee53174df1f1ba932e0e449c1f912a7"/>
@@ -57,12 +57,12 @@
       <file name="src/Onion/Installer.php" role="php" md5sum="bc150d9f6b93df8c44be3af7f62a7f3b"/>
       <file name="src/Onion/LoggableInterface.php" role="php" md5sum="c31c46dcff37284f35cadbed42e49978"/>
       <file name="src/Onion/Operation/InstallOperation.php" role="php" md5sum="79d2f4de5f57931b9c2c29342d3f418c"/>
-      <file name="src/Onion/Package/Package.php" role="php" md5sum="df6b3bd5d00a92f445215310e024992c"/>
+      <file name="src/Onion/Package/Package.php" role="php" md5sum="3baa37252e52261c2cb029581d14b77c"/>
       <file name="src/Onion/Package/PackageInterface.php" role="php" md5sum="7a619a551d50b5497e94592766984d38"/>
       <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="d11e228a6f66be3aa395177b8b63fe03"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
-      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="7d86fcf17921702afdb7976f3e0d404f"/>
+      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="c30fb74940003d26412eee00512758f7"/>
       <file name="src/Onion/Repository/PEAR.php" role="php" md5sum="862ec5210bcf13240214c7b8ded1bb92"/>
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
@@ -74,7 +74,7 @@
       <file name="Changes.md" role="doc" md5sum="e47b693aa8e4bca959b5a2495b7d9034"/>
       <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
       <file name="README.ja.md" role="doc" md5sum="5b7eadf6489aa4056bb4ea8fed064c89"/>
-      <file name="README.md" role="doc" md5sum="53f202e3a48fdfd230f2be9a649f9ff0"/>
+      <file name="README.md" role="doc" md5sum="b9ef6ca4d855eb447e707a0556466609"/>
       <file name="TODO.md" role="doc" md5sum="6d38d14589b7a8e9a9e9c1fcae983aea"/>
     </dir>
   </contents>
