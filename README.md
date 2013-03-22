@@ -12,9 +12,7 @@ Onion is not target to replace other package manager, its target is to make curr
 
 Let's keep hard long PEAR package.xml away! :-)
 
-<!--
 [![Build Status](https://secure.travis-ci.org/c9s/Onion.png)](http://travis-ci.org/c9s/Onion)
--->
 
 ## Onion is for people want to..
 
