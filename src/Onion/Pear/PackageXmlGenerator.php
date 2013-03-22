@@ -135,12 +135,10 @@ XML;
             // default roles
             $filelist = array();
             foreach ($roles as $role => $paths) {
-                if ( $role === "php" ) {
-                    foreach ($paths as $path) {
-                        $logger->debug("treat path \"$path\" as \"$role\" role", 1);
-                        $files = $this->addPathByRole($path, $role);
-                        $filelist = array_merge($filelist, $files);
-                    }
+                foreach ($paths as $path) {
+                    $logger->debug("treat path \"$path\" as \"$role\" role", 1);
+                    $files = $this->addPathByRole($path, $role);
+                    $filelist = array_merge($filelist, $files);
                 }
             }
 
@@ -224,16 +222,23 @@ XML;
             }
 
 
-            // xxx: support optional dependencies
-            // xxx: support optional group dependencies
-            // phprelease sections
-            $logger->info("Building phprelease section..."); {
-                $phprelease = $xml->addChild('phprelease');
-                $filelistNode = $phprelease->addChild('filelist');
-                foreach ($filelist as $contentFile) { // ContentFile class
-                    $file = $filelistNode->addChild('install');
-                    $file->addAttribute('name', $contentFile->file);
-                    $file->addAttribute('as', $contentFile->installAs);
+            // since phprelease can not be used for providesextension
+            if ( $extension = $config->get('package.extension') ) {
+                // for <providesextension>extname</providesextension>
+                $xml->providesextension = $extension;
+                $xml->addChild('extsrcrelease');
+            } else {
+                // xxx: support optional dependencies
+                // xxx: support optional group dependencies
+                // phprelease sections
+                $logger->info("Building phprelease section..."); {
+                    $phprelease = $xml->addChild('phprelease');
+                    $filelistNode = $phprelease->addChild('filelist');
+                    foreach ($filelist as $contentFile) { // ContentFile class
+                        $file = $filelistNode->addChild('install');
+                        $file->addAttribute('name', $contentFile->file);
+                        $file->addAttribute('as', $contentFile->installAs);
+                    }
                 }
             }
         } catch (Exception $e) {
