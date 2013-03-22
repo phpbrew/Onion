@@ -12,7 +12,7 @@
     <active>yes</active>
   </lead>
   <date>2013-03-22</date>
-  <time>12:19:40</time>
+  <time>12:22:33</time>
   <version>
     <release>1.6.1</release>
     <api>1.6.1</api>
@@ -62,7 +62,7 @@
       <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="d11e228a6f66be3aa395177b8b63fe03"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
-      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="c30fb74940003d26412eee00512758f7"/>
+      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="739fce063d0c9bb53e0f1b71fa7c6996"/>
       <file name="src/Onion/Repository/PEAR.php" role="php" md5sum="862ec5210bcf13240214c7b8ded1bb92"/>
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
@@ -155,9 +155,6 @@
       <install name="src/Onion/SpecUtils.php" as="Onion/SpecUtils.php"/>
       <install name="src/Onion/TestCommand/ParentCommand/SubCommand.php" as="Onion/TestCommand/ParentCommand/SubCommand.php"/>
       <install name="src/Onion/TestCommand/ParentCommand.php" as="Onion/TestCommand/ParentCommand.php"/>
-      <install name="data/phpunit_package.xml" as="phpunit_package.xml"/>
-      <install name="data/symfony_package.xml.tmpl" as="symfony_package.xml.tmpl"/>
-      <install name="data/twig_package.xml" as="twig_package.xml"/>
       <install name="bin/onion" as="onion"/>
       <install name="Changes.md" as="Changes.md"/>
       <install name="HACKING.md" as="HACKING.md"/>

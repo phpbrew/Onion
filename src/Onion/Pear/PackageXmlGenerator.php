@@ -235,9 +235,11 @@ XML;
                     $phprelease = $xml->addChild('phprelease');
                     $filelistNode = $phprelease->addChild('filelist');
                     foreach ($filelist as $contentFile) { // ContentFile class
-                        $file = $filelistNode->addChild('install');
-                        $file->addAttribute('name', $contentFile->file);
-                        $file->addAttribute('as', $contentFile->installAs);
+                        if ( in_array($contentFile->role,array('php','script','doc')) ) {
+                            $file = $filelistNode->addChild('install');
+                            $file->addAttribute('name', $contentFile->file);
+                            $file->addAttribute('as', $contentFile->installAs);
+                        }
                     }
                 }
             }
