@@ -16,13 +16,6 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
     function test() 
     {
         $reader = new PackageConfigReader;
-
-        ob_start();
-        $reader->info( 'msg' );
-        $reader->error( 'msg' );
-        $reader->info2( 'msg' );
-        ob_end_clean();
-
         ok( $reader );
 
         ob_start();
@@ -35,12 +28,7 @@ class PackageConfigReaderTest extends PHPUnit_Framework_TestCase
         ok( $pkg->summary );
         ok( $pkg->desc );
         ok( $pkg->stability );
-
         $resources = $reader->getResources();
-        
-
-        // var_dump( $pkg );
-
     }
 }
 
