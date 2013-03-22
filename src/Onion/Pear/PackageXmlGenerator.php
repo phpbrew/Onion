@@ -162,7 +162,7 @@ XML;
                 $role = $file->role;
                 if ( $provideExtension && ! in_array($role, array("src") ) ) {
                     return false;
-                } elseif ( ! $provideExtension && ! in_array($role, array("php") ) ) {
+                } elseif ( ! $provideExtension && ! in_array($role, array("php","script") ) ) {
                     return false;
                 }
                 return true;
