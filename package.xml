@@ -11,11 +11,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2013-03-22</date>
-  <time>12:22:33</time>
+  <date>2013-03-23</date>
+  <time>23:02:29</time>
   <version>
-    <release>1.6.1</release>
-    <api>1.6.1</api>
+    <release>1.6.4</release>
+    <api>1.6.4</api>
   </version>
   <stability>
     <release>stable</release>
@@ -25,10 +25,6 @@
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file name="doc/InstallerFlow.md" role="doc" md5sum="c90dc4974c13f6234207143f9e3b3b51"/>
-      <file name="doc/SPEC-v2.md" role="doc" md5sum="df50cefc5ca7f79b729b63c9329a1e95"/>
-      <file name="doc/SPEC.md" role="doc" md5sum="6d80a188581d0724ae9fdbe1ac0c2d7e"/>
-      <file name="examples/package.ini" role="doc" md5sum="eb08e83054a681d7ced8249b84a02cce"/>
       <file name="src/CurlKit/CurlDownloader.php" role="php" md5sum="53dd735db3928653ef0e60bfb9048191"/>
       <file name="src/CurlKit/Progress/ProgressBar.php" role="php" md5sum="69762e25b69af0456266ce52f97b34c9"/>
       <file name="src/CurlKit/Progress/ProgressInterface.php" role="php" md5sum="38c46e77d6045c6cb903e36fe2e2f214"/>
@@ -62,20 +58,11 @@
       <file name="src/Onion/PackageConfigReader.php" role="php" md5sum="d11e228a6f66be3aa395177b8b63fe03"/>
       <file name="src/Onion/Packager.php" role="php" md5sum="2fffec686af34345d9faef2efc04eb4a"/>
       <file name="src/Onion/Paths.php" role="php" md5sum="e4767821c395ff12c6b622b94b2d7b92"/>
-      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="739fce063d0c9bb53e0f1b71fa7c6996"/>
+      <file name="src/Onion/Pear/PackageXmlGenerator.php" role="php" md5sum="f02f5c7081be388c9a95ca96d6af15f4"/>
       <file name="src/Onion/Repository/PEAR.php" role="php" md5sum="862ec5210bcf13240214c7b8ded1bb92"/>
       <file name="src/Onion/SpecUtils.php" role="php" md5sum="a600cf85f732d99eec93b2c2dc3e59c2"/>
       <file name="src/Onion/TestCommand/ParentCommand/SubCommand.php" role="php" md5sum="a69e9e6477f7d4d82f30b5769eae073e"/>
       <file name="src/Onion/TestCommand/ParentCommand.php" role="php" md5sum="9bec2094c780a962306c2febc669f8b8"/>
-      <file name="data/phpunit_package.xml" role="data" md5sum="5d67a25e5f576ef1f520091df67bef39"/>
-      <file name="data/symfony_package.xml.tmpl" role="data" md5sum="d185eeae0498e1256a74f2c1d534dbdf"/>
-      <file name="data/twig_package.xml" role="data" md5sum="136fba3cb6b25af2451e35159eac0c2e"/>
-      <file name="bin/onion" role="script" md5sum="f5c334246ca8d7c5926ad89d7a98c637"/>
-      <file name="Changes.md" role="doc" md5sum="e47b693aa8e4bca959b5a2495b7d9034"/>
-      <file name="HACKING.md" role="doc" md5sum="3f50233ef438032626399f4c6b87709d"/>
-      <file name="README.ja.md" role="doc" md5sum="5b7eadf6489aa4056bb4ea8fed064c89"/>
-      <file name="README.md" role="doc" md5sum="b9ef6ca4d855eb447e707a0556466609"/>
-      <file name="TODO.md" role="doc" md5sum="6d38d14589b7a8e9a9e9c1fcae983aea"/>
     </dir>
   </contents>
   <dependencies>
@@ -113,10 +100,6 @@
   </dependencies>
   <phprelease>
     <filelist>
-      <install name="doc/InstallerFlow.md" as="InstallerFlow.md"/>
-      <install name="doc/SPEC-v2.md" as="SPEC-v2.md"/>
-      <install name="doc/SPEC.md" as="SPEC.md"/>
-      <install name="examples/package.ini" as="package.ini"/>
       <install name="src/CurlKit/CurlDownloader.php" as="CurlKit/CurlDownloader.php"/>
       <install name="src/CurlKit/Progress/ProgressBar.php" as="CurlKit/Progress/ProgressBar.php"/>
       <install name="src/CurlKit/Progress/ProgressInterface.php" as="CurlKit/Progress/ProgressInterface.php"/>
@@ -155,12 +138,6 @@
       <install name="src/Onion/SpecUtils.php" as="Onion/SpecUtils.php"/>
       <install name="src/Onion/TestCommand/ParentCommand/SubCommand.php" as="Onion/TestCommand/ParentCommand/SubCommand.php"/>
       <install name="src/Onion/TestCommand/ParentCommand.php" as="Onion/TestCommand/ParentCommand.php"/>
-      <install name="bin/onion" as="onion"/>
-      <install name="Changes.md" as="Changes.md"/>
-      <install name="HACKING.md" as="HACKING.md"/>
-      <install name="README.ja.md" as="README.ja.md"/>
-      <install name="README.md" as="README.md"/>
-      <install name="TODO.md" as="TODO.md"/>
     </filelist>
   </phprelease>
 </package>
