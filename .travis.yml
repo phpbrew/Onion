@@ -12,3 +12,5 @@ before_script:
   - php bin/onion build
 
 script: phpunit
+notifications:
+  webbooks: http://wireroom.extremedev.org/=/travis-ci/Hall
