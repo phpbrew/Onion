@@ -10,7 +10,7 @@
  *
  */
 define('BASE_PATH', dirname(__DIR__));
-require 'Universal/ClassLoader/BasePathClassLoader.php';
+require BASE_PATH . '/vendor/pear/Universal/ClassLoader/BasePathClassLoader.php';
 $classLoader = new \Universal\ClassLoader\BasePathClassLoader(array(
     BASE_PATH . '/src',
     BASE_PATH . '/vendor/pear',
