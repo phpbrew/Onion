@@ -26,7 +26,7 @@ class SelfUpdateCommand extends Command
         // fetch new version phpbrew
         $this->logger->info("self updating ($branch)...");
 
-        $url = "https://raw.github.com/c9s/Onion/$branch/onion";
+        $url = "https://github.com/phpbrew/Onion/raw/$branch/onion";
         system("curl -# -L $url > $script") == 0 or die('Update failed.');
 
         $this->logger->info("Version updated.");
