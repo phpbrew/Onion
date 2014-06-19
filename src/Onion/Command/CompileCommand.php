@@ -178,7 +178,7 @@ EOT;
 require 'phar://$pharFile/$classloader_file';
 \$classLoader = new \\Universal\\ClassLoader\\SplClassLoader;
 \$classLoader->addFallback( 'phar://$pharFile' );
-\$classLoader->register();
+\$classLoader->register(true);
 EOT;
 
             }
