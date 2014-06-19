@@ -7,9 +7,9 @@ before_script:
   - phpenv rehash
   - pear channel-discover pear.corneltek.com
   - pear install -f -a package.xml
-  - php bin/onion install
+  - php onion install
   - bash scripts/compile
-  - php bin/onion build
+  - php onion build
 
 script: phpunit
 notifications:
