@@ -12,7 +12,7 @@ Onion is not target to replace other package manager, its target is to make curr
 
 Let's keep hard long PEAR package.xml away! :-)
 
-[![Build Status](https://secure.travis-ci.org/c9s/Onion.png)](http://travis-ci.org/c9s/Onion)
+[![Build Status](https://secure.travis-ci.org/phpbrew/Onion.png)](http://travis-ci.org/phpbrew/Onion)
 
 ## Onion is for people want to..
 
@@ -126,7 +126,7 @@ Simple put a extension attribute:
 
 ## Available Config Tags
 
-please checkout [doc/SPEC.md](https://github.com/c9s/Onion/blob/master/doc/SPEC-v2.md)
+please checkout [doc/SPEC.md](https://github.com/phpbrew/Onion/blob/master/doc/SPEC-v2.md)
 
 ## Version Naming
 
@@ -209,7 +209,7 @@ A more detailed example
 
 Make a fork from Onion and clone it:
 
-    $ git clone git@github.com:c9s/Onion.git
+    $ git clone https://github.com/phpbrew/Onion.git
     $ cd Onion
 
 Run onion to install dependencies
